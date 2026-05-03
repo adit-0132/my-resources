@@ -3,9 +3,9 @@
 Other Resources that I used : 
 
 [Fast Notes](https://github.com/Furkan-Gulsen/aws-certified-cloud-practitioner-certification-my-notes) for final day revision.
-
 [Detailed Notes](https://github.com/kennethleungty/AWS-Certified-Cloud-Practitioner-Notes/tree/main) for those who wanna be 100% sure of their prep.
-
+[All AWS services quick run-through](https://www.youtube.com/watch?v=bifhDoWhVIU)
+[Fast Short youtube one-shot](https://www.youtube.com/watch?v=RyU1F6NkxBM&t=464s)
 > Compiled from 23 Practice Exams | Optimized for Last-Day Revision --> Most Goated {I got at least 50+ questions from what's covered beneath in May 2026 AWS CCP exam}
 
 ---
