@@ -1,0 +1,559 @@
+--- page 1 ---
+Lecture 16 : RNN Language Models
+--- page 2 ---
+A Neural Language Model
+•
+Recurrent Neural Networks: Intuition
+•
+RNN Language Model
+•
+--- page 3 ---
+Recap: Language Modeling
+A model that computes either of these is called a language model
+--- page 4 ---
+What is an issue?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 5 ---
+Enter Neural Networks
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 6 ---
+Composing word embeddings
+● Neural networks compose word embeddings into vectors for phrases,
+sentences, and documents
+● Predict the next word from composed prefix representation
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 7 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 8 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 9 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 10 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 11 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 12 ---
+How does this happen?
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 13 ---
+Computing prefix representation
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 14 ---
+Composition functions
+input: sequence of word embeddings corresponding to the tokens of a given
+prefix
+output: single vector
+• Element-wise functions
+• e.g., just sum up all of the word embeddings!
+• Concatenation
+• Feed-forward neural networks
+• Convolutional neural networks
+• Recurrent neural networks
+• Transformers
+Source: https://people.cs.umass.edu/~miyyer/cs685/
+--- page 15 ---
+A fixed-window neural language model
+Let’s look first at concatenation
+Source: https://web.stanford.edu/class/cs224n/
+--- page 16 ---
+A fixed-window neural language model
+Source: https://web.stanford.edu/class/cs224n/
+--- page 17 ---
+A fixed-window neural language model
+Source: https://web.stanford.edu/class/cs224n/
+e.g., students have opened their
+--- page 18 ---
+RNN Language Model
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 19 ---
+RNN Language Model
+U
+U
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+x1
+x2
+x3
+x4
+--- page 20 ---
+RNN Language Model
+U
+U
+U
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+x1
+x2
+U
+x3
+x4
+V
+--- page 21 ---
+Recurrent Neural Networks (RNNs)
+We can process a sequence of vectors x by applying a recurrence formula at each step:
+--- page 22 ---
+RNN as a feed-forward network
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 23 ---
+Forward Propagation in RNN
+Note: We are ignoring the bias terms in the above equations
+--- page 24 ---
+RNN unrolled in time
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 25 ---
+Try this problem
+Consider the problem of predicting the next word from a sequence of words using an RNN.
+Suppose, there are overall 5 words in your vocabulary, {‘I’, ‘he’, ‘go’, ‘walk’, ‘eat’}. And each word is
+represented using a one-hot vector as per the order above.
+Suppose the hidden layer has ‘6’ dimensions, what are the total number of parameters that you will
+have to learn? Please ignore the bias terms for this problem.
+--- page 26 ---
+Training an RNN LM
+--- page 27 ---
+Training an RNN LM
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 28 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 8]
+--- page 29 ---
+
+--- page 30 ---
+Lecture 17 : RNN Applications: Text
+Generation, Sequence Labeling, Text
+Classification
+--- page 31 ---
+RNNs for Text Generation
+•
+RNNs for Sequence Labeling
+•
+RNNs for Text Classification
+•
+--- page 32 ---
+Recap: RNN Language Model
+U
+U
+U
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+x1
+x2
+U
+x3
+x4
+V
+--- page 33 ---
+Generating text with an RNN Language Model
+--- page 34 ---
+Autoregressive Generation with RNNs
+--- page 35 ---
+Autoregressive Generation with RNNs
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 36 ---
+RNNs can be used for various applications
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 37 ---
+RNNs for Sequence Labeling
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 38 ---
+RNNs for Sequence Labeling: POS Tagging
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 39 ---
+Named Entities
+• Named entity, in its core usage, means anything that can be
+referred to with a proper name. Most common 4 tags:
+• PER (Person): “Marie Curie”
+• LOC (Location): “New York City”
+• ORG (Organization): “Stanford University”
+• GPE (Geo-Political Entity): "Boulder, Colorado"
+• Often multi-word phrases
+• But the term is also extended to things that aren't entities:
+• dates, times, prices
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 40 ---
+Named Entity tagging
+find spans of text that constitute proper names
+tag the type of the entity.
+•
+•
+The task of named entity recognition (NER):
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 41 ---
+NER output
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 42 ---
+Why NER?
+Sentiment analysis: consumer’s sentiment toward a
+particular company or person?
+Question Answering: answer questions about an entity?
+Information Extraction: Extracting facts about entities
+from text.
+--- page 43 ---
+1) Segmentation
+•
+•
+Why NER is hard
+In POS tagging, no segmentation problem since each
+word gets one tag.
+In NER we have to find and segment the entities!
+2) Type ambiguity
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 44 ---
+BIO Tagging
+How can we turn this structured problem into a sequence
+problem like POS tagging, with one label per word?
+[PER Jane Villanueva] of [ORG United] , a unit of [ORG United
+Airlines Holding] , said the fare applies to the [LOC Chicago ]
+route.
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 45 ---
+BIO Tagging
+[PER Jane Villanueva] of [ORG United] , a unit of [ORG United Airlines Holding] ,
+said the fare applies to the [LOC Chicago ] route.
+Now we have one tag per token!!!
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 46 ---
+B: token that begins a span
+I: tokens inside a span
+O: tokens outside of any span
+1 O tag,
+n B tags,
+n I tags
+total of 2n+1
+# of tags (where n is #entity types):
+BIO Tagging
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 47 ---
+RNNs for Sequence Labeling
+Suppose you are using
+300-dim
+word
+embeddings,
+50-dim
+hidden vector, and you
+have 50 POS tags. What
+will be the number of
+parameters excluding the
+bias terms?
+--- page 48 ---
+RNNs for Sequence Labeling
+Suppose you are using 300-dim word embeddings, 50-dim hidden vector, and you have
+5 NER tags, and you are using BIO tagging scheme. What will be the number of
+parameters excluding the bias terms?
+--- page 49 ---
+How to use RNNs for Text classification?
+Source: https://web.stanford.edu/class/cs224n/
+--- page 50 ---
+RNNs for Sentence Classification
+Source: https://web.stanford.edu/class/cs224n/
+--- page 51 ---
+RNNs for Sentence Classification
+Source: https://web.stanford.edu/class/cs224n/
+--- page 52 ---
+Bidirectional RNNs: motivation for sentiment classification
+Source: https://web.stanford.edu/class/cs224n/
+--- page 53 ---
+Bidirectional RNNs: Formally
+--- page 54 ---
+Bidirectional RNNs
+Source: https://web.stanford.edu/class/cs224n/
+--- page 55 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 8]
+--- page 56 ---
+
+--- page 57 ---
+Lecture 18 : RNN for Sequence to Sequence
+--- page 58 ---
+Sequence to Sequence: Machine Translation
+•
+Sequence to Sequence (Seq2Seq using RNN Encoder-Decoder)
+•
+Attention Mechanism
+•
+--- page 59 ---
+Try this problem
+Suppose you are using Bi-LSTM for NER problem, and there are 3 NER tags: {PER,
+LOC, ORG}, and you are using BIO tagging scheme. Assume that each word has a 300dimension embedding, and the hidden state for the forward and backward LSTMs are 200
+and 100 dimensions, respectively. How many total parameters will need to be trained?
+Ignore the bias terms.
+--- page 60 ---
+Try this problem contd…
+Now, suppose you also want to train the word embeddings for a vocabulary of 40,000.
+How many additional parameters will need to be trained?
+--- page 61 ---
+An example of Seq2Seq: Machine Translation
+Machine Translation (MT) is the task of translating a sentence x from one language (the source
+language) to a sentence y in another language (the target language)
+--- page 62 ---
+Sequence to sequence is versatile
+--- page 63 ---
+Sequence-to-sequence architecture
+--- page 64 ---
+Encoder-Decoder Architecture
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 65 ---
+Encoder-Decoder Architecture
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 66 ---
+Machine Translation Objective
+let’s think about translating an English source text (“the green witch
+arrived”), to a Spanish sentence (“llego la bruja verde”) (which can be glossed
+word-by-word as “arrived the witch green”).
+Let x denote the source text, and y the target text
+An encoder-decoder model computes the probability p(y|x) as
+It is also known as Conditional Language Model
+--- page 67 ---
+Encoder-decoder model
+Translating a single sentence
+(inference time) in the basic RNN
+version of encoder-decoder
+approach to machine translation.
+Source and target sentences are
+concatenated with a separator token
+in between, and the decoder uses
+context information from the
+encoder’s last hidden state.
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 68 ---
+Training the Encoder-decoder model: Teacher forcing
+In the decoder, we use teacher
+forcing to force each input to the
+correct gold value for training. We
+compute
+the
+softmax
+output
+distribution in the decoder in order to
+compute the loss at each token,
+which can then be averaged to
+compute a loss for the sentence. This
+loss is then propagated through the
+decoder parameters and the encoder
+parameters.
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 69 ---
+Making the context available in each step
+A variation of RNN-based encoder-decoder architecture, where
+the final hidden state of the encoder RNN is also made available to
+each decoder hidden state.
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 70 ---
+Multi-layer deep encoder-decoder machine translation net
+Source: https://web.stanford.edu/class/cs224n/
+--- page 71 ---
+NMT: the first big success story of NLP Deep Learning
+Source: https://web.stanford.edu/class/cs224n/
+--- page 72 ---
+Encoder-decoder: Bottleneck
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 73 ---
+Encoder-decoder with attention
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 74 ---
+Encoder-decoder with attention
+The attention mechanism allows each hidden state of the decoder to see a
+different, dynamic context, which is a function of all the encoder states
+Source: https://web.stanford.edu/~jurafsky/slp3.
+--- page 75 ---
+Attention: In Equations
+--- page 76 ---
+Try this problem
+Suppose you are using sequence to sequence RNN model with attention. Suppose the
+encoder has 4 hidden states (2-dimensional) [1,-1], [-1,1], [0,-1], [-1,0] and the decoder
+hidden state at a given time point is [-1,-1]. Using attention (dot product) over the encoder
+states, what will be the context vector to the next hidden state of the decoder?
+--- page 77 ---
+Attention is quite helpful
+--- page 78 ---
+Example: Machine Translation
+Neural Machine Translation by jointly learning to align and Translate, ICLR 2015
+--- page 79 ---
+Example: Machine Translation
+A Neural Attention Model for Sentence Summarization, EMNLP 2015
+--- page 80 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 8]
+--- page 81 ---
+
+--- page 82 ---
+Lecture 19 : Decoding Strategies
+--- page 83 ---
+Greedy Decoding, Beam Search Decoding
+•
+Random Sampling with temperature
+•
+Top-k Sampling, Top-p Sampling
+•
+--- page 84 ---
+Try this Problem
+Suppose you are using sequence to sequence RNN model with attention for Machine
+Translation from English to Hindi. Assume that the vocabulary for English is 40k and that
+for Hindi is 50k, and both use 300-dimensional embeddings. Also, assume that the
+encoder hidden state is 100-dimensional, while decoder hidden state is 200-dimensional.
+What will be the number of parameters to be trained? You may ignore the bias terms.
+--- page 85 ---
+Try this Problem
+Vocabulary for English is 40k and that for
+Hindi is 50k, 300-d embeddings. Encoder
+hidden:100, decoder hidden state: 200.
+--- page 86 ---
+Recap: Encoder-decoder model at inference
+Translating a single sentence
+(inference time) in the basic RNN
+version
+of
+encoder-decoder
+approach to machine translation.
+Source and target sentences are
+concatenated with a separator token
+in between, and the decoder uses
+context information from the
+encoder’s last hidden state.
+How do we generate the tokens in an autoregressive manner?
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 87 ---
+Which words do we generate at each step?
+--- page 88 ---
+What is the issue with greedy decoding?
+● What will greedy decoding choose?
+● What is globally optimal?
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 89 ---
+Beam Search
+--- page 90 ---
+Beam Search: How does it work?
+https://web.stanford.edu/~jurafsky/slp3
+--- page 91 ---
+Beam Search: How does it work?
+https://web.stanford.edu/~jurafsky/slp3
+--- page 92 ---
+Beam Search on the prev. example
+Take Beam Size = 2. Is the Beam search solution same as the optimal solution?
+https://web.stanford.edu/~jurafsky/slp3
+--- page 93 ---
+Beam Search: Stopping Criterion
+--- page 94 ---
+Beam Search: Finishing up
+--- page 95 ---
+[Holtzman e t al., 20 20 ]
+https://utah-cs6340 -nlp.notion.site /Natural-Language -Proce ssing-bd1a2ca290 fc44f695569 0 8ad8d25c70
+--- page 96 ---
+Greedy and Beam Search are deterministic!
+● Greedy decoding as well as Beam Search decoding will give a “deterministic” output
+● Other common decoding algorithms involve “sampling”, and bring in some degree of
+“randomness”
+--- page 97 ---
+Quality vs Diversity trade-off
+--- page 98 ---
+Random Sampling with Temperature
+--- page 99 ---
+Why does this work?
+Can we avoid the low-probability
+tokens altogether?
+Without scaling, random
+sampling
+often
+generates
+incoherent
+gibberish
+https://utah-cs6340-nlp.notion.site/Natural-Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 100 ---
+Top-k Sampling
+In Top-k Sampling, only Top k tokens (as per prob.) are considered for
+generation, so the less probable words would not have any chance
+--- page 101 ---
+Nucleus Sampling or Top-p sampling
+--- page 102 ---
+Try this problem
+Suppose you have a vocabulary of size 5 and during decoding, the output
+vector is [3, -1, 2, 1, -2]. Write down the effective probability distribution
+when you use the following sampling strategies.
+● Random sampling with temperature 0.5
+● Top-2 sampling
+● Nucleus sampling with p = 0.5
+--- page 103 ---
+Try this problem
+Suppose you have a vocabulary of size 5 and during decoding, the output vector is [3, -1, 2, 1, -2]. Write down
+the effective probability distribution when you use the following sampling strategies.
+● Random sampling with temperature 0.5
+● Top-2 sampling
+● Nucleus sampling with p = 0.5
+--- page 104 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 10]
+--- page 105 ---
+
+--- page 106 ---
+Lecture 20 : Better RNN Units: GRU, LSTM
+--- page 107 ---
+Issues with Vanilla RNN: Vanishing Gradient
+•
+Gates for better Units: LSTMs
+•
+--- page 108 ---
+Problem with RNN: Vanishing Gradient
+Source: https://web.stanford.edu/class/cs224n/
+--- page 109 ---
+Vanishing Gradient: Intuition
+Source: https://web.stanford.edu/class/cs224n/
+--- page 110 ---
+Vanishing Gradient: Intuition
+Source: https://web.stanford.edu/class/cs224n/
+--- page 111 ---
+Vanishing Gradient: Intuition
+Source: https://web.stanford.edu/class/cs224n/
+--- page 112 ---
+Why is this a problem?
+Source: https://web.stanford.edu/class/cs224n/
+--- page 113 ---
+Effect of vanishing gradient on RNN-LM
+Source: https://web.stanford.edu/class/cs224n/
+--- page 114 ---
+How to fix vanishing gradient problem?
+--- page 115 ---
+Using Gates for better RNN Units
+--- page 116 ---
+Long Short Term Memory (LSTM)
+Source: https://web.stanford.edu/class/cs224n/
+--- page 117 ---
+Long Short Term Memory (LSTM)
+Source: https://web.stanford.edu/class/cs224n/
+--- page 118 ---
+Long Short Term Memory (LSTM): In Equations
+--- page 119 ---
+Long Short Term Memory (LSTM): In Equations
+--- page 120 ---
+How does LSTM solve Vanishing Gradient?
+--- page 121 ---
+Try this problem
+Suppose you are using Bi-LSTM for language labeling in code-switched data, and there are 5
+possible language tags per word. Assume that each word has a 50-dimension embedding, and the
+hidden state for both the forward and backward LSTMs are 40-dimension each. How many total
+parameters will need to be trained? Ignore the bias terms.
+--- page 122 ---
+Issues with recurrent models
+https://web.stanford.edu/class/cs224n/
+--- page 123 ---
+Issues with recurrent models
+https://web.stanford.edu/class/cs224n/
+Inhibits training on very
+large datasets!
+--- page 124 ---
+LSTMs Revamped: xLSTMs
+xLSTM: Extended Long Short-Term Memory. https://arxiv.org/pdf/2405.04517
+--- page 125 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 8]
+--- page 126 ---

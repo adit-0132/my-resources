@@ -1,0 +1,599 @@
+--- page 1 ---
+Lecture 6 : Supervised Learning
+--- page 2 ---
+Introduction to Supervised Learning
+•
+Example: 1D Linear Regression
+•
+--- page 3 ---
+● Building systems that simulate intelligent behavior
+● Wide range of approaches: logic, search, probabilistic reasoning, …
+*Slides adapted from http://udlbook.com
+--- page 4 ---
+● Building systems that simulate intelligent behavior
+● Wide range of approaches: logic, search, probabilistic reasoning, …
+● A subset of AI that learns to make decisions by fitting
+mathematical models to observed data
+● (incorrectly) almost synonymous with AI
+*Slides adapted from http://udlbook.com
+--- page 5 ---
+Constructing a model
+from input data
+without
+corresponding
+output labels
+Define a mapping
+from input data to
+an
+output
+prediction
+*Slides adapted from http://udlbook.com
+Introduces the idea of
+an agent that lives in
+the world and learns
+to choose actions
+leading
+to
+high
+reward
+--- page 6 ---
+Deep Neural Networks contribute to each of the areas
+*Slides adapted from http://udlbook.com
+--- page 7 ---
+Supervised learning
+• Define a mapping from input to output
+• Learn this mapping from paired input/output data examples
+*Slides adapted from http://udlbook.com
+--- page 8 ---
+Regression
+• Univariate regression problem (one output, real value)
+• Fully connected network
+*Slides adapted from http://udlbook.com
+--- page 9 ---
+Text classification
+• Binary classification problem (two discrete classes)
+• Recurrent Neural Networks / Transformer network
+*Slides adapted from http://udlbook.com
+--- page 10 ---
+Image classification
+• Multiclass classification problem (discrete classes, >2 possible classes)
+• Convolutional network
+*Slides adapted from http://udlbook.com
+--- page 11 ---
+Translation
+There can be structure in output as well!
+*Slides adapted from http://udlbook.com
+--- page 12 ---
+Image captioning
+There can be structure in output as well!
+*Slides adapted from http://udlbook.com
+--- page 13 ---
+What do we see in these examples?
+There is a meaningful real-world input (Sentence, image, etc.)
+•
+The input is encoded as a vector of numbers, forming the model input
+•
+The model maps the input to an output vector
+•
+The output vector is translated back to a meaningful real-word
+prediction.
+•
+*Slides adapted from http://udlbook.com
+--- page 14 ---
+Supervised learning overview
+• Example:
+• Supervised learning model = mapping from one or more inputs to one
+or more outputs
+• Model is a mathematical equation
+• Input is age and mileage of second hand Toyota Prius
+• Output is estimated price of car
+*Slides adapted from http://udlbook.com
+--- page 15 ---
+Supervised learning overview
+• Supervised learning model = mapping from one or more inputs to one
+or more outputs
+• Model is a mathematical equation
+• Computing the outputs from the inputs = inference
+• Model also includes parameters
+• Parameters affect outcome of equation
+*Slides adapted from http://udlbook.com
+--- page 16 ---
+Supervised learning overview
+• Supervised learning model = mapping from one or more inputs
+to one or more outputs
+• Model is a mathematical equation
+• Model is a family of equations
+• Computing the outputs from the inputs = inference
+• Model also includes parameters
+• Parameters affect outcome of equation
+• Training a model = finding parameters that predict outputs
+“well” from inputs for a training dataset of input/output pairs
+*Slides adapted from http://udlbook.com
+--- page 17 ---
+Supervised Learning: Notation
+*Slides adapted from http://udlbook.com
+--- page 18 ---
+Supervised Learning: Model
+*Slides adapted from http://udlbook.com
+--- page 19 ---
+Loss Function
+*Slides adapted from http://udlbook.com
+--- page 20 ---
+Training
+*Slides adapted from http://udlbook.com
+--- page 21 ---
+Testing
+*Slides adapted from http://udlbook.com
+--- page 22 ---
+Example: 1D Linear regression model
+*Slides adapted from http://udlbook.com
+--- page 23 ---
+Example: 1D Linear regression model
+*Slides adapted from http://udlbook.com
+--- page 24 ---
+Example: 1D Linear regression training data
+*Slides adapted from http://udlbook.com
+--- page 25 ---
+Example: 1D Linear regression training data
+*Slides adapted from http://udlbook.com
+--- page 26 ---
+Example: 1D Linear regression training data
+*Slides adapted from http://udlbook.com
+--- page 27 ---
+Example: 1D Linear regression training data
+*Slides adapted from http://udlbook.com
+--- page 28 ---
+Example: 1D Linear regression loss function
+*Slides adapted from http://udlbook.com
+--- page 29 ---
+Example: 1D Linear regression training
+*Slides adapted from http://udlbook.com
+This technique is known as
+gradient descent
+--- page 30 ---
+Possible objections
+• But you can fit the line model in closed form!
+• Yes – but we won’t be able to do this for more complex models
+• But we could exhaustively try every slope and intercept combo!
+• Yes – but we won’t be able to do this when there are a million parameters
+*Slides adapted from http://udlbook.com
+--- page 31 ---
+1D Linear regression testing
+• Test with different set of paired input/output data
+• Measure performance
+• Degree to which this is same as training = generalization
+• Might not generalize well because
+• Model too simple
+• Model too complex
+• fits to statistical peculiarities of data
+• this is known as overfitting
+*Slides adapted from http://udlbook.com
+--- page 32 ---
+Understanding Deep Learning [https://udlbook.github.io/udlbook/]
+[Chapter 1, 2]
+--- page 33 ---
+
+--- page 34 ---
+Lecture 7 : Shallow Neural Networks
+--- page 35 ---
+Shallow Neural Networks
+•
+Universal Approximation Theorem
+•
+Nomenclature
+•
+--- page 36 ---
+Recap: 1D Linear regression training
+This technique is known as gradient descent
+*Slides adapted from http://udlbook.com
+--- page 37 ---
+Shallow neural networks
+• 1D regression model is obviously limited
+• Want to be able to describe input/output that are not lines
+• Want multiple inputs
+• Want multiple outputs
+• Shallow neural networks
+• Flexible enough to describe arbitrarily complex input/output mappings
+• Can have as many inputs as we want
+• Can have as many outputs as we want
+*Slides adapted from http://udlbook.com
+--- page 38 ---
+Example shallow network
+*Slides adapted from http://udlbook.com
+--- page 39 ---
+Example shallow network
+Activation function
+Rectified Linear Unit
+(particular kind of activation function)
+*Slides adapted from http://udlbook.com
+--- page 40 ---
+Example shallow network
+This model has 10 parameters:
+Represents a family of functions
+Parameters determine particular function
+Given parameters can perform inference (run equation)
+Given training dataset
+Define loss function
+(least squares)
+Change parameters to minimize loss function
+•
+•
+•
+•
+•
+•
+*Slides adapted from http://udlbook.com
+--- page 41 ---
+Example shallow network
+Family of functions defined by the equation for
+three choices of parameters
+*Slides adapted from http://udlbook.com
+--- page 42 ---
+Hidden units
+where:
+Break down into two parts:
+Hidden units
+--- page 43 ---
+1. compute three linear functions
+*Slides adapted from http://udlbook.com
+--- page 44 ---
+2. Pass through ReLU functions
+(creates hidden units)
+*Slides adapted from http://udlbook.com
+--- page 45 ---
+2. Weight the hidden units
+*Slides adapted from http://udlbook.com
+--- page 46 ---
+4. Sum the weighted hidden
+units to create output
+*Slides adapted from http://udlbook.com
+--- page 47 ---
+Example shallow network
+Example shallow network = piecewise linear functions
+1 “joint” per ReLU function
+--- page 48 ---
+Depicting neural network
+*Slides adapted from http://udlbook.com
+--- page 49 ---
+With enough hidden units…
+… we can describe any 1D function to arbitrary accuracy
+*Slides adapted from http://udlbook.com
+--- page 50 ---
+Universal approximation theorem
+*Slides adapted from http://udlbook.com
+--- page 51 ---
+More than 1 outputs?
+*Slides adapted from http://udlbook.com
+--- page 52 ---
+Arbitrary inputs, hidden units, outputs
+How many parameters does this model have?
+--- page 53 ---
+Nomenclature
+*Slides adapted from http://udlbook.com
+--- page 54 ---
+Regression
+*Slides adapted from http://udlbook.com
+--- page 55 ---
+Understanding Deep Learning [https://udlbook.github.io/udlbook/]
+[Chapter 3]
+--- page 56 ---
+
+--- page 57 ---
+Lecture 8 : Deep Neural Networks
+--- page 58 ---
+Deep Neural Networks
+•
+Networks as composing functions
+•
+Shallow vs deep networks
+•
+--- page 59 ---
+Deep neural networks
+• Networks with more than one hidden layer
+• With ReLU activation, both shallow and deep neural networks
+describe piecewise linear mappings from input to output
+• As the number of hidden units increases, the shallow NNs improve
+their descriptive power.
+• With enough hidden units, shallow networks can describe arbitrarily
+complex functions in high dimensions.
+• Then why go for Deep neural networks?
+*Slides adapted from http://udlbook.com
+--- page 60 ---
+Why Deep Neural Networks?
+Deep networks can produce many more linear regions than
+shallow networks for the same number of parameters!
+Montufar, Guido F., et al. "On the number of linear regions of deep neural networks." Advances in neural information processing systems 27 (2014).
+--- page 61 ---
+Composing two networks
+*Slides adapted from http://udlbook.com
+--- page 62 ---
+*Slides adapted from http://udlbook.com
+--- page 63 ---
+Comparing to shallow with six hidden units
+*Slides adapted from http://udlbook.com
+--- page 64 ---
+Combine two networks into one
+*Slides adapted from http://udlbook.com
+--- page 65 ---
+Create new variables
+*Slides adapted from http://udlbook.com
+--- page 66 ---
+Two-layer network
+*Slides adapted from http://udlbook.com
+--- page 67 ---
+Remember shallow network with two outputs?
+*Slides adapted from http://udlbook.com
+--- page 68 ---
+Networks as composing functions
+*Slides adapted from http://udlbook.com
+--- page 69 ---
+*Slides adapted from http://udlbook.com
+--- page 70 ---
+*Slides adapted from http://udlbook.com
+--- page 71 ---
+Networks as composing functions
+*Slides adapted from http://udlbook.com
+--- page 72 ---
+Hyperparameters
+•
+*Slides adapted from http://udlbook.com
+--- page 73 ---
+Notations
+*Slides adapted from http://udlbook.com
+--- page 74 ---
+Notations
+*Slides adapted from http://udlbook.com
+--- page 75 ---
+Notations
+*Slides adapted from http://udlbook.com
+--- page 76 ---
+Example
+*Slides adapted from http://udlbook.com
+--- page 77 ---
+Shallow vs. deep networks
+Ability to approximate different functions?
+Both obey the universal approximation theorem.
+Argument: One layer is enough, and for deep networks could
+arrange for the other layers to compute the identity function.
+*Slides adapted from http://udlbook.com
+--- page 78 ---
+Shallow vs. deep networks
+Number of linear regions per parameter
+• Deep networks create many more regions per parameters
+*Slides adapted from http://udlbook.com
+--- page 79 ---
+Number of linear regions per parameter
+5 layers
+10 hidden units per layer
+471 parameters
+161,501 linear regions
+*Slides adapted from http://udlbook.com
+--- page 80 ---
+Shallow vs. Deep Networks
+Fitting of deep models is also faster
+*Slides adapted from http://udlbook.com
+--- page 81 ---
+Understanding Deep Learning [https://udlbook.github.io/udlbook/]
+[Chapter 4]
+--- page 82 ---
+
+--- page 83 ---
+Lecture 9 : Backpropagation
+--- page 84 ---
+Computing gradients
+•
+Backpropagation Algorithm on a toy example
+•
+How to do this on a deep neural network?
+•
+--- page 85 ---
+Example of a Deep Neural Network
+*Slides adapted from http://udlbook.com
+--- page 86 ---
+Computing gradients
+*Slides adapted from http://udlbook.com
+--- page 87 ---
+Why is this such a big deal?
+*Slides adapted from http://udlbook.com
+--- page 88 ---
+Algorithm to compute gradient efficiently
+•“Backpropagation algorithm”
+•Rumelhart, Hinton, and Williams (1986)
+*Slides adapted from http://udlbook.com
+--- page 89 ---
+BackProp intuition: the backward pass
+*Slides adapted from http://udlbook.com
+--- page 90 ---
+Example: Toy Function
+*Slides adapted from http://udlbook.com
+--- page 91 ---
+Forward Pass
+*Slides adapted from http://udlbook.com
+--- page 92 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 93 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 94 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 95 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 96 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 97 ---
+Backward pass
+*Slides adapted from http://udlbook.com
+--- page 98 ---
+Taking a deep Neural Network
+*Slides adapted from http://udlbook.com
+--- page 99 ---
+*Slides adapted from http://udlbook.com
+How to compute this
+for vectors?
+--- page 100 ---
+Matrix Calculus
+*Slides adapted from http://udlbook.com
+--- page 101 ---
+Matrix Calculus
+*Slides adapted from http://udlbook.com
+--- page 102 ---
+Matrix Calculus
+*Slides adapted from http://udlbook.com
+--- page 103 ---
+Comparing vector and matrix
+*Slides adapted from http://udlbook.com
+--- page 104 ---
+Comparing vector and matrix
+*Slides adapted from http://udlbook.com
+--- page 105 ---
+*Slides adapted from http://udlbook.com
+How to compute this
+for vectors?
+--- page 106 ---
+*Slides adapted from http://udlbook.com
+--- page 107 ---
+Derivative of RELU
+*Slides adapted from http://udlbook.com
+--- page 108 ---
+*Slides adapted from http://udlbook.com
+--- page 109 ---
+*Slides adapted from http://udlbook.com
+--- page 110 ---
+*Slides adapted from http://udlbook.com
+--- page 111 ---
+Backprop summary
+*Slides adapted from http://udlbook.com
+--- page 112 ---
+Backprop summary
+*Slides adapted from http://udlbook.com
+--- page 113 ---
+Algorithmic differentiation
+*Slides adapted from http://udlbook.com
+--- page 114 ---
+Understanding Deep Learning [https://udlbook.github.io/udlbook/]
+[Chapter 7]
+--- page 115 ---
+
+--- page 116 ---
+Lecture 10 : Gradient Descent and Initialization
+--- page 117 ---
+Initialization
+•
+Gradient Descent, SGD, Momentum, Adam
+•
+--- page 118 ---
+Initialization
+*Slides adapted from http://udlbook.com
+--- page 119 ---
+Initialization
+*Slides adapted from http://udlbook.com
+--- page 120 ---
+Aim: keep variance same between two layers
+*Slides adapted from http://udlbook.com
+--- page 121 ---
+Aim: keep variance same between two layers
+*Slides adapted from http://udlbook.com
+--- page 122 ---
+Aim: keep variance same between two layers
+*Slides adapted from http://udlbook.com
+--- page 123 ---
+Aim: keep variance same between two layers
+*Slides adapted from http://udlbook.com
+--- page 124 ---
+Aim: keep variance same between two layers
+*Slides adapted from http://udlbook.com
+--- page 125 ---
+Gradient Descent
+--- page 126 ---
+Gradient descent algorithm
+*Slides adapted from http://udlbook.com
+--- page 127 ---
+Gradient descent: Linear Regression
+*Slides adapted from http://udlbook.com
+--- page 128 ---
+Gradient descent: Linear Regression
+*Slides adapted from http://udlbook.com
+--- page 129 ---
+Gradient descent: Linear Regression
+*Slides adapted from http://udlbook.com
+--- page 130 ---
+Gradient descent: Linear Regression
+*Slides adapted from http://udlbook.com
+--- page 131 ---
+Gradient descent: Gabor Model
+*Slides adapted from http://udlbook.com
+--- page 132 ---
+*Slides adapted from
+http://udlbook.com
+Gradient descent: Gabor Model
+--- page 133 ---
+Gradient descent: Issues
+*Slides adapted from http://udlbook.com
+--- page 134 ---
+Stochastic Gradient Descent (SGD)
+*Slides adapted from http://udlbook.com
+--- page 135 ---
+Stochastic Gradient Descent (SGD)
+*Slides adapted from http://udlbook.com
+--- page 136 ---
+Stochastic Gradient Descent (SGD)
+*Slides adapted from http://udlbook.com
+SGD can, in
+principle,
+escape local
+minima.
+--- page 137 ---
+Adding Momentum
+● A common modification to SGD is to add momentum term.
+● The recursive formulation means that the gradient is an infinite weighted
+sum of all the previous gradients, with weights getting smaller as we move
+back in time.
+*Slides adapted from http://udlbook.com
+--- page 138 ---
+Adding Momentum
+*Slides adapted from http://udlbook.com
+--- page 139 ---
+Adaptive Moment Estimation
+With a fixed learning rate,
+there are large adjustments
+to parameters with large
+gradients (gradient much
+steeper in one direction than
+another, making it difficult to
+choose a good learning rate
+that makes good progress,
+and is stable)
+What can be done? Can we normalize the gradients?
+*Slides adapted from http://udlbook.com
+--- page 140 ---
+Normalized Gradients
+*Slides adapted from http://udlbook.com
+--- page 141 ---
+Normalized Gradients
+Problem with this approach: Makes good progress, but will not converge
+*Slides adapted from http://udlbook.com
+--- page 142 ---
+Adaptive moment estimation (Adam)
+*Slides adapted from http://udlbook.com
+--- page 143 ---
+Adaptive moment estimation (Adam)
+*Slides adapted from http://udlbook.com
+--- page 144 ---
+•
+•
+Choice of learning algorithm, batch size, learning rate schedule,
+momentum coefficients are all hyper-parameters of the training
+algorithm
+Common to train many models with different hyper-parameters
+and choose the best one
+Known as hyper-parameter search
+•
+Training algorithm hyperparameters
+--- page 145 ---
+Understanding Deep Learning [https://udlbook.github.io/udlbook/]
+[Chapter 6, 7]
+--- page 146 ---

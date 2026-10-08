@@ -1,0 +1,186 @@
+### DECK: W2L3_P1_NNFundamentals  (Week 2)  slides=13  canvas=13.3x7.5in
+
+--- slide 1 ---
+Neural Network Fundamentals
+Generative AI for Computer Vision
+Lecture 3
+
+Part 1
+
+--- slide 2 ---
+Content
+Introduction to Neural Network
+Application Domains for Neural Network
+Single Layer Perceptron (SLP)
+SLP: Training Algorithm
+SLP: Applications
+SLP: Limitations
+
+--- slide 3 ---
+Components of a Biological Neuron
+A biological neuron consists of a cell body (soma), dendrites that receive inputs, and an axon that sends outputs. 
+
+Neurons communicate through synapses, where the axon of one neuron connects to the dendrite of another neuron. 
+
+Electrochemical signals travel from the dendrites through the cell body and along the axon, allowing information to be processed and transmitted throughout the nervous system.
+[IMAGE: image.png.png 5.3x2.3in]
+Soma
+Synapse
+Axon
+Dendrite
+Biological Neuron
+Image Source: Stoianov, Ivilin. (2001). Connectionist lexical processing.
+
+--- slide 4 ---
+Introduction to Neural Network
+.
+..
+[IMAGE: image.png.png 0.4x0.3in]
+Output
+Activation function
+Inputs
+Bias
+Artificial Neuron
+Hidden
+Layer
+Input
+Layer
+Output
+Layer
+Neural Network
+[IMAGE: image.png.png 5.3x2.3in]
+Soma
+Synapse
+Axon
+Dendrite
+Biological Neuron
+
+--- slide 5 ---
+Introduction to Neural Network
+An Artificial Neural Network (ANN) is a computational model inspired by biological neural networks. Its basic processing unit is the artificial neuron, which forms the foundation of the network.
+
+The basic unit of an ANN is an artificial neuron, which processes information through three operations: multiplication, summation, and activation.
+[IMAGE: image.png.png 4.0x1.6in]
+Soma
+Synapse
+Axon
+Dendrite
+Biological Neuron
+.
+..
+[IMAGE: image.png.png 0.4x0.3in]
+Output
+Activation function
+Inputs
+Bias
+Artificial Neuron
+
+--- slide 6 ---
+Introduction to Neural Network
+Input Level: Input values from the data are multiplied by their corresponding weights, which determine the importance of each input. 
+
+Body Level: All weighted inputs are added together along with a bias value to produce a weighted sum. 
+
+Output Level: The weighted sum is passed through an activation function to generate the final output of the neuron.
+.
+..
+[IMAGE: image.png.png 0.4x0.3in]
+Output
+Activation function
+Inputs
+Bias
+Artificial Neuron
+
+--- slide 7 ---
+Applications of Neural Network
+Data-Rich Problems
+ Neural networks perform well in domains where large amounts of labeled or unlabeled data are available for training. 
+Examples: Recommendation systems, sentiment analysis, and customer behavior prediction.
+Pattern Recognition Tasks 
+Neural networks are effective at identifying patterns, features, and regularities within large and complex datasets. 
+Examples: Face recognition, handwritten digit recognition, and object detection.
+Problems with No Explicit Algorithm
+Neural networks can learn solutions for tasks where no clear set of rules exists.
+Examples: Machine translation, emotion detection, and speech understanding.
+Noisy or Uncertain Data Environments
+ Neural networks can handle incomplete, noisy, or inconsistent data while still making reliable predictions. 
+Examples: Sensor data analysis, medical diagnosis, and fault detection systems.
+Non-Linear and Complex Problems 
+Neural networks can effectively handle problems where the relationship between inputs and outputs is highly non-linear or mathematically ill-defined.  Examples: Image classification, speech recognition, and other pattern recognition tasks.
+Applications of Neural Network
+
+--- slide 8 ---
+Single Layer Perceptron (SLP)
+[IMAGE: image.png.png 4.1x0.9in]
+Components of a SLP:
+Inputs: The SLP takes multiple inputs (x1,x2,…,xn)
+Weights: Each input is associated with a weight (w1,w2,…,wn).
+Bias: A bias term (b) is added to shift the decision boundary.
+Activation Function: A step function (a simple thresholding function) is generally used as activation function.
+The step function is defined as:
+                       
+Binary Output: The output of a perceptron is binary (1 or 0), making it suitable for linearly separable classification problems.
+.
+..
+Output
+Activation function
+Inputs
+Bias
+Single Layer Perceptron
+(with single output)
+
+--- slide 9 ---
+Binary Step Function
+-2		       0	              2
+-0.2
+0.2
+0.6
+1.0
+
+--- slide 10 ---
+d = actual (target) output
+.
+..
+Output
+Activation function
+Inputs
+Bias
+Single Layer Perceptron
+(with single output)
+Single Layer Perceptron (SLP)
+
+--- slide 11 ---
+Linear Separability: A perceptron can classify data only if the classes are separated by a straight line or hyperplane.
+Works for linearly separable problems. 
+Cannot solve non-linearly separable problems such as XOR.
+
+Single-Layer Model: The perceptron has only one layer and no hidden layers.
+Simple and easy to implement. 
+Limited in learning complex patterns and relationships.
+Single Layer Perceptron (SLP)
+X | Y | O/P
+0 | 0 | 0
+0 | 1 | 1
+1 | 0 | 1
+1 | 1 | 0
+Linearly Separable
+Not Linearly Separable
+XOR representation 
+(Linear non-separable task)
+XOR Logic
+
+--- slide 12 ---
+Summary
+Introduction to Neural Network
+Application Domains for Neural Network
+Single Layer Perceptron (SLP)
+SLP: Training Algorithm
+SLP: Applications
+SLP: Limitations
+
+--- slide 13 ---
+Neural Network Fundamentals
+Generative AI for Computer Vision
+Next
+
+Lecture 3: Part II

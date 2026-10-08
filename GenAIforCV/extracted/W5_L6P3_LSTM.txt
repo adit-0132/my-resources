@@ -1,0 +1,252 @@
+### DECK: L6P3_LSTM  (Week 5)  slides=26  canvas=13.3x7.5in
+
+--- slide 1 ---
+LSTM
+Generative AI for Computer Vision
+Lecture 6
+
+Part 3
+
+--- slide 2 ---
+Content
+Problem of RNN
+Vanishing Gradient Problem
+Long-term Contextual Dependency Issue
+Introduction to LSTM
+LSTM Architecture
+How LSTM solves Vanishing Gradient Problem?
+
+--- slide 3 ---
+Basic RNN Architecture
+O
+Unfold
+
+--- slide 4 ---
+Problems of Simple RNN
+A major limitation of Recurrent Neural Networks (RNNs) is the vanishing gradient problem that occurs during Backpropagation Through Time (BPTT). 
+
+As gradients are propagated backward across multiple time steps, they are repeatedly multiplied by recurrent weights and activation-function derivatives. 
+
+When these values are less than one, the gradient magnitude decreases exponentially, causing the gradients associated with earlier time steps to become extremely small or approach zero. 
+
+Consequently, the corresponding weight updates become ineffective, making it difficult for the network to learn information from distant time steps.
+
+--- slide 5 ---
+This leads to another significant limitation: difficulty in learning long-term dependencies. 
+
+A simple RNN tends to give greater importance to recent inputs while gradually losing information from earlier inputs, thereby limiting its ability to capture relationships across long sequences. 
+
+Furthermore, RNNs suffer from sequential computation, since the hidden state at each time step depends on the hidden state from the preceding step. 
+
+As a result, the computations cannot be fully parallelized across time steps, leading to slower training and reduced GPU utilization, particularly when processing long sequences.
+Problems of Simple RNN
+
+--- slide 6 ---
+Vanishing Gradient Problem
+
+--- slide 7 ---
+Vanishing Gradient Problem
+
+--- slide 8 ---
+The naïve RNN
+tanh
+Softmax
+
+--- slide 9 ---
+The kid   playing football in the playground, is     very happy.
+
+The kids playing football in the playground, are   very happy.
+RNN: Vanishing Gradient Problem
+During Backpropagation Through Time (BPTT):
+Gradients are multiplied repeatedly across time steps. 
+They shrink exponentially (vanishing gradients). 
+As a result, earlier time steps receive negligible weight updates and stop learning. 
+A simple RNN is NOT suitable for learning or representing long-term contextual dependencies in long sequences, such as large sentences.
+Inputs
+Outputs
+
+--- slide 10 ---
+Long Short Term Memory (LSTM)Hochreiter et al., 1997
+Long Short-Term Memory (LSTM) is an advanced type of Recurrent Neural Network (RNN) specifically designed to overcome the vanishing gradient problem and improve the learning of long-term dependencies. 
+
+Unlike a conventional RNN, an LSTM uses a memory cell and three main gates—
+Forget gate, 
+Input gate, and 
+Output gate
+     to regulate the flow of information through the network. 
+
+The forget gate determines which information should be discarded, the input gate controls which new information should be stored, and the output gate determines which information should be passed to the next hidden state.
+
+--- slide 11 ---
+Most importantly, the LSTM cell state provides a relatively direct pathway for information and gradients to flow across multiple time steps, reducing the exponential decay of gradients during Backpropagation Through Time (BPTT).
+
+This enables LSTMs to retain relevant information for longer periods and effectively learn long-term dependencies in sequential data. 
+
+Therefore, LSTMs provide a more robust solution than simple RNNs for tasks involving long sequences, such as language modeling, speech recognition, machine translation, and time-series prediction.
+Long Short Term Memory (LSTM)Hochreiter et al., 1997
+
+--- slide 12 ---
+X
+tanh
++
+X
+X
+tanh
+LSTM Architecture
+An LSTM cell consists of a cell state and three primary gates.
+
+The forget gate determines which information from the previous cell state should be discarded.
+
+The input gate controls the amount of new information that should be stored in the cell state. 
+
+The output gate determines which portion of the updated cell state is exposed as the hidden state and passed to the next time step. 
+
+The cell state acts as a long-term memory pathway, allowing relevant information to flow through multiple time steps with reduced gradient degradation.
+Forget Gate
+Input Gate
+Output Gate
+
+--- slide 13 ---
+X
+tanh
++
+X
+X
+tanh
+Forget Gate (Controls Memory)
+Forget Gate
+Concept taken from: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+--- slide 14 ---
+X
+tanh
++
+X
+X
+tanh
+Input Gate (Selective Writing)
+Input Gate
+Concept taken from: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+--- slide 15 ---
+X
+tanh
++
+X
+X
+tanh
+Output Gate (Controlled Exposure)
+Output Gate
+Concept taken from: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+--- slide 16 ---
+X
+tanh
++
+X
+X
+tanh
+Output Gate (Controlled Exposure)
+Output Gate
+Concept taken from: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+--- slide 17 ---
+Cell State
+X
+tanh
++
+X
+X
+tanh
+X
+tanh
++
+X
+X
+tanh
+X
+tanh
++
+X
+X
+tanh
+LSTM introduces a memory cell (cell state) and gates that regulate the flow of information.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 18 ---
+How LSTM solves the vanishing gradient problem?
+Instead of repeatedly multiplying hidden states, an LSTM updates its cell state using additive operations:
+
+
+New information is added to the cell state rather than repeatedly multiplied.
+
+Since information is added rather than repeatedly multiplied, gradients can flow backward with minimal decay. 
+
+This mechanism is called the Constant Error Carousel (CEC). 
+
+As a result, gradients can propagate across many time steps without vanishing. Thus solve the vanishing gradient problem.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+X
+tanh
++
+X
+X
+tanh
+
+--- slide 19 ---
+How LSTM Solves Long-term Dependency Issue?
+Long-Term Dependency Issue : 
+"The movie, which I watched last Saturday and absolutely loved, was fantastic."
+Here, the verb "was" depends on “movie", not "loved". A simple RNN may forget “movie", while an LSTM can remember it through its memory cell.
+How LSTM Fixes This:
+LSTM introduces a memory cell (cell state) and gates that regulate the flow of information. 
+The cell state acts as a memory highway, allowing information and gradients to flow almost unchanged across many time steps. 
+This enables LSTMs to learn long-term dependencies and greatly reduce the vanishing gradient problem.
+X
+tanh
++
+X
+X
+tanh
+
+--- slide 20 ---
+How LSTM Solves Long-term Dependency Issue?
+X
+tanh
++
+X
+X
+tanh
+The movie, which I watched last Saturday  and absolutely loved, was fantastic
+
+--- slide 21 ---
+Summery
+Problem of RNN
+Vanishing Gradient Problem
+Long-term Contextual Dependency Issue
+Introduction to LSTM
+LSTM Architecture
+How LSTM solves Vanishing Gradient Problem?
+
+--- slide 22 ---
+Sequence Modeling - II
+Generative AI for Computer Vision
+Next
+
+Lecture 6: Part 4
+
+--- slide 23 ---
+Vanishing Gradient Problem
+Concept taken from Deep Learning Lecture Prof. M Khapra, IIT Madras
+
+--- slide 24 ---
+Vanishing Gradient Problem
+Concept taken from Deep Learning Lecture Prof. M Khapra, IIT Madras
+
+--- slide 25 ---
+Vanishing Gradient Problem
+Concept taken from Deep Learning Lecture Prof. M Khapra, IIT Madras
+Constant
+
+--- slide 26 ---
+Vanishing Gradient Problem

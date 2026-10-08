@@ -1,0 +1,705 @@
+--- page 1 ---
+Lecture 41 : Prompting - I
+--- page 2 ---
+What is Prompting?
+•
+Little bit on Prompt Engineering
+•
+Zero-shot vs Few-shot Prompting
+•
+--- page 3 ---
+What is Prompting?
+https://phontron.com/class/anlp2024/
+--- page 4 ---
+Basic Prompting
+https://phontron.com/class/anlp2024/
+--- page 5 ---
+Prompt Templates
+https://phontron.com/class/anlp2024/
+[z] to be filled by the pretrained LM
+--- page 6 ---
+Prompt Templates: Examples
+Examples of input, template, and
+answer for different tasks. In the
+Type column, “CLS” is an
+abbreviation for “classification”
+https://arxiv.org/pdf/2107.13586
+--- page 7 ---
+Answer Prediction
+https://phontron.com/class/anlp2024/
+Based on the answer,
+select the actual output
+For instance:
+■ Taking the output as-is
+■ Formatting the output for
+easy visualization
+■ Selecting only parts of
+the output that you want to
+use
+■ Mapping the outputs to
+other actions
+--- page 8 ---
+Output Selection
+Various methods for extraction
+■ Classification: identify keywords
+■ Regression/numerical problems: identify numbers
+■ Code: pull out code snippets in triple-backticks
+https://phontron.com/class/anlp2024/
+--- page 9 ---
+Output Mapping
+https://phontron.com/class/anlp2024/
+--- page 10 ---
+Prompt Variations: Basic Prompt
+Image Source: Hands-on Large Language Models
+Basic example of a prompt. No
+instruction is given. So, the LLM
+will simply try to complete the
+sentence.
+--- page 11 ---
+Prompt Variations: Instruction Prompt
+Two components of a
+basic instruction
+prompt: The instruction
+itself and the data it
+refers to
+Image Source: Hands-on Large Language Models
+--- page 12 ---
+Prompt Variations: Instruction Prompt
+Image Source: Hands-on Large Language Models
+Extending the instruction
+prompt with an output
+indicator that allows for a
+specific output.
+--- page 13 ---
+Chat Prompts Behind the Scenes
+https://phontron.com/class/anlp2024/
+--- page 14 ---
+Chat Prompts Behind the Scenes
+Image Source: Hands-on Large Language Models
+--- page 15 ---
+Prompt Engineering Strategies
+Describing the task as clearly as possible. Particularly important when we want
+the output of the LLM to meet certain expectations.
+Suppose we are curious about climate change. A simple prompt
+The LLM may generate a response that addresses any aspect of climate
+change, which may not align with our specific interests. In this case, we can
+instead use prompts that are specific and detailed.
+Foundations of Large Language Models
+--- page 16 ---
+Prompt Engineering Strategies
+Foundations of Large Language Models
+specific and
+detailed prompt
+--- page 17 ---
+Prompt Engineering Strategies
+Now suppose we intend to explain climate change to a 10-year-old child. We can adjust the above prompt further.
+Foundations of Large Language Models
+--- page 18 ---
+Asking LLM to follow a reasoning pattern
+Since solving math problems requires a detailed
+reasoning process, LLMs would probably make
+mistakes if they attempted to work out the answer
+directly. So we can explicitly ask LLMs to follow a
+given reasoning process before coming to a conclusion
+Foundations of Large Language Models
+--- page 19 ---
+Multiple rounds of interactions
+As a first step, we can instruct LLMs to solve the problem directly
+As a second step, we prompt LLMs to evaluate the correctness of the answer and, if
+necessary, rework it to find a better solution.
+Foundations of Large Language Models
+More detailed discussion
+on how to improve
+prompting through more
+reasoning later
+--- page 20 ---
+A complex prompt with many components
+Image Source: Hands-on Large Language Models
+--- page 21 ---
+Zero-shot vs Few-shot Prompts
+Image Source: Hands-on Large Language Models
+--- page 22 ---
+Few-shot Prompting w/ Chat Prompts
+https://phontron.com/class/anlp2024/
+--- page 23 ---
+Few-shot learning
+We essentially provide a pattern that maps some inputs to the corresponding outputs.
+The LLM attempts to follow this pattern in making predictions, provided that the prompt includes a sufficient
+number of demonstrations, although generally small.
+Foundations of Large Language Models
+Why does it work?
+More on this in the next
+lecture
+--- page 24 ---
+Foundations of Large Language Models:
+https://arxiv.org/abs/2501.09223
+Pre-train, Prompt, and Predict: A Systematic Survey of Prompting
+Methods in Natural Language Processing
+Hands-on Lange Language Models
+--- page 25 ---
+
+--- page 26 ---
+Lecture 42 : Prompting: Why does in-context learning work?
+--- page 27 ---
+Induction Head Hypothesis
+•
+In-context learning and induction heads
+•
+Some counterintuitive effects
+•
+--- page 28 ---
+Why does in-context learning work?
+● do new tasks
+● better predict tokens, or
+● generally reduce their loss
+In-context learning means language models learning to
+● during the forward-pass at inference-time,
+● without any gradient-based updates to the model’s parameters.
+https://web.stanford.edu/~jurafsky/slp3
+--- page 29 ---
+Induction Head Hypothesis
+The function of the induction head is to predict repeated sequences.
+For example if it sees the pattern A B … A in an input sequence, it
+predicts that B will follow, instantiating the pattern completion rule A
+B … A B.
+https://web.stanford.edu/~jurafsky/slp3
+--- page 30 ---
+Induction Head Hypothesis
+● Induction heads are the name for a circuit, which is a kind of abstract
+component of a network.
+● The induction head circuit is part of the attention computation in
+transformers, discovered by looking at mini language models with only 1-2
+attention heads.
+https://web.stanford.edu/~jurafsky/slp3
+--- page 31 ---
+https://transformer-circuits.pub/2021/framework/index.html
+--- page 32 ---
+Transformer Architecture
+Residual stream is simply the sum of the output of all the previous
+layers and the original embedding.
+https://transformer-circuits.pub/2021/framework/index.html
+--- page 33 ---
+The residual stream
+https://krmopuri.github.io/xml/static_files/presentations/MI-Pranav.pdf
+--- page 34 ---
+Important notions
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 35 ---
+Important notions
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 36 ---
+Subspaces in the residual stream
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 37 ---
+An example: Embedding
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 38 ---
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 39 ---
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 40 ---
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
+--- page 41 ---
+Induction head: revisiting the formal definition
+Forma lly, we define an induction head a s one which exhibits the following two properties on a
+repea ted ra ndom s equence of tokens :
+Prefix matching: The hea d a ttends ba ck to previous tokens tha t were followed by the current
+a nd/ or recent tokens . Tha t is , it a ttends to the token which induction would s ugges t comes
+next.
+● Copying: The hea d’s output increa s es the logit corres ponding to the a ttended-to token.
+●
+In other words , induction hea ds a re a ny hea ds tha t empirica lly increa s e the likelihood of [B] given
+[ A] [ B] . . . [ A] when s hown a repea ted s equence of completely ra ndom tokens . An illus tra tion of
+induction hea ds ’ beha vior is s hown here:
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+--- page 42 ---
+In-context Learning and Induction Heads
+Argument 1 (Macros copic co-occurrence): Trans former language models undergo a “phas e
+change” early in training, during which induction heads form and s imultaneous ly in-context
+learning improves dramatically.
+Argument 2 (Macros copic co-perturbation): When we change the trans former architecture in a
+way that s hifts whether induction heads can form (and when), the dramatic improvement in incontext learning s hifts in a precis ely matching way.
+Argument 3 (Direct ablation): When we directly “knock out” induction heads at tes t-time in s mall
+models , the amount of in-context learning greatly decreas es .
+Argument 4 (Specific examples of induction head generality): Although we define induction
+heads very narrowly in terms of copying literal s equences , we empirically obs erve that thes e
+s ame heads als o appear to implement more s ophis ticated types of in-context learning,
+including highly abs tract behaviors , making it plaus ible they explain a large fraction of incontext learning.
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+--- page 43 ---
+Why this choice? The 500th token is near the end of a length-512 context, and the 50th
+token is far enough into the context that s ome bas ic properties of the text have been
+es tablis hed (s uch as language and document type) while s till being near the s tart.
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+In-context learning s core:
+the los s of the 500th token
+in the context minus the
+a vera ge los s of the 50th
+token in the context,
+a vera ged over da ta s et
+exa mples .
+--- page 44 ---
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+--- page 45 ---
+In-context Learning and Induction Heads
+Argument 5 (Mechanis tic plaus ibility of induction head generality): For s mall
+models , we can explain mechanis tically how induction heads work, and can
+s how they contribute to in-context learning. Furthermore, the actual mechanis m
+of operation s ugges ts natural ways in which it could be repurpos ed to perform
+more general in-context learning.
+Argument 6 (Continuity from s mall to large models ): In the previous arguments ,
+the cas e for induction heads explaining in-context learning is s tronger for s mall
+models than for large ones . However, many behaviors and data related to both
+induction heads and in-context learning are s moothly continuous from s mall to
+large models , s ugges ting the s imples t explanation is that mechanis ms are the
+s ame.
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+--- page 46 ---
+Recap: Zero-shot vs Few-shot Prompts
+Image Source: Hands-on Large Language Models
+Interesting questions:
+● Which examples to
+choose?
+● Does the order
+matter?
+● Are all labels
+needed?
+….
+--- page 47 ---
+Few-shot prompts: order sensitivity
+● Few-shot prompts suffer from order sensitivity, in that for
+the same prompt the order in which samples are
+provided can make the difference between state-of-theart and random performance.
+● The paper finds that this is present across tasks, model
+sizes, prompt templates, samples, and number of
+training samples.
+Fantastically Ordered Prompts and Where to Find Them: Overcoming Few-Shot Prompt Order
+Sensitivity: https://arxiv.org/pdf/2104.08786
+--- page 48 ---
+Some very counterintuitive effects
+Results in classification (top) and
+multichoice tasks (bottom), using three
+LMs with varying size. In-context learning
+performance drops only marginally
+when labels in the demonstrations are
+replaced by random labels.
+Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?
+https://arxiv.org/pdf/2202.12837
+--- page 49 ---
+Some very counterintuitive effects
+Ablations on varying numbers of
+examples in the demonstrations (k)
+Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?
+https://arxiv.org/pdf/2202.12837
+--- page 50 ---
+Why does in-context learning work?
+The format is likely easier to exploit than the input-label mapping
+Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?
+https://arxiv.org/pdf/2202.12837
+--- page 51 ---
+A Mathematical Framework for Transformer Circuits
+https://transformer-circuits.pub/2021/framework/index.html
+In-context Learning and Induction Heads
+https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html
+--- page 52 ---
+
+--- page 53 ---
+Lecture 43 : Advanced Prompting Techniques
+--- page 54 ---
+Few-shot prompts: How to select demonstrations?
+•
+Chain-of-thought Prompting
+•
+Self-consistency, Tree-of-thought, Self-ask
+•
+Program-aided prompts
+•
+--- page 55 ---
+Few-shot prompt: How to select demonstrations?
+● Using demonstrations that are similar to the current input seems to improve
+performance.
+● It can thus be useful to dynamically retrieve demonstrations for each input, based on
+their similarity to the current example
+● for example, comparing the embedding of the current example with embeddings of
+each of the training set example to find the best top-T
+You may even learn how to select these dynamically. How?
+https://web.stanford.edu/~jurafsky/slp3
+--- page 56 ---
+Few-shot prompt: How to select demonstrations?
+Intuitively, if the predicted answer is correct, we
+update the policy so that the probability of selecting
+the same prompts gets higher. Otherwise, we
+update the policy to reduce the probability of
+selecting such less matched examples.
+Dynamic Prompt Learning via Policy Gradient for Semi-structured Mathematical Reasoning:
+https://arxiv.org/pdf/2209.14610
+--- page 57 ---
+Few-shot prompt: How to select demonstrations?
+Dynamic Prompt Learning via Policy Gradient for Semi-structured Mathematical Reasoning:
+https://arxiv.org/pdf/2209.14610
+Pretrained embeddings
+are frozen. Only the
+one-layer NN is trained
+via policy gradient
+--- page 58 ---
+Chain-of-thought (CoT) prompting
+Rather than coming to a conclusion directly, the CoT methods instruct LLMs
+● to generate reasoning steps or
+● to learn from demonstrations of detailed reasoning processes provided in
+the prompts
+Foundations of Large Language Models
+Although we have
+shown a similar
+question-answer pair,
+it remains difficult for
+the LLM to reason out
+the correct answer
+--- page 59 ---
+Chain-of-thought (CoT) prompting
+In CoT, they may gain more from detailed problem-solving steps that are used to derive the
+answers.
+To do this, we can incorporate some reasoning steps into the prompt to obtain a CoT prompt.
+Foundations of Large Language Models
+--- page 60 ---
+CoT prompting: Advantage
+● CoT allows LLMs to decompose complex problems into smaller, sequential
+reasoning steps. This somewhat mirrors human problem-solving behaviors, making
+it particularly effective for tasks requiring detailed, multi-step reasoning.
+● CoT makes the reasoning process more transparent and interpretable. Since all
+reasoning steps are visible, we can understand and interpret how a conclusion was
+reached.
+● If users can follow the logic behind the reasoning process, they will be more likely
+to trust the predictions of an LLM. This is particularly important when applying LLMs
+in fields like medicine, education, and finance.
+● CoT is an in-context learning approach, and thus, it is applicable to most welltrained, off-the-shelf LLMs. Moreover, CoT provides efficient ways to adapt LLMs to
+different types of problems.
+Foundations of Large Language Models
+--- page 61 ---
+CoT example: Temporal Sequencing
+https://web.stanford.edu/~jurafsky/slp3
+--- page 62 ---
+Few-shot vs Zero-shot CoT
+● The method described above requires providing one or more examples of CoT
+reasoning, typically called the few-shot CoT method.
+● By contrast, the zero-shot CoT method does not require such examples. It instead
+prompts LLMs to reason step-by-step. For example:
+Foundations of Large Language Models
+--- page 63 ---
+Self-consistency with CoT
+Self-consistency improves chain of thought reasoning in language models: https://arxiv.org/pdf/2203.11171
+--- page 64 ---
+Self-consistency with CoT
+Self-consistency (blue) significantly improves accuracy over CoT-prompting with
+greedy decoding (orange) across arithmetic and commonsense reasoning tasks,
+over LaMDA-137B. Sampling a higher number of diverse reasoning paths
+consistently improves reasoning accuracy.
+Self-consistency improves chain of thought reasoning in language models: https://arxiv.org/pdf/2203.11171
+--- page 65 ---
+Self-consistency with CoT vs. beam search
+Beam search yields a lower diversity in the outputs, while in self-consistency the
+diversity of the reasoning paths is the key to a better performance.
+Self-consistency improves chain of thought reasoning in language models: https://arxiv.org/pdf/2203.11171
+--- page 66 ---
+Tree-of-thought (ToT)
+Tree of Thoughts: Deliberate Problem Solving with Large Language Models:
+https://arxiv.org/pdf/2305.10601
+The s ea rch proces s ca n
+be BFS or DFS while
+ea ch s ta te is eva lua ted
+by a cla s s ifier (via a
+prom pt) or m a jority vote.
+--- page 67 ---
+Tree-of-thought (ToT)
+Game of 24 is a mathematical reasoning challenge, where the goal is to use 4
+numbers and basic arithmetic operations (+-*/) to obtain 24.
+Tree of Thoughts: Deliberate Problem Solving with Large Language Models:
+https://arxiv.org/pdf/2305.10601
+--- page 68 ---
+Self-Ask
+Text with a white background
+is the prompt, text with a
+green background is the LM
+output, and underlined text is
+the inference-time question.
+Measuring and Narrowing the Compositionality Gap in Language Models: https://arxiv.org/pdf/2210.03350
+--- page 69 ---
+Self-Ask + Search Engine
+Measuring and Narrowing the Compositionality Gap in Language Models: https://arxiv.org/pdf/2210.03350
+--- page 70 ---
+Program-aided Language Models (PAL)
+PAL: Program-aided Language Models: https://arxiv.org/pdf/2211.10435
+Program-aided Language models
+(PAL) generate intermediate steps
+and Python code. This shifts the role
+of running the reasoning steps from
+the language model to the Python
+interpreter.
+--- page 71 ---
+Program-of-Thought (PoT) Prompting
+● PoT uses language models (mainly Codex) to generate text and programming
+language statements, and finally an answer.
+● In PoT, the computation can be delegated to a program interpreter, thus decoupling
+complex computation from reasoning and language understanding.
+Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical
+Reasoning Tasks
+--- page 72 ---
+Program-of-Thought (PoT) Prompting
+● PoT uses language models (mainly Codex) to generate text and programming
+language statements, and finally an answer.
+● In PoT, the computation can be delegated to a program interpreter, thus decoupling
+complex computation from reasoning and language understanding.
+Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical
+Reasoning Tasks
+Can we also
+augment other
+tools?
+--- page 73 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language
+Processing: An Introduction to Natural Language Processing,
+Computational Linguistics, and Speech Recognition with Language
+Models, 3rd edition. Online manuscript released January 12, 2025.
+[Chapter 12]
+Hands-on Large Language Models
+Foundations of Large Language Models
+--- page 74 ---
+
+--- page 75 ---
+Lecture 44 : Tool-aided Language Models
+--- page 76 ---
+Why tools?
+•
+Tools-aided language models, Toolformer
+•
+--- page 77 ---
+https://phontron.com/class/anlp2024/
+--- page 78 ---
+An LM-used tool is a function interface to a computer program that runs external to the LM,
+where the LM generates the function calls and input arguments in order to use the tool.
+https://phontron.com/class/anlp2024/
+--- page 79 ---
+Tool-augmented Language Model (TALM)
+TALM:Tool Augmented Language Models: https://arxiv.org/pdf/2205.12255
+--- page 80 ---
+TALM text-to-text interface
+TALM first generates a tool input
+conditioned on the task input text
+and invokes a tool’s API by
+generating a delimiter, such as
+“result”. Whenever this delimiter
+is detected, the tool API is called
+and its result appended to the
+text sequence. TALM then
+continues to generate the final
+task output.
+TALM:Tool Augmented Language Models: https://arxiv.org/pdf/2205.12255
+--- page 81 ---
+TALM text-to-text interface
+TALM:Tool Augmented Language Models: https://arxiv.org/pdf/2205.12255
+Example from MathQA, as
+a standard MathQA task
+and the corresponding toolaugmented sequence
+--- page 82 ---
+Toolformer
+The model autonomously decides to call different APIs
+(from top to bottom)
+● a question answering system
+● a calculator
+● a machine translation system, and
+● a Wikipedia search engine
+to obtain information that is useful for completing a
+piece of text
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 83 ---
+Toolformer: More details
+We represent each API call as a tuple c = (ac,ic) where
+ac is the name of the API and ic is the corresponding
+input. Given an API call c with a corresponding result r,
+we denote the linearized sequences of the API call not
+including and including its result, respectively, as:
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 84 ---
+Toolformer: How to create training data?
+Given a dataset C of plain texts, we first convert this dataset into
+a dataset C* augmented with API calls.
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 85 ---
+Toolformer: How to create training data?
+And do not worry about the output, but the
+probability distributions to sample the API call!!
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 86 ---
+Toolformer: Sampling API calls
+Let pM(zn+1 | z1,...,zn) be the probability that M assigns to token zn+1 as a continuation for
+the sequence z1,...,zn.
+We first sample up to k candidate positions for doing API calls by computing
+Keep top k positions
+For each position, obtain upto m API calls by sampling given
+The response for each API call ci needs to be a single text sequence ri
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+should have </API> as an
+end-of-sequence token.
+--- page 87 ---
+Toolformer: Filtering API calls
+Intuitively, an API call is helpful to M if providing it with both the input and the output of
+this call makes it easier for the model to predict future tokens, compared to
+● not receiving the API call at all, or
+● receiving only its input.
+i.e., adding the API call and its result reduces the loss by at least a threshold,
+compared to not doing any API call or obtaining no result from it
+Model M is now fine-tuned on the augmented dataset
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 88 ---
+Toolformer: Some examples
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 89 ---
+Toolformer: Inference
+● When generating text with M after finetuning, we perform regular decoding until M
+produces the “→” token, indicating that it next expects the response for an API call.
+● At this point, we interrupt the decoding process, call the appropriate API to get a
+response, and
+● Continue the decoding process after inserting both the response and the </API> token.
+Toolformer: Language Models Can Teach Themselves to Use Tools:
+https://arxiv.org/pdf/2302.04761
+--- page 90 ---
+Many recent works
+--- page 91 ---
+Various papers cited in the slides
+--- page 92 ---
+
+--- page 93 ---
+Lecture 45 : Automatic Prompt Engineering
+--- page 94 ---
+•
+Prompt Tuning
+Discrete Prompt Search
+•
+--- page 95 ---
+Need for Automatic Prompt Engineering
+Some possible approaches:
+● Automated Prompt design involves using some form of search or generation for the most
+effective prompt template in a predefined search space.
+● While more complex to implement, automated prompt development will usually outperform
+manual prompt engineering, as it is generally more complete in its search of parameter space.
+■ Prompt paraphrasing
+■ Gradient-based discrete prompt search
+■ Prompt tuning
+https://phontron.com/class/anlp2024
+--- page 96 ---
+Prompt Paraphrasing
+https://phontron.com/class/anlp2024
+--- page 97 ---
+Gradient-based discrete prompt search
+Illustration of AUTOPROMPT applied to probe a masked language model’s
+(MLM’s) ability to perform sentiment analysis.
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 98 ---
+Gradient-based discrete prompt search
+Start with fixing the number of trigger tokens (e.g., 5
+tokens, initialized to [MASK])
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+Take a batch of
+examples from
+training set
+--- page 99 ---
+Gradient-based discrete prompt search
+where win is the input embedding of w, and the gradient is taken with
+respect to the input embedding of x(j)trig.
+Why this particular form of Eq 2?
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 100 ---
+Directional Derivatives and 1st order approx.
+https://davidrosenberg.github.io/mlcourse/Archive/2016/Notes/directional-derivative.pdf
+--- page 101 ---
+Gradient-based discrete prompt search
+For each candidate in this set, we then re-evaluate the equation on the updated
+prompt, and retain the prompt with the highest probability in the next step
+Vy is a set of label
+tokens that correspond
+to a particular label y
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 102 ---
+Gradient-based discrete prompt search: beam search
+We augment this token replacement
+strategy with beam search. We consider
+the top-k token candidates for each
+token position in the trigger. We search
+left to right across the positions and
+score each beam using
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 103 ---
+Automating label token selection
+We develop a general two-step approach to automate the selection of the sets of label tokens Vy.
+In the first step, we train a logistic classifier to predict the class label using the contextualized
+embedding of the [MASK] token as input:
+write the output of this classifier as:
+In the second step, we substitute h(i) with the MLM’s
+output word embeddings wout to obtain
+learned weight and bias
+terms for the label y
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 104 ---
+Try this problem
+--- page 105 ---
+Huge gains in performance
+--- page 106 ---
+Example Prompts
+AUTOPROMPT: Eliciting Knowledge from Language Models with Automatically Generated
+Prompts: https://arxiv.org/pdf/2010.15980
+--- page 107 ---
+EvoPrompt
+In Step 1, LLMs perform
+crossover on the given two
+prompts (words in orange and
+blue are inherited from Prompt 1
+and Prompt 2, respectively). In
+Step 2, LLMs perform mutation
+on the prompt.
+Connecting Large Language Models with Evolutionary Algorithms Yields Powerful Prompt
+Optimizers: https://arxiv.org/pdf/2309.08532
+--- page 108 ---
+EvoPrompt
+We evaluate the generated candidate prompts
+on a development set and retain those with
+superior performance, similar to the survival of
+the fittest in nature.
+Connecting Large Language Models with Evolutionary Algorithms Yields Powerful Prompt
+Optimizers: https://arxiv.org/pdf/2309.08532
+--- page 109 ---
+Prompt-tuning
+https://phontron.com/class/anlp2024
+--- page 110 ---
+Prompt-tuning: So, how does it work?
+The Power of Scale for Parameter-Efficient Prompt Tuning:
+https://aclanthology.org/2021.emnlp-main.243.pdf
+--- page 111 ---
+Prompt-tuning: How effective?
+Standard model tuning of T5 achieves strong
+performance, but requires storing separate copies of
+the model for each end task. Our prompt tuning of T5
+matches the quality of model tuning as size increases,
+while enabling the reuse of a single frozen model for all
+tasks. Our approach significantly outperforms fewshot
+prompt design using GPT-3. We show mean and
+standard deviation across 3 runs for tuning methods.
+Will talk about more parameter-efficient
+methods next week
+The Power of Scale for Parameter-Efficient Prompt Tuning:
+https://aclanthology.org/2021.emnlp-main.243.pdf
+--- page 112 ---
+Try this problem
+--- page 113 ---
+Kamath, Uday, et al. "Large Language Models: A Deep Dive." (2024).
+--- page 114 ---

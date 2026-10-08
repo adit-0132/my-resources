@@ -1,0 +1,671 @@
+--- page 1 ---
+Lecture 51 : Scaling laws of LLMs
+--- page 2 ---
+Scaling Laws: Kaplan et al., 2020
+•
+Scaling Laws: Hoffman et al., 2022
+•
+--- page 3 ---
+Scaling Laws of LLMs?
+• A100 GPU = 312 TFlops = 3e14 Flops = 2.7e19 Flops/day
+• PFlops = 1e15
+PFday = 1e15 x 24 x 60 x 60 = 8.6 e19 Flops = 3 A100
+--- page 4 ---
+State of GPT, Karpathy
+--- page 5 ---
+Let’s say you can use one GPU for one day
+• Would you train a 5 million parameter LM on 100 books?
+• What about a 500 million parameter LM on one book?
+• Or a 100k parameter LM on 5k books?
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+--- page 6 ---
+
+--- page 7 ---
+https://arxiv.org/pdf/2001.08361
+--- page 8 ---
+Some observations
+• Performance depends strongly on scale (model params, data size, and
+compute used for training), weakly on model shape (e.g., depth, width)
+• Perf vs scale can be modeled with power laws
+• Perf improves most if model size and dataset size are scaled up together.
+Increasing one while keeping the other fixed leads to diminishing returns
+• Larger models are more sample efficient than smaller models, take fewer
+steps / data points to reach same loss
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+--- page 9 ---
+https://arxiv.org/pdf/2001.08361
+--- page 10 ---
+https://arxiv.org/pdf/2001.08361
+--- page 11 ---
+https://arxiv.org/pdf/2001.08361
+--- page 12 ---
+FLOPs per token
+Accounting for the backwards pass (approximately twice the compute
+as the forwards pass), we then define the estimated non-embedding
+compute as C 6N floating point operators per training token
+https://arxiv.org/pdf/2001.08361
+--- page 13 ---
+Why 2 FLOPs per parameter in forward pass?
+1. The unit i multiplies its output h(i)
+by w to send it to the unit j.
+2. The unit j adds the unit i’s
+https://medium.com/@dzmitrybahdanau/the-flopscontribution to its total input a(j).
+calculus-of-language-model-training-3b19c1f025e4
+--- page 14 ---
+Issues with Kaplan Laws
+• Used same learning rate schedule for all training runs, regardless of how
+many training tokens / batches!
+• This schedule needs to be adjusted based on the number of training steps;
+otherwise, it can impair performance
+• The resulting “scaling laws” from Kaplan et al., are flawed because of this!
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+--- page 15 ---
+Chinchilla (Hoffmann et al., 2022)
+--- page 16 ---
+Quick Takeaways
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+--- page 17 ---
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+--- page 18 ---
+https://www.cs.umd.edu/~miyyer/cmsc848o/
+most modern
+models are
+overtrained by
+this definition
+--- page 19 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 10]
+--- page 20 ---
+
+--- page 21 ---
+Lecture 52 : Modern LLMs and Architecture Variations - I
+--- page 22 ---
+High-level overview of popular models
+•
+SwiGLU
+•
+--- page 23 ---
+High-level overview of Popular LLMs
+Large Language Models: A Survey -https://arxiv.org/pdf/2402.06196
+--- page 24 ---
+Various Categorizations
+Large Language Models: A Survey -- https://arxiv.org/pdf/2402.06196
+--- page 25 ---
+Open Models
+--- page 26 ---
+Mistral/Mistral overview
+https://phontron.com/class/anlp2024
+--- page 27 ---
+LLaMa2 overview
+https://phontron.com/class/anlp2024
+--- page 28 ---
+Qwen overview
+https://phontron.com/class/anlp2024
+--- page 29 ---
+Closed Models
+--- page 30 ---
+GPT-4 overview
+https://phontron.com/class/anlp2024
+--- page 31 ---
+Gemini overview
+https://phontron.com/class/anlp2024
+--- page 32 ---
+Claude 3 overview
+https://phontron.com/class/anlp2024
+--- page 33 ---
+What’s new?
+SwiGLU -- Gated Linear Unit Variants, different activation (instead of FFN, RelU)
+RMSNorm -- Normalization (instead of LayerNorm)
+Bias in attention layer
+RoPE -- Positional Embeddings (instead of sinusoidal)
+Mixture-of-experts (instead of FFN, but we briefly covered this)
+--- page 34 ---
+Activation Functions: Leaky ReLU
+https://web.eecs.umich.edu/~justincj/slides/eecs498/FA2020/
+--- page 35 ---
+Activation Functions: Exponential Linear Unit (ELU)
+https://web.eecs.umich.edu/~justincj/slides/eecs498/FA2020/
+--- page 36 ---
+Activation Functions: Scaled Exponential Linear
+Unit (SELU)
+https://web.eecs.umich.edu/~justincj/slides/eecs498/FA2020/
+--- page 37 ---
+Activation Functions: Gaussian Error Linear Unit
+(GELU)
+https://web.eecs.umich.edu/~justincj/slides/eecs498/FA2020/
+--- page 38 ---
+Activation Functions: Swish
+β is either a constant or
+a trainable parameter
+https://arxiv.org/pdf/1710.05941
+β = 1.72, behaves like GELU
+β→∞, behaves like ReLU
+--- page 39 ---
+FFN with RelU
+FFN Variants with various activations
+No bias terms, more recent
+FFN with GELU
+FFN with Swish
+https://web.eecs.umich.edu/~justincj/slides/eecs498/FA2020/
+--- page 40 ---
+Gated Linear Units (GLU) and variants
+Gated Linear Units consist of the component-wise product of two linear projections, one of
+which is first passed through a sigmoid function
+They also suggest omitting the activation, which they call a "bilinear" layer
+With other activation functions
+https://arxiv.org/pdf/2002.05202
+--- page 41 ---
+RMSNorm
+Layer normalization formulation is given by
+A variant of layer normalization, called root mean square (RMS) layer normalization, only rescales the input vector but does not re-center it
+--- page 42 ---
+Large Language Models: A Survey.https://arxiv.org/pdf/2402.06196
+Foundations of Large Language Models.
+--- page 43 ---
+
+--- page 44 ---
+Lecture 53 : Modern LLMs and Architecture Variations:
+Positional embeddings
+--- page 45 ---
+Towards Long Sequence Modeling
+•
+Attention with (non) learnable biases: T5 bias, ALiBi
+•
+Rotatory Positional Embeddings (RoPE)
+•
+Position Interpolation for RoPE
+•
+--- page 46 ---
+Towards long sequence modeling:
+Extrapolation and interpolation
+We often impose length restrictions on sequences during training to prevent excessive computational costs, but wish
+to apply the trained models to much longer sequences during inference.
+In this case, using learned positional embeddings has obvious drawbacks, as there are no trained embeddings for
+positions that are not observed in the training phase.
+Some options:
+Extrapolate -- a function is learned to fit the data points within a specific range and then applied to estimate the
+values of data points outside that range.
+Interpolate -- maps a larger range of data points into the original observation range (preferred)
+Foundations of Large Language Models
+--- page 47 ---
+Foundations of Large
+Language Models
+--- page 48 ---
+Attention with learnable biases
+This embedding model treats each token independently and therefore ignores the distance between
+different tokens.
+We can use self-attention with relative positional embedding
+Intuitively, PE(i, j) can be interpreted as a distance penalty for the pair of positions i and
+j. As i moves away from j, the value of PE(i, j) decreases.
+Foundations of Large Language Models
+--- page 49 ---
+T5 bias
+Consider the T5 version of relative positional embedding, called the T5 bias [Raffel et al., 2020]. For
+each pair of query qi and key kj, the offset between them is defined as d(i,j) = i - j
+T5 bias groups difference offsets into “buckets”, each corresponding to one
+learnable parameter.
+Foundations of Large Language Models
+--- page 50 ---
+T5 bias
+distmax is typically set to a relatively large number to indicate the maximum offset we may encounter.
+Foundations of Large Language Models
+--- page 51 ---
+T5 bias
+Illustration of distributing query-key offsets into buckets in the T5 model (nb = 32 and
+distmax = 1024). Boxes represent buckets. In the first half of the buckets, we use a
+fixed bucket size. In the second half of the buckets, we increase the bucket size
+logarithmically. The last bucket contains all the query-key offsets that are not covered
+by previous buckets.
+Foundations of Large Language Models
+--- page 52 ---
+T5 bias
+Foundations of Large Language Models
+--- page 53 ---
+Attention with non-learnable biases
+An alternative approach is to give these biases fixed values via heuristics, rather than training them on a
+particular dataset.
+One benefit of this heuristics-based approach is that it does not rely on a training process and thus can be
+directly applied to any sequences once the biases are set.
+In the Attention with Linear Biases (ALiBi) approach, the bias term is defined as the negative scaled
+query-key offset
+can be interpreted as adding a fixed penalty
+whenever j moves one step away from i.
+Foundations of Large Language Models
+--- page 54 ---
+Attention with linear biases (ALiBi)
+Foundations of Large Language Models
+--- page 55 ---
+Rotatory Positional Embeddings
+Sinusoidal positional embeddings are based on hard-coded values for all dimensions of an
+embedding (additive)
+Consider a 2dimensional token
+embedding
+Rotary positional embeddings instead model positional context as rotations to token embeddings in
+a complex space. This leads to a model expressed in the form of multiplicative embeddings
+Foundations of Large Language Models
+Rotation
+matrix
+--- page 56 ---
+Rotatory Positional Embeddings
+If x and y are the coordinates of the
+endpoint of a vector with the length r and
+the angle ϕ with respect to the x-axis
+Let v = (x, y)
+--- page 57 ---
+Rotatory Positional Embeddings
+More formally, rotating a vector by an angle θ for t times can be expressed as
+Interpret t as the position of a token represented by x in a sequence.
+• We start moving the token from position 0.
+• Each time we move one step forward, the vector is rotated by the angle θ.
+• Upon arriving at the position t, the representation of the token with positional
+context is given by Ro(x, tθ).
+Rotations do not change the magnitude of the embedding, the positional
+information is injected into the embedding, when it gets rotated.
+Foundations of Large Language Models
+--- page 58 ---
+Making sense of Rotatory positional embeddings
+Foundations of Large Language Models
+--- page 59 ---
+Given that the distance between cat
+and sleeping is the same in both
+sentences, the angle between their
+embeddings also remains the same
+during rotation.
+Making sense of Rotatory positional embeddings
+Foundations of Large Language Models
+--- page 60 ---
+Extending to d-dimensional embeddings
+Foundations of Large Language Models
+--- page 61 ---
+Extending to d-dimensional embeddings
+In a practical implementation, this equation can be rewritten into a form that relies solely on the
+element-wise product and addition of vectors.
+The form of the embedding at position i
+Foundations of Large Language Models
+--- page 62 ---
+Rotatory embeddings and self-attention
+query and key representation for the mth position with RoPE
+https://arxiv.org/pdf/2104.09864
+Note: d is the
+dimension of
+the query/key.
+d = dmodel/nhead
+= 4096/32=128
+(setting of
+LLaMA 7B).
+--- page 63 ---
+Visualization of RoPE
+https://arxiv.org/pdf/2104.09864
+--- page 64 ---
+Extending context window
+Extrapolation vs. Interpolation: L=2048, out of this region it may cause
+catastrophic issues in attention computation. Interpolation is much more stable.
+https://arxiv.org/pdf/2306.15595
+--- page 65 ---
+Position Interpolation
+Suppose the sequence length for training ranges from 0 to L
+When maximum position = L’ > L at test time,
+we represent the positions in [0,L’] such that our representations fit [0,L].
+We can further fine-tune the interpolated model using the next token prediction task with interpolated position
+encodings on the extended context window size using a pre-training corpus such as the Pile (~1000s of
+examples)
+https://arxiv.org/pdf/2306.15595
+--- page 66 ---
+Adjusted Base Frequency
+LLAMA2 model was unable to effectively attend beyond 4,000- 6,000 tokens even after extensive
+long-context continual pretraining.
+They propose a simple modification to the default RoPE encoding to reduce the decaying effect–
+increasing the “base frequency b” of ROPE from 10,000 to 500,000, which essentially reduces the
+rotation angles of each dimension.
+Effective Long-Context Scaling of Foundation Models: https://arxiv.org/pdf/2309.16039
+--- page 67 ---
+Foundations of Large Language Models
+--- page 68 ---
+
+--- page 69 ---
+Lecture 54 : Long Sequence Modeling
+--- page 70 ---
+Long Sequence Modeling
+•
+Linear Attention
+•
+Fixed-size Cache
+•
+Memory-based models
+•
+--- page 71 ---
+Long sequence modeling:
+Two directions:
+1. efficient training methods and model architectures to learn self-attention
+models from long-sequence data.
+2. Adapt pre-trained LLMs to handle long sequences with modest or no finetuning efforts.
+Foundations of Large Language Models
+KV-cache
+Memory
+--- page 72 ---
+Sparse Attention
+Foundations of Large Language Models
+set of indices of
+the non-zero
+entries
+--- page 73 ---
+Linear Attention
+While sparse attention reduces the computation through the use of sparse operations,
+such models still have significant limitations as we must keep the entire KV cache (i.e.,
+K≤i and V≤i) during inference.
+● If the sequence is very long, storing this cache will become highly memory intensive.
+To address this, we can consider a different form of attention models where the KV
+cache is not explicitly retained.
+Foundations of Large Language Models
+●
+--- page 74 ---
+Linear Attention: Formulation
+Kernel-based Formulation:
+Computing in linear time
+Generalized Attention Equation:
+Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention
+https://arxiv.org/pdf/2006.16236
+time and memory complexity is O(N2)
+time and memory complexity is O(N)
+--- page 75 ---
+Linear Attention: Computational Requirements
+Comparison of the computational requirements for a forward/backward pass for Reformer (lshX), softmax attention and linear attention. Linear and Reformer models scale linearly with the
+sequence length unlike softmax which scales with the square of the sequence length both in
+memory and time.
+Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention
+https://arxiv.org/pdf/2006.16236
+--- page 76 ---
+Cache and Memory
+•
+We can optimize this cache via efficient attention approaches, such as sparse attention
+and linear attention.
+Another idea is to explicitly encode the context via an additional memory model.
+•
+The inference for large language models involves storing the entire left-context in order to
+make predictions for future tokens.
+This requires a KV cache where the representations (i.e., keys and values) of all previously
+generated tokens are kept, and the cost of caching grows as the inference proceeds.
+Foundations of Large Language Models
+--- page 77 ---
+Fixed-size cache
+Foundations of Large Language Models
+--- page 78 ---
+Fixed-size cache
+unweighted average
+Foundations of Large Language Models
+--- page 79 ---
+RNN like model:
+Fixed-size cache
+Foundations of Large Language Models
+It can also be a neural
+network!
+--- page 80 ---
+Fixed-size cache
+local context should be represented
+explicitly with minimal information loss,
+while long-range context can be more
+compressed
+Compressed key-value pairs
+Foundations of Large Language Models
+--- page 81 ---
+Memory-based models
+•
+The modeling of memories discussed till now was based on updates to the KV
+cache, and the resulting models are typically referred to as internal memories.
+We now consider another family of models, called external memories, which
+operate as independent models to access large-scale contexts for LLMs.
+k-nearest neighbors (k-NN) method
+•
+One might, for example, view the entire dataset as the context for predicting tokens.
+This allows us to retrieve the closest context situation in a set of sequences, rather
+than a given sequence prefix.
+Foundations of Large Language Models
+--- page 82 ---
+Memorizing Transformers: kNN lookup
+• kNN lookup does not do averaging or summarization of tokens at long
+distances, but retrieves exact values even from the distant context
+• Able to scale external memory up to sequence lengths of 131k or 262k tokens
+on a single TPU device, while maintaining a reasonable step time
+Adding a memory of 8K tokens
+improves perplexity across different
+model sizes.
+https://arxiv.org/pdf/2203.08913
+--- page 83 ---
+Memorizing Transformers: Architecture
+One of the transformer layers near the
+top of the stack is a kNN-augmented
+attention layer, which combines two
+forms of attention.
+1. Like all of the other layers, it uses
+standard dense self-attention on the
+local context, which is the input
+subsequence for the current training
+step.
+2. Unlike the other layers, it also does an
+approximate k-nearest-neighbor search
+into the external memory.
+https://arxiv.org/pdf/2203.08913
+--- page 84 ---
+kNN-augmented attention layer
+• The same queries are used for both the local context, and for the
+external memory.
+• The keys and values also belong to the same distribution; after each
+training step, the (key, value) pairs in the local context are
+appended to the end of the external memory.
+• If the document is very long, old (key, value) pairs will be dropped
+from the memory to make room for new ones. Thus, for each head,
+the external memory keeps a cache of the prior M (key, value)
+pairs, where M is the memory size.
+https://arxiv.org/pdf/2203.08913
+--- page 85 ---
+kNN lookup and final attention
+The kNN lookup will return a set of retrieved memories, which consist of the top-k
+(key, value) pairs that kNN search returns for each query
+As with standard dense attention, we construct an attention matrix by computing
+the dot product of each query against the retrieved keys, then apply softmax, and
+finally return a weighted sum of the retrieved values
+Attention over the local context is performed in the usual way. The results of kNNattention and local attention are then combined using a learned gate:
+The bias bg is a learned per-head scalar parameter, which allows each head to choose
+between local and long-range attention. Over time, most heads learned to attend almost
+exclusively to external memory.
+https://arxiv.org/pdf/2203.08913
+--- page 86 ---
+Memory-based models
+Foundations of Large Language Models
+--- page 87 ---
+Memory-based models
+During inference, we have a representation hi given a
+prefix.
+Given this representation, we first search the datastore
+for k closest matching data items {(z1,w1), ..., (zk,wk)}.
+Here {w1, ...,wk} are thought of as reference tokens for
+prediction, and thus can be used to guide the token
+prediction based on hi.
+One common way to make use of reference tokens is to
+define a distribution over the vocabulary V
+Foundations of Large Language Models
+--- page 88 ---
+Memory-based models
+One common way to make use of reference tokens is to
+define a distribution over the vocabulary V
+where dv equals the distance between hi and zj if wj
+equals the v-th entry of V, and equals 0 otherwise.
+Foundations of Large Language Models
+--- page 89 ---
+Memory-based models
+Foundations of Large Language Models
+--- page 90 ---
+Foundations of Large Language Models
+--- page 91 ---
+
+--- page 92 ---
+Lecture 55 : Retrieval Augmented Generation
+--- page 93 ---
+Why do LLMs need retrieval?
+•
+Retrieval-based LMs
+•
+k-NN LM revisited
+•
+Training
+•
+--- page 94 ---
+A LM’s parametric knowledge :
+The information that the mode l
+has e ncode d within its
+parame te rs/we ights during
+training that it can the n use to
+do tasks for which that
+knowle dge is re quire d
+Source: https://utah-cs6340 -nlp.notion.site /
+So, why LLMs need retrieval?
+--- page 95 ---
+Why retrieval-based LMs?
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+LLMs can’t memorize
+all (long-tail)
+knowledge in their
+parameters
+--- page 96 ---
+Hallucination & Factuality
+A hallucination is a response that is not faithful to the facts of the world
+Fine-grained hallucination taxonomy [Mishra et al., 2024]
+Source: https://utah-cs6340 -nlp.notion.site /
+5
+--- page 97 ---
+Why retrieval-based LMs?
+LLMs’ knowledge is easily outdated
+and hard to update
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 98 ---
+Why retrieval-based LMs?
+LLMs’ output is challenging to
+interpret and verify
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 99 ---
+Why retrieval-based LMs?
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+LLMs’ output is challenging
+to interpret and verify
+--- page 100 ---
+Retrieval Augmented Generation (RAG)
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 101 ---
+Retrieval Augmented Generation (RAG)
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 102 ---
+RAG: Retrieval
+Goal: find a small subset of elements in a datastore that are the
+most similar to the query
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 103 ---
+RAG: Retrieval
+Goal: find a small subset of elements in a datastore that are the most similar to
+the query
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 104 ---
+Retrieval-based LMs
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 105 ---
+REALM: Retrieval Stage
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 106 ---
+REALM: Read Stage
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 107 ---
+Retrieval-in-context LM
+Ram et al. 2023. “In-Context Retrieval-Augmented Language Models”
+Shi et al. 2023. “REPLUG: Retrieval-Augmented Black-Box Language Models”
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 108 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 109 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 110 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 111 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 112 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 113 ---
+Retrieval-in-context LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 114 ---
+kNN-LM (Revisited)
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 115 ---
+kNN-LM
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 116 ---
+kNN-LM: Results
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 117 ---
+kNN-LM: Results
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 118 ---
+Training challenges:
+↯
+External datastore is huge
+⇒ Expensive to update the index = recompute dense vectors for all documents
+LLMs are large
+⇒ Expensive to finetune an LLM to generate answers
+↯
+Retrieval-based LMs: Training
+Option 1 – Independent Training:
+Retrieval models and language models are trained independently
+Source: https://utah-cs6340 -nlp.notion.site /
+--- page 119 ---
+Retrieval-based LMs: Training
+Option 2 – Sequential Training:
+One component is first trained independently & then fixed, the other
+component is trained with an objective that depends on the first one
+⚘ Retrievers are trained to provide text that helps LMs the most
+Source: https://utah-cs6340 -nlp.notion.site /
+--- page 120 ---
+Retrieval-based LMs: Training
+Option 3 – Joint training w/ asynchronous index update:
+• Retrieval models and language models are trained jointly
+• Allow the index to be “stale”; rebuild the retrieval index every T steps
+Source: https://utah-cs6340-nlp.notion.site/
+--- page 121 ---
+Retrieval-based LMs: Training
+Option 4 – Joint training w/ in-batch approximation:
+• Retrieval models and language models are trained jointly
+• Use “in-batch index” instead of full index
+Source: https://utah-cs6340-nlp.notion.site/
+--- page 122 ---
+Summary of Training Methods
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 123 ---
+Long context vs RAG (Attempt-1)
+https://arxiv.org/pdf/2310.03025
+--- page 124 ---
+Long context vs RAG (Attempt-2)
+https://arxiv.org/pdf/2407.16833
+--- page 125 ---
+Long context vs RAG
+Self-Route method consists of two steps: a RAG-and-Route
+step and a long-context prediction step.
+In the first step, we provide the query and the retrieved chunks
+to the LLM, and prompt it to predict whether the query is
+answerable and, if so, generate the answer. This is similar to
+standard RAG, with one key difference: the LLM is given the
+option to decline answering with the prompt “Write
+unanswerable if the query can not be answered based on the
+provided text”.
+For the queries deemed answerable, we accept the RAG
+prediction as the final answer. For the queries deemed
+unanswerable, we proceed to the second step, providing the
+full context to the long-context LLMs to obtain the final
+prediction (i.e., LC).
+https://arxiv.org/pdf/2407.16833
+--- page 126 ---
+ACL 2023 Tutorial: Retrieval-base d Language Mode ls and Applications
+--- page 127 ---

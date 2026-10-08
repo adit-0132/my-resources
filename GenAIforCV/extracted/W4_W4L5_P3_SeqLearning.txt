@@ -1,0 +1,314 @@
+### DECK: W4L5_P3_SeqLearning  (Week 4)  slides=34  canvas=13.3x7.5in
+
+--- slide 1 ---
+Sequential Modelling
+Generative AI for Computer Vision
+Lecture 6
+
+Part 1
+
+--- slide 2 ---
+Content
+Sequence Modelling
+Recurrent Neural Network  (RNN) – Basics and Applications
+RNN Architecture
+RNN Architectures for Different RNN Models
+
+--- slide 3 ---
+Sequence Modelling
+Sequence modeling is a fundamental task in machine learning that involves learning temporal dependencies from ordered data such as text, speech, and time-series signals.
+
+Sequential models in machine learning are algorithms designed to process and learn from ordered or time-dependent data, where the sequence of observations contains meaningful information which is modelled by capturing dependencies between previous and current elements to make accurate predictions.
+
+Popular Sequential models includes Recurrent Neural Network (RNN), Long Short-Term Memory (LSTM), Gated Recurrent Unit (GRU), Transformer, etc.
+
+--- slide 4 ---
+Why sequential modeling is important?
+Many real-world data sources are inherently ordered, and the meaning of each element often depends on what came before it.
+
+Unlike traditional machine learning methods that treat each input independently, sequence learning models capture temporal and contextual relationships between consecutive data points, leading to more accurate predictions and better understanding of patterns.
+
+Some key reasons sequence learning is important include:
+Captures temporal dependencies: It learns relationships between past and current observations, which is essential for time-series forecasting, speech recognition, and video analysis. 
+
+Preserves context: In natural language processing (NLP), the meaning of a word often depends on the surrounding words. Sequence models use context to improve tasks such as machine translation, sentiment analysis, and text generation. 
+
+Handles variable-length inputs: Sequence learning models such as RNNs and LSTMs can process sequences of different lengths without requiring a fixed-size input.
+
+--- slide 5 ---
+Models long-term relationships: Advanced sequence models like LSTMs can retain important information over long intervals, enabling them to recognize long-range dependencies that standard neural networks struggle to capture. 
+
+Improves prediction accuracy: By leveraging historical information instead of treating observations independently, sequence models generally achieve better performance on sequential data. 
+
+In summary, sequence learning is essential because it enables machine learning models to understand the order, context, and temporal dynamics of data. 
+
+This capability is critical for applications such as language modeling, video summarization, handwriting recognition, machine translation, stock price prediction, weather forecasting, and healthcare monitoring, where the sequence of events carries important information.
+Why sequential modeling is important?
+
+--- slide 6 ---
+Applications of Sequence Modelling
+Applications of Sequence Modelling
+Music Generation
+Named Entity Recognition
+Sentiment Classification
+Time Series Analysis
+DNA Sequence Analysis
+Video Activity Detection
+Speech Recognition
+Machine Translation
+
+--- slide 7 ---
+Recurrent Neural Network (RNN)
+Input
+RNN
+RNN without Output
+RNNs maintain an “Internal State” that is updated as each element of the sequence is processed.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 8 ---
+Recurrent Neural Network (RNN)
+Input
+RNN
+RNN with Output
+Output is optional; an RNN can produce an output at any time step.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Output
+
+--- slide 9 ---
+Recurrent Neural Network
+O
+Unfold
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 10 ---
+Recurrent Neural Network
+State output at time t
+Function at node St with parameters Ws
+State input from previous state at time instance (t-1)
+Function at node St with parameters Ws
+At time step t
+The same parameters and function are used at every time step.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 11 ---
+Recurrent Neural Network
+At time step t
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 12 ---
+Different Recurrent Neural Networks
+The main types of Recurrent Neural Network (RNN) models are classified based on the relationship between input and output sequences. These architectures are designed to handle different sequence modeling tasks.
+One-to-One
+
+Not a typical sequential model. 
+One input → One output. 
+Example: Vanilla Neural Network.
+One-to-Many
+
+One input → Multiple outputs (a sequence). 
+The RNN generates an output sequence from a single input. 
+Example: Image captioning (input: image, output: sentence).
+Many-to-One
+
+Multiple inputs (a sequence) → One output. 
+The RNN processes an input sequence and produces a single prediction. 
+Example: Sentiment analysis, video activity recognition.
+Many-to-Many
+
+Multiple inputs (a sequence) → Multiple outputs (a sequence). 
+The RNN maps an input sequence to an output sequence. 
+Example: Neural machine translation, video summarization.
+RNN
+
+--- slide 13 ---
+One to One
+One-to-One
+Standard neural network with one input and one output; not a true sequential model.
+Single input → Single output. 
+Example: Vanilla Neural Network.
+ Applications:Image classification, regression
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+Different Recurrent Neural Networks
+
+--- slide 14 ---
+One-to-Many
+Single input → Sequence of outputs
+The RNN generates an output sequence from a single input. 
+Example: Image captioning (input: image, output: sentence).
+One to many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Different Recurrent Neural Networks
+[IMAGE: image.png.png 1.4x2.0in]
+input: image
+This is a famous painting named “Monalisa”
+output: caption (sentence)
+
+--- slide 15 ---
+Many-to-One
+Sequence of inputs → Single output
+The RNN processes an input sequence and produces a single prediction. 
+Example: Sentiment Analysis (Input :Text or Speech Sequence, Output : Sentiment)
+Many to One
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Different Recurrent Neural Networks
+"I absolutely love this smartphone. 
+The camera is amazing!"
+Positive
+"The product stopped working after
+ two days. Very disappointing."
+Negative
+Input :Text 
+(Sequence)
+Output : Sentiment 
+(Sigle word)
+
+--- slide 16 ---
+Many-to-Many (Same Length)
+Sequence of inputs → Sequence of outputs (same length)
+The RNN maps an input sequence to an output sequence of same length. 
+Example: Video frame labeling (Input : video sequence, Output : word/other sequence).
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Different Recurrent Neural Networks
+Many to Many (Same Length)
+Image Source: Greenspan, H. & Goldberger, Jacob & Mayer, Arnaldo. (2004). Probabilistic space-time video modeling via piecewise gmm. IEEE Transactions on Pattern Analysis and Machine Intelligence. 26. 384-396. 10.1109/TPAMI.2004.1262334.
+[IMAGE: image.png.png 4.5x2.7in]
+Input : video sequence
+Output : frame-wise 
+segmentation
+
+--- slide 17 ---
+Many-to-Many (Different Length / Seq2Seq)
+Multiple inputs (a sequence) → Multiple outputs (a sequence). 
+The RNN maps an input sequence to an output sequence (may be of different length). 
+Example: Machine translation (Input: text in Hindi Output: text in English)
+Many-to-Many (Different Length / Seq2Seq)
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Different Recurrent Neural Networks
+मुझे गण सुन्ना अच्छा लगता हैं
+I enjoy listening to songs
+Input: text in Hindi
+Output: text in English
+Number of words are different in input and output sequence
+
+--- slide 18 ---
+All in one
+One to One
+One to Many
+Many to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Many to One
+Different Recurrent Neural Networks
+Many-to-Many (Different Length / Seq2Seq)
+
+--- slide 19 ---
+RNN Architecture
+Input
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Output
+
+--- slide 20 ---
+RNN Architecture
+Input
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Output
+Input
+Output
+
+--- slide 21 ---
+RNN Architecture
+Input
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Output
+Input
+Output
+Input
+Output
+
+--- slide 22 ---
+RNN Architecture
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 23 ---
+RNN Architecture
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+Weight Sharing
+Weight Sharing
+Weight Sharing
+
+--- slide 24 ---
+RNN ArchitectureMany to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 25 ---
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+Weight Sharing
+Weight Sharing
+Weight Sharing
+RNN ArchitectureMany to Many
+
+--- slide 26 ---
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+Weight Sharing
+Weight Sharing
+Weight Sharing
+RNN ArchitectureMany to Many
+
+--- slide 27 ---
+RNN ArchitectureMany to One
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 28 ---
+RNN ArchitectureMany to One
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 29 ---
+RNN ArchitectureOne to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 30 ---
+RNN ArchitectureOne to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 31 ---
+RNN ArchitectureOne to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 32 ---
+RNN ArchitectureOne to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 33 ---
+RNN ArchitectureOne to Many
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+Input
+Output
+
+--- slide 34 ---
+Summery
+Sequence Modelling
+Recurrent Neural Network  (RNN) – Basics and Applications
+RNN Architecture
+RNN Architectures for Different RNN Models

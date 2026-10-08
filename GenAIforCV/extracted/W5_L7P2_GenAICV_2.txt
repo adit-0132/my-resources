@@ -1,0 +1,259 @@
+### DECK: L7P2_GenAICV_2  (Week 5)  slides=31  canvas=13.3x7.5in
+
+--- slide 1 ---
+Generative AI for Vision Tasks - II
+Generative AI for Computer Vision
+Lecture 7
+
+Part 2
+
+--- slide 2 ---
+Content
+Generative AI for Vision Tasks
+Image to Image Translation
+Medical Image Synthesis
+Anomaly Detection
+3D Scene Generation
+Face Synthesis
+Style Transfer 
+Video Generation
+
+--- slide 3 ---
+Image to Image Translation
+Image-to-image translation is a computer vision task that transforms an input image from one visual domain to another while preserving its underlying semantic content and structural information. 
+
+The objective is to learn a mapping between source and target image domains, enabling applications such as style transfer, image colorization, image enhancement, semantic label-to-image synthesis, day-to-night translation, sketch-to-photo generation, and medical image modality conversion. 
+
+Traditional approaches relied on handcrafted image processing techniques, whereas modern methods employ deep learning models, particularly Generative Artificial Intelligence (Generative AI), to produce realistic and high-quality outputs. 
+
+Generative models such as Generative Adversarial Networks (GANs), CycleGAN, Pix2Pix, diffusion models, and transformer-based architectures learn complex cross-domain relationships and generate visually consistent images with improved texture, color fidelity, and semantic accuracy.
+
+--- slide 4 ---
+Image to Image Translation
+Image-to-image translation has become an essential technology in autonomous driving, medical imaging, remote sensing, digital content creation, augmented reality, and computer graphics, where accurate and realistic visual transformation is critical for downstream analysis and decision-making.
+[IMAGE: image.png.png 4.1x3.8in]
+Image to Image Translation
+Image Source : https://i.sstatic.net/aAakq.png
+
+--- slide 5 ---
+Generative AI for Image-to-Image Translation
+Generative AI for Image-to-Image (I2I) translation is a deep learning technique that transforms an input image into a new image while preserving its underlying structure and semantic content. 
+
+Unlike text-to-image generation, I2I models use an existing image as a conditioning input and modify attributes such as style, color, texture, resolution, or object appearance. 
+
+Modern approaches employ architectures such as Conditional Generative Adversarial Networks (cGANs), Variational Autoencoders (VAEs), Diffusion Models, and Transformer-based networks to learn complex mappings between source and target image domains. 
+
+During training, these models optimize reconstruction, adversarial, and perceptual losses to generate realistic, high-quality outputs that maintain spatial consistency.
+
+--- slide 6 ---
+Generative AI for Image-to-Image Translation
+Image-to-image generation has wide-ranging applications, including image restoration, super-resolution, medical image synthesis, semantic segmentation, style transfer, virtual try-on systems, satellite image enhancement, and artistic content creation. 
+Recent advancements in latent diffusion models have significantly improved generation quality, computational efficiency, and controllability, making image-to-image translation a key technology in modern computer vision and generative artificial intelligence.
+
+--- slide 7 ---
+Medical Image Synthesis
+Medical image synthesis is the process of generating new medical images or converting one type of medical image into another using artificial intelligence. 
+
+Generative AI models learn patterns from existing medical images and create realistic synthetic images that closely resemble real patient data. 
+
+These generated images help increase the amount of training data available for AI models, improve image quality, and support tasks such as disease detection, image reconstruction, and image enhancement. 
+
+Medical image synthesis is widely used in applications such as MRI-to-CT translation, low-dose CT reconstruction, tumor image generation, and medical image segmentation. 
+
+It also helps protect patient privacy by reducing the need to share real medical images while enabling researchers to develop more accurate and reliable diagnostic systems.
+
+--- slide 8 ---
+Generative AI for Medical Image Synthesis
+Generative AI for medical image synthesis leverages advanced deep learning models to generate realistic and anatomically consistent medical images for clinical and research applications.
+
+Techniques such as Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), and Diffusion Models learn the complex distribution of medical imaging data to synthesize high-quality images across modalities, including Magnetic Resonance Imaging (MRI), Computed Tomography (CT), Positron Emission Tomography (PET), and ultrasound. 
+
+These models enable cross-modal image translation, image reconstruction, super-resolution, noise reduction, and data augmentation by generating synthetic images that preserve essential anatomical and pathological features.
+
+--- slide 9 ---
+Generative AI for Medical Image Synthesis
+Medical image synthesis addresses the challenges of limited annotated datasets, class imbalance, and patient privacy while improving the robustness and generalization of deep learning models for disease detection, segmentation, and diagnosis. 
+
+As a result, generative AI has become a key technology for enhancing computer-aided diagnosis, accelerating medical research, and supporting precision healthcare through the creation of reliable and clinically meaningful synthetic medical images.
+[IMAGE: image.jpeg.jpg 4.8x2.9in]
+Image Source : Singh, Nripendra & Raza, Khalid. (2020). Medical Image Generation using Generative Adversarial Networks. 10.48550/arXiv.2005.10687.
+Application of GAN in medical image synthesis
+
+--- slide 10 ---
+Anomaly Detection
+Anomaly detection is a fundamental task in machine learning and data mining that aims to identify observations, patterns, or events that deviate significantly from the expected behavior of a system. 
+
+These anomalous instances, often referred to as outliers or novelties, may indicate critical events such as equipment failures, fraudulent transactions, cyberattacks, or medical abnormalities. 
+
+Depending on the availability of labeled data, anomaly detection methods are categorized into supervised, semi-supervised, and unsupervised approaches. 
+
+Traditional techniques rely on statistical models, distance-based methods, density estimation, and clustering algorithms, whereas modern approaches employ machine learning algorithms such as Isolation Forest, One-Class Support Vector Machine (SVM), Local Outlier Factor (LOF), and deep neural networks.
+
+--- slide 11 ---
+Anomaly Detection
+The primary objective is to accurately model normal data distributions and detect deviations while minimizing false positives and false negatives. 
+
+Despite significant advancements, anomaly detection remains challenging due to the rarity of anomalous events, class imbalance, high-dimensional data, evolving data distributions, and the absence of labeled anomaly samples in many real-world applications.
+[IMAGE: image.png.png 4.6x2.2in]
+Anomaly
+Image Source : https://www.flair-tech.com/wp-content/uploads/2020/10/anomaly_detection-1014x487.png
+
+--- slide 12 ---
+Generative AI for Anomaly Detection
+Generative models have emerged as a powerful approach for anomaly detection by learning the underlying probability distribution of normal data and identifying samples that exhibit low likelihood under the learned distribution. 
+
+Unlike discriminative methods that focus on separating normal and anomalous instances, generative models aim to reconstruct or generate data that closely resemble the training distribution. 
+
+During inference, anomalous samples typically produce higher reconstruction errors or lower generation probabilities because they differ from the learned representation of normal data.
+
+--- slide 13 ---
+Generative AI for Anomaly Detection
+Deep generative models, including Variational Autoencoders (VAEs), Generative Adversarial Networks (GANs), Diffusion Models, and Normalizing Flows, have demonstrated remarkable performance in detecting anomalies across image analysis, industrial inspection, cybersecurity, healthcare, and time-series monitoring. 
+
+These models leverage latent representations to capture complex nonlinear patterns and semantic features, enabling robust detection in high-dimensional datasets. 
+
+Recent advances have further improved anomaly detection by integrating attention mechanisms, self-supervised learning, contrastive representation learning, and transformer-based architectures with generative frameworks, leading to enhanced detection accuracy, robustness, and generalization across diverse application domains.
+
+--- slide 14 ---
+3D Scene Generation
+3D scene generation is the process of automatically creating realistic three-dimensional environments by modeling objects, their spatial relationships, geometry, textures, and lighting. 
+
+It combines techniques from computer vision, computer graphics, and artificial intelligence to generate complete virtual scenes from inputs such as text, images, scene layouts, or partial 3D data. 
+
+Traditional approaches rely on procedural modeling and handcrafted rules, which often require significant manual effort and lack flexibility. 
+
+In contrast, modern deep learning methods learn complex spatial and semantic representations from large-scale datasets, enabling the synthesis of diverse, coherent, and high-quality 3D environments.
+
+--- slide 15 ---
+3D Scene Generation
+These techniques have become increasingly important in applications such as virtual and augmented reality, robotics, autonomous driving, gaming, digital twins, and architectural visualization.
+Image Source : Dema, Mesfin and Hamed Sari-Sarraf. “3D Scene Generation by Learning from Examples.” 2012 IEEE International Symposium on Multimedia (2012): 58-64.
+[IMAGE: image.png.png 6.2x3.0in]
+
+--- slide 16 ---
+Generative AI for 3D Scene Generation
+Generative AI has transformed 3D scene generation by enabling the automatic synthesis of complex and realistic virtual environments from multimodal inputs such as text, images, sketches, or partial 3D data. 
+
+State-of-the-art generative models, including Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), Diffusion Models, and Transformer-based architectures, learn the underlying distribution of 3D data to generate geometrically accurate and semantically coherent scenes. 
+
+Recent text-to-3D and image-to-3D frameworks leverage large vision-language models together with diffusion-based generation to produce high-quality 3D assets with minimal human intervention.
+
+--- slide 17 ---
+Generative Models for 3D Scene Generation
+These advances improve scene realism, diversity, scalability, and controllability while reducing manual modeling effort. 
+
+Despite their success, ongoing research focuses on improving physical realism, object interactions, computational efficiency, and the generation of large-scale interactive 3D environments for next-generation applications such as the metaverse, immersive digital experiences, and intelligent simulation systems.
+
+--- slide 18 ---
+Face Synthesis
+Face synthesis is an important research area in computer vision that focuses on generating realistic human facial images while preserving identity, facial attributes, and visual consistency. 
+
+It involves learning discriminative and semantic facial representations to model features such as facial geometry, texture, expression, pose, illumination, and occlusions. 
+
+Traditional computer vision approaches employ statistical models, 3D morphable models (3DMMs), and image-based rendering techniques to reconstruct and synthesize facial images. 
+
+Recent advances in deep learning have enabled end-to-end face synthesis models that produce high-resolution and photorealistic faces with improved identity preservation and attribute manipulation.
+
+--- slide 19 ---
+Face Synthesis
+Face synthesis has become a key component in applications including facial recognition, virtual avatars, augmented and virtual reality, digital entertainment, facial reenactment, image restoration, and synthetic data generation for training robust computer vision systems.
+[IMAGE: image.jpeg.jpg 5.8x3.2in]
+Face image synthesis from facial parts
+Image Source : Sun, Q., Guo, J. & Liu, Y. Face image synthesis from facial parts. J Image Video Proc. 2022, 7 (2022). https://doi.org/10.1186/s13640-022-00585-7
+
+--- slide 20 ---
+Generative AI for Face Synthesis
+Generative AI has significantly advanced face synthesis by learning the underlying distribution of facial data to generate realistic, diverse, and controllable facial images. 
+
+State-of-the-art generative models, including Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), Diffusion Models, and Transformer-based architectures, enable high-quality face generation from text prompts, reference images, or latent representations. 
+
+These models capture complex facial characteristics such as identity, expression, pose, age, hairstyle, and lighting while maintaining visual realism and semantic consistency. 
+
+Recent multimodal generative frameworks combine large vision-language models with diffusion-based generation to support text-to-face, image-to-face, and face editing tasks.
+
+--- slide 21 ---
+Generative AI for Face Synthesis
+Such techniques have broad applications in digital content creation, virtual humans, biometric research, healthcare, and human–computer interaction. 
+
+Ongoing research emphasizes improving identity consistency, controllable attribute editing, computational efficiency, fairness across demographic groups, and the responsible deployment of generative AI through watermarking, provenance tracking, and synthetic media detection.
+
+--- slide 22 ---
+Style Transfer in Computer Vision
+Style transfer is a computer vision technique that aims to generate a new image by combining the content of one image with the artistic style of another. 
+
+It leverages feature representations learned by deep neural networks to separate high-level semantic content from low-level visual characteristics such as color, texture, brushstrokes, and patterns. 
+
+Traditional style transfer methods rely on optimization-based algorithms and convolutional neural networks (CNNs), while recent approaches employ feed-forward neural networks for real-time performance.
+
+Style transfer has numerous applications in digital art creation, image editing, photography enhancement, animation, film production, virtual reality, and creative content generation. 
+
+The primary challenge is to preserve the structural integrity of the content image while accurately reproducing the desired artistic style.
+
+--- slide 23 ---
+Style Transfer in Computer Vision
+[IMAGE: image.jpeg.jpg 5.4x3.6in]
+Style Transfer in Computer Vision
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/0*TbzUL6q8jVLpkcrX.jpg
+
+--- slide 24 ---
+Generative AI for Style Transfer
+Generative AI has significantly advanced style transfer by enabling the synthesis of high-quality, diverse, and controllable stylized images through deep generative models. 
+
+Modern approaches utilize Generative Adversarial Networks (GANs), Diffusion Models, Vision Transformers (ViTs), and multimodal foundation models to learn complex style representations from large-scale image datasets. 
+
+Unlike conventional methods, generative AI supports text-guided, image-guided, and multimodal style transfer, allowing users to generate artistic images from natural language descriptions or reference images while preserving semantic content.
+
+--- slide 25 ---
+Generative AI for Style Transfer
+These models achieve superior visual realism, style consistency, and creative flexibility, making them valuable for applications in digital art, graphic design, gaming, advertising, virtual environments, and media production. 
+
+Current research focuses on improving fine-grained style control, preserving content fidelity, reducing computational complexity, enabling real-time generation, and ensuring the ethical use of AI-generated artistic content.
+[IMAGE: image.png.png 5.7x3.3in]
+CNN-based style transfer process
+Image Source : https://d2l.ai/_images/neural-style.svg
+
+--- slide 26 ---
+Video Generation in Computer Vision
+Video generation is a fundamental task in computer vision that focuses on synthesizing realistic and temporally coherent video sequences from various inputs, including text, images, audio, or existing video frames. 
+
+Unlike image generation, video generation requires modeling both the spatial appearance of individual frames and the temporal dynamics that govern motion and object interactions across consecutive frames. 
+
+Traditional approaches rely on optical flow estimation, frame interpolation, and recurrent neural networks (RNNs) to generate or predict video content.
+
+--- slide 27 ---
+Video Generation in Computer Vision
+Recent deep learning methods have significantly improved video quality by learning complex spatiotemporal representations from large-scale video datasets. 
+
+Video generation has broad applications in digital content creation, film production, video editing, animation, virtual reality, autonomous systems, robotics, healthcare, and video simulation, where realistic motion and scene consistency are essential.
+
+--- slide 28 ---
+Generative AI for Video Generation
+Generative AI has revolutionized video generation by enabling the automatic creation of high-quality and temporally consistent videos from multimodal inputs such as text prompts, images, sketches, or short video clips. 
+
+State-of-the-art generative models, including Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), Diffusion Models, and Transformer-based architectures, learn rich spatial and temporal representations to synthesize realistic motion, object interactions, and scene transitions. 
+
+Recent text-to-video and image-to-video frameworks combine large vision-language models with diffusion-based generation to produce photorealistic videos with enhanced realism, controllability, and semantic alignment.
+
+--- slide 29 ---
+Generative AI for Video Generation
+These technologies are widely applied in filmmaking, advertising, gaming, education, virtual assistants, simulation, and immersive media. 
+
+Current research focuses on improving long-duration video generation, motion consistency, computational efficiency, interactive editing, and the responsible development of AI-generated video through techniques such as watermarking, provenance tracking, and synthetic media detection.
+
+--- slide 30 ---
+Summary
+Generative AI for Vision Tasks
+Image to Image Translation
+Medical Image Synthesis
+Anomaly Detection
+3D Scene Generation
+Face Synthesis
+Style Transfer 
+Video Generation
+
+--- slide 31 ---
+Generative Modelling
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 1

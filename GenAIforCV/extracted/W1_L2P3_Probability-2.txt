@@ -1,0 +1,128 @@
+### DECK: L2P3_Probability-2  (Week 1)  slides=18  canvas=13.3x7.5in
+
+--- slide 1 ---
+Mathematical Preliminaries – II(Basic Probability - II)
+Generative AI for Computer Vision
+Lecture 2
+
+Part 3
+
+--- slide 2 ---
+Outline
+Joint Probability Distribution
+
+Correlation and Covariance
+
+Maximum Likelihood Estimation
+
+Bayesian Learning
+
+--- slide 3 ---
+Joint Probability Distribution
+
+--- slide 4 ---
+Marginal Probability Distribution
+
+--- slide 5 ---
+Chain Rule
+
+--- slide 6 ---
+Covariance
+
+--- slide 7 ---
+Correlations
+
+--- slide 8 ---
+Likelihood
+
+--- slide 9 ---
+Maximum Likelihood Estimation (MLE)
+
+--- slide 10 ---
+Bayes Theorem
+P(h) = prior probability of hypothesis h or class prior probability
+P(D) = prior probability of training data D or Predictor prior probability
+P(h|D) = probability of h given D, it is called posterior probability
+P(D|h) = probability of D given h, or If the hypothesis is true, what is the likelihood of that data being generated
+posterior probability
+the likelihood of that data being generated if hypothesis h is true
+prior probability of hypothesis h
+prior probability of training data D
+
+--- slide 11 ---
+Can Bayes theorem be applied to find the suitable hypothesis?
+
+Maximum a Posteriori (MAP) is a probabilistic framework that finds the most probable hypothesis that describes the training dataset.
+Bayesian Learning
+
+--- slide 12 ---
+Choosing Hypotheses
+Generally want the most probable hypothesis given the training data Maximum a posteriori hypothesis hMAP. In otherwords, the map hypothesis is given by that value of h for which probability h given data is maximized.
+
+
+
+
+   
+If for all hypothesis functions, P(h)s are equal, i.e. we assume P(hi)=P(hj) then can further simplify, and choose the Maximum likelihood (ML) hypothesis 
+
+                                        
+                                                  when the prior probability of the all hypothesis are equal.
+
+--- slide 13 ---
+Bayes Optimal Classifier
+So far, we have studied several fundamental concepts in probabilistic machine learning. 
+
+Bayes' Theorem provides a principled framework for computing conditional probabilities by updating prior beliefs in light of new evidence, resulting in the posterior probability. 
+
+Building on this foundation, the Maximum a Posteriori (MAP) framework identifies the hypothesis that has the highest posterior probability given the training data, making it the most probable explanation for the observed dataset. 
+
+Extending this idea further, the Bayes Optimal Classifier considers the entire space of possible hypotheses and predicts the class label for a new data instance by combining their predictions according to their posterior probabilities. 
+
+As a result, it provides the theoretically optimal classification by minimizing the expected prediction error.
+
+--- slide 14 ---
+Difference between MAP and Bayes Optimal Classifier
+MAP and MLE frameworks answer the following question:
+What is the most probable hypothesis given the training data?
+ Bayes optimal classifier answers
+What is the most probable classification of the new instance given the training data?
+
+This is different from the MAP framework that seeks the most probable hypothesis (model). Instead, we are interested in making a specific prediction.
+In general, the most probable classification of the new instance is obtained by combining the predictions of all hypotheses, weighted by their posterior probabilities.
+
+--- slide 15 ---
+Example
+
+--- slide 16 ---
+Source: CS 8751 ML & KDD, Bayesian Methods
+Bayes Optimal Classifier
+Bayes optimal classification
+
+
+Example:
+ P(h1|D)=.4, P(-|h1)=0, P(+|h1)=1 
+ P(h2|D)=.3, P(-|h2)=1, P(+|h2)=0
+ P(h3|D)=.3, P(-|h3)=1, P(+|h3)=0
+therefore
+
+
+
+and
+V = set of all possible classes
+
+--- slide 17 ---
+Summary
+Joint Probability Distribution
+
+Correlation and Covariance
+
+Maximum Likelihood Estimation
+
+Bayesian Learning
+
+--- slide 18 ---
+Neural Network Fundamentals
+Generative AI for Computer Vision
+Next
+
+Lecture 3

@@ -1,0 +1,545 @@
+### DECK: L6P2_BPTT_RNN  (Week 5)  slides=33  canvas=13.3x7.5in
+
+--- slide 1 ---
+Training of RNN
+Generative AI for Computer Vision
+Lecture 6
+
+Part 2
+
+--- slide 2 ---
+Content
+Training of RNN – Backpropagation through Time
+Character Level Modelling through RNN (An example)
+Deep RNN Models
+
+--- slide 3 ---
+Backpropagation Through Time (BPTT)
+O
+Unroll
+Backpropagation Through Time (BPTT) is the training algorithm used for Recurrent Neural Networks (RNNs), where the network is unfolded across multiple time steps to form a deep computational graph. 
+
+During the forward pass, the hidden state is updated sequentially using the current input and the previous hidden state, allowing the network to capture temporal dependencies. 
+
+In the backward pass, the error is propagated from the final time step back through each preceding time step using the chain rule.
+
+--- slide 4 ---
+Backpropagation Through Time (BPTT)
+O
+Unroll
+Since the same weights are shared across all time steps, the gradients computed at each step are accumulated before updating the parameters using gradient descent or its variants. 
+
+BPTT enables RNNs to learn patterns in sequential data such as text, speech, and time-series signals.
+
+Example: RNN having 4 nodes (T=4) with shared weights.
+
+--- slide 5 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+Consider an RNN with four recurrent nodes, shared weights, a Softmax output layer, and a Cross-Entropy loss function.
+
+--- slide 6 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+Consider an RNN with four recurrent nodes, shared weights, a Softmax output layer, and a Cross-Entropy loss function.
+
+--- slide 7 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+
+--- slide 8 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+
+--- slide 9 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+
+--- slide 10 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+So, in generic form (t time instances)
+
+--- slide 11 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+
+--- slide 12 ---
+How to train a RNN?Backpropagation Through Time (BPTT)
+
+--- slide 13 ---
+Backpropagation Through Time (BPTT)
+Loss
+Problem: 
+Vanishing Gradient
+Can’t model the longer sentence properly
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 14 ---
+Truncated Backpropagation Through Time
+Loss
+Run forward and backward through chunks of the sequence instead of whole sequence.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 15 ---
+Truncated Backpropagation Through Time
+Loss
+Carry hidden states forward in time forever, but only backpropagate for some smaller number of steps.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 16 ---
+Truncated Backpropagation Through Time
+Loss
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 17 ---
+Sequence to Sequence (Encoder Decoder Model)Many to One (Encoder) One to Many (Decoder)
+Encoder (Many to One)
+Decoder (One to Many)
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 18 ---
+RNN based Character Level ModellingTraining Phase:
+Vocabulary: {e, a, g, r}
+Character level embedding:
+e = [0 0 0 1]
+a = [0 0 1 0]
+g = [0 1 0 0]
+r= [1 0 0 0]  
+Example:
+Training sequence: 
+ [e a g e r]
+At time step t
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 19 ---
+RNN based Character Level ModellingTraining Phase:
+Vocabulary: {e, a, g, r}
+Character level embedding:
+e = [0 0 0 1]
+a = [0 0 1 0]
+g = [0 1 0 0]
+r= [1 0 0 0]  
+Example:
+Training sequence: 
+ [e a g e r]
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+0
+0
+0
+1
+0
+0
+10
+0
+100
+0
+0
+0
+1
+“e”
+“a”
+“g”
+“e”
+Input Characters
+Input Layer
+
+--- slide 20 ---
+RNN based Character Level ModellingTraining Phase:
+Vocabulary: {e, a, g, r}
+Character level embedding:
+e = [0 0 0 1]
+a = [0 0 1 0]
+g = [0 1 0 0]
+r= [1 0 0 0]  
+Example:
+Training sequence: 
+ [e a g e r]
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+0
+0
+0
+1
+0
+0
+10
+0
+100
+0
+0
+0
+1
+“e”
+“a”
+“g”
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+
+--- slide 21 ---
+RNN based Character Level ModellingTraining Phase:
+Vocabulary: {e, a, g, r}
+Character level embedding:
+e = [0 0 0 1]
+a = [0 0 1 0]
+g = [0 1 0 0]
+r= [1 0 0 0]  
+Example:
+Training sequence: 
+ [e a g e r]
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+0
+0
+0
+1
+0
+0
+10
+0
+100
+0
+0
+0
+1
+“e”
+“a”
+“g”
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+0.8
+-2
+1.50.1
+1.51.0
+0.62.1
+2.6
+0.8
+1.0
+1.7
+“a”
+“g”
+“e”
+“r”
+Output Layer
+Target Output
+
+--- slide 22 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Sample
+.02
+.03
+.92
+.03
+Softmax Layer
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 23 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 24 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+0.8
+-2
+1.50.1
+“g”
+.04
+.91
+.02
+.03
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 25 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+0.8
+-2
+1.50.1
+“g”
+.04
+.91
+.02
+.03
+0
+100
+“g”
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 26 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+0.8
+-2
+1.50.1
+“g”
+.04
+.91
+.02
+.03
+0
+100
+“g”
+1.5
+1.0
+0.6
+2.1
+.02.03
+.01
+.94
+“e”
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 27 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+0.8
+-2
+1.50.1
+“g”
+.04
+.91
+.02
+.03
+0
+100
+“g”
+1.5
+1.0
+0.6
+2.1
+.02.03
+.01
+.94
+“e”
+0001
+“e”
+2.6
+0.8
+1.0
+1.7
+.93
+.04
+.01.02
+“r”
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 28 ---
+RNN based Character Level ModellingTesting Phase:
+0
+0
+0
+1
+“e”
+Input Characters
+Input Layer
+Hidden Layer
+0.7
+0.3
+2.5
+1.1
+“a”
+Output Layer
+Target Output
+.02
+.03
+.92
+.03
+Softmax Layer
+0
+0
+10
+“a”
+0.8
+-2
+1.50.1
+“g”
+.04
+.91
+.02
+.03
+0
+100
+“g”
+1.5
+1.0
+0.6
+2.1
+.02.03
+.01
+.94
+“e”
+0001
+“e”
+2.6
+0.8
+1.0
+1.7
+.93
+.04
+.01.02
+“r”
+Character embedding is performed using one-hot encoding. 
+
+However, different embedding methods can also be used.
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 29 ---
+Deep RNN Models
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+
+--- slide 30 ---
+Bidirectional RNN
+Forward Pass
+Backward Pass
+Concept taken from CS231n: Stanford Lecture by Fei Fei Li et. al.
+A Bidirectional RNN (BiRNN) is a recurrent neural network that processes a sequence in both the forward and backward directions, allowing it to use both past and future context at every time step.
+
+This helps the model better understand the meaning of each element in the sequence. 
+
+Example: "He went to the bank to deposit money." The meaning of "bank" becomes clear from the following words ("to deposit money").
+
+--- slide 31 ---
+Summery
+Training of RNN – Backpropagation through Time
+Character Level Modelling through RNN (An example)
+Deep RNN Models
+
+--- slide 32 ---
+LSTM
+Generative AI for Computer Vision
+Next
+
+Lecture 6: Part 3
+
+--- slide 33 ---
+How to train a RNN?Backpropagation Through Time (BPTT)

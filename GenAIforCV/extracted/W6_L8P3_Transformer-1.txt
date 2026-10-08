@@ -1,0 +1,748 @@
+### DECK: L8P3_Transformer-1  (Week 6)  slides=25  canvas=13.3x7.5in
+
+--- slide 1 ---
+Transformers - I
+Generative AI for Computer Vision
+Lecture 8
+
+Part 3
+
+--- slide 2 ---
+Content
+Spatial Context in Vision
+Image Caption with Context Modelling
+Attention for Image Caption
+
+--- slide 3 ---
+[IMAGE: image.png.png 6.2x2.9in]
+Sequence 2 Sequence Model using RNN/LSTM
+s0
+s1
+…
+st-1
+
+--- slide 4 ---
+Image Captioning Using RNN with Spatial Context Modelling
+Image captioning combines computer vision and natural language processing to generate a textual description of an image. 
+
+In an RNN-based approach, a CNN first extracts visual features from the image, while spatial context modelling preserves information about where objects and regions are located. 
+
+Consequently, the encoder's final hidden state, known as the context vector, is expected to capture the essential information of the entire input image.
+
+ This context vector is then passed to the decoder to generate the output sequence.
+
+--- slide 5 ---
+Image Captioning with RNNs and Spatial Context
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+In image captioning problem,
+
+Input is an Image (I)
+
+A CNN is used to extract the important features for the image.
+
+The output is a sequence of words describing the image briefly.
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 6 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h0
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+CNN
+MLP
+[IMAGE: image.png.png 0.9x1.0in]
+Image Captioning with RNNs and Spatial Context
+In image captioning problem,
+
+Input is an Image (I)
+
+A CNN is used to extract the important features for the image.
+
+The output is a sequence of words describing the image briefly.
+
+A MLP is used to extract the spatial context.
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 7 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+CNN
+Image Captioning with RNNs and Spatial Context
+[IMAGE: image.png.png 0.9x1.0in]
+In image captioning problem,
+
+In Decoder side, the RNN is employed.
+
+[start] and Context vector (C) are the inputs for first decoder node.
+
+Output of the 1st node is “Boy”
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 8 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c
+y0
+y1
+Boy
+Features: 
+H x W x D
+[START]
+Boy
+h2
+y1
+y2
+waving
+CNN
+[IMAGE: image.png.png 0.9x1.0in]
+Extract spatial features from a pretrained CNN
+In image captioning problem,
+
+Output of the 1st node is “Boy”
+
+Output of the 1st decoder node comes 
+      as the input of 2nd decoder node.
+
+The context is also an input to 2nd node.
+
+Output of the 2nd decoder node is 
+       “weaving”.
+Image Captioning with RNNs and Spatial Context
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 9 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c
+y0
+y1
+Boy
+[START]
+Boy
+waving
+h2
+y1
+y2
+h3
+y2
+y3
+flag
+waving
+CNN
+[IMAGE: image.png.png 0.9x1.0in]
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+In image captioning problem,
+
+Output of the 2nd decoder node is “weaving”.
+
+Output of the 2nd decoder node comes 
+      as the input of 3rd decoder node.
+
+The context is also an input to 3rd node.
+
+Output of the 3rd decoder node is “flag”
+Image Captioning with RNNs and Spatial Context
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 10 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c
+y0
+y1
+Features: 
+H x W x D
+[START]
+Boy
+waving
+h2
+y1
+y2
+h3
+y2
+y3
+CNN
+flag
+y3
+h4
+[END]
+y4
+[IMAGE: image.png.png 0.9x1.0in]
+Extract spatial features from a pretrained CNN
+Boy
+flag
+waving
+In image captioning problem,
+
+Finally,
+
+Output of the 3rd decoder node comes 
+      as the input of the 4th decoder node.
+
+The context is also an input to 4th node.
+
+Output of the 4th decoder node is “[END]”
+
+The Process stops.
+Image Captioning with RNNs and Spatial Context
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 11 ---
+The RNN/LSTM Encoder–Decoder model encodes the meaning of the whole image into a fixed-length context vector before passing it to the decoder. 
+
+This creates an information bottleneck, as all the relevant information must be encoded into a single vector. Consequently, the model struggles to handle long or complex input sequences, especially those longer than the sequences seen during training. 
+
+The limited capacity of the context vector can lead to the loss of important information. Furthermore, the decoder must generate the entire output sequence using only this single context vector, making it difficult to accurately recover all the information from the source sequence. 
+
+As a result, the model's performance often degrades for long sequences and complex translation tasks.
+Problems with this approach
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c
+y0
+y1
+Features: 
+H x W x D
+[START]
+Boy
+waving
+h2
+y1
+y2
+h3
+y2
+y3
+CNN
+flag
+y3
+h4
+[END]
+y4
+[IMAGE: image.png.png 0.9x1.0in]
+Extract spatial features from a pretrained CNN
+Boy
+flag
+waving
+information 
+bottleneck
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 12 ---
+Attention
+Attention for context modelling is a mechanism that enables a neural network to dynamically identify and use the most relevant information from a set of inputs when producing an output. 
+
+Instead of treating all input elements equally, attention assigns a weight to each element based on its relevance to the current context. 
+
+In image captioning, for example, the model can focus on different spatial regions of an image depending on the word being generated. 
+
+At each time step, the previous hidden state of the RNN acts as a query to determine which image features are most relevant. 
+
+The weighted combination of these features forms a context vector, which is then used by the RNN to generate the next word.
+
+--- slide 13 ---
+The attention mechanism addresses these limitations by allowing the decoder to dynamically access all encoder hidden states rather than relying solely on a single context vector. 
+
+At each decoding step, attention calculates relevance scores for the encoder hidden states, converts these scores into normalized attention weights, and computes a weighted sum to generate a step-specific context vector. 
+
+Consequently, the decoder can focus on different location of the input image when generating different output tokens (as part of the caption). 
+
+This reduces the information bottleneck, improves the handling of long sequences and long-term dependencies, and enables the model to align relevant input and output elements more effectively. 
+
+Thus, attention transforms the fixed-context model into a more flexible model capable of selectively retrieving the information required for each decoding step.
+How Attention Solves This?
+
+--- slide 14 ---
+Image Captioning with RNNs and Attention
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h0
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+It enables the model to dynamically select relevant image regions for each generated word, improving the accuracy, interpretability, and contextual relevance of the generated caption.
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 15 ---
+e1,0,0
+e1,0,1
+e1,0,2
+e1,1,0
+e1,1,1
+e1,1,2
+e1,2,0
+e1,2,1
+e1,2,2
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h0
+Alignment Scores: 
+H x W
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+Image Captioning with RNNs and AttentionComputing Alignment Score
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 16 ---
+e1,0,0
+e1,0,1
+e1,0,2
+e1,1,0
+e1,1,1
+e1,1,2
+e1,2,0
+e1,2,1
+e1,2,2
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+a1,0,0
+a1,0,1
+a1,0,2
+a1,1,0
+a1,1,1
+a1,1,2
+a1,2,0
+a1,2,1
+a1,2,2
+h0
+Alignment Scores: 
+H x W
+Attention: 
+H x W
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+Image Captioning with RNNs and AttentionComputing Attention
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 17 ---
+e1,0,0
+e1,0,1
+e1,0,2
+e1,1,0
+e1,1,1
+e1,1,2
+e1,2,0
+e1,2,1
+e1,2,2
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+a1,0,0
+a1,0,1
+a1,0,2
+a1,1,0
+a1,1,1
+a1,1,2
+a1,2,0
+a1,2,1
+a1,2,2
+h0
+c1
+Alignment Scores: 
+H x W
+Attention: 
+H x W
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 18 ---
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c1
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+At each decoder node (time step), the model uses the different context vector looking at the different parts of the image.
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+Image Captioning with RNNs and AttentionComputing Output at first time-step
+
+--- slide 19 ---
+e1,0,0
+e1,0,1
+e1,0,2
+e1,1,0
+e1,1,1
+e1,1,2
+e1,2,0
+e1,2,1
+e1,2,2
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+a1,0,0
+a1,0,1
+a1,0,2
+a1,1,0
+a1,1,1
+a1,1,2
+a1,2,0
+a1,2,1
+a1,2,2
+h1
+h0
+c2
+c1
+y0
+y1
+Alignment Scores: 
+H x W
+Attention: 
+H x W
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+
+--- slide 20 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c1
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+Boy
+h2
+c2
+y1
+y2
+waving
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+At each decoder node (time step), the model uses the different context vector looking at the different parts of the image.
+Image Captioning with RNNs and AttentionComputing Output at second time-step
+
+--- slide 21 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c1
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+Boy
+waving
+h2
+c2
+y1
+y2
+h3
+c3
+y2
+y3
+flag
+waving
+CNN
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+[IMAGE: image.png.png 0.9x1.0in]
+At each decoder node (time step), the model uses the different context vector looking at the different parts of the image.
+Image Captioning with RNNs and AttentionComputing Output at third time-step
+
+--- slide 22 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c1
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+Boy
+waving
+h2
+c2
+y1
+y2
+h3
+c3
+y2
+y3
+flag
+h4
+c4
+y3
+y4
+[END]
+waving
+flag
+CNN
+[IMAGE: image.png.png 0.9x1.0in]
+Image Captioning with RNNs and AttentionComputing Output at final time-step
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 23 ---
+Xu et al, “Show, Attend and Tell: Neural Image Captain Generation with Visual Attention”, ICML 2015
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h1
+h0
+c1
+y0
+y1
+Boy
+Features: 
+H x W x D
+Extract spatial features from a pretrained CNN
+[START]
+Boy
+waving
+h2
+c2
+y1
+y2
+h3
+c3
+y2
+y3
+flag
+h4
+c4
+y3
+y4
+[END]
+waving
+flag
+e1,0,0
+e1,0,1
+e1,0,2
+e1,1,0
+e1,1,1
+e1,1,2
+e1,2,0
+e1,2,1
+e1,2,2
+a1,0,0
+a1,0,1
+a1,0,2
+a1,1,0
+a1,1,1
+a1,1,2
+a1,2,0
+a1,2,1
+a1,2,2
+Alignment Scores: 
+H x W
+Attention: 
+H x W
+CNN
+[IMAGE: image.png.png 0.9x1.0in]
+Image Captioning with RNNs and Attention
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+For example, for the image caption: “Boy weaving flag”
+The model may focus on the “Boy” region while generating “Boy”.
+It shifts the focus to the “flag” region while generating the word “flag” and so on.
+
+Attention makes image captioning spatially aware. 
+
+It enables the model to dynamically select relevant image regions for each generated word, improving the accuracy, interpretability, and contextual relevance of the generated caption.
+
+--- slide 24 ---
+Summary
+Spatial Context in Vision
+Image Caption with Context Modelling
+Attention for Image Caption
+
+--- slide 25 ---
+Transformers - II
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 4

@@ -1,0 +1,273 @@
+### DECK: W4L5_P2_ModelArch  (Week 4)  slides=25  canvas=13.3x7.5in
+
+--- slide 1 ---
+CNN Model Architectures -II
+Generative AI for Computer Vision
+Lecture 5
+
+Part 2
+
+--- slide 2 ---
+Content
+Dense Net
+Mobile Net
+Efficient Net
+
+--- slide 3 ---
+Content
+Dense Net
+Mobile Net
+Efficient Net
+
+--- slide 4 ---
+Dense-Net
+Dense-Net (Densely Connected Convolutional Network) is a convolutional neural network architecture that introduces direct connections between every layer and all subsequent layers within a dense block. 
+
+Unlike traditional CNNs, where each layer receives input only from the previous layer, Dense-Net concatenates the feature maps from all preceding layers and uses them as input for the current layer.
+ 
+This dense connectivity improves feature reuse, strengthens gradient flow, and alleviates the vanishing gradient problem, enabling the training of very deep networks with fewer parameters.
+[IMAGE: image.png.png 4.5x3.2in]
+A 5-layer dense block with a growth rate of k = 4. Each layer takes all preceding feature-maps as input.
+Image Source: Gao Huang; Zhuang Liu; Laurens Van Der Maaten; Kilian Q. Weinberger, “Densely Connected Convolutional Networks”, CVPR 2017
+
+--- slide 5 ---
+A Dense-Net architecture typically consists of an initial convolution layer, multiple dense blocks separated by transition layers, and a final classification layer. 
+
+Each dense block contains several convolutional layers, while transition layers include batch normalization, a 1×1 convolution, and average pooling to reduce the number of feature maps and spatial dimensions. 
+
+By encouraging feature propagation and minimizing redundant learning, Dense-Net achieves high classification accuracy with improved computational efficiency, making it well suited for image classification, object detection, and medical image analysis tasks.
+[IMAGE: image.png.png 4.5x3.2in]
+A 5-layer dense block with a growth rate of k = 4. Each layer takes all preceding feature-maps as input.
+Dense-Net
+Image Source: Gao Huang; Zhuang Liu; Laurens Van Der Maaten; Kilian Q. Weinberger, “Densely Connected Convolutional Networks”, CVPR 2017
+
+--- slide 6 ---
+In a conventional Convolutional Neural Network (CNN), an architecture with L layers typically contains L direct connections, where each layer receives input only from the immediately preceding layer and passes its output to the next. 
+
+For example, a traditional 6-layer CNN would have only six sequential connections represented by the straight arrows between adjacent layers.
+
+In contrast, DenseNet introduces dense connectivity, where each layer receives feature maps from all preceding layers and forwards its own feature maps to all subsequent layers.
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Plain CNN
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Res Net
+Dense Net
+6+5+4+3+2+1=21 (Total Connections)
+6(6 + 1)/2 = 21
+Dense-Net
+
+--- slide 7 ---
+As a result, an L-layer DenseNet contains L(L + 1)/2 direct connections. 
+
+Therefore, for a network with six layers, the total number of connections becomes 6(6 + 1)/2 = 21. 
+
+This dense connectivity promotes feature reuse, strengthens gradient propagation, alleviates the vanishing gradient problem, and improves parameter efficiency by allowing later layers to access features learned throughout the network.
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Plain CNN
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Res Net
+Dense Net
+6+5+4+3+2+1=21 (Total Connections)
+6(6 + 1)/2 = 21
+Dense-Net
+
+--- slide 8 ---
+Content
+Dense Net
+Mobile Net
+Efficient Net
+
+--- slide 9 ---
+Mobile Net
+Mobile Net is a lightweight convolutional neural network (CNN) architecture designed for efficient image classification and computer vision tasks on resource-constrained devices such as smartphones, embedded systems, and IoT devices. 
+
+The Mobile Net architecture is built upon depth-wise separable convolutions, a factorized convolution technique that significantly reduces computational complexity and model size compared to standard convolutions. 
+
+Instead of performing spatial filtering and channel combination in a single operation, Mobile Net decomposes the standard convolution into two sequential layers: a depth-wise convolution followed by a pointwise convolution.
+
+This factorization significantly reduces the number of parameters and floating-point operations (FLOPs) while maintaining competitive accuracy.
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 10 ---
+Depth-wise separable convolutions
+Depth-wise separable convolutions is a form of factorized convolutions which factorize a standard convolution into a depth-wise convolution and a 1×1convolution called a pointwise convolution.
+
+The depth-wise convolution applies a single convolutional filter independently to each input channel, enabling efficient spatial feature extraction without mixing channel information.
+
+Subsequently, the pointwise convolution, implemented as a (1x1) convolution, combines the outputs across all channels to generate a new set of feature maps.
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 11 ---
+Depth-wise convolution
+Depth-wise convolution is a convolution operation in which a single convolutional filter is applied independently to each input channel of a feature map. Unlike a standard convolution, which simultaneously performs spatial filtering and combines information across all input channels, depth-wise convolution processes each channel separately without inter-channel mixing.
+
+If the input has (K) channels, depth-wise convolution employs (K) distinct filters, each operating on one corresponding channel to extract spatial features. This operation significantly reduces the number of parameters and computational cost because it eliminates the need to convolve across all input channels.
+…
+1
+2
+K
+M
+N
+K
+p
+q
+1
+p
+q
+1
+p
+q
+1
+R
+S
+K
+Depth-wise convolution
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 12 ---
+Depth-wise convolution
+…
+1
+2
+K
+M
+N
+K
+p
+q
+1
+p
+q
+1
+p
+q
+1
+R
+S
+K
+Depth-wise convolution
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 13 ---
+Pointwise convolution
+M
+N
+K
+1
+1
+K
+1
+1
+K
+…
+1
+1
+K
+1
+2
+L
+Pointwise convolution
+M
+N
+L
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 14 ---
+Depth-wise separable convolutions
+M
+N
+K
+p
+q
+L
+R
+S
+L
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 15 ---
+A standard convolution simultaneously performs both spatial filtering and channel-wise feature aggregation in a single operation, resulting in substantially higher computational cost. 
+
+By separating these processes, depth-wise separable convolutions substantially reduce the number of parameters and floating-point operations (FLOPs) while preserving strong feature representation capability.
+
+This computational efficiency makes Mobile Net particularly well suited for deployment on resource-constrained devices, such as smartphones, embedded systems, and Internet of Things (IoT) applications, where low latency and limited memory are critical requirements.
+
+Subsequent versions, including MobileNetV2 and MobileNetV3, further enhance performance through innovations such as inverted residual blocks, linear bottlenecks, squeeze-and-excitation modules, and neural architecture search, making the MobileNet family well suited for real-time applications requiring high accuracy with low latency and minimal memory consumption.
+Mobile Net
+Andrew G. Howard et. al., “MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications”, https://doi.org/10.48550/arXiv.1704.04861
+
+--- slide 16 ---
+Content
+Dense Net
+Mobile Net
+Efficient Net
+
+--- slide 17 ---
+Efficient Net
+Efficient Net is a family of convolutional neural network (CNN) architectures that achieves high classification accuracy with significantly fewer parameters and lower computational cost through a compound scaling strategy. 
+
+Unlike conventional approaches that arbitrarily scale network depth, width, or input image resolution independently, Efficient Net uniformly scales all three dimensions using a fixed set of scaling coefficients. 
+
+The baseline model, EfficientNet-B0, is designed through neural architecture search (NAS) and employs mobile inverted bottleneck convolution (MBConv) blocks, which incorporate depth-wise separable convolutions, inverted residual connections, linear bottlenecks, and squeeze-and-excitation (SE) attention modules to enhance feature representation while maintaining computational efficiency.
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 18 ---
+Higher variants, ranging from EfficientNet-B1 to EfficientNet-B7, are generated by systematically applying the compound scaling method, resulting in improved accuracy without a proportional increase in computational complexity. 
+
+The architecture also utilizes batch normalization, the Swish (SiLU) activation function, and residual connections to facilitate efficient gradient propagation and stable training. 
+
+Owing to its balanced scaling strategy and optimized building blocks, Efficient Net provides an excellent trade-off between accuracy, model size, and inference speed, making it well suited for image classification, object detection, and transfer learning applications, particularly in environments with limited computational resources.
+Efficient Net
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 19 ---
+Model Scaling
+Convolutional Neural Networks (CNNs) can be scaled to satisfy different computational and memory constraints by increasing their network depth, network width, or input image resolution. 
+
+For example, the Res-Net family scales model capacity by varying the number of layers, while architectures such as Wide-Res-Net and Mobile Net increase representational power by expanding the number of channels in each layer. 
+
+Similarly, increasing the input image resolution enables the network to capture finer spatial details, often leading to improved classification accuracy at the expense of higher computational complexity and increased floating-point operations (FLOPs).
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 20 ---
+Model Scaling
+Although previous studies have demonstrated that network depth and width significantly influence the representational capacity and learning ability of CNNs, these dimensions have traditionally been scaled independently, resulting in suboptimal trade-offs between accuracy and computational efficiency. 
+
+Efficient Net addresses this limitation by introducing a compound scaling strategy that systematically and uniformly scales network depth, width, and input resolution using a fixed set of scaling coefficients. 
+
+This balanced scaling approach enables the network to utilize computational resources more effectively, achieving superior accuracy while maintaining a relatively small model size and lower computational cost compared with conventional scaling methods.
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 21 ---
+[IMAGE: image.png.png 10.4x5.2in]
+Model Scaling
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 22 ---
+Compound scaling
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 23 ---
+Compound scaling
+Mingxing Tan, Quoc V. Le, EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks, https://doi.org/10.48550/arXiv.1905.11946
+
+--- slide 24 ---
+Summary
+Dense Net
+Mobile Net
+Efficient Net
+
+--- slide 25 ---
+Sequential Learning
+Generative AI for Computer Vision
+Next
+
+Lecture 6: Part I

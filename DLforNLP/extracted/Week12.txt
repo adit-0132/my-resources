@@ -1,0 +1,806 @@
+--- page 1 ---
+Lecture 56 : Model Interpretability
+--- page 2 ---
+•
+Logit Lens, Tuned Lens
+Interpretability: Probing
+•
+--- page 3 ---
+Interpretability (in AI)
+https://phontron.com/class/anlp2024
+--- page 4 ---
+Historically models were small
+https://phontron.com/class/anlp2024
+--- page 5 ---
+How do we make sense of this huge model?
+https://phontron.com/class/anlp2024
+--- page 6 ---
+First attempt: Probing
+How? Given a pretrained model, we use the representations it produces to train a
+classifier (without further fine-tuning the model) to predict a linguistic property of the input
+text
+https://phontron.com/class/anlp2024
+--- page 7 ---
+Probe Approach
+Motivation: if we can train
+a classifier to predict a
+property of the input text
+based on its
+representation, it means
+the property is encoded
+somewhere in the
+representation
+https://www.cs.umd.edu/~miyyer/cs685
+--- page 8 ---
+Probing
+https://www.cs.umd.edu/~miyyer/cs685
+--- page 9 ---
+Edge Probing
+All parameters inside the dashed line are
+fixed, while we train the span pooling and MLP
+classifiers to extract information from the
+contextual vectors. The example shown is for
+semantic role labeling, where s(1) = [12)
+corresponds to the predicate (“eat”), while
+s(2) = [25) is the argument (“strawberry ice
+cream”), and we predict label A1 as positive
+and others as negative. For entity and
+constituent labeling, only a single span is used.
+https://arxiv.org/pdf/1905.06316
+--- page 10 ---
+Edge Probing
+https://arxiv.org/pdf/1905.06316
+--- page 11 ---
+How to combine the representations across layers?
+Lexical Baselines. For GPT and for BERT, we use the learned subword
+embeddings from the full model.
+Contextual vectors: For BERT and GPT, we compare two methods:
+cat where we concatenate the subword embeddings with the activations of the
+top layer, and
+mix where we take a linear combination of layer activations (including
+embeddings) using learned task-specific scalars, similar to ELMo.
+https://arxiv.org/pdf/1905.06316
+--- page 12 ---
+Performance Evaluation
+https://arxiv.org/pdf/1905.06316
+ELMo-style
+scalar mixing
+(mix) instead of
+concatenation
+improves
+performance
+significantly
+--- page 13 ---
+BERT rediscovers the NLP pipeline (Tenney et al. 2019)
+https://aclanthology.org/P19-1452.pdf
+--- page 14 ---
+BERT rediscovers the NLP pipeline (Tenney et al. 2019)
+Representation for the probe:
+We learn these weights jointly
+with the probing classifier in order
+to allow it to extract information
+from the many layers of an
+encoder without adding a large
+number of parameters.
+After the probing model is trained,
+we extract the learned coefficients
+in order to estimate the
+contribution of different layers to
+that particular task.
+https://aclanthology.org/P19-1452.pdf
+--- page 15 ---
+BERT rediscovers the NLP pipeline (Tenney et al. 2019)
+A higher center-of-gravity means
+that the information needed for that
+task is captured by higher layers
+Center of gravity:
+https://aclanthology.org/P19-1452.pdf
+--- page 16 ---
+BERT rediscovers the NLP pipeline (Tenney et al. 2019)
+Expected layer: measures how much better we do on
+the probing task if we observe one additional layer l
+https://aclanthology.org/P19-1452.pdf
+--- page 17 ---
+BERT rediscovers the NLP pipeline (Tenney et al. 2019)
+https://aclanthology.org/P19-1452.pdf
+--- page 18 ---
+Logit Lens / Tuned Lens
+Eliciting Latent Predictions from Transformers with the Tuned Lens. https://arxiv.org/pdf/2303.08112
+Technique that
+directly decodes
+hidden states into
+vocabulary space
+using the model’s
+pretrained
+unembedding
+matrix.
+--- page 19 ---
+GPT schematically looks like
+Logit Lens: Basic Idea
+● Project the input tokens from vocab space into the 1600-dim embedding space
+● Modify this 1600-dim vector many times
+● Project the final 1600-dim vector back into vocab space
+We have a "dictionary," W, that lets us convert between vocab space and embedding space at any
+point. We know that some vectors in embedding space make sense when converted into vocab
+space:
+● The very first embedding vectors are just the input tokens (in embedding space)
+● The very last embedding vectors are just the output logits (in embedding space)
+What about the 1600-dim vectors produced in the middle of the network, say the output of the
+12th layer or the 33rd? If we convert them to vocab space, do the results make sense? The answer
+is yes.
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens
+--- page 20 ---
+Model’s top-token and its logit
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6r
+u/interpreting-gpt-the-logit-lens
+--- page 21 ---
+Looking at the ranks
+The view till now focuses only on the top-1 guess at each layer, which is a
+reductive window on the full distributions.
+Another way to look at things: we still reduce the final output to the top-1 guess,
+but we compare other distributions to the final one by looking at the rank of the
+final top-1 guess.
+Even if the middle of the model hasn't yet converged to the final answer, maybe
+it's got that answer somewhere in its top 3, top 10, etc. That's a lot better than
+"top 50257."
+(Remember: these are ranks of the model's final top-1 prediction, not the true
+token.)
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens
+--- page 22 ---
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6r
+u/interpreting-gpt-the-logit-lens
+--- page 23 ---
+KL-divergence
+Another way of comparing the similarity of two probability
+distributions is the KL divergence.
+Taking the KL divergence of the intermediate probabilities w/r/t
+the final probabilities, we get a more continuous view of how the
+distributions smoothly converge to the model's output.
+Because KL divergence is a more holistic measure of the similarity
+between two distributions than the ones
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens
+--- page 24 ---
+https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6r
+u/interpreting-gpt-the-logit-lens
+--- page 25 ---
+Tuned Lens
+https://arxiv.org/pdf/2303.08112
+--- page 26 ---
+Tuned Lens
+https://arxiv.org/pdf/2303.08112
+--- page 27 ---
+Various papers cited in the slides
+--- page 28 ---
+
+--- page 29 ---
+Lecture 57 : Model Interpretability - Multilingual
+--- page 30 ---
+How do multilingual transformers work?
+•
+Language-specific neurons
+•
+Multilingual workflow
+•
+--- page 31 ---
+Do Llamas Work in English? On the Latent Language of Multilingual
+Transformers: https://arxiv.org/pdf/2402.10588
+--- page 32 ---
+Translation Task
+Here the task is to translate the preceding non-English (e.g., French) word to
+Chinese. We show the model four words with their correct translations,
+followed by a fifth word without its translation, and let the model predict the
+next token (“中文” means “Chinese” below):
+https://arxiv.org/pdf/2402.10588
+--- page 33 ---
+Repetition task
+We task the model to simply repeat the last word, instead of translating it, by
+prompting as follows:
+https://arxiv.org/pdf/2402.10588
+--- page 34 ---
+Language probabilities for latents during Llama-2 forward pass
+Neither the correct Chinese token nor its English analog garner any noticeable probability mass during
+the first half of layers. Then, around the middle layer, English begins a sharp rise followed by a decline,
+while Chinese slowly grows and, after a crossover with English, spikes on the last five layers.
+https://arxiv.org/pdf/2402.10588
+On the repetition task,
+Chinese already rises
+alongside English.
+--- page 35 ---
+Anatomy of forward
+pass
+Phase I : Building
+good token
+representations
+Phase II : Concept
+space with higher
+probability to tokens
+in English
+Phase III : Predict
+concepts in the
+chosen target
+language https://arxiv.org/pdf/2402.10588
+--- page 36 ---
+Language Specific Neurons
+An illustration of region
+distribution of activated neurons
+when predicting the next word in
+language models across different
+languages. Here, colored circles
+denote activated neurons. When
+Chinese-specific neurons are
+deactivated (denoted by ⊗), the
+model may produce outputs in
+English.
+Language-Specific Neurons: The Key to Multilingual Capabilities in Large Language Models:
+https://arxiv.org/pdf/2402.16438
+--- page 37 ---
+LAPE Score (language activation probability entropy)
+We feed existing LLMs with multilingual texts, each written in a single language.
+For the jth neuron in the ith layer, we compute the activation probability when
+processing texts in language k:
+Distribution for each neuron, indicating its
+probability of activation for each language
+language activation
+probability entropy
+We designate neurons with low LAPE scores as “language-specific neurons”
+https://arxiv.org/pdf/2402.16438
+--- page 38 ---
+The element at the i-th
+row and j-th column is
+the perplexity increase
+for language j due to
+perturbations in a
+specific region of
+language i.
+Deactivating language specific neurons
+https://arxiv.org/pdf/2402.16438
+--- page 39 ---
+Illustration of LLaMA-270B responses to a
+question in Simplified
+Chinese. The text in
+black is model’s actual
+output and text in gray is
+our self-added
+translation.
+The deactivated output
+is the generation when
+neurons of Simplified
+Chinese are deactivated.
+Deactivating language specific neurons
+--- page 40 ---
+Multilingual Workflow
+Understand the non -Englis h query, interpret in Englis h,
+s olve the tas k in Englis h and generate outputs in the
+original language
+How do Large Language Models Handle Multilingualism?: https://arxiv.org/pdf/2402.18815
+--- page 41 ---
+Processing non-English queries
+We test LLMs with various non-English queries and decode the hidden
+embeddings of each layer to tokens within the LLM’s vocabulary. Subsequently,
+we classify these decoded tokens into either English or non-English, and
+analyze the ratio.
+How do Large Language Models Handle Multilingualism?: https://arxiv.org/pdf/2402.18815
+--- page 42 ---
+Language-specific neuron (another method)
+For a specific neuron within the i-th layer, denoted as N(i), either located
+in the attention or feed-forward network, we quantify its importance in
+processing the input c by measuring the difference in the hidden
+embedding after the i-th layer, i.e., hi+1, when N(i) is activated or
+deactivated. Formally, the impact of neuron N(i) for input c is defined as
+we can obtain language-specific neurons that are important to all corpus
+in that language, i.e.,
+How do Large Language Models Handle Multilingualism?: https://arxiv.org/pdf/2402.18815
+--- page 43 ---
+Existence of language-specific neurons
+We feed a corpus in a specific language to LLMs and identify neurons that are
+consistently activated, which are responsible for processing queries in that
+language.
+We assess the performance of LLMs in corresponding languages when these
+neurons are deactivated versus when the same number of randomly sampled
+neurons are deactivated (0.13%).
+How do Large Language Models Handle Multilingualism?: https://arxiv.org/pdf/2402.18815
+--- page 44 ---
+Multilingual workflow
+LLMs first understand user input by unifying
+diverse linguistic features.
+They then engage in the task-solving phase,
+employing English for reasoning (through selfattention) and leveraging multilingual
+knowledge (through feed-forward structures).
+[Why? Will see in next lecture]
+Finally, the models generate responses aligned with the query’s
+original language.
+How do Large Language Models Handle Multilingualism?: https://arxiv.org/pdf/2402.18815
+--- page 45 ---
+Various papers cited in the slides
+--- page 46 ---
+
+--- page 47 ---
+Lecture 58 : Model Interpretability - III
+--- page 48 ---
+Feed-forward networks as key-value memories
+•
+Causal Tracing
+•
+--- page 49 ---
+Induction Head Hypothesis (in Self-attention)
+The function of the induction head is to predict repeated sequences.
+For example if it sees the pattern A B … A in an input sequence, it
+predicts that B will follow, instantiating the pattern completion rule A
+B … A B.
+https://web.stanford.edu/~jurafsky/slp3
+--- page 50 ---
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 51 ---
+An illustration of how a feed-forward layer
+emulates a key-value memory.
+Input vectors (here, x5) are multiplied by keys to
+produce memory coefficients (e.g., the memory
+coefficient for v1 is 0.2), which then weigh
+distributions over the output vocabulary, stored in
+the values.
+The feed-forward layer’s output is thus the
+weighted sum of its values.
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 52 ---
+MLPs as Key-value memories
+Let x (Rd) be a vector corresponding to
+some input text prefix. We can express
+the feed-forward layer as follows
+Almost identical!
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 53 ---
+Feed-forward layers emulate neural memory
+The hidden dimension dm is essentially the number of memories in the layer, and the
+activation m=f(x.KT), commonly referred to as the hidden layer, is a vector containing an
+unnormalized non-negative coefficient for each memory.
+We refer to each mi as the memory coefficient of the ith memory cell.
+Conjectures from the paper:
+We conjecture that each key vector ki captures a particular
+pattern (or set of patterns) in the input sequence, and
+that its corresponding value vector vi represents the
+distribution of tokens that follow said pattern.
+--- page 54 ---
+An illustration of how a feed-forward layer
+emulates a key-value memory.
+Input vectors (here, x5) are multiplied by keys to
+produce memory coefficients (e.g., the memory
+coefficient for v1 is 0.2), which then weigh
+distributions over the output vocabulary, stored in
+the values.
+The feed-forward layer’s output is thus the
+weighted sum of its values.
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 55 ---
+Experiments to support the conjecture
+We posit that the key vectors K in feed-forward layers act as pattern detectors over the
+input sequence, where each individual key vector ki corresponds to a specific pattern over
+the input prefix x1….xj
+We analyze the keys of a trained language model’s feed-forward layers.
+We retrieve the training examples (prefixes of a sentence) most associated with a given key,
+that is, the input texts where the memory coefficient is highest.
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 56 ---
+How to retrieve trigger examples?
+Given a key
+that corresponds to the i-th hidden dimension of the l-th feedforward layer, we compute the memory coefficient
+for every prefix
+x1….xj of every sentence from the training set.
+For example, for the hypothetical sentence “I love dogs”, we will
+compute three coefficients, for the prefixes “I”, “I love”, and “I love
+dogs”.
+Then, we retrieve the top-t trigger examples, that is, the t prefixes
+whose representation at layer yielded the highest inner product with
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 57 ---
+Pattern Analysis
+We let human experts (NLP graduate students) annotate the top-25 prefixes
+retrieved for each key, and asked them to
+(a) identify repetitive patterns that occur in at least 3 prefixes (which would
+strongly indicate a connection to the key, as this would unlikely happen if
+sentences were drawn at random)
+(b) describe each recognized pattern, and
+(c) classify each recognized pattern as “shallow” (e.g. recurring n-grams) or
+“semantic” (recurring topic).
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 58 ---
+Examples of human-identified patterns
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 59 ---
+Are these patterns consistent across layers?
+The lower layers (layers 1-9) are
+dominated by shallow patterns,
+often with prefixes that share the
+last word.
+https://aclanthology.org/2021.emnlp-main.446.pdf
+In contrast, the upper layers (layers
+10-16) are characterized by more
+semantic patterns, with prefixes
+from similar contexts but without
+clear surface-form similarities.
+--- page 60 ---
+What about values?
+Casting values as distributions over the vocabulary.
+We begin by converting each value vector into a probability distribution over the vocabulary by
+multiplying it by the output (un)embedding matrix E and applying a softmax:
+For every layer and memory dimension i, we compare the top-ranked token
+according to
+to the next token wi in the top-1 trigger example according to
+(the example whose memory coefficient for ki is the highest).
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 61 ---
+Agreement rate
+Agreement rate is close to zero in the
+lower layers (1-10), but starting from
+layer 11, the agreement rate quickly
+rises until 3.5%.
+This value is orders of magnitude
+higher than a random token
+prediction from the vocabulary,
+which would produce a far lower
+agreement rate (0.0004%)
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 62 ---
+Example values
+https://aclanthology.org/2021.emnlp-main.446.pdf
+--- page 63 ---
+https://arxiv.org/pdf/2202.05262
+--- page 64 ---
+Locating and editing factual associations in GPT
+Given the prefix “The Space Needle is located in the city of,” GPT will reliably
+predict the true answer: “Seattle”
+How such factual associations are stored within GPT-like autoregressive
+transformer models?
+https://arxiv.org/pdf/2202.05262
+--- page 65 ---
+Tracing Information Flow
+We begin by analyzing and identifying the specific hidden states that have
+the strongest causal effect on predictions of individual facts.
+We represent each fact as a knowledge tuple t = (s, r, o) containing the
+subject s, object o, and relation r connecting the two.
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 66 ---
+Tracing Information Flow
+Then, to elicit the fact in GPT, we provide a natural language prompt p
+describing (s, r) and examine the model’s prediction of o.
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 67 ---
+Tracing Information Flow
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 68 ---
+Each layer consists of an attention and an MLP
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 69 ---
+Causal Mediation Analysis
+To calculate each state’s contribution towards a correct factual prediction,
+we observe all of G’s internal activations during three runs:
+a clean run that predicts the fact,
+a corrupted run where the prediction is damaged, and
+a corrupted-with-restoration run that tests the ability of a single state to
+restore the prediction.
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 70 ---
+Clean Run
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 71 ---
+Corrupted Run
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 72 ---
+Corrupted-with-restoration Run
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 73 ---
+Causal Tracing: What is the impact of restoration?
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 74 ---
+Causal Tracing: What is the impact of restoration?
+AIE (Average Indirect Effect)
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 75 ---
+Causal Tracing: What if we severe the MLP after restoration?
+Causal effects with a modified computation graph.
+(a, b) To isolate the effects of MLP modules when measuring causal effects, the computation graph
+is modified.
+(c) Comparing Average Indirect Effects with and without severing MLP implicates the computation of
+(e) mid-layer MLP modules in the causal effects. No similar gap is seen when attention is similarly
+severed.
+Locating and Editing Factual Associations in GPT: https://arxiv.org/pdf/2202.05262
+--- page 76 ---
+Various papers cited in the slides
+--- page 77 ---
+
+--- page 78 ---
+Lecture 59 : Trustworthy LLMs: Taxonomy
+--- page 79 ---
+LLM Trustworthiness
+•
+Taxonomy and few instances
+•
+LLM Alignment and Unlearning
+•
+--- page 80 ---
+LLM Trustworthiness Taxonomy
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 81 ---
+LLM Trustworthiness Taxonomy
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 82 ---
+LLM Trustworthiness: Misinformation
+Examples of ChatGPT giving a factually wrong answer. Wikipedia shows the events
+actually happened in 1713 and 53 BC respectively. Access: May 2023
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 83 ---
+LLM Trustworthiness: Hallucination
+Examples of extrinsic hallucination of using text-davinci-003 : 1. The queried series
+was first aired in 2006, as indicated in the provided knowledge. 2. Jean-Francois
+Bryant Curry is a fabricated person and does not actually exist. Access: June 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 84 ---
+LLM Trustworthiness: Inconsistency
+It is shown that the models could fail to provide the same and consistent answers to different users,
+to the same user but in different sessions, and even in chats within the sessions of the same
+conversation. These inconsistent answers can create confusion among users and reduce user trust.
+An example of ChatGPT giving inconsistent answers when prompted differently.
+Access: June 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 85 ---
+LLM Trustworthiness: Sycophancy
+LLM might tend to flatter users by reconfirming their misconceptions and stated beliefs. This is a
+particularly evident phenomenon when users challenge the model’s outputs or repeatedly force the
+model to comply.
+An example from ChatGPT where the model initially gives the right answer but
+changes it to a wrong one after the user questions and misleads. Access: May 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 86 ---
+LLM Trustworthiness: Violence
+LLMs are found to generate answers that contain violent content or generate content that responds to
+questions that solicit information about violent behaviors
+An example of using ChatGPT by indirect prompting (to hide the real intention) to
+induce unsafe answers. Access: June 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 87 ---
+LLM Trustworthiness: Unlawful conduct
+The outputs from LLMs need to obey the specific laws of the country where the models are allowed to
+operate. In the past, LLMs have been shown to be a convenient tool for soliciting advice on accessing,
+purchasing (illegally), and creating illegal substances, as well as for dangerous use of them.
+An example of using GPT-4 to obtain advice for cultivating illegal (in U.S.) drugs.
+Access: July 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 88 ---
+LLM Trustworthiness: Propagandic Misuse
+LLMs can be leveraged, by malicious users, to proactively generate propaganda information that can
+facilitate the spreading of a target.
+An example of using LLMs to generate malicious propaganda against targeted
+people. Access: June 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 89 ---
+LLM Trustworthiness: Leaking Copyrighted Content
+The memorization effect of LLM on training data can enable users to extract certain copyright protected
+content that belongs to the LLM’s training data.
+An example of using prompt to extract the beginning of Harry Potter and the
+Philosopher’s Stone, which is copyrightprotected. Access: June 2023.
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models' Alignment:
+https://arxiv.org/pdf/2308.05374
+--- page 90 ---
+• Removing harmful responses
+• Erasing copyrighted contents
+• Reducing hallucinations
+Common LLM Alignment Tasks
+• Adapting to change of user consent on data usage
+• Adapting to policy change
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 91 ---
+RLHF
+OpenAI’s RLHF workflow
+--- page 92 ---
+https://arxiv.org/pdf/2406.15513
+--- page 93 ---
+But can we do something quickly?
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 94 ---
+LLM Unlearning
+Yao, Liu & Xu. Large Language Model Unlearning, 2023
+--- page 95 ---
+How does it solve the problems?
+Removing harmful responses => Forgetting harmfulness learned in data
+•
+Erasing copyrighted contents => Forgetting impact of copyrighted corpus
+•
+Reducing hallucinations => Forgetting wrong “facts”
+•
+Adapting to change of user consent on data usage => Forgetting user data
+•
+Adapting to policy change => Forgetting old data
+•
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 96 ---
+Pipeline
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 97 ---
+Collecting Positive Samples is Hard
+• Need to hire humans to write
+helpful outputs
+• Required in Reinforcement
+Learning from Human
+Feedbacks (RLHF)
+• Not a direct treatment
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 98 ---
+Red-teaming is a form of evaluation that elicits model vulnerabilities that
+might lead to undesirable behaviors. Jailbreaking is another term for redteaming wherein the LLM is manipulated to break away from its
+guardrails.
+Highly
+automatable
+Collecting Negative Samples is Easy
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 99 ---
+Use Case
+When only have limited resources & in a highly dynamic environment
+• Can only collect negative samples
+• Limited time & computations for quick fix
+Priority: Stop generating harmful outputs
+• Harmful outputs could cause far more damage than what can be offset by the benefits
+of helpful outputs
+• Focus is not to generate the most helpful outputs like RLHF
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 100 ---
+Trustworthy LLMs: a Survey and Guideline for Evaluating Large Language Models'
+Alignment: https://arxiv.org/pdf/2308.05374
+https://valser.org/webinar/slide/slides/20240612/LLM-Unlearn-valse.pdf
+--- page 101 ---
+
+--- page 102 ---
+Lecture 60 : Trustworthy LLMs: Machine Unlearning
+--- page 103 ---
+•
+Concluding Remarks
+LLM Unlearning
+•
+--- page 104 ---
+Goals for LLM Unlearning
+● Unlearn Effectiveness: Successfully forget the data with issues
+○ Evaluation will be context-dependent
+● Utility Preservation: Preserve utility on “normal” tasks
+● Generalization: generalizes to other unseen but relevant questions
+● Low cost: no retraining
+--- page 105 ---
+First Trial: Gradient Ascent (GA)
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 106 ---
+Practical Lesson 1: Unlearning Longer
+Loss on negative samples are not a good indicator
+Continuing to unlearn since the loss rises dramatically for 3x-5x more steps
+(200 steps vs. 1000 steps)
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 107 ---
+Solution 1: Random Mismatch
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 108 ---
+Practical Lesson 2: Cross-entropy is limited for
+preserving utility
+Optimizing the crossentropy loss on a
+normal dataset does
+not maintain the normal
+performance well
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 109 ---
+Solution 2: Using KL to preserve utility
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 110 ---
+To best preserve normal utility
+Practical Lesson 3: Format of the normal dataset matters
+● Normal dataset should have the same format as the forgetting dataset
+● E.g. both to be Q&A or text completion
+Prevent LLMs from learning “shortcuts” from formatting that easily
+distinguish between normal and forgetting data
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 111 ---
+Method
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 112 ---
+Method
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 113 ---
+Method
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 114 ---
+Method
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 115 ---
+Application: Unlearning Copyrighted Data
+Normal data: BookCorpus
+Evaluation metric: leak rate
+Unlearned data: The text in Harry Potter and the Sorcerer’s Stone.
+The BLEU similarity score between the generated completion and the ground truth
+text. We flag the completion if the similarity score is above a threshold.
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 116 ---
+Experimental Settings
+• We first fine-tune the pretrained LLMs on the HP data to make sure
+that they are actually trained on the copyrighted HP data. They then
+serve as our original LLMs.
+• We then split the HP data into the unlearned set and the test set.
+• Each prompt starts with the beginning of a sentence in the HP
+corpus, continuing for the next 200 characters as the prompt text.
+• Given a prompt, we can test how much copyrighted information is
+leaked by comparing the LLM’s completion (with greedy sampling,
+i.e., setting temperature to 0) to the ground-truth HP text.
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 117 ---
+Unlearning Copyrighted Content:
+Llama2-7B
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 118 ---
+Unlearned
+Unseen
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 119 ---
+Unlearned data: PKU-SafeRLHF
+Normal data: BookCorpus
+Evaluation metric: harmful rate
+Application: Unlearning Harmfulness
+We evaluate the question and answer with the moderation model released by the
+PKU team (who published the dataset).
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 120 ---
+PKU-SafeRLHF Dataset
+Left: Q-A pairs are annotated with a safety meta-label.
+Middle: Distribution of each harm category and each severity grade within unsafe Q-A pairs.
+Right: Distribution of responses that generated by each model.
+PKU-SafeRLHF: Towards Multi-Level Safety Alignment for LLMs with Human Preference:
+https://arxiv.org/pdf/2406.15513
+--- page 121 ---
+Experimental Results
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 122 ---
+Concluding Remarks
+--- page 123 ---
+Background
+Course Content (Weeks 1-6)
+• Introduction to NLP
+• Introduction to Deep Learning and Representation Learning
+• Word Representation: Word2Vec, Glove, FastText, Multilingual
+Models and Architectures
+• Recurrent Neural Networks: RNNs, LSTMs, Sequence to Sequence
+• Attention Mechanism and Transformers: Attention in RNNs, Self-Attention in
+Transformers
+Methods
+• Pretraining: Self-supervised Learning objectives for Pretraining,
+ELMo, BERT, GPT, T5, BART, Fine-tuning
+--- page 124 ---
+Course Content (Weeks 7-12)
+Tasks
+• Question Answering, Text Summarization, Dialogs
+• Domain and language-specific applications and challenges
+Methods (LLMs)
+• Towards building LLMs as chat assistants: Instruction Fine-tuning,
+Reinforcement learning from human feedback, Alignment techniques
+• In-content learning, chain-of-thought prompting, Prompt Learning
+• Parameter Efficient Fine-tuning (PEFT), LoRA, QLoRA
+• Architecture Variations, Handling Long Context
+Conclusion
+• Analysis and Interpretability, ethical considerations
+--- page 125 ---
+Many exciting frontiers: Is normalization reqd?
+--- page 126 ---
+Many exciting frontiers: Do we LLMs tokens to think?
+--- page 127 ---
+Many exciting frontiers: Large Reasoning models
+Image Source: https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-reasoning-llms
+--- page 128 ---
+Beyond transformers: State-space models
+Image Source:
+https://newsletter.maartengrootend
+orst.com/p/a-visual-guide-tomamba-and-state
+--- page 129 ---
+Beyond just autoregressive models: using Diffusion
+--- page 130 ---
+Large Language Models Unlearning: https://arxiv.org/pdf/2310.10683
+--- page 131 ---

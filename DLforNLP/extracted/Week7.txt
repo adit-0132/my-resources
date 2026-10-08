@@ -1,0 +1,853 @@
+--- page 1 ---
+Lecture 31 : Applications: Question Answering-I
+--- page 2 ---
+What is Question Answering?
+•
+Reading Comprehension
+•
+Open Domain Question Answering
+•
+--- page 3 ---
+Lots of Practical Applications
+https://web.stanford.edu/class/cs224n/
+--- page 4 ---
+Lots of Practical Applications
+--- page 5 ---
+What is Question Answering?
+--- page 6 ---
+Reading Comprehension
+--- page 7 ---
+Reading Comprehension
+--- page 8 ---
+Stanford Question Answering Dataset (SQuAD)
+https://web.stanford.edu/class/cs224n/
+--- page 9 ---
+SQuAD Evaluation
+--- page 10 ---
+SQuAD Evaluation
+--- page 11 ---
+Recap: BERT for Reading Comprehension
+--- page 12 ---
+Can we design better pre-training objectives?
+https://web.stanford.edu/class/cs224n/
+--- page 13 ---
+Open-Domain Question Answering
+https://web.stanford.edu/class/cs224n/
+--- page 14 ---
+Retriever-Reader Framework
+or a dense
+retriever
+--- page 15 ---
+Retriever-Reader Framework
+https://web.stanford.edu/class/cs224n/
+--- page 16 ---
+Retriever Component
+https://web.stanford.edu/class/cs224n/
+--- page 17 ---
+Reader Component
+https://web.stanford.edu/class/cs224n/
+--- page 18 ---
+Retriever: Standard TF-IDF based model
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 19 ---
+TF-IDF: A simplified formulation
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 20 ---
+A worked out example
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 21 ---
+BM25 Weighting
+BM25 adds two parameters: k, a knob that adjust the balance between term
+frequency and IDF, and b, which controls the importance of document length
+normalization.
+Default parameters:
+k1 = 1.2
+b = 0.75
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 22 ---
+Using a dense retriever
+--- page 23 ---
+Dense retriever: Two options
+(a)is too compute expensive
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 24 ---
+Using a dense retriever: Bi-encoder
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 25 ---
+Using a dense retriever: ColBERT
+A question q is tokenized as [q1,...,qN], prepended with a
+[CLS] and a special [Q] token, and passed through BERT to
+get output vectors q = [q1,...,qN]. The passage d with tokens
+[d1,...,dm], is processed similarly, including a [CLS] and
+special [D] token.
+A linear layer is applied on top of d and q to control the
+output dimension, so as to keep the vectors small for storage
+efficiency, and vectors are rescaled to unit length, producing
+the final vector sequences Eq (length N) and Ed (length m).
+The ColBERT scoring mechanism is:
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 26 ---
+How to get training data?
+How to train these dense retrievers?
+What training objectives to use?
+--- page 27 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 14]
+--- page 28 ---
+
+--- page 29 ---
+Lecture 32 : Applications: Question Answering-II
+--- page 30 ---
+Open Domain QA: Training the Dense Retriever
+•
+Generative QA
+•
+Other QA Datasets
+•
+Multilingual QA
+•
+--- page 31 ---
+Training the dense retrievers
+https://web.stanford.edu/class/cs224n/
+--- page 32 ---
+Training the dense retrievers
+Some models just use a positive and a negative example with contrastive loss
+https://phontron.com/class/anlp2024/
+--- page 33 ---
+How to select the positive and negative passages
+https://web.stanford.edu/class/cs224n/
+Relevance-guided
+supervision
+--- page 34 ---
+Retrieval Free Approaches
+https://web.stanford.edu/class/cs224n/
+--- page 35 ---
+GPT-2 Zero-shot QA
+https://web.stanford.edu/class/cs224n/
+--- page 36 ---
+Generative QA: Fine-tunes T5
+https://web.stanford.edu/class/cs224n/
+--- page 37 ---
+Retriever-Reader framework can benefit from
+Generation as well
+We take a large pretrained language model, give it the set of retrieved
+passages and other text as its prompt, and autoregressively generate a
+new answer token by token (retrieval-augmented generation)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 38 ---
+Other Datasets: Natural Questions
+--- page 39 ---
+More complex: HotpotQA
+--- page 40 ---
+Multilingual QA
+https://phontron.com/class/multiling2022/
+--- page 41 ---
+Multilingual QA
+https://phontron.com/class/multiling2022/
+--- page 42 ---
+Multilingual QA
+https://phontron.com/class/multiling2022/
+--- page 43 ---
+Multilingual Open Retrieval QA
+https://phontron.com/class/multiling2022/
+--- page 44 ---
+Multilingual Open Retrieval QA
+https://phontron.com/class/multiling2022/
+--- page 45 ---
+Multilingual Open Retrieval QA
+https://phontron.com/class/multiling2022/
+--- page 46 ---
+Multilingual Open Retrieval QA
+One Question Answering Model for Many Languages with Cross-lingual Dense Passage Retrieval. Asai et al. 2021.
+https://phontron.com/class/multiling2022/
+--- page 47 ---
+Multilingual QA Datasets
+https://phontron.com/class/multiling2022/
+--- page 48 ---
+Multilingual QA Datasets
+https://phontron.com/class/multiling2022/
+--- page 49 ---
+Other Modalities: Tabular QA
+https://arxiv.org/pdf/2207.05270
+--- page 50 ---
+How to pretrain and fine-tune on Tables?
+TAPEX: https://arxiv.org/pdf/2107.07653
+--- page 51 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 14]
+--- page 52 ---
+
+--- page 53 ---
+Lecture 33 : Applications: Dialogue Systems-I
+--- page 54 ---
+Conversational Agents
+•
+Open-Domain Dialogs: Response by Generation
+•
+Open Domain Dialogs: Evaluation
+•
+--- page 55 ---
+Conversational Agents
+(AKA Dialogue Systems AKA Dialogue Agents AKA Chatbots)
+Personal Assistants on phones or other devices
+SIRI, Alexa, Cortana, Google Assistant
+Playing music, setting timers and clocks
+Chatting for fun
+Booking travel reservations
+Clinical uses for mental health
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 56 ---
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 57 ---
+BlenderBot (Roller et al. 2020)
+--- page 58 ---
+
+--- page 59 ---
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 60 ---
+Task-oriented Dialogue
+--- page 61 ---
+Open-Domain Dialogs
+● Schema design and data-annotation for Belief states, intents and other features
+becomes much more complicated
+● Hence, representation learning becomes more important for building open-domain
+dialog systems
+Main approaches: Encoder/Decoder Architecture Design, Loss function design
+○
+Focus of this lecture
+Example from an Open-domain Dialog
+User1
+User2 (or System)
+1
+Mom , what are we going to make tonight ?
+Curry and rice . What do you think ?
+2
+That sounds nice . I can peel the potatoes first .
+Really ! Oh , honey , you are so sweet . I'll chop up
+this carrot
+3
+Mom , the water is boiling !
+Turn
+Honey , just turn down the stove .
+--- page 62 ---
+Challenges in Dialog Modeling
+Interpretation of the context
+Handling background knowledge
+Extracting useful features from context
+Learning from limited data
+●
+●
+●
+●
+--- page 63 ---
+Response by retrieval
+Corpus-based Chatbots: Two architectures for corpusbased chabots
+• Use information retrieval to grab a response (that is
+appropriate to the context) from some corpus
+Response by generation
+•
+Modern corpus-based chatbots are very dataintensive
+They commonly require hundreds of millions or
+billions of words
+•
+• Use a language model or encoder-decoder to generate the
+response given the dialogue context
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 64 ---
+What conversations to draw on?
+Transcripts of telephone conversations between volunteers
+Movie dialogue
+• Switchboard corpus of American English telephone conversations
+• Various corpora of movie subtitles
+Hire human crowdworkers to have conversations
+Topical-Chat 11K crowdsourced conversations on 8 topics
+EMPATHETICDIALOGUES 25K crowdsourced conversations grounded in a situation
+where a speaker was feeling a specific emotion
+•
+•
+Pseudo-conversations from public posts on social media
+•
+•
+Drawn from Twitter, Reddit, Weibo (微博), etc.
+Tend to be noisy; often used just as pre-training.
+Recent Datasets
+• ShareGPT: User-LLM Chatbot conversations
+• OpenAssistant (Human annotated161,443 messages in 35 languages)
+Crucial to remove personally identifiable information (PII)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 65 ---
+Response by retrieval: neural IR method
+1. Given a user turn q, and a training corpus C of conversation
+2. Find in C the turn r that is most similar (BERT dot product)
+to q
+3. Say r
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 66 ---
+Response by Generation
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 67 ---
+Common problem with basic encoder-decoder:
+Neural chatbots can get repetitive and boring
+A: How old are you?
+A: Where are you going?
+B: I’m going to the restroom. B: I’m 16.
+A: 16?
+A: See you later.
+B: I don’t know what you are talking
+B: See you later.
+about.
+A: See you later.
+A: You don’t know what you are saying.
+B: See you later.
+B: I don’t know what you are talking
+about.
+A: You don’t know what you are saying.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 68 ---
+Fine-tune/Continue-pretrain on large dialog data
+DialoGPT
+--- page 69 ---
+Response by retrieving and refining
+knowledge
+•
+•
+To respond to turns like “Tell me something about Beijing”
+XiaoIce collects sentences from public lectures and news articles.
+And searches them using IR based on query expansion from user’s
+turn
+•
+Can generate responses from informative text rather than
+dialogue
+• Can augment encoder-decoder model
+•
+use IR to retrieve passages from Wikipedia
+concatenate each Wikipedia sentence to the dialogue context with a
+separator token.
+Give as encoder context to the encoder-decoder model, which learns
+to incorporate text into its response
+•
+•
+--- page 70 ---
+Another common problem:
+Neural chatbots should have a personality
+--- page 71 ---
+PersonaChat Dataset
+--- page 72 ---
+BlenderBot3
+https://arxiv.org/pdf/2208.03188
+--- page 73 ---
+How to evaluate the Dialog Models?
+https://web.stanford.edu/class/cs224n/
+--- page 74 ---
+Content-Overlap Metrics
+https://web.stanford.edu/class/cs224n/
+--- page 75 ---
+A Simple Failure Case
+n-gram overlap metrics have no
+concept of semantic relatedness!
+Reference answer
+https://web.stanford.edu/class/cs224n/
+--- page 76 ---
+Model-based metrics to capture more
+semantics
+https://web.stanford.edu/class/cs224n/
+--- page 77 ---
+Importance
+weighting
+BERTScore
+https://arxiv.org/pdf/1904.09675
+--- page 78 ---
+Dialog Evaluation is Tricky!
+Even semantic similarity with the GT response may not suffice.
+Need to evaluate how good is the response given the
+conversation history (reference-free)
+--- page 79 ---
+Dialog Evaluation: Making use of the context
+Discourse Mutual
+Information Maximization
+(DMI)
+We can train a model to give a high score to the good responses
+than the bad responses, given the context
+DMI: https://arxiv.org/pdf/2112.05787
+--- page 80 ---
+Human Evaluation
+• fluency
+• coherence / consistency
+• factuality and correctness
+• commonsense
+• style / formality
+• grammaticality
+• typicality
+• redundancy
+Overall or along some specific dimension:
+--- page 81 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 15]
+--- page 82 ---
+
+--- page 83 ---
+Lecture 34 : Applications: Dialogue Systems-II
+--- page 84 ---
+Task-oriented dialogue
+•
+Frame-based dialogue agents (GUS)
+•
+Dialogue State Architecture
+•
+--- page 85 ---
+Task-oriented Dialogue
+--- page 86 ---
+Frame-based dialogue agents
+Sometimes called "task-based dialogue agents"
+• Systems that have the goal of helping a user solve a task like
+making a travel reservation or buying a product
+Architecture:
+• First proposed in the GUS system of 1977
+• A knowledge structure representing user intentions
+• One or more frames (each consisting of slots with values)
+GUS: Genial Understander System
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 87 ---
+The Frame
+A set of slots, to be filled with information of a given type
+Each associated with a question to the user
+Sometimes called a domain ontology
+Slot
+Type Question
+ORIGIN city
+"What city are you leaving from?
+DEST
+city
+"Where are you going?
+DEP DATE date
+"What day would you like to leave?
+DEP TIME time
+"What time would you like to leave?
+AIRLINE line
+"What is your preferred airline?
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 88 ---
+The GUS architecture
+Two basic architectures
+• Sometimes just called "frame-based" architecture
+• Over 45 years old, but still used in most industrial task-based
+dialogue agents
+Bobrow, Daniel G., Ronald M. Kaplan, Martin Kay, Donald A. Norman, Henry Thompson, and Terry Winograd.
+1977. "GUS, a frame-driven dialog system." Artificial Intelligence 8, 2:155-173.
+•
+The dialogue-state architecture
+• Extension of GUS
+• More common in research systems
+• Some aspects making their way into industrial systems
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 89 ---
+Control structure for GUS frame architecture
+I want a flight from San Francisco to Denver one way leaving after five
+p.m. on Tuesday.
+•
+System asks questions of user, filling any slots that user
+specifies
+User might fill many slots at a time:
+When frame is filled, do database query
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 90 ---
+GUS slots have condition-action rules attached
+Some rules attached to the DESTINATION slot for the
+plane booking frame
+1. Once the user has specified the destination
+• Enter that city as the default StayLocation for the hotel
+booking frame.
+2. Once the user has specified DESTINATION DAY for a
+short trip
+• Automatically copy as ARRIVAL DAY.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 91 ---
+Frames like:
+• Car or hotel reservations
+• General route information
+Which airlines fly from Boston to San Francisco?
+•
+GUS systems have multiple frames
+Frame detection:
+• System must detect which slot of which frame user is filling
+• And switch dialogue control to that frame.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 92 ---
+GUS: Natural Language Understanding for
+filling dialog slots
+1. Domain classification
+weather? flight? alarm clock? ….
+2. Intent Determination
+Find a Movie, Show Flight, Remove Calendar Appt
+3. Slot Filling
+Extract the actual slots and fillers
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 93 ---
+Natural Language Understanding for filling
+slots
+Show me morning flights from
+Boston to SF on Tuesday.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 94 ---
+Natural Language Understanding for filling
+slots
+Wake me tomorrow at six.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 95 ---
+Dialogue-State or Belief-State Architecture
+A more sophisticated version of the frame-based
+architecture
+•
+Has dialogue acts, more ML, better generation
+The basis for modern research systems
+Slowly making its way into industrial systems
+• Some aspects (ML for slot-understanding) already widely
+used industrially
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 96 ---
+Components in a dialogue-state architecture
+NLU: extracts slot fillers from the user’s utterance using machine
+learning
+Dialogue state tracker: maintains the current state of the dialogue
+(user’s most recent dialogue act, set of slot-filler constraints from user
+Dialogue policy: decides what the system should do or say next
+• GUS policy: ask questions until the frame was full then report back
+• More sophisticated: know when to answer questions,
+when to ask a clarification question, etc.
+NLG: produce more natural, less templated utterances
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 97 ---
+Slot filling: Machine learning
+Machine learning classifiers to map words to semantic frame-fillers
+Given a set of labeled sentences
+Input: "I want to fly to San Francisco on Monday please"
+Output: Destination: SF
+Depart-time: Monday
+Build a classifier to map from one to the other
+Requirements: Lots of labeled data
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 98 ---
+Slot filling as sequence labeling: BIO tagging
+The BIO tagging paradigm
+Idea: Train a classifier to label each input word with a
+tag that tells us what slot (if any) it fills
+We create a B and I tag for each slot-type
+And convert the training data to this format
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 99 ---
+Slot filling using contextual embeddings
+Can do domain and intent too: e.g., generate the label
+"AIRLINE_TRAVEL + SEARCH_FLIGHT"
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 100 ---
+We can extract the filler string for each slot
+And then normalize it to the correct form in the ontology
+Like "SFO" for San Francisco
+Using homonym dictionaries (SF=SFO=San Francisco)
+•
+•
+•
+•
+Once we have the BIO tag of the sentence
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 101 ---
+The task of dialogue state tracking
+Example from Mrkšić, N., O Séaghdha, D., Wen, T.-H., Thomson, B., and
+Young, S. (2017). Neural belief tracker: Data-driven dialogue state tracking. ACL.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 102 ---
+Dialogue state tracking
+I'd like Cantonese food near the Mission district.
+→
+inform(food=cantonese, area=mission).
+Dialogue act interpretation algorithm:
+• 1-of-N supervised classification to choose inform
+• Based on encodings of current sentence + prior dialogue acts
+Simple dialogue state tracker:
+• Run a slot-filler after each sentence
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 103 ---
+Dialogue state tracking: Can use generative models
+Dialogue State Tracking with a Language Model using Schema-Driven Prompting, EMNLP’21
+--- page 104 ---
+Natural Language Generation
+NLG in information-state architecture modeled in two
+stages:
+• content planning (what to say)
+• sentence realization (how to say it)
+We'll focus on sentence realization here.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 105 ---
+Sentence Realization
+Assume content planning has been done by the dialogue policy
+• Chosen the dialogue act to generate
+• Chosen some attributes (slots and values) that the planner
+wants to say to the user
+• Either to give the user the answer, or as part of a confirmation
+strategy)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 106 ---
+2 samples of Input and Output for Sentence Realizer
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 107 ---
+Sentence Realization
+Training data is hard to come by
+• Don't see each restaurant in each situation
+Common way to improve generalization:
+• Delexicalization: replacing words in the training set that represent
+slot values with a generic placeholder token:
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 108 ---
+Sentence Realization
+Training data is hard to come by
+• Don't see each restaurant in each situation
+Common way to improve generalization:
+• Delexicalization: replacing words in the training set
+that represent slot values with a generic placeholder
+token:
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 109 ---
+Output:
+Encoder-decoder models:
+Sentence Realization: mapping from frames to
+delexicalized sentences
+restaurant_name has decent service
+Relexicalize to:
+Au Midi has decent service
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 110 ---
+Evaluation Metrics
+Evaluation of Delexicalized Response Generation Task:
+● Delexicalized-BLEU: BLEU score on responses with slot values replaced by slot
+tags (e.g. [HOTEL_AREA])
+● Inform: Measures how often all the entities provided by the system are correct
+● Success: Reflects how often the system is able to correctly answer all the
+requested attributes
+● Entity-F1: F1-score for the entities returned to the user through the generated
+response
+Combined Score: Used for selecting best checkpoint/hyperparameters
+or a model.
+Score = BLEU + 0.5 (Inform + Success)
+--- page 111 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 15]
+--- page 112 ---
+
+--- page 113 ---
+Lecture 35 : Applications: Text Summarization
+--- page 114 ---
+What is Text Summarization
+•
+Summary of methods used for summarization
+•
+Domain Specific Example
+•
+Summarizing Long Documents
+•
+Evaluation
+•
+--- page 115 ---
+What is Text summarization?
+● Au t o m a t ica lly co n d en s in g t h e g iven d o cu m en t (s ) t o p r es en t t h e m o s t r eleva n t
+in fo r m a t io n in a co n cis e a n d q u ick ly- r ea d a b le fo r m a t .
+● Ext en s ively r es ea r ch ed p r o b lem : Fr o m rule- ba sed m et h o d s in t h e 19 50 s t o La r g e
+La n g u a g e Mo d els (LLMs ) in r ecen t yea r s .
+--- page 116 ---
+Ba s e d o n o u t p u t :
+Extra ctive vs . Abstra ctive vs . Hybrid
+●
+Various (kinds of) Text Summarization
+The length can
+be similar to
+extractive
+--- page 117 ---
+Various (kinds of) Text Summarization
+Ba s e d o n t h e n u m b e r o f in p u t d o cu m e n t s :
+Sin gle Docum en t vs . Multi- Docum en t Su m m a r iz a t io n
+●
+--- page 118 ---
+Various (kinds of) Text Summarization
+--- page 119 ---
+BERTSum [Liu and Lapata, 2019]
+Pre-neural approaches
+Inte ge r line ar
+programming
+Binary classification:
+0 ⇒ Do not include in the
+summary
+1 ⇒ Include in the summary
+Maximum marginal
+re le vance
+Le xRank / Ce ntroid
+me thod
+https://utah-cs6340-nlp.notion.site/
+toke n e mbe ddings
+se gme nt e mbe ddings
+positional e mbe ddings
+--- page 120 ---
+Generation Task
+Labeling data possible
+You have a
+No labeled data
+labeled dataset
+Finetune
+open-weight
+Labeling data not
+feasible
+Prompt
+open-weight or proprietary
+e ncode r-de code r (T5, Flan-T5) or Instruction-fine tune d (and aligne d?)
+de code r-only (Llama-3.1-8B-Instruct,
+de code r-only (GPT2, LLaMA,
+Llama-2-7b-chat-hf, Qwe n2.5-7BQWEN, Mistral, e tc)
+Instruct, Mistral-Large -Instruct)
+https://utah-cs6340-nlp.notion.site/
+Re -use the language mode ling output laye r &
+ge ne rate te xt with ne xt toke n pre diction
+--- page 121 ---
+Input : Document(s)
+Out put : Summary
+Seq2seq abstractive summarization
+Finetune a model like GPT2, T5, BART, or these days Llama-3.1-8B-Instruct, Qwen2.5-7B-Instruct, MistralLarge-Instruct-2407
+Or prompt a model without finetuning
+https://utah-cs6340-nlp.notion.site/
+9
+--- page 122 ---
+Pegasus Architecture (Pretraining)
+Both Gap Sentence
+Generation (GSG) and MLM
+are applied simultaneously
+as pre-training objectives.
+Originally there are three
+sentences. One sentence is
+masked with [MASK1] and
+used as target generation
+text (GSG). The other two
+sentences remain in the
+input, but some tokens are
+randomly masked by
+[MASK2] (MLM)
+https://arxiv.org/pdf/1912.08777
+10
+--- page 123 ---
+Selecting Gap Sentences to approximate a summary
+https://github.com/google-research/pegasus
+https://arxiv.org/pdf/1912.08777
+11
+--- page 124 ---
+Domain Specific Example: Summarizing ECTs
+Ea r n in g s Ca lls Tr a n s cr ip t s (ECTs ) a r e
+lon g a n d u n stru ctu red d ocu m en ts w it h
+a n a ve r a g e le n g t h o f 3K w o r d s .
+We co lle ct p u b licly h o s t e d t r a n s cr ip t s
+fr o m T h e M o t le y Fo o l t o fo r m o u r
+d o cu m e n t s .
+Fo r t h is d a t a co lle ct io n , w e t a r g e t e d
+t h e ECTs o f Ru s s e ll 30 0 0 In d e x
+co m p a n ie s p o s t e d b e t w e e n Ja n u a r y
+20 19 a n d Ap r il 20 22.
+https://aclanthology.org/2022.emnlp-main.748/
+--- page 125 ---
+Reference Summaries - Corresponding Reuters Articles
+Exp e r t s - w r it t e n Re u t e r s a r t icle s co r r e s p o n d in g t o t h e s e
+e a r n in g s ca lls a r e co lle ct e d a s t h e r e fe r e n ce s u m m a r ie s .
+Su m m a r y a r t icle s co n s is t o f a co n cis e s e t o f t ele g r a m -
+QUARTERLY EARNINGS PER SH ARE $ 1.5 2 .
+●
+QUARTERLY TOTAL NET SALES $ 9 7.2 8 BILLION
+VERSUS $ 8 9 .5 8 BILLION REPORTED LAST YEAR.
+●
+BOARD OF DIRECTORS AUTH ORIZED AN
+INCREASE OF $ 9 0 BILLION TO TH E EXISTING
+SH ARE REPURCH ASE PROGRAM .
+●
+QUARTERLY IPH ONE REVENUE $ 5 0 .5 7 BILLION
+VERSUS $ 4 7.9 4 BILLION REPORTED LAST YEAR.
+●
+Q2 EARNINGS PER SH ARE VIEW $ 1.4 3, REVENUE
+VIEW $ 9 3.8 9 BILLION - - REFINITIV IBES DATA.
+m e t r ics a n d n u m b e r s d is cu s s e d in t h e ca lls .
+●
+s t yle b u llet p o in t s t h a t p r e cis e ly ca p t u r e im p o r t a n t
+https://aclanthology.org/2022.emnlp-main.748/
+Ave r a g e le n g t h o f a s u m m a r y is a r o u n d 5 0 w o r d s .
+--- page 126 ---
+Long Document Summarization Problem
+Co ve r a g e a n d De n s it y q u a n t ify t h e e xt e n t t o w h ich a s u m m a r y is d e r iva t ive o f t h e
+s o u r ce t e xt .
+Co m p r e s s io n Ra t io r e p r e s e n t s t h e r a t io b e t w e e n # To k e n s in a d o cu m e n t a n d it s
+s u m m a r y.
+https://aclanthology.org/2022.emnlp-main.748/
+--- page 127 ---
+Model Architecture: Extract-then-Paraphrase
+https://aclanthology.org/2022.emnlp-main.748/
+--- page 128 ---
+Main Results
+Domain-specific
+Evaluation metrics
+https://aclanthology.org/2022.emnlp-main.748/
+--- page 129 ---
+How to handle very long documents/books?
+Naive method is to generate summaries for each
+chunk and combine
+https://arxiv.org/pdf/2310.00785
+17
+--- page 130 ---
+Evaluation: BLEU (Bilingual Evaluation Understudy)
+Originally designed for MT evaluation, but is widely used for
+NLG evaluation
+https://people.cs.umass.edu/~miyyer/cs685/
+18
+--- page 131 ---
+Evaluation: BLEU (Bilingual Evaluation Understudy)
+https://people.cs.umass.edu/~miyyer/cs685/
+19
+--- page 132 ---
+ROUGE - a recall-based counterpart to BLEU
+Example
+ROUGE-2 has been shown to correlate somewhat well with human judgments for multidocument extractive summarization tasks
+● Re fe re nce summary (RS): The quick brown fox jumps over the lazy dog.
+● Ge ne rate d summary (GS): A quick brown fox leaped over a lazy dog.
+● Bigrams in RS: [the quick, quick brown, brown fox, fox jumps, jumps ove r, ove r the , the lazy, lazy
+dog]
+● Bigrams in GS: [a quick, quick brown, brown fox, fox le ape d, le ape d ove r, ove r a, a lazy, lazy dog]
+● Ove rlapping Bigrams: [quick brown, brown fox, lazy dog] (3 ove rlapping bigrams)
+● ROUGE-2 = Ove rlapping Bigrams / Bigrams in RS = 3 / 8
+https://utah-cs6340-nlp.notion.site/
+20
+--- page 133 ---
+BARTScore
+we can use the weighted log probability of one text
+y given another text x. Weights can be IDF /
+uniform.
+https://proceedings.neurips.cc/paper_files/paper/2021/file/e4d2b6e6fdeca3e60e0f1a62fee3d9dd-Paper.pdf
+21
+--- page 134 ---
+BARTScore: flexible in various eval. scenarios
+we can use the weighted log probability of one text y
+given another text x. Weights can be IDF / uniform.
+Precision (r → h): from reference text to
+system-generated text p(h|r,θ). This direction
+assesses how likely the hypothesis could be
+constructed based on the gold reference
+Faithfulness (s → h): from source document to
+hypothesis p(h|s,θ). This direction measures
+how likely it is that the hypothesis could be
+generated based on the source text.
+Recall (h → r): from system-generated text to
+reference text p(r|h,θ). This version quantifies
+how easily a gold reference could be generated
+by the hypothesis
+https://proceedings.neurips.cc/paper_files/paper/2021/file/e4d2b6e6fdeca3e60e0f1a62fee3d9dd-Paper.pdf
+22
+--- page 135 ---
+Various papers cited in the slides
+--- page 136 ---

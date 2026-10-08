@@ -1,0 +1,216 @@
+### DECK: W2L3_P3_BackProp  (Week 2)  slides=22  canvas=13.3x7.5in
+
+--- slide 1 ---
+Neural Network FundamentalsBackpropagation
+Generative AI for Computer Vision
+Lecture 3
+
+Part 3
+
+--- slide 2 ---
+Content
+Feed Forward Neural Network
+Notations
+Training of the Neural Network
+Forward Pass
+Backward Pass (Backpropagation)
+Training of the Neural Network: 4 Layers Neural Network
+Computational Complexity of the Training
+Space Complexity
+
+--- slide 3 ---
+Feed Forward Neural Network
+Input Layer (Layer 0)
+Acts as the gateway to the neural network. 
+Receives the input features and passes them to the subsequent layers without performing any computation. 
+Hidden Layers (Layers 1 to k)
+Extract and learn meaningful patterns from the input data. 
+Early hidden layers identify basic and low-level features. 
+Deeper hidden layers progressively combine these features to capture higher-level and more abstract representations. 
+Output Layer (Layer k+1)
+Produces the final prediction or decision of the network. 
+Applies an appropriate activation function to generate the desired output.
+Input Layer (Layer 0)
+Output Layer(k+1)
+Hidden Layer with n No. of neurons
+Hidden Layer with r No. of neurons
+1 to k no. of hidden layers
+
+--- slide 4 ---
+Feed forward Neural Network (Notations)
+Input Layer
+Output Layer
+Hidden Layer with r No. of neurons
+k no. of hidden layers
+(p-1)th Layer
+pth Layer
+Now the questions are: 
+Given an input, how do we compute the output?
+How do we get the weights?
+
+--- slide 5 ---
+Training of The Neural Network
+Backpropagation is the fundamental learning algorithm used to train neural networks. It efficiently determines how each weight in the network should be updated to minimize the prediction error.
+
+The process begins when the neural network makes a prediction. This prediction is compared with the actual target value, and the difference between them is measured using a loss (error) functions.
+
+Backpropagation tells us: 
+How much did each weight contribute to that error?
+Once we know that, we can adjust the weights to improve the network.
+
+--- slide 6 ---
+Backpropagation consists of two main phases:
+Forward Pass
+Input data is passed through the network. 
+In each hidden layer, weighted inputs are summed and a non-linear activation function is applied. 
+The output of one layer becomes the input to the next layer. 
+The network produces a final prediction. 
+The loss (error) is computed using a loss function such as Mean Squared Error (MSE) or Cross-Entropy. 
+
+Backward Pass (Backpropagation)
+The error is propagated backward from the output layer to the input layer. 
+Gradients are calculated using the chain rule. 
+Each weight receives a gradient indicating how much a change in that weight would affect the loss.
+Training of The Neural Network
+
+--- slide 7 ---
+Computation of the MLP Output
+Input Layer
+Output Layer
+Hidden Layer with r No. of neurons
+k no. of hidden layers
+(p-1)th Layer
+pth Layer
+
+--- slide 8 ---
+Forward Pass
+4 Layers Neural Network 
+(One Input Layer, two Hidden Layers and one Output Layers)
+Input Layer
+Hidden Layer 1
+Hidden Layer 2
+Output Layer
+Input layer’s neurons copy to inputs to the next layers.
+
+--- slide 9 ---
+Forward Pass
+4 Layers Neural Network 
+(One Input Layer, two Hidden Layers and one Output Layers)
+Hidden Layer 1:
+Hidden Layer 2:
+Input Layer
+Hidden Layer 1
+Hidden Layer 2
+Output Layer
+Input layer’s neurons copy to inputs to the next layers.
+
+--- slide 10 ---
+Forward Pass
+4 Layers Neural Network 
+(One Input Layer, two Hidden Layers and one Output Layers)
+Input Layer
+Hidden Layer 1
+Hidden Layer 2
+Output Layer
+Input layer’s neurons copy to inputs to the next layers.
+
+--- slide 11 ---
+Backward Pass : Backpropagation
+Backpropagation minimizes the cost (loss) function by updating the network's weights and biases using an optimization algorithm such as gradient descent.
+
+The error gradient with help of learning rate indicates how much each parameter should be changed, and in which direction, to reduce the loss.
+
+During backpropagation, these gradients are propagated from the output layer back to the input layer, hence the name backpropagation.
+
+Gradients are computed directly at the output layer and then propagated through the hidden layers using the chain rule of calculus.
+Input Layer
+Output Layer
+Hidden Layer with m No. of neurons
+Hidden Layer with r No. of neurons
+k no. of hidden layers
+Forward Pass
+Backward Pass: Backpropagation
+
+--- slide 12 ---
+Backpropagation : Algorithm
+Weight Updation in a Backward direction (Backpropagation) using chain rule
+
+--- slide 13 ---
+Sigmoidal Non-linearity
+Backpropagation : Algorithm
+[IMAGE: image.png.png 3.3x2.2in]
+
+--- slide 14 ---
+Backpropagation : Algorithm
+Error:
+at output layer
+Now,
+After Some Algebraic 
+Manipulations
+
+--- slide 15 ---
+So the weight updation step at output layer is follows:
+Thus the error is propagated from output to input layer. So the name “Backpropagation Algorithm.”
+Feed forward Backpropagation Algorithm
+at output layer
+at output layer
+Backpropagation : Algorithm
+
+--- slide 16 ---
+Backpropagation : Algorithm
+
+--- slide 17 ---
+Loss:
+where D is target value and d is the predicted value
+Gradient of Loss at Output Layer with respect to the output layer weight parameters
+Gradient of Loss at Hidden Layer 2 with respect to corresponding weight parameters
+Gradient of Loss at Hidden Layer 1with respect to corresponding weight parameters
+Example of Backpropagation
+Input Layer
+Hidden Layer 1
+Hidden Layer 2
+Output Layer
+Loss
+
+--- slide 18 ---
+BackpropagationComputational complexity
+
+--- slide 19 ---
+BackpropagationSpace Complexity
+The space complexity of backpropagation is determined by the memory required to store the model parameters, intermediate activations, and gradients during training.
+
+Storing Model Parameters: The weights and biases of the network are stored throughout training. If W is the total number of trainable parameters, the required memory is O(W). 
+
+Storing Intermediate Activations: The output activations of each layer are cached during the forward pass for use in gradient computation during backpropagation. The memory required grows linearly with the number of layers and neurons. 
+
+Storing Gradients: Backpropagation stores the gradient corresponding to each trainable parameter. Since there is one gradient per weight and bias, the memory required is O(W). 
+
+Overall Space Complexity: The overall space complexity is O(W), with additional memory required for storing intermediate activations during training.
+
+--- slide 20 ---
+BackpropagationSpace Complexity (Optimization : Checkpointing)
+Standard implementation requires O(N) space to store activations. Checkpointing (or selective re-computation) trades computation time for reduced memory usage.
+
+Standard approach (O(N) space): Store all intermediate activations during the forward pass. Fast computation but high memory usage. 
+
+Re-computation approach (O(1) space, O(N²) time): Recompute activations during the backward pass instead of storing them. Minimizes memory usage but increases computation time. 
+
+Checkpointing: Store only selected activations and recompute the rest as needed. Balances memory and computation, with space complexity between O(1) and O(N).
+
+--- slide 21 ---
+Summary
+Feed Forward Neural Network
+Notations
+Training of the Neural Network
+Forward Pass
+Backward Pass (Backpropagation)
+Training of the Neural Network: 4 Layers Neural Network
+Computational Complexity of the Training
+Space Complexity
+
+--- slide 22 ---
+Optimizing Supervised Model
+Generative AI for Computer Vision
+Next
+
+Lecture 3: Part 4

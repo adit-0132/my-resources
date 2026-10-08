@@ -1,0 +1,703 @@
+--- page 1 ---
+Lecture 21 : Introduction to Transformers
+--- page 2 ---
+Attention: More General Framework
+•
+Transformer Encoder-Decoder
+•
+Self-Attention
+•
+--- page 3 ---
+Transformers
+--- page 4 ---
+Great Results with Transformers: NMT
+https://web.stanford.edu/class/cs224n/
+[Test sets: WMT 2014
+English-German and
+English-French]
+--- page 5 ---
+Great Results with Transformers: Rise of LLMs
+https://web.stanford.edu/class/cs224n/
+--- page 6 ---
+Transformers have shown promise outside NLP
+https://web.stanford.edu/class/cs224n/
+--- page 7 ---
+Recap: Attention is a general technique
+More ge ne ral de finition of atte ntion:
+We can use atte ntion in many archite cture s not just se q2se q and many tasks (not just MT)
+➔ Give n a se t of ve ctor values, and a ve ctor query, attention is a te chnique to compute a we ighte d sum of
+the value s, de pe nde nt on the que ry
+We say that the query attends to the values
+In the se q2se q+atte ntion mode l, e ach de code r hidde n state (que ry) attends to all the e ncode r hidde n state
+(value s)
+--- page 8 ---
+More general definition of attention:
+Attention is a general deep learning technique
+➔ Given a set of vector values, and a vector query, attention is a technique to compute a
+weighted sum of the values, dependent on the query
+Intuition:
+The weighted sum is a selective summary of the information contain in the values, where
+the query determines which values to focus on
+•
+Attention is a way to obtain a fixed-size representation of an arbitrary set of
+representations, dependent on some other representation
+•
+https://utah-cs6340-nlp.notion.site/Natural-Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 9 ---
+Issues with recurrent models
+https://web.stanford.edu/class/cs224n/
+--- page 10 ---
+Issues with recurrent models
+https://web.stanford.edu/class/cs224n/
+Inhibits training on very
+large datasets!
+--- page 11 ---
+If not recurrence, then what?
+https://web.stanford.edu/class/cs224n/
+--- page 12 ---
+Transformer Encoder-Decoder
+⚘
+⚘
+Transforme r is introduce d as an encoderdecoder architecture ;
+late r we will se e encoder-only & decoder-only
+transforme rs
+Encoder produce s a sophisticate d
+re pre se ntation of the source se que nce that the
+de code r will use to condition its ge ne ration
+proce ss
+Decoder ge ne rate s one toke n at the time to
+produce a targe t se que nce ; in the produce s, it
+produce s re pre se ntations that combine the
+history and a ne w toke n
+⚘
+Figure : Jay Alammar
+https://utah-cs6340-nlp.notion.site/Natural-Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 13 ---
+A stack of
+e ncode r blocks
+Figure : Jay Alammar
+A stack of
+de code r blocks
+--- page 14 ---
+Each encoder block consists of self-attention & FFNN
+De e pe r laye rs ge t
+outputs of the
+pre vious laye rs as
+inputs
+Figure : Jay Alammar
+Input to e ach
+e ncode r block has
+the same size as
+original toke n
+e mbe ddings
+In the first laye r, inputs are static
+toke n e me ddings
+--- page 15 ---
+Intuition for Self-Attention: 1
+Problem with static embeddings (word2vec)
+They are static! The embedding for a word doesn't reflect how its
+meaning changes in context.
+The chicken didn't cross the road because it was too tired
+What is the meaning represented in
+the static embedding for "it"?
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 16 ---
+Contextual Embeddings
+Attention
+•
+• Intuition: a representation of meaning of a word should be
+different in different contexts!
+• Contextual Embedding: each word has a different vector that
+expresses different meanings depending on the surrounding
+words
+• How to compute contextual embeddings?
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 17 ---
+Contextual Embeddings
+The chicken didn't cross the road because it
+What should be the properties of "it"?
+The chicken didn't cross the road because it was too tired
+The chicken didn't cross the road because it was too wide
+At this point in the sentence, it's probably referring to either the animal or the street
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 18 ---
+Intuition of attention
+Build up the contextual embedding from a word by selectively
+integrating information from all the neighboring words
+We say that a word "attends to" some neighboring words more
+than others
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 19 ---
+test
+Intuition of attention
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 20 ---
+Simplified version of attention: a sum of prior words
+weighted by their similarity with the current word
+Given a sequence of token embeddings:
+x1 x2 x3 x4 x5 x6 x7 xi
+Produce: ai = a weighted sum of x1 through x7 (and xi)
+Weighted by their similarity to xi
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 21 ---
+Intuition for Self-attention: 2
+https://web.stanford.edu/class/cs224n/
+--- page 22 ---
+Intuition for Self-attention: 3
+Attention is based on key/value/query concept -- analogous to
+retrieval systems.
+--- page 23 ---
+An Actual Attention Head
+High-level idea: instead of using vectors (like xi and x4) directly, we'll
+represent 3 separate roles each vector xi plays:
+• query: As the current element being compared to the preceding
+inputs.
+• key: as a preceding input that is being compared to the current
+element to determine a similarity
+• value: a value of a preceding element that gets weighted and
+summed
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 24 ---
+Intuition of attention:
+query
+keys
+values
+https://web.stanford.edu/~jurafsky/slp3/
+x1 x2 x3 x4 x5 x6 x7 xi
+k
+v
+k
+v
+k
+v
+k
+v
+k
+v
+k
+v
+k
+v
+k
+v
+--- page 25 ---
+An Actual Attention Head: slightly more complicated
+We'll use matrices to project each vector xi into a
+representation of its role as query, key, value:
+• query: WQ
+• key: WK
+• value: WV
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 26 ---
+An Actual Attention Head: slightly more complicated
+Given these 3 representation of xi
+To compute similarity of current element xi with some prior
+element xj
+We’ll use dot product between qi and kj.
+And instead of summing up xj, we'll sum up vj
+--- page 27 ---
+Transformers: Self-attention over input
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 28 ---
+Self-attention over input embeddings
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 29 ---
+Self-attention over input embeddings
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 30 ---
+Self-attention over input embeddings
+4
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 31 ---
+Self-attention over all words (in parallel)
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 32 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 9]
+--- page 33 ---
+
+--- page 34 ---
+Lecture 22 : Transformers: Part 2
+--- page 35 ---
+Self-Attention: More Details
+•
+Multi-head attention
+•
+Feed-forward Network
+•
+Complete Transformer Block
+•
+--- page 36 ---
+Self-attention over all words (in parallel)
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 37 ---
+Self-attention: In equations
+Source: https://theaisummer.com/self-attention/
+Scaled dot-product: more on
+this later
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 38 ---
+Calculating the self-attention output
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 39 ---
+Try this problem
+Suppose, you give the following input to your transformer encoder: {flying, arrows} The input
+embeddings for these two words are [0,1,1,1,1,0] and [1,1,0,-1,-1,1], respectively. Suppose you are
+trying to represent the first word ‘flying’ with the help of self-attention in the first encoder. For the first
+attention head, the query, key and value matrices just take the 2 dimensions from the input each.
+Thus, the first 2 dimensions define the query vector, and so on. What will be the self-attention output
+for the word ‘flying’ corresponding to this attention head. You are using the scaled dot vector.
+--- page 40 ---
+q1: [0,1], k1: [1,1],, v1: [1,0]
+q2: [1,1], k2: [0,-1], v2: [-1,1]
+a1?
+Try this problem
+--- page 41 ---
+Multi-head Attention
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 42 ---
+Why Multi-head attention?
+● What if we want to look in multiple places in the sentence at once?
+○ For word 𝑖𝑖, maybe we want to focus on different 𝑗𝑗 for different reasons?
+● We’ll define multiple attention “heads” through multiple Q,K,V matrices
+● Each attention head performs attention independently
+● Then the outputs of all the heads are combined!
+● Each head gets to “look” at different things, and construct
+value vectors differently.
+--- page 43 ---
+Why Multi-head attention?
+Prior work identified three important types of heads by looking at attention
+matrices
+[Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned: https://arxiv.org/abs/1905.09418]
+1. Positional heads that attend mostly to their neighbor.
+2. Syntactic heads that point to tokens with a specific syntactic relation.
+3. Heads that point to rare words in the sentence.
+Source: https://theaisummer.com/self-attention/
+--- page 44 ---
+Multi-Head Attention: In Equations
+Different linguistic relationships or patterns in the context
+•
+Each head might be attending to the context for different purposes
+•
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 45 ---
+Multi-head attention
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 46 ---
+Multi-head Attention Layer
+More on dimensions
+Model dimension: d (=512)
+Query, Key, Value dimensions:
+dq,dk,dv (=64 each)
+Projection matrices: d x dk ( =
+512 x 64 each)
+The output at each head: dv
+For “h” (=8) multi-heads: hdv
+To project it back to model
+dimension: WO: d x hdv
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 47 ---
+Feed-forward Layer
+https://web.stanford.edu/class/cs224n/
+--- page 48 ---
+Feed-forward Layer
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 49 ---
+How to make this work for deep networks?
+Repeat 6 times
+Training Trick #1: Residual Connections
+Training Trick #2: LayerNorm
+Training Trick #3: Scaled Dot Product Attention
+https://web.stanford.edu/class/cs224n/
+--- page 50 ---
+Training Trick #1: Residual Connections
+https://web.stanford.edu/class/cs224n/
+--- page 51 ---
+Training Trick #2: Layer Normalization
+https://web.stanford.edu/class/cs224n/
+--- page 52 ---
+Training Trick #2: Layer Normalization
+https://web.stanford.edu/class/cs224n/
+--- page 53 ---
+Training Trick #3: Scaled Dot Product Attention
+https://web.stanford.edu/class/cs224n/
+--- page 54 ---
+Training Trick #3: Scaled Dot Product Attention
+--- page 55 ---
+A Complete Transformer Block
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 56 ---
+A Complete Transformer Block
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 57 ---
+A Complete Transformer Block
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 58 ---
+A Complete Transformer Block
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 59 ---
+Transformer Block: Another visualization
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 60 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 9]
+--- page 61 ---
+
+--- page 62 ---
+Lecture 23 : Transformers: Part 3
+--- page 63 ---
+Positional Encodings
+•
+Matrix Calculation of Self-Attention
+•
+Encoding Images
+•
+--- page 64 ---
+A Complete Transformer Block
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+There is still a
+major problem!
+Order does not
+matter!!
+--- page 65 ---
+Position Encoding of words
+Source: https://deepmind.com/learning-resources/deep-learning-lecture-series-2020
+--- page 66 ---
+Understanding Positional Encoding
+Sinusoidal position representations: concatenate
+sinusoidal functions of varying periods
+--- page 67 ---
+Understanding Positional Encoding
+https://rycolab.io/classes/llm-s24/
+--- page 68 ---
+Understanding Positional Encoding
+https://rycolab.io/classes/llm-s24/
+--- page 69 ---
+Other variants: Learned Positional embedding
+Goal: learn a position embedding matrix Epos of shape [1 × N ].
+Start with randomly initialized embeddings
+• one for each integer up to some maximum length.
+• i.e., just as we have an embedding for token fish, we’ll have an
+embedding for position 3 and position 17.
+• As with word embeddings, these position embeddings are
+learned along with other parameters during training.
+https://we b.stanford.e du/~jurafsky/slp3/
+--- page 70 ---
+1.
+Positional Embe ddings
+Le arne d Positional Embe ddings (Ge hring e t al., 20 17 ,Vaswani e t al., 20 17)
+BERT, GPT-2/3
+2. Sinusoidal Embe ddings (Vaswani e t al., 20 17)
+3. Re lative Positional Embe ddings (RPE) (Shaw e t al., 20 18)
+T5
+4. Re lative Positional Bias (Raffe l e t al., 20 20 )
+Gophe r (variant)
+1.
+5. Rotary Position Embe ddings (RoPE) (Su e t al., 20 21)
+Llama 1/2, Mistral, Falcon, PaLM, GPT-J,
+OLMo, Gemma
+Atte ntion with Line ar Biase s (ALiBi) (Pre ss e t al., 20 22)
+Slide by Maitre y Me hta
+BLOOM, MPT
+9
+--- page 71 ---
+More Details: Self-attention
+Figure : Jay Alammar
+--- page 72 ---
+Scaled Dot Product for Attention
+Figure : Jay Alammar
+--- page 73 ---
+Matrix Calculation of Self Attention
+Figure : Jay Alammar
+--- page 74 ---
+Multi-headed Attention
+Figure : Jay Alammar
+--- page 75 ---
+Multi-headed Attention
+Figure : Jay Alammar
+--- page 76 ---
+Combining from Multiple Heads
+Figure : Jay Alammar
+--- page 77 ---
+Multi-headed Self Attention Block
+Figure : Jay Alammar
+--- page 78 ---
+Encoder Block
+Figure : Jay Alammar
+--- page 79 ---
+Number of parameters in the encoder?
+--- page 80 ---
+Encoding Images? Vision Transformer
+An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: ICLR 2021
+--- page 81 ---
+How to encode an image as a sequence?
+--- page 82 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 9]
+--- page 83 ---
+
+--- page 84 ---
+Lecture 24 : Transformers: Part 4
+--- page 85 ---
+•
+Transformer LM
+Transformer Decoder
+•
+--- page 86 ---
+Transformer with encoders and decoders
+Figure: Jay Alammar
+--- page 87 ---
+How is the decoder different?
+Figure: Jay Alammar
+--- page 88 ---
+Masked Self-attention
+https://rycolab.io/classes/llm-s24/
+--- page 89 ---
+Masked Self-attention for decoder
+(to avoid seeing the future tokens)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 90 ---
+Encoder-Decoder Attention
+The output of the top
+encoder is transformed into
+a set of attention vectors K
+and V.
+These are to be used by
+each
+decoder
+in
+its
+“encoder-decoder
+attention” layer which helps
+the decoder focus on
+appropriate places in the
+input sequence:
+Figure: Jay Alammar
+--- page 91 ---
+Decoding
+The output of each step
+is fed to the bottom
+decoder in the next time
+step, and the decoders
+bubble
+up
+their
+decoding results just
+like the encoders did.
+We embed and add
+positional encoding to
+those decoder inputs
+to indicate the position
+of each word.
+Figure: Jay Alammar
+--- page 92 ---
+Converting decoder stack output to words
+That’s the job of the final
+Linear layer which is
+followed by a Softmax
+Layer.
+Figure: Jay Alammar
+--- page 93 ---
+Try this problem
+Suppose, you are training your transformer decoder with the Ground truth: ‘how are you’, and you are using
+multi-headed attention with h = 2. The embeddings for these words are the concatenation of in and out
+embeddings shown in Table below. For both your attention heads, the first and third dimensions of the input define
+your query vector, and the second and fourth dimensions define your key vector. For the first attention head, the
+value is the in-vector, and for the second attention head, the value is the out-vector. What will be the output of the
+multi-headed self-attention block for the word ‘are’ (before applying the projection matrix W0)? You are using the
+scaled dot vector for self-attention. Ignore the start-of-sequence token.
+--- page 94 ---
+Contd..
+how are you
+--- page 95 ---
+Transformers as Language models
+https://web.stanford.edu/~jurafsky/slp3/
+● Masked self-attention
+● No encoder-decoder attention
+--- page 96 ---
+Transformers as Language models
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 97 ---
+Language modeling head
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 98 ---
+Transformers LM
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 99 ---
+Number of parameters in encoder-decoder?
+--- page 100 ---
+Number of parameters in the decoder only
+Transformer?
+--- page 101 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 9]
+--- page 102 ---
+
+--- page 103 ---
+Lecture 25 : Efficient Transformers
+--- page 104 ---
+Efficiency in Decoding: KV Cache
+•
+Transformer for Long Sequences: Sparse Attention, Longformer,
+BIGBIRD
+•
+Grouped Query Attention
+•
+Sparse Mixture-of-Experts
+•
+--- page 105 ---
+KV Cache
+In training, we can compute attention very efficiently in parallel:
+But not at inference! We generate the next tokens one at a time!
+For a new token x, need to multiply by WQ, WK, and WV to get query,
+key, values
+But don't want to recompute the key and value vectors for all the
+prior tokens x<i
+Instead, store key and value vectors in memory in the KV cache, and
+then we can just grab them from the cache
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 106 ---
+KV Cache
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 107 ---
+Transformer LMs are slow
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 108 ---
+Quadratic Complexity of Self-Attention
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 109 ---
+Local Attention
+Position based sparse attention: Each token
+attends to previous k tokens (e.g., in decoder)
+Other variations: Attend to tokens in a block, sliding window
+based attention, etc.
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 110 ---
+Sparse Transformer
+Half of the heads are used for local attention
+The remaining half are dedicated to fixed strided
+patterns
+Tay et al., 2022. Survey on efficient Transformers
+--- page 111 ---
+Longformer: Dilated Sliding Window Attention
+Sliding window attention: Attention pattern employs
+a fixed-size window (w) attention surrounding each
+token
+In a transformer with L layers, the receptive field size
+at the top layer is L x w
+Tay et al., 2022. Survey on efficient Transformers
+--- page 112 ---
+Longformer: Dilated Sliding Window Attention
+Dilated Sliding window attention: To further increase the
+receptive field without increasing computation, the sliding
+window can be “dilated”. Assuming dilation d, with L layers, the
+receptive field size at the top layer is L x d x w
+Tay et al., 2022. Survey on efficient Transformers
+--- page 113 ---
+Longformer: Dilated Sliding Window Attention
+Dilated Sliding window attention: Different dilation
+configurations per head improves performance by allowing some
+heads without dilation to focus on local context, while others
+with dilation focus on longer context.
+https://arxiv.org/pdf/2004.05150
+--- page 114 ---
+Longformer: Global Attention
+Symmetric “global attention” is added on few pre-selected input
+locations.
+Task Specific: For example for classification, global attention
+is used for the [CLS] token while in QA, global attention is
+provided on all question tokens.
+https://arxiv.org/pdf/2004.05150
+--- page 115 ---
+BIGBIRD
+Building blocks of the attention mechanism used in BIGBIRD.
+White color indicates absence of attention. (a) random attention
+with r = 2, (b) sliding window attention with w = 3, (c) global
+attention with g = 2, (d) the combined BIGBIRD model
+https://arxiv.org/pdf/2007.14062
+--- page 116 ---
+BIGBIRD
+Global tokens can be defined in two ways:
+BIGBIRD-ITC: In internal transformer construction (ITC), we make some
+existing tokens “global”, which attend over the entire sequence.
+BIGBIRD-ETC: In extended transformer construction (ETC), we include
+additional “global” tokens such as [CLS].
+https://arxiv.org/pdf/2007.14062
+--- page 117 ---
+Linformer
+Main idea: produce a
+low-rank approximation
+of the N x N attention
+matrix by simply
+projecting the N x d
+keys and values to N x k
+where k <<<<< N
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 118 ---
+Linformer
+Main idea: produce a
+low-rank approximation
+of the N x N attention
+matrix by simply
+projecting the N x d
+keys and values to N x k
+where k <<<<< N
+The above operations only require O(nk) time and
+space complexity.
+https://arxiv.org/pdf/2006.04768v3
+--- page 119 ---
+Multi Query Attention (MQA) and Grouped
+Query Attention (GQA)
+Multi-head attention has H query, key, and value heads. Multi-query attention shares
+single key and value heads across all query heads. Grouped-query attention instead
+shares single key and value heads for each group of query heads, interpolating between
+multi-head and multi-query attention.
+https://arxiv.org/pdf/2305.13245
+--- page 120 ---
+Multi Query Attention (MQA) and Grouped Query
+Attention (GQA): Time-Performance tradeoff
+Average performance on all tasks as a
+function of average inference time per
+sample for T5-Large and T5-XXL with
+multihead attention, and 5% uptrained
+T5-XXL with MQA and GQA-8 attention.
+https://arxiv.org/pdf/2305.13245
+What is uptraining? Will
+discuss after pretraining
+--- page 121 ---
+Sparse Mixture of Experts (MoE)
+Illustration of a Switch Transformer encoder block.
+https://arxiv.org/pdf/2101.03961
+The MoE layer
+operates independently
+on the tokens in the
+sequence. The router
+independently routes
+each token.
+--- page 122 ---
+Sparse Mixture of Experts (MoE)
+Gate value for expert i
+The top-k gate (set T) values are
+selected for routing the token x.
+Final output:
+k = 1 routing strategy is later referred to as a Switch layer
+https://arxiv.org/pdf/2101.03961
+--- page 123 ---
+What do the experts learn?
+More specifically, their expertise is in handling
+specific tokens in specific contexts.
+https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts
+--- page 124 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 10]
+--- page 125 ---

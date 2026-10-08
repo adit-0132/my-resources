@@ -1,0 +1,637 @@
+--- page 1 ---
+Lecture 26 : Pretraining
+--- page 2 ---
+What is Pretraining?
+•
+Pretrained LSTMs: ELMo
+•
+Pretraining Transformers: Large Language Models
+•
+--- page 3 ---
+The idea of transfer learning
+Transformers are not always better than RNNs by themselves.
+However, what has made Transformers popular is that they can be combined with the idea of transfer learning.
+Transformers have become the go-to model for building large pretrained language models which can be
+adapted for several tasks
+https://rycolab.io/classes/llm-s24/
+--- page 4 ---
+Standard
+Supervised
+Deep
+Learning
+(not)
+spam
++
++
+text + labels neural network starting
+from random weights
+https://utah-cs6340-nlp.notion.site/Natural-Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 5 ---
+Abundance in domain-specific NLP Applications
+Very difficult to get sufficient labeled data for each task
+--- page 6 ---
+Why is this an issue
+Randomly initialized
+Word Vectors
+The training data we have for our
+downstream task (like question
+answering) must be sufficient to
+teach all contextual aspects of
+language.
+--- page 7 ---
+Pretrain-then-Finetune (from 2018)
+ne xt word
+ne ural ne twork
+starting from
+random weights
++
+Stage 1:
+Pretrain a model
+partial input
+Objective: ge ne rate ne xt or maske d word
+text
+ne ural ne twork
+starting from
+pretrained
+weights
+Stage 2:
+Finetune the model
+https://utah-cs6340-nlp.notion.site/
+text + labels
+(does not require that people label the next word)
++
+Objective: standard
+supe rvise d training
+7
+--- page 8 ---
+Transfer Learning with Language Modeling
+https://rycolab.io/classes/llm-s24/
+--- page 9 ---
+What does a model learn from pretraining?
+• There are canines everywhere! One dog in the front room,
+and two dogs
+• It wasn't just big it was enormous
+• The author of "A Room of One's Own" is Virginia Woolf
+• The doctor told me that he
+• The square root of 4 is 2
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 10 ---
+Big idea
+• Text contains enormous amounts of knowledge
+• Pretraining on lots of text with all that knowledge is
+what gives language models their ability to do so much
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 11 ---
+LLMs are mainly trained on the web
+• Common crawl, snapshots of the entire web produced by
+the non- profit Common Crawl with billions of pages
+• Colossal Clean Crawled Corpus (C4; Raffel et al. 2020), 156
+billion tokens of English, filtered
+• What's in it? Mostly patent text documents, Wikipedia,
+and news sites
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 12 ---
+The Pile: a pretraining corpus
+https://web.stanford.edu/~jurafsky/slp3/
+dialog
+--- page 13 ---
+Filtering for quality and safety
+Quality is subjective
+• Many LLMs attempt to match Wikipedia, books, particular websites
+• Need to remove boilerplate, adult content
+• Deduplication at many levels (URLs, documents, even lines)
+Safety also subjective
+• Toxicity detection is important, although that has mixed results
+• Can mistakenly flag data written in dialects like African American
+English
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 14 ---
+The Pretraining / Fine Tuning paradigm
+https://web.stanford.edu/class/cs224n/
+--- page 15 ---
+Pretrained LSTMs: ELMo
+https://rycolab.io/classes/llm-s24/
+--- page 16 ---
+ELMo: Secret
+https://jalammar.github.io/illustrated-bert/
+--- page 17 ---
+A bidirectional LM
+https://jalammar.github.io/illustrated-bert/
+--- page 18 ---
+ElMo: Obtaining the final embeddings
+https://jalammar.github.io/illustrated-bert/
+--- page 19 ---
+ELMo: More Details
+--- page 20 ---
+ELMo: More Details
+--- page 21 ---
+Using ELMo for a task
+https://web.stanford.edu/class/cs224n/
+--- page 22 ---
+ELMo: Weighting of layers
+--- page 23 ---
+ELMo: Results
+https://rycolab.io/classes/llm-s24/
+--- page 24 ---
+ElMo - How does the pretraining help with efficient fine-tuning?
+--- page 25 ---
+Try this problem
+Suppose you trained a 2-layer (on top of word embeddings) forward LM as well as a 2-layer backward LM for ELMo.
+Assume that the 3-dimensional embedding for a word w be [0.2 0.4 -0.5], and the contextual representation for the
+first and second layer be [0.2 0.4 0.7] and [0.3 0.6 0.5] (forward LM), and [0.2 -0.4 0.7] and [0.3 0.6 -0.5] (backward
+LM), respectively. Assume that the softmax normalized mixture-model weights for the embedding, 1st and 2nd
+layers are 0.2, 0.3 and 0.5, respectively (for your particular task). What would be the ELMo representation that you
+can use for the word w? What can you say about the task?
+--- page 26 ---
+Using Transformers for Pretraining
+https://jalammar.github.io/illustrated-transformer/
+--- page 27 ---
+Three architectures for large language models
+Decoders
+Encoders
+Encoderdecoders
+GPT, Claude,
+BERT family
+Flan-T5
+Llama,
+Mixtral
+We
+will see
+how to pretrain for each of these architectures
+https://web.stanford.edu/~jurafsky/slp3/
+BART
+--- page 28 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 10]
+--- page 29 ---
+
+--- page 30 ---
+Lecture 27 : Pretraining Transformer Encoder
+--- page 31 ---
+Pretraining BERT: Masked LM
+•
+Contextual representation from BERT
+•
+Fine-tuning BERT for various paradigms
+•
+--- page 32 ---
+Pretraining for three types of architectures
+https://web.stanford.edu/class/cs224n/
+--- page 33 ---
+Pretraining Encoders
+• map sequences of input embeddings (x1,...,xn)
+• to sequences of output embeddings of the same length (h1,...,hn),
+• where the output vectors have been contextualized using
+information from the entire input sequence.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 34 ---
+Solution: Use Masks
+https://web.stanford.edu/class/cs224n/
+--- page 35 ---
+BERT: Bidirectional Encoder Representations from Transformers
+https://web.stanford.edu/class/cs224n/
+--- page 36 ---
+BERT: another view
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 37 ---
+Next Sentence Prediction
+BERT introduces two special tokens
+Given 2 sentences the model predicts if they are a real pair of adjacent sentences from the
+training corpus or a pair of unrelated sentences.
+• [CLS] is prepended to the input sentence pair,
+• [SEP] is placed between the sentences, and also after second sentence
+And two more special embeddings
+•
+[1st segment] and [2nd segment]
+• These are added to the input embedding and positional embedding
+hLCLS from the final layer [CLS] token is input to classifier head (weights WNSP )
+that predicts two classes:.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 38 ---
+BERT: Next Sentence Prediction
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 39 ---
+BERT: Next Sentence Prediction
+--- page 40 ---
+More Details about BERT
+https://web.stanford.edu/class/cs224n/
+--- page 41 ---
+Contextual Embeddings to represent words
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 42 ---
+Static vs Contextual Embeddings
+Static embeddings represent word types (dictionary entries)
+Contextual embeddings represent word instances (one for each time
+the word occurs in any context/sentence)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 43 ---
+Using BERT to create contextualized word embedding
+https://web.stanford.edu/class/cs224n/
+--- page 44 ---
+Using BERT to create contextualized word embedding
+https://web.stanford.edu/class/cs224n/
+--- page 45 ---
+Using BERT for different tasks
+--- page 46 ---
+Using BERT for different tasks
+--- page 47 ---
+Transfer Learning through Fine-tuning
+--- page 48 ---
+Fine Tuning for Sequence Classification
+--- page 49 ---
+Fine Tuning for Sequence Classification
+--- page 50 ---
+Fine Tuning for Sequence Classification
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 51 ---
+Pairwise Sequence Classification
+--- page 52 ---
+Pair-wise Sequence Classification
+--- page 53 ---
+Sequence Labeling
+--- page 54 ---
+POS Tagging
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 55 ---
+Named Entity Recognition and BIO Scheme
+--- page 56 ---
+BIO Scheme with subwords
+--- page 57 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 11]
+--- page 58 ---
+
+--- page 59 ---
+Lecture 28 : Pretraining Transformer Encoders,
+Encoder-Decoder
+--- page 60 ---
+Fine-tuning BERT for Span-based application
+•
+Pretraining Transformer Encoder-Decoder
+•
+--- page 61 ---
+Fine-tuning for span-based applications
+--- page 62 ---
+Fine-tuning for SQUAD
+--- page 63 ---
+Fine-tuning for span-based applications
+--- page 64 ---
+Span-oriented approach for named entity classification
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 65 ---
+Span-oriented approach for named entity classification
+--- page 66 ---
+How to represent a span?
+--- page 67 ---
+How to represent a span?
+--- page 68 ---
+Evaluation: General Language Understanding
+Evaluation (GLUE) Benchmark
+https://web.stanford.edu/class/cs224n/
+--- page 69 ---
+Results on GLUE
+https://web.stanford.edu/class/cs224n/
+--- page 70 ---
+Extensions of BERT
+https://web.stanford.edu/class/cs224n/
+--- page 71 ---
+Extensions of BERT
+--- page 72 ---
+Pretraining for three types of architectures
+--- page 73 ---
+Pretraining encoder-decoders
+The encoder portion benefits from bidirectional
+context; the decoder portion is used to train the
+whole model through language modeling.
+--- page 74 ---
+Masked Sequence to Sequence Pretraining (MASS)
+Song, Kaitao, et al. "MASS: Masked Sequence to Sequence Pre-training for Language Generation."
+International Conference on Machine Learning. PMLR, 2019.
+--- page 75 ---
+Masked Sequence to Sequence Pretraining (MASS)
+--- page 76 ---
+T5: A New Training Objective
+Raffel, Colin, et al. "Exploring the limits of transfer learning with a unified text-to-text transformer."
+Journal of machine learning research 21.140 (2020): 1-67.
+--- page 77 ---
+T5: A New Training Objective
+--- page 78 ---
+T5: A New Training Objective
+--- page 79 ---
+Various objectives considered by T5
+--- page 80 ---
+Various architectures considered by T5
+--- page 81 ---
+Various architectures considered by T5
+--- page 82 ---
+Bi-directional and Auto-Regressive Transformers (BART)
+--- page 83 ---
+BART: Transformation for noising the input
+--- page 84 ---
+How to fine-tune pretrained encoder-decoder?
+No additional parameters required!
+Just fine-tune the encoder decoder model through additional task-specific
+training data
+Loss computed at decoder is used to update all the encoder and decoder
+parameters
+--- page 85 ---
+How to fine-tune pretrained encoder-decoder?
+--- page 86 ---
+T5 can be used for various tasks
+--- page 87 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released August 20,
+2024. [Chapter 11]
+--- page 88 ---
+
+--- page 89 ---
+Lecture 29 : Pretraining Transformer Decoder
+--- page 90 ---
+Pretraining Transformer Decoder
+•
+Fine-tuning GPT for various NLP tasks
+•
+GPT series: Zero-shot and In-context Learning
+•
+--- page 91 ---
+Try This Problem
+Suppose you are using BERT for reading comprehension based question answering. Suppose your input paragraph is,
+“You can ignore the bias terms”, and assume that each individual word is part of the vocabulary and the underlined span
+is the ground truth answer. For the sake of simplicity, assume that you are working with 2-dimensional hidden states. Let
+your start and end vectors be [1,-1] and [-1,1], respectively, and the final embedding for the words in the input sentence
+be [-1,-1], [1,1], [1,2], [2,1], [1,-2] and [2,-1], respectively. (a) If this was a sentence in the training, what would be the
+corresponding loss for this sentence? (b) If this was a sentence during inference, how many spans would you have to
+consider? (c) Assume that it is given that the span can have at most 2 words. What will be the output of the model at
+inference time?
+--- page 92 ---
+Pretraining Decoders
+It’s natural to pretrain decoders as language models
+https://web.stanford.edu/class/cs224n/
+--- page 93 ---
+Generative Pretrained Transformer (GPT)
+Vocabulary larger than BERT
+https://web.stanford.edu/class/cs224n/
+--- page 94 ---
+Comparison of GPT series
+Image Source: “Large Language Models: A Deep Dive”
+--- page 95 ---
+Pretrained Decoders
+https://jalammar.github.io/illustrated-gpt2/
+--- page 96 ---
+GPT: Transformer-Decoder
+https://jalammar.github.io/illustrated-gpt2/
+--- page 97 ---
+GPT-2: Quick Summary
+https://jalammar.github.io/illustrated-gpt2/
+--- page 98 ---
+GPT-2: Quick Summary
+https://jalammar.github.io/illustrated-gpt2/
+--- page 99 ---
+GPT-2: Quick Summary
+https://jalammar.github.io/illustrated-gpt2/
+--- page 100 ---
+How to use Pretrained Decoders?
+--- page 101 ---
+GPT-2: Machine Translation
+https://jalammar.github.io/illustrated-gpt2/
+--- page 102 ---
+GPT-2: Summarization
+https://jalammar.github.io/illustrated-gpt2/
+--- page 103 ---
+GPT: Beyond Language Modeling
+--- page 104 ---
+How to format inputs?
+https://web.stanford.edu/class/cs224n/
+--- page 105 ---
+GPT
+Image Source: “Large Language Models: A Deep Dive”
+The GPT-1 architecture
+and designated training
+objectives employed for
+training. Structured inputs
+are converted into
+sequences of tokens for
+fine-tuning different tasks,
+which the pre-trained
+model processes, followed
+by implementing a linear
+layer with a softmax layer.
+--- page 106 ---
+GPT-2: Zero shot and in-context: Beginning
+https://web.stanford.edu/class/cs224u/
+--- page 107 ---
+GPT-2
+https://rycolab.io/classes/llm-s24/
+Zero-shot task
+performance of GPT-2 as
+a function of model size
+on many NLP tasks
+--- page 108 ---
+Cultural Moment: GPT-3
+https://web.stanford.edu/class/cs224u/
+--- page 109 ---
+In-context learning: Terminology
+https://web.stanford.edu/class/cs224u/
+--- page 110 ---
+GPT-3
+In in-context learning, we
+append the task description and
+a few demonstrations of the task
+to the original input as the input
+for the language model, which
+produces the prediction by autoregressively predicting next
+tokens
+https://rycolab.io/classes/llm-s24/
+--- page 111 ---
+Prompting as the standard interface for GPT-3
+https://phontron.com/class/anlp2024/assets/slides/anlp-07-prompting.pdf
+--- page 112 ---
+Kamath, Uday, et al. Large Language Models: A Deep Dive: Bridging Theory and
+Practice. Springer Nature, 2024. [Chapter 2]
+--- page 113 ---
+
+--- page 114 ---
+Lecture 30 : More on Pretraining
+--- page 115 ---
+Domain-specific Pretraining
+•
+Multilingual Pretraining
+•
+Uptraining
+•
+--- page 116 ---
+Domain-specific Pretraining
+--- page 117 ---
+Domain-specific Pretraining
+Pretrained models make use of general domain corpora such as news and
+Wikipedia.
+How to extend these to various domains such as Scientific, Finance, Biomedical,
+etc.?
+Can we pretrain these on data from these domains?
+--- page 118 ---
+SCIBERT
+So, what is the recipe?
+SCIBERT is a pretrained language model based on BERT but trained on a large
+corpus of scientific text.
+1. Do we pretrain transformers from scratch on scientific domain data?
+2. Do we start from BERT check-points and continue pretraining on scientific
+domain?
+While Option 2 looks better, answer is not always that simple.
+Why?
+--- page 119 ---
+Domain Vocabulary
+BERT uses WordPiece for unsupervised tokenization of the input text.
+The vocabulary is built such that it contains the most frequently used words or
+subword units.
+We refer to the original vocabulary released with BERT as BASEVOCAB
+SCIBERT authors used their pretrained data and created the same sized
+vocabulary: SCIVOCAB
+The overlap between SCIVOCAB and BASEVOCAB: 42%!!
+A substantial difference in frequently used words between
+scientific and general domain texts
+--- page 120 ---
+Domain Vocabulary: So how does it matter?
+We can continue pretraining BERT for scientific domain only with the original
+vocabulary
+To replace the new vocabulary, the model has to be pretrained from Scratch.
+As per the experiments, using pretraining (from scratch) with SCIVOCAB gave
+slight edge over (continual) pretraining with BASEVOCAB.
+From the paper: Given the disjoint vocabularies and the
+magnitude of improvement over BERT-Base, we suspect that
+while an in-domain vocabulary is helpful, SCIBERT benefits
+most from the scientific corpus pretraining.
+--- page 121 ---
+Side-effect of continual pretraining
+Catastrophic Forgetting: Continual pretraining on new domain might lead to
+forgetting of the previous knowledge
+RoBERTa model pretrained on E-manuals domain shows
+catastrophic forgetting on GLUE benchmark
+Remedies: Mix general pretrain data, mix parameters (mix-out)
+https://arxiv.org/pdf/2306.06190
+--- page 122 ---
+Multilingual Pretraining
+--- page 123 ---
+Multilingual pre-training
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 124 ---
+mBERT: Encoder Transformer
+Architecture: Almost same as the BERT model.
+Dataset: For the pre-training, it is trained on the Wikipedia pages of
+104 languages with a shared word piece vocabulary.
+used.
+Vocabulary: For tokenization, a 110k shared WordPiece vocabulary is
+Training Objective: Same as BERT.
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 125 ---
+mBERT: Temperature based data sampling
+https://anoopkunchukuttan.gitlab.io/publications/presentations/
+wintersc_iitguwahati_multilingual_model_jan25.pdf
+--- page 126 ---
+Multilingual Models: mBERT
+https://github.com/google-research/bert?tab=readme-ov-file
+--- page 127 ---
+XLM: Cross-Lingual Language Model Pretraining
+Input two sentence from different languages
+Model alternates with MLM and TLM objectives
+TLM ➔ the model can look at both sentences to predict masked token
+https://anoopkunchukuttan.gitlab.io
+https://arxiv.org/abs/1901.07291
+--- page 128 ---
+XLM-R: Scaling the amount of training data
+Amount of data in GiB (log-scale) for the 88 languages that appear in
+both the Wiki-100 corpus used for mBERT and XLM-100, and the CC-100
+used for XLM-R. CC-100 increases the amount of data by several orders
+of magnitude, in particular for low-resource languages.
+https://arxiv.org/pdf/1911.02116
+--- page 129 ---
+Results on MLQA
+F1 and EM (exact match) scores for zero-shot classification where models are fine-tuned on
+the English SQuAD dataset and evaluated on the 7 languages of MLQA.
+https://arxiv.org/pdf/1911.02116
+--- page 130 ---
+mC4 Dataset (used by mT5)
+107 languages, lower-resource languages upsampled based on their
+frequency in the dataset
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 131 ---
+mC4 Dataset (used by mT5)
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 132 ---
+XLNI: Cross-Lingual Zero-shot learning
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 133 ---
+XLNI Benchmark
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 134 ---
+mT5: Benchmark Comparison
+https://arxiv.org/pdf/2010.11934v3
+--- page 135 ---
+Adding translation data
+What if we use a machine translation system to get more
+labeled data (e.g., translate all the labeled English text to
+other languages)?
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 136 ---
+Language Family specific: indicBERT
+https://anoopkunchukuttan.gitlab.io
+--- page 137 ---
+Curse of multilinguality
+The “curse of multilinguality”
+(Conneau et al., 2020): For a fixedsize model, the per-language
+capacity decreases as we increase
+the number of languages…
+https://people.cs.umass.edu/~miyyer/cs685/
+--- page 138 ---
+Extending Vocabulary
+https://anoopkunchukuttan.gitlab.io
+What if the vocabulary is
+under-represented?
+--- page 139 ---
+How to extend tokenizer vocabulary?
+https://anoopkunchukuttan.gitlab.io
+--- page 140 ---
+Continually Pretrain
+https://anoopkunchukuttan.gitlab.io
+--- page 141 ---
+Related Concept: Uptraining
+--- page 142 ---
+Uptraining: How to make pretrained models
+work with a slightly different architecture?
+E.g., Group-query attention or Multi-query attention
+Uptraining: Uptrained models are initialized from public T5.1.1 checkpoints.
+The key and value heads are mean-pooled to the appropriate MQA or GQA
+structure, and then pre-trained for a further (α=0.05) proportion of original pretraining steps with the original pre-training setup and dataset from (Raffel et
+al., 2020).
+https://arxiv.org/pdf/2305.13245
+--- page 143 ---
+Uptraining: How to make pretrained models
+work with a slightly different architecture?
+https://arxiv.org/pdf/2305.13245
+Overview of conversion from
+multi-head to multi-query
+attention. Key and value
+projection matrices from all
+heads are mean pooled into a
+single head.
+--- page 144 ---
+Uptraining: Training MoEs from dense checkpoints
+https://arxiv.org/pdf/2212.05055
+All parameters, and optionally
+their optimizer state, are
+copied from the original
+checkpoint, except those
+corresponding to the MoE
+router, which does not exist in
+the original architecture. In
+particular, the experts in the
+new MoE layer are identical
+copies of the original MLP
+layer that is replaced.
+--- page 145 ---
+Various reference papers with links in the slides
+--- page 146 ---

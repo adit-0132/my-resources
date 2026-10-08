@@ -1,0 +1,278 @@
+### DECK: L6P4_Seq_Model_2  (Week 5)  slides=26  canvas=13.3x7.5in
+
+--- slide 1 ---
+Sequence Modeling - II
+Generative AI for Computer Vision
+Lecture 6
+
+Part 4
+
+--- slide 2 ---
+Content
+Sequence to Sequence Modelling
+Attention
+How to Compute Attention through RNN?
+
+--- slide 3 ---
+Sequence 2 Sequence Model using RNN/LSTM
+While Recurrent Neural Networks (RNNs) and Long Short-Term Memory networks (LSTMs) have long been staples for processing sequential data, the standard paradigm for sequence-to-sequence (seq2seq) tasks relies on the encoder-decoder architecture. 
+
+In this setup, the encoder's final hidden state serves as the context vector, which is then passed directly to the decoder to drive generation.
+Alammar, J., & Grootendorst, M. (2024). Hands-On Large Language Models. O’Reilly.
+[IMAGE: image.png.png 6.2x2.9in]
+
+--- slide 4 ---
+[IMAGE: image.png.png 6.2x2.9in]
+Sequence 2 Sequence Model using RNN/LSTM
+s0
+s1
+…
+st-1
+
+--- slide 5 ---
+The RNN/LSTM Encoder–Decoder model compresses the entire source sequence into a fixed-length context vector before passing it to the decoder. 
+
+This creates an information bottleneck, as all the relevant information must be encoded into a single vector. Consequently, the model struggles to handle long or complex input sequences, especially those longer than the sequences seen during training. 
+
+The limited capacity of the context vector can lead to the loss of important information. Furthermore, the decoder must generate the entire output sequence using only this single context vector, making it difficult to accurately recover all the information from the source sequence. 
+
+As a result, the model's performance often degrades for long sequences and complex translation tasks.
+Problems with this approach
+[IMAGE: image.png.png 6.2x2.9in]
+
+--- slide 6 ---
+Attention
+The attention mechanism enables the decoder to consider all encoder hidden states when generating each output, rather than relying on a single fixed context vector as in the vanilla Encoder–Decoder architecture.
+…..
+Context
+…..
+Decoder
+Encoder
+…..
+Attention (Linear Sum)
+…..
+Decoder
+Encoder
+Vanilla RNN Encoder-Decoder Model
+Attention-based RNN Encoder-Decoder Model
+
+--- slide 7 ---
+The attention mechanism enhances an RNN-LSTM model by enabling it to selectively focus on the most relevant information within a sequence. 
+
+In a conventional LSTM, information from sequential inputs is encoded into hidden states, and the model may struggle to preserve and effectively utilize important information when processing long sequences. 
+
+The attention mechanism addresses this limitation by assigning a learned attention weight to each LSTM hidden state according to its relevance to the current prediction. 
+
+These weights are typically computed using a scoring function followed by a softmax operation, producing normalized importance values across the sequence.
+Attention
+
+--- slide 8 ---
+A context vector is then generated as the weighted sum of the LSTM hidden states, allowing the model to emphasize informative time steps while reducing the influence of irrelevant ones. 
+
+By dynamically selecting relevant temporal features, attention improves the ability of the RNN-LSTM model to capture long-range dependencies, enhance feature representation, and improve prediction accuracy, particularly for long and complex sequential data.
+Attention
+
+--- slide 9 ---
+Problems with Context-based Seq2Seq Models
+In a conventional Sequence-to-Sequence (Seq2Seq) model, an encoder processes the entire input sequence and compresses it into a single fixed-length context vector, which is then used by the decoder to generate the output sequence. 
+
+This fixed-length representation creates a significant information bottleneck, particularly when the input sequence is long or contains complex dependencies. 
+
+As the sequence length increases, the context vector may fail to preserve all relevant information, resulting in information loss and reduced performance. 
+
+Furthermore, the decoder has access to the same compressed representation at every decoding step and cannot directly identify which parts of the input are most relevant to the current output.
+
+--- slide 10 ---
+The attention mechanism addresses these limitations by allowing the decoder to dynamically access all encoder hidden states rather than relying solely on a single context vector. 
+
+At each decoding step, attention calculates relevance scores for the encoder hidden states, converts these scores into normalized attention weights, and computes a weighted sum to generate a step-specific context vector. 
+
+Consequently, the decoder can focus on different portions of the input sequence when generating different output tokens. 
+
+This reduces the information bottleneck, improves the handling of long sequences and long-term dependencies, and enables the model to align relevant input and output elements more effectively. 
+
+Thus, attention transforms the fixed-context Seq2Seq architecture into a more flexible model capable of selectively retrieving the information required for each decoding step.
+How Attention Solves This?
+
+--- slide 11 ---
+How to Compute Attention (Context Vector)?
+But how does it decide which states are more or less useful for every prediction 
+   at every time step of decoder?
+Encoder
+Decoder
+SoftMax
+X
+
+--- slide 12 ---
+How to Compute Attention (Context Vector)?Iteration One
+Encoder
+SoftMax
+X
+
+--- slide 13 ---
+How to Compute Attention (Context Vector)?Iteration Two
+Encoder
+Decoder
+SoftMax
+X
+
+--- slide 14 ---
+How to Compute Attention (Context Vector)?Iteration Three
+Encoder
+Decoder
+SoftMax
+X
+
+--- slide 15 ---
+How to Compute Attention (Context Vector)?Iteration Four
+Encoder
+Decoder
+SoftMax
+X
+
+--- slide 16 ---
+Summery
+Sequence to Sequence Modelling
+Attention
+How to Compute Attention through RNN?
+
+--- slide 17 ---
+Generative AI for Vision Tasks
+Generative AI for Computer Vision
+Next
+
+Lecture 7: Part 1
+
+--- slide 18 ---
+Attention
+Attention is a mechanism that enables a neural network to focus on the most relevant parts of the input while making predictions. 
+Instead of relying on a single fixed-length context vector, it assigns different importance (weights) to different input elements, allowing the model to access the most relevant information at each step.
+Why is Attention Needed?
+Traditional Encoder–Decoder: 
+Compresses the entire input sequence into a single fixed-size context vector. 
+May lose important information, especially for long sequences. 
+Attention Mechanism: 
+Dynamically focuses on the most relevant parts of the input sequence for each prediction. 
+Benefits: 
+Better handling of long sequences. 
+Improved translation and sequence modeling performance. 
+Greater interpretability by showing which input elements the model attends to.
+
+--- slide 19 ---
+Attention in Sequence-to-Sequence (Seq2Seq) Models
+In a Sequence-to-Sequence (Seq2Seq) model, attention is a mechanism that enables the decoder to focus on the most relevant parts of the input sequence while generating each output token, rather than relying solely on a single fixed-length context vector.
+
+ In the basic Seq2Seq architecture : 
+ An encoder (typically an RNN, LSTM, or GRU) processes the input sequence.
+It compresses all the information into a single context vector.
+Which is then used by the decoder to generate the output sequence. 
+
+Limitations of Basic Seq2Seq :  
+Compressing the entire input into a single context vector can cause information loss for longer sequences. 
+As a result, it performs poorly on long sentences and struggles to capture long-range dependencies.
+
+--- slide 20 ---
+How Attention Solves This?
+Attention eliminates the fixed-length context vector bottleneck by allowing the decoder to dynamically access all encoder hidden states during decoding.
+
+At each decoding steps: 
+The decoder computes attention scores with all encoder hidden states. 
+Converts these scores into attention weights using the Softmax function. 
+And generates a dynamic context vector as a weighted sum of the encoder hidden states. 
+
+This enables the decoder to focus on the most relevant parts of the input sequence at each decoding step, reducing information loss and improving the handling of long-range dependencies.
+
+--- slide 21 ---
+tanh
+*
++
+*
+*
++
++
+*
+Gated Recurrent Unit (GRU)Kyunghyun Cho, 2014
+GRU (Gated Recurrent Unit) is a type of Recurrent Neural Network (RNN) designed to process sequential data while overcoming the vanishing gradient problem of traditional RNNs.
+
+It is a simpler and more efficient alternative to Long Short-Term Memory (LSTM).
+
+GRUs achieve this by introducing gating mechanisms that regulate the flow of information across time steps, enabling the network to capture long-term dependencies effectively.
+Softmax
+Concept taken from Sequence model lecture of Andrew Ng
+
+--- slide 22 ---
+Gated Recurrent Unit (GRU)
+The naïve RNN suffers from two major limitations:
+Vanishing (or exploding) gradients, leading to slow or unstable training. 
+Poor ability to capture long-term dependencies in sequential data. 
+
+GRU addresses these limitations by introducing gating mechanisms that regulate the flow of information over time.
+
+It uses two gates:
+Update gate – controls how much past information is retained. 
+Reset gate – controls how much past information is forgotten. 
+
+Hence, GRUs have a simpler architecture, train faster than LSTMs, and effectively capture long-term dependencies in sequential data.
+Concept taken from Sequence model lecture of Andrew Ng
+
+--- slide 23 ---
+The Naïve RNN Vs. GRU
+tanh
+*
++
+*
+*
++
++
+*
+Softmax
+GRU
+tanh
+softmax
+RNN
+Concept taken from Sequence model lecture of Andrew Ng
+
+--- slide 24 ---
+GRU Architecture
+tanh
+*
++
+*
+*
++
++
+*
+Softmax
+Concept taken from Sequence model lecture of Andrew Ng
+
+--- slide 25 ---
+GRU Architecture
+tanh
+*
++
+*
+*
++
++
+*
+Softmax
+Concept taken from Sequence model lecture of Andrew Ng
+
+--- slide 26 ---
+How GRU solves long range dependency issue?
+Reset gate
+Update gate
+New memory content
+The kid watching the cartoon channel in the TV,   is very happy.
+
+The kids watching the cartoon channel in the TV, are very happy.
+tanh
+*
++
+*
+*
++
++
+*
+Softmax
+Concept taken from Sequence model lecture of Andrew Ng

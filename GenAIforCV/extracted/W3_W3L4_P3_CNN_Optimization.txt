@@ -1,0 +1,318 @@
+### DECK: W3L4_P3_CNN_Optimization  (Week 3)  slides=30  canvas=13.3x7.5in
+
+--- slide 1 ---
+Convolutional Neural Network – IIIOptimization
+Generative AI for Computer Vision
+Lecture 4
+
+Part 3
+
+--- slide 2 ---
+Content
+Deeper network is not always good
+Problems of Deeper Network
+Vanishing Gradient (VG) Problem
+Activation Functions and VG Problem
+Problems with Activation Functions
+
+--- slide 3 ---
+Deep neural networks (deeper nets) contain many hidden layers, allowing them to learn complex patterns and hierarchical features from data. 
+They are widely used in tasks such as image recognition, natural language processing, and speech recognition because they can achieve high accuracy when trained with large datasets. 
+However, deeper networks require more computational resources, longer training times, and careful techniques to avoid problems such as overfitting or vanishing gradients. 
+In contrast, shallow neural networks (shallower nets) have only one or a few hidden layers. 
+They are simpler, faster to train, and require less computational power, making them suitable for smaller datasets and less complex tasks. 
+Although shallow networks are easier to implement and interpret, they may struggle to capture intricate relationships in data that deeper networks can learn effectively. 
+The choice between deeper and shallower networks depends on the complexity of the problem, the amount of available data, and the computational resources.
+Deeper Nets vs Shallower Nets
+
+--- slide 4 ---
+Deeper is not always better
+In principle, adding more layers increases the network's capacity, enabling it to learn more complex and hierarchical feature representations. 
+
+However, this greater capacity also raises the risk of overfitting, particularly when training data are limited. 
+
+Also, in practice, very deep networks often experience optimization challenges that prevent them from fully utilizing their theoretical capacity.
+[IMAGE: image.jpeg.jpg 4.6x1.7in]
+CIFAR-10
+Source: He, Zhang, Ren, and Sun (2015)
+
+--- slide 5 ---
+As depth increases, the credit-assignment problem becomes more severe, making it difficult for gradients to propagate effectively through many layers during backpropagation. 
+
+This can lead to optimization degradation, where deeper models achieve higher training error than their initial counterparts despite having greater expressive power. 
+
+Consequently, simply increasing network depth does not guarantee improved performance; effective architectural designs, such as residual connections, normalization techniques, and appropriate optimization strategies, are often required to train deep networks successfully.
+Deeper is not always better
+[IMAGE: image.jpeg.jpg 3.6x2.3in]
+ImageNet
+thin=train,
+thick=valid.
+Source: He, Zhang, Ren, and Sun (2015)
+
+--- slide 6 ---
+The vanishing gradient problem
+The vanishing gradient problem is a fundamental optimization challenge encountered when training deep neural networks using gradient-based learning algorithms such as backpropagation. 
+
+During backpropagation, gradients are computed by repeatedly applying the chain rule through multiple layers. 
+
+When activation functions such as the sigmoid or hyperbolic tangent (tanh) have derivatives less than one, the repeated multiplication of these small derivatives causes the gradients to decrease exponentially as they propagate toward the earlier layers.
+For Sigmoid Activation Function
+For Hyperbolic tangent (tanh) Function
+0.25
+0
+1
+2
+4
+-1
+-2
+-4
+
+--- slide 7 ---
+As a result, the weights in initial layers receive extremely small updates, significantly slowing or even preventing learning. 
+
+This limits the network's ability to capture long-range dependencies and learn effective low-level feature representations, leading to poor convergence and suboptimal training performance. 
+
+Although deeper networks theoretically possess greater representational capacity (expressive ability), the vanishing gradient problem makes them difficult to optimize in practice. 
+
+Modern deep learning architectures mitigate this issue through techniques such as Rectified Linear Unit (ReLU) activations, residual (skip) connections, batch normalization, careful weight initialization (e.g., Xavier or He initialization), and adaptive optimization algorithms, all of which facilitate more effective gradient propagation and stable training.
+The vanishing gradient problem
+n       . . . .      3 2 1
+Layer
+Gradient
+[IMAGE: image.png.png 2.0x1.8in]
+
+--- slide 8 ---
+Backpropagation : Algorithm
+Weight Updation in a Backward direction (Backpropagation) using chain rule
+
+--- slide 9 ---
+Vanishing Gradient Concept
+
+--- slide 10 ---
+Vanishing Gradient Concept
+
+--- slide 11 ---
+Vanishing Gradient Concept
+Chain Rule !!
+
+--- slide 12 ---
+Vanishing Gradient Concept
+Chain Rule !!
+
+--- slide 13 ---
+Vanishing Gradient Concept
+Chain Rule !!
+
+--- slide 14 ---
+Vanishing Gradient Concept
+Vanishing Gradient Problem
+When these derivatives are small, the gradient signal progressively diminishes as it is back-propagated through the network.
+What happens if the derivatives are small?
+
+--- slide 15 ---
+Why vanishing gradient is a problem ?
+During backpropagation, gradients are strong near the output layer but become progressively smaller toward the input layer due to repeated multiplication by values less than 1 (chain rule).
+
+As the gradient decays during backpropagation, weight updates in the early layers become negligible. As a result, learning slows down or may stop altogether. This is known as the vanishing gradient problem.
+
+--- slide 16 ---
+Activation Functions
+z
+max (0,Z)
+ReLU Function
+max (0.1Z,Z)
+z
+Leaky ReLU Function
+0.5
+1
+0
+Z
+Sigmoid Function
+1
+0
+Z
+-1
+tanh(Z)
+Tanh Function
+
+--- slide 17 ---
+Vanishing Gradient ProblemProblem with Sigmoid Activation Function
+0.5
+1
+0
+Z
+Sigmoid Function
+0.25
+0
+1
+2
+4
+-1
+-2
+-4
+Sigmoid 
+Function
+
+--- slide 18 ---
+Vanishing Gradient ProblemProblem with Sigmoid Activation Function
+
+--- slide 19 ---
+Squashes numbers to range [-1 1].
+
+Zero centred.
+Better than the Sigmoid
+
+Still kill gradients
+Causes Vanishing Gradient 
+
+“tanh” is just scaled version of the “Sigmoid”.
+Vanishing Gradient ProblemProblem with tanh Function
+1
+0
+Z
+-1
+tanh(Z)
+Tanh Function
+Z
+0
+1
+2
+4
+-1
+-2
+-4
+Derivative of Tanh Function
+
+--- slide 20 ---
+Vanishing Gradient ProblemRectified Linear Unit (ReLU) Activation Function
+Does not saturate in positive region
+Computationally efficient	
+Converges faster than sigmoid and tanh
+Dying ReLU Problem: If a neuron's weights are updated such that its input is always negative, the ReLU output remains 0. Since the gradient is also 0, the neuron stops updating its weights, effectively "dies," and no longer contributes to the learning process.
+Better than sigmoid & tanh
+z
+max (0,Z)
+ReLU Function
+
+--- slide 21 ---
+The value 0.1 is arbitrary; α in max⁡(αz,z) can be any small positive constant.
+Solves ReLU’s dying neuron problem.
+Avoid 0 gradient by introducing a small slope.
+Does not suffer from saturation. 
+Computationally efficient. 
+Typically converges faster than sigmoid and tanh in practice.
+Vanishing Gradient ProblemLeaky Rectified Linear Unit (ReLU) Activation Function
+max (0.1Z,Z)
+z
+Leaky ReLU Function
+
+--- slide 22 ---
+Activation Function are not enough to handle Vanishing Gradient Problem Completely
+Leaky ReLU reduces but does not eliminate the vanishing gradient problem. For negative inputs, its gradient is small but non-zero (typically α < 1). During backpropagation through many layers, these gradients are repeatedly multiplied, causing them to decay exponentially. As a result, very deep networks can still experience vanishing gradients, although the effect is less severe than with standard ReLU, sigmoid, or tanh.
+Why Leaky ReLU Does Not Completely Solve the Vanishing Gradient Problem
+Small Negative Gradient: For negative inputs, Leaky ReLU uses a small slope α (e.g., 0.01). Although the gradient is non-zero, it is still less than 1, so repeated multiplication across many layers causes gradients to shrink. 
+Primarily Addresses Dying ReLU: Leaky ReLU is designed to prevent neurons from becoming permanently inactive ("dying ReLU"), not to completely eliminate vanishing gradients in very deep networks. 
+Cumulative Gradient Decay: Even without zero gradients, repeatedly multiplying gradients smaller than 1 during backpropagation causes them to decay exponentially, making training of very deep networks difficult.
+To effectively address the vanishing gradient problem in very deep networks, architectures such as Residual Networks (ResNets) use residual (skip) connections that allow gradients to bypass one or more layers, preserving gradient flow and enabling the successful training of much deeper models.
+
+--- slide 23 ---
+Summary
+Deeper network is not always good
+Problems of Deeper Network
+Vanishing Gradient (VG) Problem
+Activation Functions and VG Problem
+Problems with Activation Functions
+
+--- slide 24 ---
+Residual Network
+Generative AI for Computer Vision
+Next
+
+Lecture 5: Part 1
+
+--- slide 25 ---
+Deeper Nets vs Shallower Nets
+A deeper network can represent any function that a shallower network can.
+Use identity mappings for the additional layers
+Greater depth increases model capacity, making overfitting more likely in theory. 
+However, optimization becomes more difficult, so deeper networks often underfit the training set. 
+Degradation due to harder credit-assignment problem
+Deeper isn’t always better!
+Identity Mapping
+[IMAGE: image.jpeg.jpg 4.6x1.7in]
+CIFAR-10
+[IMAGE: image.jpeg.jpg 3.6x2.3in]
+ImageNet
+thin=train,
+thick=valid.
+Source: He, Zhang, Ren, and Sun (2015)
+
+--- slide 26 ---
+Deeper Networks are not always better
+Problems
+Vanishing / exploding gradients
+Internal Covariate Shift
+Overfitting
+Computation cost
+
+Solutions:
+Choosing proper activation function
+Batch Normalization
+Parameter Initialization
+Dropout
+Weight Sharing
+Data Augmentation
+
+--- slide 27 ---
+Why Deeper Networks fail ?
+Credit Assignment Problem
+
+The Credit Assignment problem is the challenge of determining which neurons or connections (weights) are responsible for an overall error or reward. 
+The problem becomes more difficult when feedback is delayed or distributed across many layers, making it hard to identify which internal computations should be adjusted. 
+How can a Layer 2 neuron know what its output should be until the higher layers produce accurate outputs? 
+Similarly, how can a Layer 4 neuron determine its correct output until the preceding layers learn the appropriate feature representations?
+
+--- slide 28 ---
+Why Deeply Layered Networks Failed
+Vanishing Gradient Problem
+Sigmoid and tanh squash inputs into a small range, and their derivatives are typically less than 1. 
+During backpropagation, gradients are repeatedly multiplied across many layers, causing them to shrink exponentially. 
+As a result, the early layers receive very small gradients, learn very slowly, and this is known as the vanishing gradient problem.
+n       . . . .      3 2 1
+Layer
+Gradient
+[IMAGE: image.png.png 2.0x1.8in]
+
+--- slide 29 ---
+[IMAGE: image.png.png 1.6x0.4in]
+[IMAGE: image.png.png 1.6x0.5in]
+First Hidden Layer
+Second Hidden Layer
+Fourth Hidden Layer
+Third Hidden Layer
+[IMAGE: image.png.png 1.2x0.5in]
+Pixels
+Edges
+Strokes
+Letters
+Word
+[IMAGE: image.png.png 1.6x0.4in]
+Vision Hierarchy for recognizing handwritten text
+Input
+Feature Learning at Different Hidden Layers
+
+--- slide 30 ---
+Feature Learning at Different Hidden Layers
+[IMAGE: image.png.png 1.7x0.6in]
+[IMAGE: image.png.png 1.9x1.2in]
+[IMAGE: image.png.png 2.3x1.5in]
+Vision Hierarchy for elephant recognition
+First Hidden Layer
+Second Hidden Layer
+Third Hidden Layer
+Edges
+Object Parts
+Objects
+Image Source : https://miro.medium.com/v2/resize:fit:640/format:webp/0*COtl04hiK9wvUgs6
+Pixels
+Input

@@ -1,0 +1,387 @@
+--- page 1 ---
+Lecture 46 : Parameter-efficient fine-tuning - I
+--- page 2 ---
+From fine-tuning to parameter-efficient fine-tuning
+•
+Functional perspective: Adapters
+•
+Input perspective: prefix-tuning
+•
+--- page 3 ---
+Downsides of Prompt-based Learning
+1. Inefficiency: The prompt needs to be processed every time
+the model makes a prediction.
+2. Poor performance: Prompting generally performs worse
+than fine-tuning [Brown et al., 2020].
+3. Sensitivity to the wording of the prompt [Webson &
+Pavlick, 2022], order of examples [Zhao et al., 2021; Lu et
+al., 2022], etc.
+4. Lack of clarity regarding what the model learns from the
+prompt. Even random labels work [Min et al., 2022]!
+Modular and Parameter-Efficient Fine-Tuning for NLP Models EMNLP 2022 Tutorial
+--- page 4 ---
+From Fine-tuning to Parameter-efficient Fine-tuning
+Fine-tuning all parameters is impractical with large models
+State-of-the-art models are massively overparameterized → Parameter-efficient finetuning matches
+performance of full fine-tuning (in many cases)
+BERT
+BART
+ERNIE
+GPT- 3
+PaLM
+Pretraining
+Parameter efficient
+Fine- tuning
+Modular and Parameter-Efficient Fine-Tuning for NLP Models EMNLP 2022 Tutorial
+classification
+sequence labeling
+question answering
+....
+--- page 5 ---
+From fine-tuning to parameter efficient fine-tuning
+(PEFT)
+https://web.stanford.edu/class/cs224n
+--- page 6 ---
+Different Perspectives to think about PEFT
+https://web.stanford.edu/class/cs224n
+--- page 7 ---
+Functional perspective
+ad d e d to a p re - traine d mode l is to adapt it
+● Main purp ose of functions
+→ Functions are also known as ‘ad ap te rs’
+https://web.stanford.edu/class/cs224n
+--- page 8 ---
+The Adapter Framework
+https://web.stanford.edu/class/cs224n
+--- page 9 ---
+How many adapters per layer?
+We add the adapter module twice to each
+Transformer layer: after the projection following
+multiheaded attention and after the two feedforward layers.
+Parameter-Efficient Transfer Learning for NLP:
+http://proceedings.mlr.press/v97/houlsby19a/houlsby19a.pdf
+--- page 10 ---
+How many parameters?
+--- page 11 ---
+How is the performance?
+Adapter tuning achieves a comparable overall score (80.0)
+to full fine-tuning (80.4) using only 1.3x parameters in
+total, compared to 9x. Fixing the adapter size to 64 leads
+to a slightly decreased overall score of 79.6 and a slightly
+smaller model.
+houlsby19a
+--- page 12 ---
+Adapters in parallel
+http://proceedings.mlr.press/v97/stickland19a/stickland19a.pdf
+--- page 13 ---
+Modular and Parameter- Efficie nt Fine - Tuning for NLP Mod e ls EMNLP 20 22 Tutorial
+--- page 14 ---
+An input perspective: Prefix-tuning
+Prefix-tuning adds a prefix of parameters, and freezes all pretrained parameters.
+https://web.stanford.edu/class/cs224n
+--- page 15 ---
+Prefix-tuning: We can learn task-specific prefixes
+https://web.stanford.edu/class/cs224n
+--- page 16 ---
+How does it work?
+https://aclanthology.org/2021.acl-long.353.pdf
+--- page 17 ---
+Which layers do we tune?
+--- page 18 ---
+Can we also do infix?
+--- page 19 ---
+How is the performance?
+https://aclanthology.org/2021.acl-long.353.pdf
+--- page 20 ---
+Modular and Parameter- Efficie nt Fine - Tuning for NLP Mod e ls EMNLP 20 22 Tutorial
+--- page 21 ---
+Modular and Parameter - Efficie nt Fine - Tuning for NLP
+Mode ls, EMNLP’22 Tutorial
+--- page 22 ---
+
+--- page 23 ---
+Lecture 47 : Parameter-efficient fine-tuning - II
+--- page 24 ---
+Parameter perspective of PEFT: LoRA
+•
+Some variations: KronA, VeRA
+•
+--- page 25 ---
+Different Perspectives to think about PEFT
+https://web.stanford.edu/class/cs224n
+--- page 26 ---
+Parameter perspective
+https://web.stanford.edu/class/cs224n
+--- page 27 ---
+Parameter perspective
+https://web.stanford.edu/class/cs224n
+--- page 28 ---
+Low-rank-parameterized update matrices
+https://web.stanford.edu/class/cs224n
+--- page 29 ---
+LoRA: What happens during training and inference?
+--- page 30 ---
+Which weight matrices to apply to?
+https://web.stanford.edu/class/cs224n
+--- page 31 ---
+Understanding LoRA Parameters over GPT-3
+--- page 32 ---
+Applying LoRA to Transformers
+https://web.stanford.edu/class/cs224n
+--- page 33 ---
+LoRA in Practice: Scaling to GPT-3
+https://web.stanford.edu/class/cs224n
+--- page 34 ---
+Comparison of various
+PEFT methods
+--- page 35 ---
+Try this problem
+Suppose you are using GPT-3 for the query auto-completion task, where the user types a prefix, and the
+system tries to complete this. You want to personalize this by fine-tuning individually for 10,000 users of the
+system. You have the following options:
+1. You can use prefix-tuning at all the layers with length of prefix as 4 and length of infix as 4
+2. You can use LoRA for the query and key matrices at all the layers, with rank r = 2
+3. You can use adapters (2 adapters per layer), with the projection dimension as 2
+Compare the number of parameters required for each of these options.
+--- page 36 ---
+Some variations of LoRA
+KronA: Parameter Efficient Tuning with Kronecker Adapter
+(low-rank decomposition suffers from limited representation power,
+KronA uses a different method, which is not low-rank)
+VeRA: Vector-based Random Matrix Adaptation
+(Significantly reduces the number of trainable parameters
+compared to LoRA, yet maintains the same performance)
+--- page 37 ---
+KronA: Parameter Efficient Tuning with Kronecker Adapter
+https://arxiv.org/pdf/2212.10650
+w1 = a1 x b1
+w2 = a2 x b2
+--- page 38 ---
+https://medium.com/@xinyu.chen/kronecker-product-a-tutorial-304502340f22
+Kronecker
+product: example
+--- page 39 ---
+KronA: Parameter Efficient Tuning with Kronecker Adapter
+Important properties: Unlike the low-rank down-projection used in
+LoRA and Adapter, Kronecker product decomposition maintains the
+rank of the input matrix.
+https://arxiv.org/pdf/2212.10650
+--- page 40 ---
+KronA: Parameter Efficient Tuning with Kronecker Adapter
+Important properties: To speed up and reduce the required number of FLOPS, one
+can avoid the reconstruction of W and use the following equation to calculate the
+output of a Kronecker module
+https://arxiv.org/pdf/2212.10650
+--- page 41 ---
+
+--- page 42 ---
+KronA: Other variations
+KronAB works in parallel to the FFN block.
+This module is applied to the PLM blocks,
+opposed to KronA which is applied to the PLM
+weight matrices
+https://arxiv.org/pdf/2212.10650
+To further improve the representation
+power, we incorporate a scaled residual
+connection inside the KronAB module to
+develop KronABres
+--- page 43 ---
+KronA: Performance
+https://arxiv.org/pdf/2212.10650
+--- page 44 ---
+VeRA: Vector-based Random Matrix Adaptation
+LoRA updates the weights matrix W by training the low-rank matrices A and B, with
+intermediate rank r. In VeRA these matrices are frozen, shared across all layers, and adapted
+with trainable vectors d and b, substantially reducing the number of trainable parameters.
+https://arxiv.org/pdf/2310.11454
+--- page 45 ---
+LoRA formulation
+VeRA: Vector-based Random Matrix Adaptation
+VeRA formulation
+https://arxiv.org/pdf/2310.11454
+the scaling vectors b and d are trainable,
+and formally denoted by diagonal matrices
+Λb and Λd
+--- page 46 ---
+VeRA: Parameters increase with rank
+Theoretical memory required to store trained VeRA and LoRA weights for RoBERTabase,
+RoBERTalarge and GPT-3 models. We assume that LoRA and VeRA methods are applied on
+query and key layers of each transformer block.
+https://arxiv.org/pdf/2310.11454
+--- page 47 ---
+VeRA: Performance
+https://arxiv.org/pdf/2310.11454
+--- page 48 ---
+Kamath, Uday, et al. "Large Language Models: A Deep Dive." (2024).
+--- page 49 ---
+
+--- page 50 ---
+Lecture 48 : Efficient fine-tuning for quantized LMs - I
+--- page 51 ---
+GPU memory requirements
+•
+Full fine-tuning to LoRA and QLoRA
+•
+What is quantization?
+•
+QLoRA ingredients-1: Normal Float 4
+•
+--- page 52 ---
+GPU Memory Requirements: Model state
+Model state memory for a model with θ parameters, when fine-tuned using Adam
+optimizer under mixed-precision setting. Model state comprises of optimizer
+state, gradients and model parameters. Total model state memory, with no
+optimization enabled, adds up to 16θ bytes.
+https://arxiv.org/pdf/2406.02290
+Note: memory
+required can
+vary with
+precision and
+optimizer
+--- page 53 ---
+Mixed-precision setting
+https://arxiv.org/pdf/1710.03740
+Need for master copy?
+updates (weight gradients
+multiplied by the learning
+rate) become too small to
+be represented in FP16.
+--- page 54 ---
+Activation memory
+s: sequence length, b: batch size
+h: model dimension, a: number of attention heads
+https://arxiv.org/pdf/2205.05198
+--- page 55 ---
+Activation memory
+Typical scenario (Llama-2 7 B): s=256, b=8, h=4096, L=32, a=32
+s: sequence length, b: batch size
+h: model dimension, a: number of attention heads
+https://arxiv.org/pdf/2205.05198
+--- page 56 ---
+Fine-tuning is expensive
+more conservative estimate, e.g.,
+for SGD with momentum
+https://neurips.cc/media/neurips-2023/Slides/73855.pdf
+--- page 57 ---
+Fine-tuning with LoRA
+https://neurips.cc/media/neurips-2023/Slides/73855.pdf
+--- page 58 ---
+QLoRA: 4-bit frozen base model + LoRA
+https://neurips.cc/media/neurips-2023/Slides/73855.pdf
+--- page 59 ---
+Conservative estimate
+of 12*parameters
+QLORA:Efficient Finetuning of Quantized LLMs: https://arxiv.org/pdf/2305.14314
+--- page 60 ---
+From LoRA to QLoRA
+https://llmsystem.github.io
+--- page 61 ---
+What is quantization?
+https://harvard-iacs.github.io/2024-AC215/
+--- page 62 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 63 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 64 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 65 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 66 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 67 ---
+Quantization example
+https://harvard-iacs.github.io/2024-AC215/
+--- page 68 ---
+QLoRA: Major innovations
+https://llmsystem.github.io
+--- page 69 ---
+QLoRA Ingredients 1: 4-Bit NormalFloat
+Most datasets in machine learning are
+normally distributed and precision around
+the mean is valuable.
+https://harvard-iacs.github.io/2024-AC215/
+--- page 70 ---
+Exact values of the NF4 data type
+https://llmsystem.github.io
+--- page 71 ---
+QLoRA: Quantization Example for 2-bit
+https://neurips.cc/media/neurips-2023/Slides/73855.pdf
+We saw how to get
+these values for NF4
+--- page 72 ---
+Kamath, Uday, et al. "Large Language Models: A Deep Dive." (2024).
+--- page 73 ---
+
+--- page 74 ---
+Lecture 50 : Other Parameter Efficient Methods: Pruning,
+Distillation
+--- page 75 ---
+•
+Distillation
+Pruning
+•
+--- page 76 ---
+Pruning vs Quantization
+https://phontron.com/class/anlp2024/
+--- page 77 ---
+Lottery Ticket Hypothesis
+https://phontron.com/class/anlp2024/
+--- page 78 ---
+Magnitude Pruning
+https://phontron.com/class/anlp2024/
+--- page 79 ---
+Movement Pruning
+https://web.stanford.edu/class/cs224n/
+--- page 80 ---
+Pruning by weights and activations (Wanda)
+Illustration of our proposed method Wanda (Pruning by
+Weights and activations), compared with the magnitude
+pruning approach. Given a weight matrix W and input
+feature activations X, we compute the weight importance
+as the elementwise product between the weight
+magnitude and the norm of input activations (|W| · ∥X∥2).
+Weight importance scores are compared on a per-output
+basis (within each row in W), rather than globally across
+the entire matrix.
+https://arxiv.org/pdf/2306.11695
+--- page 81 ---
+Structured Pruning
+https://phontron.com/class/anlp2024/
+--- page 82 ---
+Structured Pruning
+Remove entire
+components
+https://phontron.com/class/anlp2024/; https://arxiv.org/pdf/2204.00408
+--- page 83 ---
+Distillation
+https://phontron.com/class/anlp2024/
+--- page 84 ---
+Distillation
+https://phontron.com/class/anlp2024/
+--- page 85 ---
+Basic Idea: Weak Supervision
+https://phontron.com/class/anlp2024/
+--- page 86 ---
+Hard vs Soft Targets
+https://phontron.com/class/anlp2024/
+--- page 87 ---
+Sequence-level distillation
+https://phontron.com/class/anlp2024/
+--- page 88 ---
+DistilBERT
+https://phontron.com/class/anlp2024/
+--- page 89 ---
+MiniLLM: Reverse KL Divergence
+Comparison between sequence-level KD (left) and MINILLM (right). Sequence-level KD
+forces the student to memorize all samples generated by the teacher model, while
+MINILLM improves its generated texts with the teacher model’s feedback.
+Prevents the student model from overestimating the low-probability regions of the teacher distribution.
+https://arxiv.org/pdf/2306.08543
+--- page 90 ---
+Various papers cited
+--- page 91 ---

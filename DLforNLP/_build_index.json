@@ -1,0 +1,482 @@
+[
+ {
+  "lec": 1,
+  "title": "Introduction to the Course",
+  "pdf": "Week1.pdf",
+  "start": 1,
+  "end": 25,
+  "pages": 25
+ },
+ {
+  "lec": 2,
+  "title": "Text Processing Basics, Tokenization",
+  "pdf": "Week1.pdf",
+  "start": 26,
+  "end": 54,
+  "pages": 29
+ },
+ {
+  "lec": 3,
+  "title": "N-gram Language Models: Part 1",
+  "pdf": "Week1.pdf",
+  "start": 55,
+  "end": 82,
+  "pages": 28
+ },
+ {
+  "lec": 4,
+  "title": "N-gram Language Models: Part 2",
+  "pdf": "Week1.pdf",
+  "start": 83,
+  "end": 116,
+  "pages": 34
+ },
+ {
+  "lec": 5,
+  "title": "NLP Tasks and Paradigms",
+  "pdf": "Week1.pdf",
+  "start": 117,
+  "end": 153,
+  "pages": 37
+ },
+ {
+  "lec": 6,
+  "title": "Supervised Learning",
+  "pdf": "Week2.pdf",
+  "start": 1,
+  "end": 33,
+  "pages": 33
+ },
+ {
+  "lec": 7,
+  "title": "Shallow Neural Networks",
+  "pdf": "Week2.pdf",
+  "start": 34,
+  "end": 56,
+  "pages": 23
+ },
+ {
+  "lec": 8,
+  "title": "Deep Neural Networks",
+  "pdf": "Week2.pdf",
+  "start": 57,
+  "end": 82,
+  "pages": 26
+ },
+ {
+  "lec": 9,
+  "title": "Backpropagation",
+  "pdf": "Week2.pdf",
+  "start": 83,
+  "end": 115,
+  "pages": 33
+ },
+ {
+  "lec": 10,
+  "title": "Gradient Descent and Initialization",
+  "pdf": "Week2.pdf",
+  "start": 116,
+  "end": 146,
+  "pages": 31
+ },
+ {
+  "lec": 11,
+  "title": "Word Representation",
+  "pdf": "Week3.pdf",
+  "start": 1,
+  "end": 29,
+  "pages": 29
+ },
+ {
+  "lec": 12,
+  "title": "Learning Word Representation - Part 1",
+  "pdf": "Week3.pdf",
+  "start": 30,
+  "end": 62,
+  "pages": 33
+ },
+ {
+  "lec": 13,
+  "title": "Learning Word Representation - II",
+  "pdf": "Week3.pdf",
+  "start": 63,
+  "end": 86,
+  "pages": 24
+ },
+ {
+  "lec": 14,
+  "title": "Word Vectors: Other Extensions",
+  "pdf": "Week3.pdf",
+  "start": 87,
+  "end": 108,
+  "pages": 22
+ },
+ {
+  "lec": 15,
+  "title": "Cross-Lingual Representations",
+  "pdf": "Week3.pdf",
+  "start": 109,
+  "end": 131,
+  "pages": 23
+ },
+ {
+  "lec": 16,
+  "title": "RNN Language Models",
+  "pdf": "Week4.pdf",
+  "start": 1,
+  "end": 29,
+  "pages": 29
+ },
+ {
+  "lec": 17,
+  "title": "RNN Applications: Text Generation, Sequence Labeling, Text",
+  "pdf": "Week4.pdf",
+  "start": 30,
+  "end": 56,
+  "pages": 27
+ },
+ {
+  "lec": 18,
+  "title": "RNN for Sequence to Sequence",
+  "pdf": "Week4.pdf",
+  "start": 57,
+  "end": 81,
+  "pages": 25
+ },
+ {
+  "lec": 19,
+  "title": "Decoding Strategies",
+  "pdf": "Week4.pdf",
+  "start": 82,
+  "end": 105,
+  "pages": 24
+ },
+ {
+  "lec": 20,
+  "title": "Better RNN Units: GRU, LSTM",
+  "pdf": "Week4.pdf",
+  "start": 106,
+  "end": 126,
+  "pages": 21
+ },
+ {
+  "lec": 21,
+  "title": "Introduction to Transformers",
+  "pdf": "Week5.pdf",
+  "start": 1,
+  "end": 33,
+  "pages": 33
+ },
+ {
+  "lec": 22,
+  "title": "Transformers: Part 2",
+  "pdf": "Week5.pdf",
+  "start": 34,
+  "end": 61,
+  "pages": 28
+ },
+ {
+  "lec": 23,
+  "title": "Transformers: Part 3",
+  "pdf": "Week5.pdf",
+  "start": 62,
+  "end": 83,
+  "pages": 22
+ },
+ {
+  "lec": 24,
+  "title": "Transformers: Part 4",
+  "pdf": "Week5.pdf",
+  "start": 84,
+  "end": 102,
+  "pages": 19
+ },
+ {
+  "lec": 25,
+  "title": "Efficient Transformers",
+  "pdf": "Week5.pdf",
+  "start": 103,
+  "end": 125,
+  "pages": 23
+ },
+ {
+  "lec": 26,
+  "title": "Pretraining",
+  "pdf": "Week6.pdf",
+  "start": 1,
+  "end": 29,
+  "pages": 29
+ },
+ {
+  "lec": 27,
+  "title": "Pretraining Transformer Encoder",
+  "pdf": "Week6.pdf",
+  "start": 30,
+  "end": 58,
+  "pages": 29
+ },
+ {
+  "lec": 28,
+  "title": "Pretraining Transformer Encoders,",
+  "pdf": "Week6.pdf",
+  "start": 59,
+  "end": 88,
+  "pages": 30
+ },
+ {
+  "lec": 29,
+  "title": "Pretraining Transformer Decoder",
+  "pdf": "Week6.pdf",
+  "start": 89,
+  "end": 113,
+  "pages": 25
+ },
+ {
+  "lec": 30,
+  "title": "More on Pretraining",
+  "pdf": "Week6.pdf",
+  "start": 114,
+  "end": 146,
+  "pages": 33
+ },
+ {
+  "lec": 31,
+  "title": "Applications: Question Answering-I",
+  "pdf": "Week7.pdf",
+  "start": 1,
+  "end": 28,
+  "pages": 28
+ },
+ {
+  "lec": 32,
+  "title": "Applications: Question Answering-II",
+  "pdf": "Week7.pdf",
+  "start": 29,
+  "end": 52,
+  "pages": 24
+ },
+ {
+  "lec": 33,
+  "title": "Applications: Dialogue Systems-I",
+  "pdf": "Week7.pdf",
+  "start": 53,
+  "end": 82,
+  "pages": 30
+ },
+ {
+  "lec": 34,
+  "title": "Applications: Dialogue Systems-II",
+  "pdf": "Week7.pdf",
+  "start": 83,
+  "end": 112,
+  "pages": 30
+ },
+ {
+  "lec": 35,
+  "title": "Applications: Text Summarization",
+  "pdf": "Week7.pdf",
+  "start": 113,
+  "end": 136,
+  "pages": 24
+ },
+ {
+  "lec": 36,
+  "title": "Instruction Fine-tuning-I",
+  "pdf": "Week8.pdf",
+  "start": 1,
+  "end": 33,
+  "pages": 33
+ },
+ {
+  "lec": 37,
+  "title": "Instruction Fine-tuning-II",
+  "pdf": "Week8.pdf",
+  "start": 34,
+  "end": 63,
+  "pages": 30
+ },
+ {
+  "lec": 38,
+  "title": "Reinforcement Learning from Human Feedback-I",
+  "pdf": "Week8.pdf",
+  "start": 64,
+  "end": 89,
+  "pages": 26
+ },
+ {
+  "lec": 39,
+  "title": "Reinforcement Learning from Human Feedback-II",
+  "pdf": "Week8.pdf",
+  "start": 90,
+  "end": 116,
+  "pages": 27
+ },
+ {
+  "lec": 40,
+  "title": "Aligning to user preferences via Direct Preference",
+  "pdf": "Week8.pdf",
+  "start": 117,
+  "end": 137,
+  "pages": 21
+ },
+ {
+  "lec": 41,
+  "title": "Prompting - I",
+  "pdf": "Week9.pdf",
+  "start": 1,
+  "end": 25,
+  "pages": 25
+ },
+ {
+  "lec": 42,
+  "title": "Prompting: Why does in-context learning work?",
+  "pdf": "Week9.pdf",
+  "start": 26,
+  "end": 52,
+  "pages": 27
+ },
+ {
+  "lec": 43,
+  "title": "Advanced Prompting Techniques",
+  "pdf": "Week9.pdf",
+  "start": 53,
+  "end": 74,
+  "pages": 22
+ },
+ {
+  "lec": 44,
+  "title": "Tool-aided Language Models",
+  "pdf": "Week9.pdf",
+  "start": 75,
+  "end": 92,
+  "pages": 18
+ },
+ {
+  "lec": 45,
+  "title": "Automatic Prompt Engineering",
+  "pdf": "Week9.pdf",
+  "start": 93,
+  "end": 114,
+  "pages": 22
+ },
+ {
+  "lec": 46,
+  "title": "Parameter-efficient fine-tuning - I",
+  "pdf": "Week10(Lec 46-48,50).pdf",
+  "start": 1,
+  "end": 22,
+  "pages": 22
+ },
+ {
+  "lec": 47,
+  "title": "Parameter-efficient fine-tuning - II",
+  "pdf": "Week10(Lec 46-48,50).pdf",
+  "start": 23,
+  "end": 49,
+  "pages": 27
+ },
+ {
+  "lec": 48,
+  "title": "Efficient fine-tuning for quantized LMs - I",
+  "pdf": "Week10(Lec 46-48,50).pdf",
+  "start": 50,
+  "end": 73,
+  "pages": 24
+ },
+ {
+  "lec": 49,
+  "title": "Efficient fine-tuning for quantized LMs - II",
+  "pdf": "Week10(Lec 49).pdf",
+  "start": 1,
+  "end": 28,
+  "pages": 28
+ },
+ {
+  "lec": 50,
+  "title": "Other Parameter Efficient Methods: Pruning,",
+  "pdf": "Week10(Lec 46-48,50).pdf",
+  "start": 74,
+  "end": 91,
+  "pages": 18
+ },
+ {
+  "lec": 51,
+  "title": "Scaling laws of LLMs",
+  "pdf": "Week11.pdf",
+  "start": 1,
+  "end": 20,
+  "pages": 20
+ },
+ {
+  "lec": 52,
+  "title": "Modern LLMs and Architecture Variations - I",
+  "pdf": "Week11.pdf",
+  "start": 21,
+  "end": 43,
+  "pages": 23
+ },
+ {
+  "lec": 53,
+  "title": "Modern LLMs and Architecture Variations:",
+  "pdf": "Week11.pdf",
+  "start": 44,
+  "end": 68,
+  "pages": 25
+ },
+ {
+  "lec": 54,
+  "title": "Long Sequence Modeling",
+  "pdf": "Week11.pdf",
+  "start": 69,
+  "end": 91,
+  "pages": 23
+ },
+ {
+  "lec": 55,
+  "title": "Retrieval Augmented Generation",
+  "pdf": "Week11.pdf",
+  "start": 92,
+  "end": 127,
+  "pages": 36
+ },
+ {
+  "lec": 56,
+  "title": "Model Interpretability",
+  "pdf": "Week12.pdf",
+  "start": 1,
+  "end": 28,
+  "pages": 28
+ },
+ {
+  "lec": 57,
+  "title": "Model Interpretability - Multilingual",
+  "pdf": "Week12.pdf",
+  "start": 29,
+  "end": 46,
+  "pages": 18
+ },
+ {
+  "lec": 58,
+  "title": "Model Interpretability - III",
+  "pdf": "Week12.pdf",
+  "start": 47,
+  "end": 77,
+  "pages": 31
+ },
+ {
+  "lec": 59,
+  "title": "Trustworthy LLMs: Taxonomy",
+  "pdf": "Week12.pdf",
+  "start": 78,
+  "end": 101,
+  "pages": 24
+ },
+ {
+  "lec": 60,
+  "title": "Trustworthy LLMs: Machine Unlearning",
+  "pdf": "Week12.pdf",
+  "start": 102,
+  "end": 131,
+  "pages": 30
+ }
+]

@@ -1,0 +1,175 @@
+### DECK: L9P2_VAE-2  (Week 8)  slides=24  canvas=13.3x7.5in
+
+--- slide 1 ---
+Variational Auto-Encoder - II
+Generative AI for Computer Vision
+Lecture 9
+
+Part 2
+
+--- slide 2 ---
+Content
+Variational Inference 
+
+Evidence Lower Bound (ELBO)
+
+VAE objective Function
+
+VAE Loss Function
+
+ELBO and posterior approximation
+
+The Reparameterization Trick
+
+Vision Applications
+
+--- slide 3 ---
+Variational Auto-encoderProblem Formulation
+
+--- slide 4 ---
+Variational Inference
+
+--- slide 5 ---
+Variational Inference
+Sampled
+p(z|x)
+z ~ p(z|x)
+Probabilistic Encoder
+Probabilistic
+Decoder
+
+--- slide 6 ---
+Probabilistic Encoder
+Variational Auto-Encoder
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+Concept: Fei-Fei Li, Ehsan Adeli, Generative Modelling, Stanford Lecture, 2024
+Probabilistic Decoder
+
+--- slide 7 ---
+Figure Source: Song, Chunlin & Sudirman, Sud & Merabti, Madjid. (2010). A Spatial and Frequency Domain Analysis of the Effect of Removal Attacks on Digital Image Watermarks.
+Example: Auto-Encoder
+Concept: Fei-Fei Li, Ehsan Adeli, Generative Modelling, Stanford Lecture, 2024
+An ideal auto-encoder will learn the descriptive attributes of image like smile, hat, hair, eye etc. 
+
+In the above example, these attributes are described with a single value.
+[IMAGE: image.png.png 1.4x1.1in]
+Latent Attributes (z)
+[IMAGE: image.png.png 1.1x1.2in]
+eye
+0.2
+ear
+0.8
+nose
+0.3
+color
+0.7
+…
+Encoder
+Decoder
+…
+
+--- slide 8 ---
+Figure Source: Song, Chunlin & Sudirman, Sud & Merabti, Madjid. (2010). A Spatial and Frequency Domain Analysis of the Effect of Removal Attacks on Digital Image Watermarks.
+Example: Variational Auto-Encoder
+Concept: Fei-Fei Li, Ehsan Adeli, Generative Modelling, Stanford Lecture, 2024
+In a Variational Autoencoder (VAE), each latent attribute is represented not as a fixed value but as a probability distribution. 
+
+This probabilistic representation allows the model to sample different values from the latent distributions and pass them through the decoder to generate images that exhibit similar characteristics to those in the training data. 
+
+Unlike a traditional autoencoder, where the primary objective is to reconstruct the input image, a VAE can generate entirely new images that may not have existed in the training dataset. 
+
+Thus, the VAE is not limited to reconstruction; it learns a continuous and structured latent space from which new, plausible samples can be generated, giving it its inherently generative nature.
+[IMAGE: image.png.png 1.4x1.1in]
+[IMAGE: image.png.png 1.3x1.3in]
+Latent Attributes (z)
+eye
+ear
+nose
+color
+…
+Encoder
+Decoder
+
+--- slide 9 ---
+Evidence Lower Bound (ELBO)
+
+--- slide 10 ---
+Evidence Lower Bound (ELBO)
+
+--- slide 11 ---
+Expanding the ELBO
+
+--- slide 12 ---
+Expanding the ELBO
+
+--- slide 13 ---
+The two components of the VAE objective
+Reconstruction / Likelihood term
+KL Regularization
+
+--- slide 14 ---
+The two components of the VAE objective
+
+--- slide 15 ---
+VAE Loss
+
+--- slide 16 ---
+VAE Loss
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 17 ---
+ELBO and Posterior Approximation
+
+--- slide 18 ---
+ELBO and Posterior Approximation
+
+--- slide 19 ---
+The Reparameterization Trick
+
+--- slide 20 ---
+The Reparameterization Trick
+
+--- slide 21 ---
+Why KL Divergence is used in VAE Loss?
+Regularizes latent space
+
+Prevents overfitting
+
+Ensures smooth interpolation
+
+Makes sampling possible
+
+--- slide 22 ---
+Applications
+Image generation
+
+Anomaly detection
+
+Drug discovery
+
+Representation learning
+
+Semi-supervised learning
+
+--- slide 23 ---
+Summary
+Variational Inference 
+
+Evidence Lower Bound (ELBO)
+
+VAE objective Function
+
+VAE Loss Function
+
+ELBO and posterior approximation
+
+The Reparameterization Trick
+
+Vision Applications
+
+--- slide 24 ---
+Diffusion Models
+Generative AI for Computer Vision
+Next
+
+Lecture 10: Part 1

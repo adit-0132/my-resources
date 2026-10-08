@@ -1,0 +1,233 @@
+{
+  "main": {
+    "id": "cd00e06ec4bc9d5a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b81035eb07b01dc2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b6b1b7cd1e3db1e5",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "12eb6c146f25c4fc",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5b5d84c65475b9f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "08339fe01d6a5e66",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "4f4d8270efcc422c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d38edacca943819e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "0a8c1ec99948a4fd",
+    "type": "split",
+    "children": [
+      {
+        "id": "879b04e74f3a2362",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "faece62c1b3ecbfb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "8672f4ad008a0bc9",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "9801dc76de9d8302",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "288e7dd43c36f7ef",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "b1ad72e16f7d7ec8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "b6b1b7cd1e3db1e5",
+  "lastOpenFiles": [
+    "GenAIforCV/notes/week-01/01-intro-cv-and-genai.md",
+    "FoundGenAI/README.md",
+    "FoundGenAI/cram/self-test-bank.md",
+    "FoundGenAI/cram/week-summaries.md",
+    "FoundGenAI/cram/numbers.md",
+    "FoundGenAI/cram/exam-traps.md",
+    "FoundGenAI/cram/formula-sheet.md",
+    "FoundGenAI/notes/68-rag-advances.md.tmp.77447.fd131eb98811",
+    "FoundGenAI/notes/64-llm-icl-lora-rag.md.tmp.77447.e934a5c40d1f",
+    "FoundGenAI/notes/64-llm-icl-lora-rag.md.tmp.77447.401e47918f32",
+    "FoundGenAI/notes/64-llm-icl-lora-rag.md.tmp.77447.13b510b9a6ee",
+    "FoundGenAI/notes/64-llm-icl-lora-rag.md.tmp.77447.7bf06f71da0f",
+    "FoundGenAI/notes/70-llm-generation-multimodal.md.tmp.77447.c64fc997db24",
+    "FoundGenAI/notes/68-rag-advances.md",
+    "FoundGenAI/notes/68-rag-advances.md.tmp.77447.8ac9d39a1288",
+    "FoundGenAI/notes/72-benchmarking-bias-safety.md",
+    "FoundGenAI/notes/72-benchmarking-bias-safety.md.tmp.77447.47d17b053e97",
+    "FoundGenAI/notes/63-llm-handson.md",
+    "FoundGenAI/notes/63-llm-handson.md.tmp.77447.348dd6575f4b",
+    "FoundGenAI/notes/sedpDY6yl",
+    "FoundGenAI/notes/61-gpt.md",
+    "FoundGenAI/notes/64-llm-icl-lora-rag.md",
+    "FoundGenAI/notes/70-llm-generation-multimodal.md",
+    "FoundGenAI/notes/60-bert.md",
+    "FoundGenAI/notes/62-prompt-engineering.md",
+    "FoundGenAI/notes/59-transformer-decoder.md",
+    "FoundGenAI/notes/56-lstm-to-transformer.md",
+    "FoundGenAI/notes/57-transformer-encoder.md",
+    "FoundGenAI/notes/52-stable-diffusion.md",
+    "FoundGenAI/notes/55-rnn-lstm.md",
+    "FoundGenAI/notes/54-nlp-foundations.md",
+    "FoundGenAI/notes/47-ddpm-reverse.md",
+    "FoundGenAI/notes/51-classifier-free-guidance.md",
+    "FoundGenAI/notes/53-reverse-diffusion-handson.md",
+    "FoundGenAI/notes/49-unet.md",
+    "FoundGenAI/notes/50-classifier-guidance.md",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-38.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-37.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-36.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-35.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-34.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-33.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-32.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-31.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-30.png",
+    "FoundGenAI/assets/pages/w12_Week12-notes/p-29.png"
+  ]
+}

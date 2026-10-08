@@ -1,0 +1,184 @@
+### DECK: L9P1_VAE-1  (Week 8)  slides=21  canvas=13.3x7.5in
+
+--- slide 1 ---
+Variational Auto-Encoder
+Generative AI for Computer Vision
+Lecture 9
+
+Part 1
+
+--- slide 2 ---
+Content
+Auto-Encoder 
+Variational Auto-Encoder – An Introduction
+Variational Auto-Encoder 
+Encoding – Sampling – Decoding
+Statistical Understanding
+Problem Formulation
+
+--- slide 3 ---
+Different Generative Models
+Generative Models
+Explicit Density
+Implicit Density
+Tractable Density
+Approximate Density
+Markov Chain
+Direct
+Variational
+Markov Chain
+GSN
+Variational Autoencoder
+GAN
+Boltzmann Machine
+Fully Visible Belief Nets
+NADE
+MADE
+Pixel RNN
+Change of variable models (nonlinear ICA)
+Figure copyright and adapted from Ian Goodfellow, Tutorial on Generative Adversarial Networks, 2017.
+[IMAGE: image.png.png 0.6x0.6in]
+
+--- slide 4 ---
+Auto-Encoder
+Encoder
+Decoder
+Latent Space
+z
+[IMAGE: image.png.png 0.9x0.8in]
+[IMAGE: image.png.png 0.9x0.8in]
+[IMAGE: image.png.png 1.0x1.0in]
+[IMAGE: image.png.png 1.0x1.0in]
+
+--- slide 5 ---
+By imposing a bottleneck or other constraints on the latent space, the autoencoder is encouraged to capture the most salient features and underlying structure of the input data while suppressing redundant or irrelevant information. 
+
+
+Consequently, autoencoders have been widely applied to dimensionality reduction, feature extraction, image reconstruction, denoising, anomaly detection, and representation learning. 
+
+
+Variants such as convolutional autoencoders (CAEs) further incorporate convolutional layers to exploit spatial correlations in image data, making them particularly effective for learning hierarchical visual representations.
+Auto-Encoder
+Encoder
+Decoder
+Latent Space
+z
+[IMAGE: image.png.png 0.9x0.8in]
+[IMAGE: image.png.png 0.9x0.8in]
+[IMAGE: image.png.png 1.0x1.0in]
+[IMAGE: image.png.png 1.0x1.0in]
+
+--- slide 6 ---
+Auto-encoder as Generative Model
+Concept: Fei-Fei Li, Ehsan Adeli, Generative Modelling, Stanford Lecture, 2024
+
+--- slide 7 ---
+Variational Auto-Encoder
+
+--- slide 8 ---
+Variational Auto-EncoderEncoding – Sampling – Decoding
+Sampled
+p(z|x)
+z ~ p(z|x)
+Probabilistic Encoder
+Probabilistic
+Decoder
+
+--- slide 9 ---
+Variational Auto-EncoderEncoding – Sampling – Decoding
+Sampled
+p(z|x)
+z ~ p(z|x)
+Probabilistic Encoder
+Probabilistic
+Decoder
+
+--- slide 10 ---
+Variational Auto-Encoder
+Concept: Fei-Fei Li, Ehsan Adeli, Generative Modelling, Stanford Lecture, 2024
+Sampled
+p(z|x)
+z ~ p(z|x)
+Probabilistic Encoder
+Probabilistic
+Decoder
+
+--- slide 11 ---
+Variational Auto-encoder
+0.9  0.3   0.1  0.2  0.7   0.5
+[IMAGE: image.png.png 1.4x1.1in]
+Decoder
+Generator
+Values
+L (Latent space)
+Encoder
+[IMAGE: image.png.png 1.1x1.2in]
+Auto-Encoder
+[IMAGE: image.png.png 1.4x1.1in]
+Decoder
+Generator
+Distributions
+L (Latent space)
+Encoder
+[IMAGE: image.png.png 1.3x1.3in]
+Variational Auto-Encoder
+
+--- slide 12 ---
+Variational Auto-encoderStatistical Understanding
+Concept: Fei-Fei Li, et. al. Generative Modelling, Stanford Lecture, 2026
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 13 ---
+Variational Auto-encoderStatistical Understanding
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 14 ---
+Variational Auto-encoderStatistical Understanding
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 15 ---
+Generative Learning
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 16 ---
+Variational Auto-encoderIn another view-point
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 17 ---
+Variational Auto-encoderIn another view-point
+Weng, Lilian. (2018). From Autoencoder to Beta-VAE, Lil’Log. "https://lilianweng.github.io/posts/2018-08-12-vae/"
+
+--- slide 18 ---
+How should we represent this model?
+
+Choose prior p(z) is simple e.g. Gaussian.
+
+Reasonable for latent attributes.
+
+Conditional p(x|z) is complex. It can be represented with neural network.
+
+How to train the model?
+[IMAGE: image.png.png 0.9x0.6in]
+Decoder Network
+Variational Auto-encoderIn another view-point
+Concept: Fei-Fei Li, et. al. Generative Modelling, Stanford Lecture, 2024
+
+--- slide 19 ---
+Variational Auto-encoderProblem Formulation
+Concept: Fei-Fei Li, et. al. Generative Modelling, Stanford Lecture, 2024
+
+--- slide 20 ---
+Summary
+Auto-Encoder 
+Variational Auto-Encoder – An Introduction
+Variational Auto-Encoder 
+Encoding – Sampling – Decoding
+Statistical Understanding
+Problem Formulation
+
+--- slide 21 ---
+Variational Auto-Encoder - II
+Generative AI for Computer Vision
+Next
+
+Lecture 9: Part 2

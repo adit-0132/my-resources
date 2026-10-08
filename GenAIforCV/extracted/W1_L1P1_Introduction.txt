@@ -1,0 +1,128 @@
+### DECK: L1P1_Introduction  (Week 1)  slides=14  canvas=13.3x7.5in
+
+--- slide 1 ---
+Introduction
+Generative AI for Computer Vision
+Lecture 1
+
+Part 1
+
+--- slide 2 ---
+Content
+Computer Vision
+
+Generative AI for Computer Vision
+
+Challenges of Synthetic Data Generation
+
+Applications of Generative AI for Vision
+
+--- slide 3 ---
+Interpretation: 
+Colour Image, Human, Lady, 
+Monalisa
+[IMAGE: image.png.png 1.4x1.4in]
+[IMAGE: image.png.png 1.4x2.0in]
+[IMAGE: image.png.png 1.5x1.5in]
+[IMAGE: image.png.png 1.7x1.1in]
+[IMAGE: image.jpeg.jpg 1.8x1.8in]
+What is Computer Vision?
+Image Source: Internet
+
+--- slide 4 ---
+Generative AI: Definition
+Generative AI
+Generative AI (GenAI) is a subset of artificial intelligence that creates new, original content—including text, images, code, audio, and video—by learning patterns from large amounts of existing data. 
+Unlike traditional rule-based AI, Generative AI uses foundation models to generate human-like content, solve problems, and respond to user prompts. 
+Its core technologies include Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), Large Language Models (LLMs), and diffusion models, which enable the creation of realistic and contextually relevant outputs.
+Generative Modelling
+Generative modeling is an unsupervised learning task.
+Learns the patterns of input data from a given distribution to generate new examples which belong to the similar distribution.
+
+--- slide 5 ---
+Why Gen AI is important?
+In present day, deep learning has achieved a significant success in Supervised classification.
+[IMAGE: image.png.png 9.0x3.8in]
+Figure: Top-5 classification error in test set - results from ImageNet challenge [1]
+[1] Sze, Vivienne, et al. "Efficient processing of deep neural networks: A tutorial and survey." Proceedings of the IEEE 105.12 (2017): 2295-2329.
+
+--- slide 6 ---
+Synthetic Data Generation using Gen AI
+It has been observed in the recent literature
+Deep learning models require large volumes of accurately annotated data for effective supervised learning.
+Model performance generally improves as the size, quality, and diversity of the annotated dataset increase.
+
+Problem: Collecting and accurately labelling such large datasets is expensive, time-consuming, and often impractical for many real-world applications.
+
+Solution: Synthetic data generation, powered by Generative AI (GenAI), is an emerging solution that creates realistic, labelled data at scale. 
+
+This reduces the dependence on manual data collection and annotation while improving model training and performance.
+
+--- slide 7 ---
+Generative AI for Computer Vision
+Generative AI for computer vision is a rapidly advancing field that enables machines not only to analyze visual data but also to create new images, videos, and visual content.
+
+Using deep learning models such as Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), and diffusion models, generative AI can generate realistic images, enhance image quality, perform image-to-image translation, and fill in missing visual information. 
+
+In computer vision applications, it is used for tasks such as data augmentation, image synthesis, super-resolution, object generation, and medical image reconstruction.
+
+--- slide 8 ---
+Generative AI for Computer Vision
+By creating high-quality synthetic data, generative AI helps improve the accuracy and robustness of vision systems while reducing the need for large labeled datasets. 
+
+Its growing capabilities are transforming industries such as healthcare, autonomous driving, entertainment, and surveillance.
+
+--- slide 9 ---
+Challenges of Synthetic Data Generation
+Generating realistic synthetic images remains a challenging task despite significant advances in generative AI. 
+
+One major challenge is achieving high visual fidelity while preserving fine details, textures, and natural lighting conditions. 
+
+Models may produce artifacts, distortions, or unrealistic features that reduce image quality. 
+
+Ensuring diversity in generated images is another difficulty, as models can suffer from mode collapse, where they generate limited variations of outputs.
+
+--- slide 10 ---
+Maintaining consistency in complex scenes, including object relationships, backgrounds, and perspectives, is also challenging. 
+
+Additionally, creating synthetic images that accurately represent real-world data without introducing bias requires large and diverse training datasets. 
+
+High computational costs, extensive training time, and concerns about ethical misuse, such as deepfakes and misinformation, further complicate the development and deployment of realistic image generation systems.
+Challenges of Synthetic Data Generation
+
+--- slide 11 ---
+Applications of Generative AI for Vision
+Generative AI has numerous applications in computer vision across various industries. 
+
+It is widely used for image synthesis, enabling the creation of realistic images from text descriptions or existing visual inputs. 
+
+In healthcare, generative models assist in medical image reconstruction, enhancement, and the generation of synthetic medical data for training diagnostic systems. 
+
+Data augmentation is another important application, where artificial images are created to improve the performance and robustness of computer vision models.
+
+--- slide 12 ---
+Generative AI is also used for image restoration tasks such as super-resolution, denoising, colorization, and inpainting. 
+
+In the entertainment and gaming industries, it helps generate realistic characters, environments, and visual effects. 
+
+Autonomous vehicles utilize synthetic data generation to train perception systems under diverse driving conditions. 
+
+Additionally, applications such as facial recognition improvement, virtual try-on systems, content creation, and digital twin development demonstrate the growing impact of generative AI in computer vision.
+Applications of Generative AI for Vision
+
+--- slide 13 ---
+Summary
+Computer Vision
+
+Generative AI for Computer Vision
+
+Challenges of Synthetic Data Generation
+
+Applications of Generative AI for Vision
+
+--- slide 14 ---
+Discriminative vs. Generative Learning
+Generative AI for Computer Vision
+Next
+
+Lecture 1:Part 2

@@ -1,0 +1,212 @@
+### DECK: L8P2_AutoReg  (Week 6)  slides=24  canvas=13.3x7.5in
+
+--- slide 1 ---
+Auto-regressive Generative Models
+Generative AI for Computer Vision
+Lecture 8
+
+Part 2
+
+--- slide 2 ---
+Content
+Autoregressive Model
+Fully Visible Belief Network (FVBN)
+Pixel CNN
+Pixel RNN
+
+--- slide 3 ---
+Autoregressive Generative Model
+
+--- slide 4 ---
+The model receives an initial input or prompt. It predicts the probability distribution of the next element/token.
+
+One token is selected from this distribution. The selected token is added to the sequence.
+
+The process repeats until the desired output is generated.
+
+Example:
+Input: “The cat is”
+Model predicts: “sleeping”
+ “The cat is sleeping”
+ predicts the next token
+ continues until the sentence is complete.
+How Autoregressive Image Generation Works
+
+--- slide 5 ---
+How Autoregressive Image Generation Works
+An image is converted into a sequence of pixels, patches, or tokens. 
+The model observes the previously generated elements. 
+It predicts the probability distribution of the next visual token. 
+A token is selected and added to the sequence. 
+The process continues until the complete image is generated.
+Figure Source: Mengqi Huang, Zhendong Mao, Zhuowei Chen, Yongdong Zhang, “Towards Accurate Image Coding: Improved Autoregressive Image Generation with Dynamic Vector Quantization”, Link: https://arxiv.org/abs/2305.11718
+[IMAGE: image.png.png 6.8x2.6in]
+
+--- slide 6 ---
+Auto-regressive Models: Advantages, Limitations
+Advantages:
+Captures complex spatial relationships between image components.
+Provides a clear probabilistic framework for image generation.
+Can be conditioned on text, labels, or other images.
+Can generate diverse and realistic visual content.
+
+Limitations:
+Sequential generation can be computationally expensive and slow.
+Large images require many tokens.
+High-quality generation may require substantial training data and computing resources.
+
+--- slide 7 ---
+Likelihood of image x
+Joint likelihood of each
+pixel in the image
+Concept: Fei-Fei Li et.al. CS 231n Deep Learning for Computer Vision
+Fully Visible Belief Network (FVBN)
+
+--- slide 8 ---
+Fully Visible Belief Network (FVBN)
+
+--- slide 9 ---
+FVBNs are typically trained using maximum likelihood estimation, where the objective is to maximize the probability assigned to the training images.
+
+During generation, pixels or tokens are sampled sequentially according to the learned conditional distributions. 
+
+Models such as PixelRNN and PixelCNN are prominent examples of this fully visible autoregressive approach. 
+
+Although FVBNs provide an explicit and tractable likelihood function and can model complex image distributions, their sequential sampling process can make image generation computationally expensive and relatively slow.
+Fully Visible Belief Network (FVBN)
+
+--- slide 10 ---
+[IMAGE: image.jpg.jpg 2.7x2.0in]
+Fully visible belief network (FVBN)
+This is an Explicit density model
+The chain rule is used to decompose the likelihood of an data into product of distributions:
+Likelihood of image x
+The goal is to maximize the likelihood of training data
+A neural network is used to realize the Complex pixel distribution.
+Concept: Fei-Fei Li et.al. CS 231n Deep Learning for Computer Vision
+
+--- slide 11 ---
+Examples of Autoregressive Models
+Several famous AI models use autoregressive generation:
+PixelRNN and PixelCNN– image generation
+Transformer – widely used for sequence modelling
+GPT (Generative Pre‑trained Transformer) – text generation
+
+--- slide 12 ---
+Pixel Recurrent Neural NetworksA¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, GOOGle Deep Mind, ICML 2016
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 13 ---
+PixelCNN
+PixelCNN: A simplified, fully convolutional alternative of fifteen layers that preserves spatial resolution and uses masked convolutions to capture a bounded receptive field.
+
+While generation remains sequential, PixelCNN allows for complete parallelization of the pixel computations during training and evaluation
+
+Masks are adopted in the convolutions to avoid seeing the future context;
+[IMAGE: image.emf.wmf 2.5x2.5in]
+[IMAGE: image.emf.wmf 2.4x3.9in]
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+[IMAGE: image.png.png 2.4x2.4in]
+
+--- slide 14 ---
+Masked convolution in PixelCNN is a modified convolution operation used to ensure that when predicting a pixel, the model only uses information from previously generated pixels and not from future pixels. 
+
+In a standard convolution, the filter can access all neighboring pixels, which would violate the autoregressive property required for sequential image generation. 
+
+To solve this, PixelCNN applies a mask to the convolutional filters that sets certain weights to zero, blocking connections to future pixels (such as pixels to the right or below the current pixel). 
+
+This ensures that each pixel is predicted based only on pixels above and to the left.
+[IMAGE: image.png.png 3.9x2.5in]
+PixelCNN
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 15 ---
+PixelRNN
+Pixel by pixel is generated.
+
+The process is started in general from the left top corner.
+
+An RNN or LSTM is used to model the dependency on previous pixels for the current pixel.
+
+PixelRNN treats an image as a sequence of pixels and predicts each pixel based on the pixels that come before it.
+
+It generates an image by generating one pixel at a time.
+[IMAGE: image.emf.wmf 5.3x2.0in]
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 16 ---
+Left: To generate pixel xi one conditions on all the previously generated pixels left and above of xi. 
+
+Center: To generate a pixel in the multi-scale case we can also condition on the subsampled image pixels (in light blue). 
+
+Right: Diagram of the connectivity inside a masked convolution. In the first layer, each of the RGB channels is connected to previous channels and to the context, but is not connected to itself. 
+
+In subsequent layers, the channels are also connected to themselves.
+[IMAGE: image.emf.wmf 6.5x2.4in]
+PixelRNN
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 17 ---
+PixelRNN Architectures
+Row LSTM: A unidirectional layer that processes the image row by row from top to bottom using a 1D convolution. 
+
+This layer captures a roughly triangular context above the current pixel but is unable to capture the entire available context
+[IMAGE: image.emf.wmf 2.6x4.2in]
+[IMAGE: image.emf.wmf 3.3x2.8in]
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 18 ---
+Diagonal BiLSTM: Designed to capture the entire available global context. 
+
+It skews the input map by offsetting each row by one position to parallelize calculations along diagonals, utilizing a highly nonlinear 2×1 state-to-state convolution.
+[IMAGE: image.emf.wmf 7.4x2.4in]
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+PixelRNN Architectures
+[IMAGE: image.png.png 2.4x3.6in]
+
+--- slide 19 ---
+Comparison between the 3 variants
+[IMAGE: image.emf.wmf 10.9x5.3in]
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 20 ---
+PixelRNN Applications
+Image generation
+
+Density estimation for images
+
+ Image completion / inpainting
+
+Lossless image compression
+Figure: Fei-Fei Li et.al. CS 231n Deep Learning for Computer Vision
+
+--- slide 21 ---
+PixelRNN Drawbacks
+Very slow generation (pixel-by-pixel)
+
+Computationally expensive
+
+Hard to scale to very large images
+Concept: Fei-Fei Li et.al. CS 231n Deep Learning for Computer Vision
+
+--- slide 22 ---
+Visual Results
+[IMAGE: image.emf.wmf 5.5x4.9in]
+Samples from models trained on CIFAR-10
+[IMAGE: image.emf.wmf 5.4x4.9in]
+Samples from models trained on ImageNet 32x32
+A¨aron van den Oord, Nal Kalchbrenner, Koray Kavukcuoglu, “Pixel Recurrent Neural Networks”, ICML 2016
+
+--- slide 23 ---
+Summary
+Autoregressive Model
+Fully Visible Belief Network (FVBN)
+Pixel CNN
+Pixel RNN
+
+--- slide 24 ---
+Transformers
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 3

@@ -1,0 +1,387 @@
+### DECK: L8P6_Transformer-4  (Week 7)  slides=31  canvas=13.3x7.5in
+
+--- slide 1 ---
+Transformers - IV
+Generative AI for Computer Vision
+Lecture 8
+
+Part 4
+
+--- slide 2 ---
+Content
+Transformer Encoder
+Self Attention
+Multi-head Attention
+Layer Normalization
+Feed-forward Neural Network
+Transformer Decoder
+Different Types of Transformers
+
+--- slide 3 ---
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+Multi-head Attention
+Input to encoder
+Positional Encoding
+Word Embedding
+[IMAGE: image.png.png 4.2x6.0in]
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Full Encoder at a glance
+Multi-head Attention
+
+--- slide 4 ---
+Self Attention
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Is
+mac
+mé
+léinn
+Input to encoder
+[1x4]
+Positional Encoding
+Word Embedding
+WQ
+WV
+WK
+qi =  Xi    ×   WQ
+(1 × 4)  (1 × 4)  ×  (4 × 4)
+vi = Xi ×   WV
+(1 × 4) (1 × 4)  ×  (4 × 3)
+Query vectors
+Key vectors
+Value vectors
+4x4 (let)
+ki  =  Xi   ×  WK
+(1 × 4)   (1 × 4)  ×  (4 × 4)
+
+--- slide 5 ---
+Self Attention
+
+--- slide 6 ---
+Self Attention
+
+--- slide 7 ---
+Multi-head Attention
+Input
+(6x512)
+Q
+WQ
+Q’
+(6x512)
+(512 X 512)
+(6x512)
+*
+K
+WK
+K’
+(6x512)
+(512 X 512)
+(6x512)
+V
+WV
+V’
+(6x512)
+(512 X 512)
+(6x512)
+*
+*
+Split into different heads
+Q 1
+Q 2
+Q 3
+Q 4
+K 1
+K 1
+K 3
+K 4
+V 1
+V 2
+V 3
+V 4
+6x (128   128    128   128)
+6x (128   128    128   128)
+6x (128   128    128   128)
+Self 
+Attention
+Self 
+Attention
+Self 
+Attention
+Self 
+Attention
+Head 1
+Head 2
+Head 3
+Head 4
+Concatenation
+For clarity, in this example,
+We assume a different dimensions:
+
+Input: 6 words
+Input Dimension: [6x512]
+WQ,WV,WK =[512x512]
+
+No. of Heads = 4
+
+Qi,Ki,Vi = [6x128]
+
+--- slide 8 ---
+Multi-Head Attention is a core component of the Transformer architecture that enables the model to attend to different parts of a sequence simultaneously and capture multiple types of relationships among tokens.
+
+Instead of performing a single attention operation, the input representations are projected into multiple sets of Query (Q), Key (K), and Value (V) matrices, with each set corresponding to a separate attention head. 
+
+Each head independently computes scaled dot-product attention, allowing it to focus on different aspects of the input, such as syntactic, semantic, or positional relationships. 
+
+The outputs from all attention heads are then concatenated and passed through a final learned linear transformation to produce the multi-head attention output. 
+
+By learning multiple attention patterns in parallel, Multi-Head Attention increases the expressive power of the Transformer and enables it to capture complex dependencies within the input sequence more effectively.
+Multi-head Attention
+
+--- slide 9 ---
+Consider the sentence:
+
+“The cat sat on the mat because it was tired.”
+
+For example:
+Head 1: focuses on grammatical relationships, such as “it” → “cat.”
+Head 2: focuses on positional relationships, such as nearby words.
+Head 3: focuses on semantic relationships, such as “tired” being related to “cat.”
+Head 4: may focus on relationships between verbs and their subjects.
+Multi-head Attention
+
+--- slide 10 ---
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+Encoder Architecture
+
+--- slide 11 ---
+Why ADD (SKIP Connection) is required?
+
+--- slide 12 ---
+Why Norm is required?
+
+--- slide 13 ---
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+FEED FORWARD NEURAL NETWORK
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Encoder Architecture
+Feed-forward Neural Network
+Feed Forward Neural Network
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 14 ---
+Feed-forward Neural Network
+
+--- slide 15 ---
+Feed-forward Neural Network
+
+--- slide 16 ---
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+FEED FORWARD NEURAL NETWORK
+Add & Normalization
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Encoder Architecture
+Feed-forward Neural Network
+Feed Forward Neural Network
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 17 ---
+Full Encoder at a glance
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+FEED FORWARD NEURAL NETWORK
+To next encoder layer
+Add & Normalization
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 18 ---
+A Transformer decoder block receives two primary inputs: a sequence of input vectors x from the preceding decoder layer and a set of context vectors c produced by the encoder. 
+
+It generates a sequence of output vectors y, which are subsequently used to predict the next tokens in the target sequence. 
+
+The first sublayer is masked multi-head self-attention, in which each position is allowed to attend only to preceding positions and is prevented from accessing future tokens. 
+
+This causal masking preserves the autoregressive nature of the decoder and ensures that token generation depends only on previously available information.
+Transformer Decoder
+
+--- slide 19 ---
+<start>
+I
+am
+a
+student
+Decoder 1
+Decoder 2
+… …
+Decoder N
+…
+<end>
+I
+am
+a
+student
+Transformer Decoder
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 20 ---
+The resulting representations are then passed to a multi-head cross-attention sublayer, which differs from self-attention because its queries originate from the decoder, while the encoder context vectors c provide the keys and values. 
+
+This enables the decoder to selectively attend to relevant information from the encoded input sequence when generating each target token. 
+
+Finally, the attended representations are processed by a position-wise feed-forward network to produce the output representations of the decoder block. 
+
+Through this combination of masked self-attention, cross-attention, and feed-forward processing, the Transformer decoder can effectively model long-range dependencies while supporting highly parallelizable and scalable computation during training. 
+
+However, the quadratic computational and memory complexity of attention with respect to sequence length can result in substantial memory requirements for long input sequences.
+Transformer Decoder
+
+--- slide 21 ---
+Positional 
+Encoding
+Masked 
+Multi-head
+Self Attention
+Layer
+Normalization
+Multi-head Attention
+ k v q
+…
+Layer
+Normalization
+MLP
+Layer
+Normalization
+FC
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+<start>
+I
+am
+a
+student
+Decoder 1
+Decoder 2
+… …
+Decoder N
+…
+<end>
+I
+am
+a
+student
+Transformer Decoder
+
+--- slide 22 ---
+Masked multi-head self-attention
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 23 ---
+The masking operation ensures the decoder maintains the autoregressive property, generating each token solely from the previously observed context.
+
+Multi-head attention performs this operation across multiple independently learned projection spaces, allowing the model to capture different types of dependencies and contextual relationships simultaneously. 
+
+The outputs of all attention heads are concatenated and passed through a learned linear projection, providing a rich contextual representation that is subsequently processed by the decoder's feed-forward network.
+Masked multi-head self-attention
+
+--- slide 24 ---
+Multi-head cross-attention sublayer
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 25 ---
+The resulting attention weights determine the extent to which each decoder position focuses on different positions in the encoded input sequence, allowing the decoder to identify and utilize the most relevant source information for predicting each target token. 
+
+In multi-head cross-attention, this process is performed simultaneously across multiple attention heads using independent learned projections. 
+
+Each head can capture different relationships between the source and target sequences, and their outputs are concatenated and transformed through a final linear projection. 
+
+The cross-attention output is typically combined with the decoder's previous representation through a residual connection and subsequently normalized, enabling effective information flow and stable optimization within the decoder architecture.
+Multi-head cross-attention sublayer
+
+--- slide 26 ---
+The feed-forward network (FFN), residual connections, and layer normalization
+
+--- slide 27 ---
+The feed-forward network (FFN), residual connections, and layer normalization
+
+--- slide 28 ---
+In a decoder block, these components are applied around the masked self-attention, cross-attention, and feed-forward sublayers, enabling the network to progressively refine contextual representations while maintaining efficient information propagation. 
+
+Together, the FFN provides nonlinear feature transformation, residual connections support information and gradient flow, and layer normalization promotes stable and efficient optimization, thereby contributing to the overall effectiveness and scalability of the Transformer decoder.
+The feed-forward network (FFN), residual connections, and layer normalization
+
+--- slide 29 ---
+The original Transformer model is an encoder-decoder architecture that serves translation tasks well.
+
+
+Transformer based models
+Encoder-only model 
+Encoder-Decoder model
+Decoder-only model
+Transformer
+Figure: https://towardsdatascience.com/a-complete-guide-to-bert-with-code-9f87602e4a11/
+[IMAGE: image.png.png 1.7x4.6in]
+[IMAGE: image.png.png 3.6x4.8in]
+[IMAGE: image.png.png 1.6x4.0in]
+Decoder-Only (GPT*)
+Encoder-Decoder (Transformer)
+Encoder-Only (BERT*)
+*Conceptual diagram. Exact models may be slightly different
+
+--- slide 30 ---
+Summary
+Transformer Encoder
+Self Attention
+Multi-head Attention
+Layer Normalization
+Feed-forward Neural Network
+Transformer Decoder
+Different Types of Transformers
+
+--- slide 31 ---
+Vision Transformers
+Generative AI for Computer Vision
+Next
+
+Lecture 9: Part 1

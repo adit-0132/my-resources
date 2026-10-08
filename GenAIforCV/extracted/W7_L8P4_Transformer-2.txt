@@ -1,0 +1,497 @@
+### DECK: L8P4_Transformer-2  (Week 7)  slides=30  canvas=13.3x7.5in
+
+--- slide 1 ---
+Transformers - II
+Generative AI for Computer Vision
+Lecture 8
+
+Part 4
+
+--- slide 2 ---
+Content
+How Attention is computed?
+Self attention
+Masked Self Attention
+Multi-head Self-attention
+
+--- slide 3 ---
+How attention is computed in Image Captioning?
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h
+Features
+Inputs : 
+Features : z (Dimension : H x W x D)
+Query : h (Dimension :D)
+Extract spatial features from a pretrained CNN
+[IMAGE: image.png.png 0.9x1.0in]
+CNN
+In transformer, separate fully connected (FC) linear transformations are applied to the input to generate three distinct representations: 
+Query (Q), Key (K), and Value (V). 
+
+The Query and Key vectors are used to compute alignment scores in the self-attention mechanism, while the Value vectors are used to construct the final weighted output.
+
+--- slide 4 ---
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h
+Features
+Inputs : 
+Features : z (Dimension : H x W x D)
+Query : h (Dimension :D)
+e0,0
+e0,1
+e0,2
+e1,0
+e1,1
+e1,2
+e2,0
+e2,1
+e2,2
+Alignment
+Operations : 
+Alignment :  ei,j = fall(h, zi,j)
+In an attention mechanism, the alignment score measures how well a query matches a key. 
+
+It indicates the importance or relevance of each key to the given query.
+How attention is computed in Image Captioning?
+
+--- slide 5 ---
+Inputs : 
+Features : z (Dimension : H x W x D)
+Query : h (Dimension :D)
+Operations : 
+Alignment :  ei,j = fall(h, zi,j)
+Attention : a = Softmax(e)
+a0,0
+a0,1
+a0,2
+a1,0
+a1,1
+a1,2
+a2,0
+a2,1
+a2,2
+Attention
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h
+Features
+e0,0
+e0,1
+e0,2
+e1,0
+e1,1
+e1,2
+e2,0
+e2,1
+e2,2
+Alignment
+Softmax
+Once the alignment scores are calculated between a query and all the keys, they are passed through a softmax function to convert them into attention weights.
+How attention is computed in Image Captioning?
+
+--- slide 6 ---
+Inputs : 
+Features : z (Dimension : H x W x D)
+Query : h (Dimension :D)
+a0,0
+a0,1
+a0,2
+a1,0
+a1,1
+a1,2
+a2,0
+a2,1
+a2,2
+Attention
+Z0,0
+Z0,1
+Z0,2
+Z1,0
+Z1,1
+Z1,2
+Z2,0
+Z2,1
+Z2,2
+h
+Features
+e0,0
+e0,1
+e0,2
+e1,0
+e1,1
+e1,2
+e2,0
+e2,1
+e2,2
+Alignment
+Softmax
+mul + add
+c
+Outputs : 
+Context vector : c Dimension : D)
+The context vector is obtained by taking the weighted sum of the value vectors using the attention weights. 
+
+Each value vector (here Features) is then multiplied by its corresponding attention weight, and all the weighted values are added together. 
+
+The resulting vector is the context vector, which contains the most relevant information from the input sequence for the current query.
+How attention is computed in Image Captioning?
+
+--- slide 7 ---
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector h (Dimension : D)
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+softmax
+mul + add
+Alignment
+Attention
+Input Vectors
+Output:
+Context Vector C (Dimension : D)
+
+--- slide 8 ---
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+softmax
+mul + add
+Alignment
+Attention
+Input Vectors
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector h (Dimension : D)
+Output:
+Context Vector C (Dimension : D)
+Attention Layer
+
+--- slide 9 ---
+Output:
+Context Vector C (Dimension : D)
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector h (Dimension : D)
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+softmax
+mul + add
+Alignment
+Attention
+Input Vectors
+
+--- slide 10 ---
+Output:
+Context Vector y (Dimension : D)
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector q (Dimension : MxD)
+As each query vector may obtain a different context, so there are multiple context vectors because of multiple query vectors.
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Input Vectors
+Mul
+ 
++
+Add
+(→)
+Softmax()
+(→)
+(↑)
+
+--- slide 11 ---
+In the attention mechanism of a Transformer, the same input representations may initially be used both to determine the alignment between tokens by computing attention scores and to generate the final attention output. 
+
+However, using a single representation for both purposes can limit the model’s flexibility and expressive capacity. 
+
+To overcome this limitation, separate fully connected (FC) linear transformations are applied to the input representations to produce distinct representations for different roles within the attention mechanism. 
+
+This allows the model to learn specialized projections for computing attention scores and generating the final output, thereby increasing the expressive power and flexibility of the layer.
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 12 ---
+Output:
+Context Vector y 
+(Dimension : D)
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector q (Dimension : MxD)
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Input Vectors
+Mul
+ 
++
+Add
+(→)
+Softmax()
+(→)
+(↑)
+
+--- slide 13 ---
+Operations:
+Key Vectors: k=xWk
+Value Vectors: v=xWv
+Inputs:
+Input Vector X 
+(Dimension : NxD)
+Query Vector q 
+(Dimension : MxDk)
+These transformations generate three distinct vector representations: Query (Q), Key (K), and Value (V). 
+The Query and Key vectors are used to compute alignment scores through the self-attention mechanism, determining how strongly each token should attend to the others, while the Value vectors are used to construct the final weighted representation. 
+By applying separate linear transformations to generate Q, K, and V, the model can learn specialized feature representations for measuring token relationships and producing the output. 
+This separation increases the flexibility and expressive power of the attention mechanism, enabling the model to capture more complex relationships and dependencies within the input data.
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Input Vectors
+
+--- slide 14 ---
+Output:
+Context Vector y (Dimension : Dv)
+Inputs:
+Input Vector X (Dimension : NxD)
+Query Vector q (Dimension : MxDk)
+In this setup, the input vectors are used both for computing the alignment scores and for performing the attention calculations. 
+Since the fully connected (FC) layers used to generate the Query, Key, and Value representations can have different dimensions, the attention mechanism is not restricted to a fixed input or output dimensionality. 
+In particular, the dimensions of the Key and Value projections can determine the dimensionality of the attention computations and the resulting representation. 
+This flexibility allows the model to learn more specialized feature representations and capture complex relationships within the input data.
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Mul
+ 
++
+Add
+(→)
+softmax
+(→)
+(↑)
+Input Vectors
+
+--- slide 15 ---
+Query, Key, and Value Projections in Attention
+In the attention mechanism of a Transformer, the input vectors are initially used for both computing alignment scores and generating the attention output. 
+
+The alignment step determines how strongly different tokens relate to one another, while the attention calculation uses these relationships to produce a weighted representation. 
+
+However, using the same representations for both purposes can limit the model’s flexibility and expressive power. 
+
+To address this limitation, separate fully connected (FC) linear transformations are applied to the input to generate three distinct representations: Query (Q), Key (K), and Value (V).
+
+--- slide 16 ---
+Query, Key, and Value Projections in Attention
+The Query and Key vectors are used to compute alignment scores in the self-attention mechanism, while the Value vectors are used to construct the final weighted output. 
+
+Since these FC transformations can have different dimensions, the attention mechanism can operate with different key and value representations and can map the input to an output space of a different dimensionality. 
+
+This added flexibility enables the model to learn more specialized representations and capture complex relationships and dependencies within the data.
+
+--- slide 17 ---
+Output:
+Context Vector y (Shape: Dv)
+Inputs:
+Input Vector X (dimension : NxD)
+Query Vector q (dimension : MxDk)
+Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Mul
+ 
++
+Add
+(→)
+softmax
+(→)
+(↑)
+Input Vectors
+
+--- slide 18 ---
+Self-attention
+Self-attention is a fundamental mechanism in the Transformer architecture that enables each element in a sequence to consider and weigh the importance of all other elements when generating its representation. 
+
+The main difference between attention and self-attention lies in where the Query, Key, and Value vectors come from. 
+
+In general attention, the Query may come from one sequence while the Key and Value vectors come from another sequence, allowing the model to focus on relevant information from a different source. 
+
+In contrast, self-attention generates the Query, Key, and Value vectors from the same input sequence, allowing each token to attend to other tokens within that sequence. 
+
+Thus, self-attention is a specific form of attention that enables the model to capture relationships and dependencies among elements of the same sequence.
+
+--- slide 19 ---
+In self-attention, the input vectors are passed through fully connected (FC) linear layers to produce three different representations: Query (Q), Key (K), and Value (V). 
+
+The Query of a token is compared with the Keys of all tokens to compute attention scores, which indicate the relevance of each token to the current token. 
+
+These scores are normalized using the Softmax function and then used to compute a weighted sum of the Value vectors, producing a context-aware representation. 
+
+This mechanism allows the model to capture relationships and dependencies between tokens regardless of their distance in the image.
+
+As a result, self-attention has become a core component of modern Transformer-based language models, including BERT and GPT (Generative Pre-trained Transformer).
+Self-attention
+
+--- slide 20 ---
+Inputs:
+Input Vector X 
+(Dimension : NxD)
+Query Vector q (shape : MxDk)
+Self Attention Layer
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Input Vectors
+
+--- slide 21 ---
+In this setup, the Query vectors are generated through a learned fully connected (FC) linear transformation of the input, eliminating the need for separate or external query inputs. 
+
+The resulting Queries are compared with the Key vectors to compute attention scores, which determine the relevance of each element in the sequence to the others. 
+
+These attention scores are then applied to the Value vectors to produce the final context-aware representation. 
+
+This design enables the model to learn relationships and dependencies among elements within the same sequence efficiently and allows each element to dynamically incorporate relevant information from the entire sequence.
+Self Attention Layer
+
+--- slide 22 ---
+Output:
+Context Vector y (Dimension : Dv)
+Inputs:
+Input Vector X 
+(Dimension : NxD)
+Self Attention Layer
+Self Attention
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Mul
+ 
++
+Add
+(→)
+softmax
+(→)
+(↑)
+Input Vectors
+
+--- slide 23 ---
+Masked Self-Attention Layer
+A masked self-attention layer is a variant of self-attention commonly used in autoregressive Transformer models to ensure that each token can attend only to itself and the tokens that appear before it in the sequence. 
+
+A mask is applied to the attention scores to prevent a token from accessing future tokens during training.
+
+Typically, the scores corresponding to future positions are set to a very large negative value before applying the Softmax function, causing their attention weights to become effectively zero. 
+
+This prevents information from future tokens from leaking into the current prediction and ensures that the model learns to generate or predict tokens sequentially. 
+
+Masked self-attention is therefore essential in decoder-based architectures such as GPT, where predictions must depend only on previously available information.
+
+--- slide 24 ---
+Output:
+Context Vector y (Dimension: Dv)
+Inputs:
+Input Vector X (Dimension : NxD)
+Masked self-attention layer
+This layer prevents vectors from looking at future vectors.
+Alignment scores is set to minus infinity
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+Alignment
+Attention
+Mul
+ 
++
+Add
+(→)
+softmax
+(→)
+(↑)
+Input Vectors
+
+--- slide 25 ---
+Multi-head Self-attention Layer
+The Multi-Head Self-Attention layer is a key component of the Transformer architecture that allows the model to focus on different parts of an input sequence simultaneously. 
+
+It works by transforming the input into three representations called Query (Q), Key (K), and Value (V) and calculating attention scores to determine how strongly each word should attend to other words in the sequence. 
+
+In multi-head attention, this process is performed across multiple attention heads, allowing the model to capture different types of relationships and contextual information at the same time. The outputs from all the attention heads are then combined and passed through a linear transformation. 
+
+This mechanism enables Transformers to understand long-range dependencies and the relationships between words efficiently, making it essential for tasks such as machine translation, text generation, and language understanding.
+
+--- slide 26 ---
+Consider the sentence:
+
+“The cat sat on the mat because it was tired.”
+
+ The word “it” refers to “the cat.” A Transformer needs to understand this relationship.
+
+In self-attention, each word looks at all the other words in the sentence and determines which ones are important for understanding its meaning. 
+
+For example, when processing “it,” the model may give a high attention score to “cat” because they are related.
+Multi-head Self-attention Layer
+
+--- slide 27 ---
+Multi-head self-attention means that this process is performed by several attention heads simultaneously. Each head can learn a different type of relationship. 
+For example:
+Head 1: focuses on grammatical relationships, such as “it” → “cat.”
+Head 2: focuses on positional relationships, such as nearby words.
+Head 3: focuses on semantic relationships, such as “tired” being related to “cat.”
+Head 4: may focus on relationships between verbs and their subjects.
+Each attention head produces its own output. 
+These outputs are then concatenated and passed through a linear layer to produce the final representation.
+In simple terms, multi-head self-attention allows the Transformer to look at the same sentence from multiple perspectives at the same time, helping it understand both the meaning of individual words and their relationships with other words.
+Multi-head Self-attention Layer
+
+--- slide 28 ---
+Multi-head self attention layerMultiple self-attention heads in parallel
+Head 1
+Self 
+Attention
+Head 2
+Self 
+Attention
+Head h
+Self 
+Attention
+Split
+Concatenate
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+.
+.
+.
+
+--- slide 29 ---
+Summary
+How Attention is computed?
+Self attention
+Masked Self Attention
+Multi-head Self-attention
+
+--- slide 30 ---
+Transformers - III
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 5

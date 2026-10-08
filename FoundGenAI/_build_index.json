@@ -1,0 +1,373 @@
+[
+ {
+  "lec": 1,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 01.pdf",
+  "name": "Lec 01.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 2,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 02.pdf",
+  "name": "Lec 02.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 3,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 03.pdf",
+  "name": "Lec 03.pdf",
+  "pages": 8
+ },
+ {
+  "lec": 4,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 04.pdf",
+  "name": "Lec 04.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 5,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 05.pdf",
+  "name": "Lec 05.pdf",
+  "pages": 16
+ },
+ {
+  "lec": 6,
+  "week": 1,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week1-20261004T074818Z-1-001/Week1/Lec 06.pdf",
+  "name": "Lec 06.pdf",
+  "pages": 17
+ },
+ {
+  "lec": 10,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 10.pdf",
+  "name": "Lec 10.pdf",
+  "pages": 10
+ },
+ {
+  "lec": 11,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 11.pdf",
+  "name": "Lec 11.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 12,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 12.pdf",
+  "name": "Lec 12.pdf",
+  "pages": 16
+ },
+ {
+  "lec": 13,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 13.pdf",
+  "name": "Lec 13.pdf",
+  "pages": 15
+ },
+ {
+  "lec": 14,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 14.pdf",
+  "name": "Lec 14.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 15,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 15.pdf",
+  "name": "Lec 15.pdf",
+  "pages": 8
+ },
+ {
+  "lec": 16,
+  "week": 2,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week2-20261004T074829Z-1-001/Week2/Lec 16.pdf",
+  "name": "Lec 16.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 19,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 19.pdf",
+  "name": "Lec 19.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 20,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 20.pdf",
+  "name": "Lec 20.pdf",
+  "pages": 10
+ },
+ {
+  "lec": 21,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 21.pdf",
+  "name": "Lec 21.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 22,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 22.pdf",
+  "name": "Lec 22.pdf",
+  "pages": 10
+ },
+ {
+  "lec": 23,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 23.pdf",
+  "name": "Lec 23.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 24,
+  "week": 3,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week3-20261004T074842Z-1-001/Week3/Lec 24.pdf",
+  "name": "Lec 24.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 26,
+  "week": 4,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week4-20261004T074901Z-1-001/Week4/Lec 26.pdf",
+  "name": "Lec 26.pdf",
+  "pages": 16
+ },
+ {
+  "lec": 27,
+  "week": 4,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week4-20261004T074901Z-1-001/Week4/Lec 27.pdf",
+  "name": "Lec 27.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 28,
+  "week": 4,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week4-20261004T074901Z-1-001/Week4/Lec 28.pdf",
+  "name": "Lec 28.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 31,
+  "week": 5,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week5-20261004T074913Z-1-001/Week5/Lec 31.pdf",
+  "name": "Lec 31.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 32,
+  "week": 5,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week5-20261004T074913Z-1-001/Week5/Lec 32.pdf",
+  "name": "Lec 32.pdf",
+  "pages": 13
+ },
+ {
+  "lec": 33,
+  "week": 5,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week5-20261004T074913Z-1-001/Week5/Lec 33.pdf",
+  "name": "Lec 33.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 34,
+  "week": 5,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week5-20261004T074913Z-1-001/Week5/Lec 34.pdf",
+  "name": "Lec 34.pdf",
+  "pages": 8
+ },
+ {
+  "lec": 38,
+  "week": 6,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week6-20261004T074940Z-1-001/Week6/Lec 38.pdf",
+  "name": "Lec 38.pdf",
+  "pages": 18
+ },
+ {
+  "lec": 39,
+  "week": 6,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week6-20261004T074940Z-1-001/Week6/Lec 39.pdf",
+  "name": "Lec 39.pdf",
+  "pages": 17
+ },
+ {
+  "lec": 40,
+  "week": 6,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week6-20261004T074940Z-1-001/Week6/Lec 40.pdf",
+  "name": "Lec 40.pdf",
+  "pages": 17
+ },
+ {
+  "lec": 41,
+  "week": 6,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week6-20261004T074940Z-1-001/Week6/Lec 41.pdf",
+  "name": "Lec 41.pdf",
+  "pages": 18
+ },
+ {
+  "lec": 42,
+  "week": 6,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week6-20261004T074940Z-1-001/Week6/Lec 42.pdf",
+  "name": "Lec 42.pdf",
+  "pages": 20
+ },
+ {
+  "lec": 44,
+  "week": 7,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week7-20261004T074945Z-1-001/Week7/Lec 44.pdf",
+  "name": "Lec 44.pdf",
+  "pages": 18
+ },
+ {
+  "lec": 45,
+  "week": 7,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week7-20261004T074945Z-1-001/Week7/Lec 45 .pdf",
+  "name": "Lec 45 .pdf",
+  "pages": 13
+ },
+ {
+  "lec": 46,
+  "week": 7,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week7-20261004T074945Z-1-001/Week7/Lec 46.pdf",
+  "name": "Lec 46.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 47,
+  "week": 7,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week7-20261004T074945Z-1-001/Week7/Lec 47.pdf",
+  "name": "Lec 47.pdf",
+  "pages": 13
+ },
+ {
+  "lec": 48,
+  "week": 7,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week7-20261004T074945Z-1-001/Week7/Lec 48.pdf",
+  "name": "Lec 48.pdf",
+  "pages": 26
+ },
+ {
+  "lec": 49,
+  "week": 8,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week8-20261004T074949Z-1-001/Week8/Lec 49.pdf",
+  "name": "Lec 49.pdf",
+  "pages": 18
+ },
+ {
+  "lec": 50,
+  "week": 8,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week8-20261004T074949Z-1-001/Week8/Lec 50.pdf",
+  "name": "Lec 50.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 51,
+  "week": 8,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week8-20261004T074949Z-1-001/Week8/Lec 51.pdf",
+  "name": "Lec 51.pdf",
+  "pages": 11
+ },
+ {
+  "lec": 52,
+  "week": 8,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week8-20261004T074949Z-1-001/Week8/Lec 52.pdf",
+  "name": "Lec 52.pdf",
+  "pages": 18
+ },
+ {
+  "lec": 53,
+  "week": 8,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week8-20261004T074949Z-1-001/Week8/Lec 53.pdf",
+  "name": "Lec 53.pdf",
+  "pages": 24
+ },
+ {
+  "lec": 54,
+  "week": 9,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week9-20261004T074953Z-1-001/Week9/Lec 54.pdf",
+  "name": "Lec 54.pdf",
+  "pages": 16
+ },
+ {
+  "lec": 55,
+  "week": 9,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week9-20261004T074953Z-1-001/Week9/Lec 55.pdf",
+  "name": "Lec 55.pdf",
+  "pages": 12
+ },
+ {
+  "lec": 56,
+  "week": 9,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week9-20261004T074953Z-1-001/Week9/Lec 56.pdf",
+  "name": "Lec 56.pdf",
+  "pages": 15
+ },
+ {
+  "lec": 57,
+  "week": 9,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week9-20261004T074953Z-1-001/Week9/Lec 57.pdf",
+  "name": "Lec 57.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 59,
+  "week": 10,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week10-20261004T074957Z-1-001/Week10/Lec 59.pdf",
+  "name": "Lec 59.pdf",
+  "pages": 15
+ },
+ {
+  "lec": 60,
+  "week": 10,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week10-20261004T074957Z-1-001/Week10/Lec 60.pdf",
+  "name": "Lec 60.pdf",
+  "pages": 17
+ },
+ {
+  "lec": 61,
+  "week": 10,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week10-20261004T074957Z-1-001/Week10/Lec 61.pdf",
+  "name": "Lec 61.pdf",
+  "pages": 14
+ },
+ {
+  "lec": 62,
+  "week": 10,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week10-20261004T074957Z-1-001/Week10/Lec 62.pdf",
+  "name": "Lec 62.pdf",
+  "pages": 17
+ },
+ {
+  "lec": 63,
+  "week": 10,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week10-20261004T074957Z-1-001/Week10/Lec 63.pdf",
+  "name": "Lec 63.pdf",
+  "pages": 23
+ },
+ {
+  "lec": null,
+  "week": 11,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week11-20261004T075000Z-1-001/Week11/Foundations-of-LLM-Lecture1-parta.pdf",
+  "name": "Foundations-of-LLM-Lecture1-parta.pdf",
+  "pages": 33
+ },
+ {
+  "lec": null,
+  "week": 11,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week11-20261004T075000Z-1-001/Week11/Foundations-of-LLMs-Lecture1-partb.pdf",
+  "name": "Foundations-of-LLMs-Lecture1-partb.pdf",
+  "pages": 19
+ },
+ {
+  "lec": null,
+  "week": 12,
+  "file": "/home/adi/Projects/ideas/Fundamentals of GenAI and LLMs/Week12-20261004T075004Z-1-001/Week12/Week12-notes.pdf",
+  "name": "Week12-notes.pdf",
+  "pages": 38
+ }
+]

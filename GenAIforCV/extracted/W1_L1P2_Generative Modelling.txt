@@ -1,0 +1,263 @@
+### DECK: L1P2_Generative Modelling  (Week 1)  slides=24  canvas=13.3x7.5in
+
+--- slide 1 ---
+Generative Modelling
+Generative AI for Computer Vision
+Lecture 1
+
+Part 2
+
+--- slide 2 ---
+Content
+Generative Modelling
+
+Synthetic Data Generation
+
+Discriminative Learning 
+
+Generative Learning
+
+Generative vs Discriminative Learning
+
+--- slide 3 ---
+Generative Modelling
+Generative Modelling
+Generative Modelling is a branch of machine learning that focuses on learning the underlying probability distribution of data so that new, realistic samples can be generated.
+Suppose we have thousands of images of cats. A generative model learns the patterns, structure, and variations in those images. 
+After training, it can create entirely new cat images that were never in the dataset.
+In contrast, a discriminative model learns to distinguish between categories (e.g., cat vs. dog) rather than generate new examples.
+In general generative models are unsupervised in nature. 
+Learns the patterns of input data from a given distribution to generate new examples which belong to the similar distribution.
+
+--- slide 4 ---
+Generative Modelling
+
+--- slide 5 ---
+Why Synthetic Image Generation is required?
+Supervised classification methods have achieved significant success in computer vision today, especially making a substantial progress in the era of deep learning.
+
+But, Deep learning models require large accurately annotated image datasets for supervised learning.
+
+Synthetic image generation is important in computer vision because collecting and labeling large amounts of real-world visual data is often expensive, slow, difficult, or sometimes impossible. 
+
+Synthetic data helps address these challenges by creating artificial images, videos, or sensor data that can be used to train and evaluate vision models.
+
+--- slide 6 ---
+Why synthetic data is needed?
+Reduces data collection costs: Gathering real images and annotating them can require thousands of hours of manual work. For example:
+Drawing bounding boxes around pedestrians in millions of frames. 
+Labeling lane markings for autonomous driving. 
+Segmenting organs in medical images. 
+
+Synthetic datasets can automatically generate labels during rendering, eliminating much of the annotation effort.
+[IMAGE: image.png.png 1.6x2.9in]
+Image Source: Alfasly, Saghir & Liu, Beibei & Hu, Yongjian & Wang, Yufei & Li, Chang-Tsun. (2019). Auto-Zooming CNN-Based Framework for Real-Time Pedestrian Detection in Outdoor Surveillance Videos. IEEE Access.
+[IMAGE: image.png.png 4.9x2.2in]
+Image Source: Trullo, Roger & Petitjean, Caroline & Dubray, Bernard & Ruan, Su. (2019). Multiorgan segmentation using distance-aware adversarial networks. Journal of Medical Imaging.
+
+--- slide 7 ---
+Provides perfect ground truth: When synthetic scenes are generated in a simulator, the exact Object locations, Object identities, Depth information, Surface normals, Segmentation masks, Camera poses are already known. This produces highly accurate labels that are difficult to obtain from real-world data.
+
+Solves rare-event problems: Some important situations occur very infrequently in reality. Examples: 
+Car accidents, 
+Pedestrians suddenly crossing roads
+Industrial equipment failures
+Severe weather conditions
+
+A synthetic environment can generate thousands of such scenarios, allowing models to learn from events that are rarely captured in real datasets.
+Why synthetic data is needed?
+
+--- slide 8 ---
+Improves diversity: Real datasets may contain biases:
+Certain geographic regions 
+Weather conditions 
+Lighting situations 
+Demographics 
+
+Synthetic generation can systematically vary:
+Rain, fog, snow 
+Time of day 
+Camera viewpoints 
+Object appearances 
+
+This helps models generalize better.
+Why synthetic data is needed
+
+--- slide 9 ---
+Enables safe training for dangerous applications: Some situations are risky to collect in the real world. Examples:
+Autonomous vehicle crashes 
+Military reconnaissance 
+Disaster response robotics 
+Drone emergency landings 
+Simulation allows these scenarios to be generated safely.
+
+Supports domain adaptation: A common workflow is:
+Train on a large synthetic dataset. 
+Fine-tune on a smaller real dataset. 
+This reduces the amount of real labeled data required while maintaining high performance.
+Why synthetic data is needed
+
+--- slide 10 ---
+Helps when privacy is a concern: In domains such as:
+Healthcare 
+Surveillance 
+Retail analytics 
+real images may contain sensitive information.
+
+Synthetic data can mimic the statistical properties of real data without exposing actual individuals.
+Why synthetic data is needed
+
+--- slide 11 ---
+Problems with Synthetic Data
+Synthetic data is not a complete replacement for real data because of the simulation-to-reality (Sim2Real) gap.
+
+Models trained only on synthetic images may struggle with:
+Real-world noise 
+Sensor artifacts 
+Unexpected object appearances 
+Complex lighting effects 
+
+To reduce this gap, researchers use techniques such as:
+Domain randomization 
+Photorealistic rendering 
+Generative AI augmentation 
+Fine-tuning with real-world samples
+
+--- slide 12 ---
+Learning Models
+There are two types of learning models
+Discriminative Learning Model
+Generative Learning Model
+
+A discriminative learning model is a machine learning model that learns by discrimination that means the boundary or relationship between input features and output labels. Instead of modeling how the data is generated, it directly learns to predict the target class from the observed data.
+
+A generative learning model is a machine learning model that learns how the data is generated. Instead of only learning the relationship between inputs and labels, it learns the underlying probability distribution of the data.
+
+--- slide 13 ---
+Discriminative Learning Model
+
+--- slide 14 ---
+Discriminative LearningStatistical Understanding
+
+--- slide 15 ---
+Size
+Weight
+Two features 
+examples
+[IMAGE: image.jpeg.jpg 0.4x0.5in]
+[IMAGE: image.jpeg.jpg 0.4x0.5in]
+[IMAGE: image.png.png 0.3x0.4in]
+[IMAGE: image.png.png 0.3x0.4in]
+[IMAGE: image.png.png 0.3x0.4in]
+[IMAGE: image.png.png 0.3x0.4in]
+[IMAGE: image.png.png 0.4x0.5in]
+[IMAGE: image.png.png 0.4x0.3in]
+[IMAGE: image.png.png 0.3x0.4in]
+[IMAGE: image.png.png 0.3x0.3in]
+[IMAGE: image.png.png 0.4x0.4in]
+[IMAGE: image.png.png 0.4x0.4in]
+What is          ?
+[IMAGE: image.png.png 0.4x0.4in]
+Given this supervised classifier?
+[IMAGE: image.png.png 0.4x0.4in]
+This is an Apple,
+Decision Boundary
+[IMAGE: image.png.png 0.3x0.4in]
+Logistic RegressionDecision Boundary
+
+--- slide 16 ---
+Linear Regression
+x1
+x2
+x6
+…
+y1
+y2
+y6
+
+--- slide 17 ---
+Generative Modelling
+
+--- slide 18 ---
+Generative LearningStatistical Understanding
+
+--- slide 19 ---
+Generative Models (Statistically)
+
+--- slide 20 ---
+In generative modelling, we are given a set of data samples drawn from an unknown real data distribution (D). 
+The objective is to train a neural network, known as the generator, to learn this underlying distribution and produce a new distribution (D') that closely approximates (D).
+The generator takes a randomly sampled noise vector (Z) (also called a latent vector) as input and transforms it into synthetic data samples.
+[IMAGE: image.png.png 1.1x1.1in]
+Loss (Statistical Distance between D and D’ distributions)
+p(z) ~ Z
+Random noise
+Generative Model
+(Neural Net) G
+Generated data 
+distribution 
+D’=G(Z)=I’(x)
+Real data distribution D=I(x)
+Generative Modelling
+Generator
+[IMAGE: image.png.png 2.4x1.2in]
+[IMAGE: image.png.png 1.5x0.4in]
+Image: MNIST Dataset
+
+--- slide 21 ---
+During training, the neural network is optimized so that the difference between the real data distribution (D) and the generated data distribution (D') is minimized. 
+This difference is measured using statistical distance metrics, such as the L1 norm or L2 norm. 
+As training progresses, the generator gradually learns to produce increasingly realistic samples. 
+After convergence, the generator can generate new data samples that closely follow the original distribution (D), while being novel and not identical to any of the samples present in the training dataset.
+[IMAGE: image.png.png 1.1x1.1in]
+Loss (Statistical Distance between D and D’ distributions)
+p(z) ~ Z
+Random noise
+Generative Model
+(Neural Net) G
+Generated data 
+distribution 
+D’=G(Z)=I’(x)
+Real data distribution D=I(x)
+Generative Modelling
+Generator
+[IMAGE: image.png.png 2.4x1.2in]
+[IMAGE: image.png.png 1.5x0.4in]
+Image: MNIST Dataset
+
+--- slide 22 ---
+P(Y =       | X = Dog) = 0.95
+Discriminative vs. Generative
+[IMAGE: image.jpeg.jpg 0.5x0.5in]
+[IMAGE: image.jpg.jpg 0.6x0.7in]
+[IMAGE: image.jpg.jpg 0.6x0.6in]
+[IMAGE: image.jpg.jpg 0.5x0.8in]
+[IMAGE: image.jpg.jpg 0.6x0.6in]
+[IMAGE: image.jpg.jpg 0.8x0.8in]
+[IMAGE: image.jpg.jpg 0.8x0.6in]
+[IMAGE: image.jpg.jpg 0.6x0.6in]
+[IMAGE: image.jpg.jpg 1.0x0.6in]
+[IMAGE: image.jpg.jpg 0.6x0.6in]
+[IMAGE: image.jpg.jpg 0.9x0.4in]
+Generative models are trained to generate samples from a distribution which is similar to a given distribution. Statistically,
+Dog
+Non Dog
+
+--- slide 23 ---
+Summary
+Generative Modelling
+
+Synthetic Data Generation
+
+Discriminative Learning 
+
+Generative Learning
+
+Generative vs Discriminative Learning
+
+--- slide 24 ---
+Generative Vision Models
+Generative AI for Computer Vision
+Next
+
+Lecture 1:Part 3

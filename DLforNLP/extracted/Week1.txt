@@ -1,0 +1,1042 @@
+--- page 1 ---
+Lecture 01 : Introduction to the Course
+--- page 2 ---
+Course Information
+•
+What is NLP?
+•
+Why Deep Learning for NLP?
+•
+Course Content
+•
+--- page 3 ---
+Course Information
+• My Contact
+• Email: pawang@cse.iitkgp.ac.in
+• Webpage: http://cse.iitkgp.ac.in/~pawang/
+• Course Page: https://sites.google.com/view/dl4nlp-nptel/home
+• Teaching Assistants (Inaugural Course)
+• Subhendu Khatuya
+• Pretam Ray
+--- page 4 ---
+Natural Language Processing
+Natural Languages: Languages that evolved naturally through human use
+Source: https://en.wikipedia.org/wiki/Language_family
+--- page 5 ---
+Natural Language Processing
+What is NLP?
+● Making computers understand what we write (or speak)
+● Making computers write (and speak)
+The field of NLP attempts to design, implement and test systems
+that process natural languages for practical applications
+--- page 6 ---
+NLP Applications: NLP is everywhere!
+--- page 7 ---
+NLP is everywhere!
+--- page 8 ---
+NLP is everywhere!
+--- page 9 ---
+NLP is everywhere!
+--- page 10 ---
+NLP is everywhere!
+Source: https://medium.com/@alessandropaticchio/named-entity-recognition-from-scratch-e76b9b3affad
+--- page 11 ---
+Domain Specific Applications
+--- page 12 ---
+Why is NLP Hard? Language Ambiguity
+Source: https://courses.cs.cornell.edu/courses/cs5740
+--- page 13 ---
+Why is NLP Hard? Language Ambiguity
+Source: https://courses.cs.cornell.edu/courses/cs5740
+--- page 14 ---
+Why is NLP Hard? Language Ambiguity
+Let’s try to decipher this weird conversation!
+Example: Courtesy Dr. Monojit choudhury
+--- page 15 ---
+NLP: Levels of Linguistic Structure
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 16 ---
+NLP Paradigms
+We generally try to map problems to various (ML) paradigms
+● Sentiment Analysis, news article groupings, etc. → text classification
+● Named entity recognition, code-mixing, etc. → Sequence Labeling
+● Machine Translation, summarization, chatbots, etc. → Text generation
+--- page 17 ---
+Timeline illustrating the progression
+of NLP from the 1950s
+Source: Kamath, Uday, et al. "Large Language Models: A Deep Dive." (2024).
+--- page 18 ---
+Why Deep Learning?
+Sparse vs. dense feature
+representations. Two
+encodings of the information:
+current word is “dog;”
+previous word is “the”
+previous pos-tag is “DET.”
+Source: Yoav Goldberg, Graeme Hirst. Neural Network Methods in Natural Language Processing, Morgan & Claypool Publishers (2017).
+--- page 19 ---
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+These dense feature
+representations are
+used with various
+deep-learning
+architectures
+--- page 20 ---
+A timeline of the recent developments
+Source: Alammar, J., & Grootendorst, M. (2024). Hands-On Large Language Models. O'Reilly.
+--- page 21 ---
+Change of NLP paradigms: Just use generation!
+Sanh, Victor, et al. "Multitask Prompted Training Enables Zero-Shot Task Generalization." ICLR 2022
+--- page 22 ---
+Background
+Course Content (Weeks 1-6)
+• Introduction to NLP
+• Introduction to Deep Learning and Representation Learning
+• Word Representation: Word2Vec, Glove, FastText, Multilingual
+Models and Architectures
+• Recurrent Neural Networks: RNNs, LSTMs, Sequence to Sequence
+• Attention Mechanism and Transformers: Attention in RNNs, Self-Attention in
+Transformers
+Methods
+• Pretraining: Self-supervised Learning objectives for Pretraining,
+ELMo, BERT, GPT, T5, BART, Fine-tuning
+--- page 23 ---
+Course Content (Weeks 7-12)
+Tasks
+• Question Answering, Text Summarization, Dialogs
+• Domain and language-specific applications and challenges
+Methods (LLMs)
+• Towards building LLMs as chat assistants: Instruction Fine-tuning,
+Reinforcement learning from human feedback, Alignment techniques
+• In-content learning, chain-of-thought prompting, Various LLMs
+• Parameter Efficient Fine-tuning (PEFT), LoRA, QLoRA
+• Handling Long Context, Retrieval Augmented Generation (RAG)
+Conclusion
+• Analysis and Interpretability, ethical considerations
+--- page 24 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. https ://web.s tanford.edu/~jurafs ky/s lp3.
+Alammar, J ., & Grootendors t, M. (2024). Hands -On Large Language Models .
+O'Reilly.
+Yoav Goldberg, Graeme Hirs t. Neural Network Methods in Natural Language
+Proces s ing, Morgan & Claypool Publis hers (2017).
+Kamath, Uday, et al. "Large Language Models : A Deep Dive." (2024).
+--- page 25 ---
+
+--- page 26 ---
+Lecture 02 : Text Processing Basics, Tokenization
+--- page 27 ---
+•
+Whitespace Tokenizer
+•
+Byte-Pair Encoding
+Processing Text Input
+•
+--- page 28 ---
+Processing Text Input
+For any NLP application, the input
+text needs to be processed first.
+The first step in processing text is
+tokenization.
+Source: Alammar, J., & Grootendorst, M. (2024). Hands-On Large Language Models. O'Reilly.
+--- page 29 ---
+Tokenization: How many words in a sentence?
+they lay back on the San Francisco grass and looked at the
+stars and their
+◦15 tokens
+◦13 types
+Type: an element of the vocabulary.
+Token: an instance of that type in running text.
+How many?
+Source: Speech and Language Processing, 3rd Ed.
+--- page 30 ---
+How many words in a corpus?
+Source: Speech and Language Processing, 3rd Ed.
+--- page 31 ---
+Corpora: Where do the words come from?
+Words don't appear out of nowhere!
+A text is produced by
+• a specific writer(s),
+• at a specific time,
+• in a specific variety,
+• of a specific language,
+• for a specific function.
+Source: Speech and Language Processing, 3rd Ed.
+--- page 32 ---
+Corpora vary along dimensions like
+• Language: 7097 languages in the world
+• Variety, like African American Language varieties.
+Twitter posts might include forms like "iont" (I don't)
+• Code switching, e.g., Spanish/English, Hindi/English:
+S/E: Por primera vez veo a @username actually being hateful! It was beautiful:)
+[For the first time I get to see @username actually being hateful! it was beautiful:) ]
+H/E: dost tha or rahega ... dont worry
+[“he was and will remain a friend ... don’t worry ”]
+• Genre: newswire, fiction, scientific articles, Wikipedia
+• Author Demographics: writer's age, gender, ethnicity
+Source: Speech and Language Processing, 3rd Ed.
+--- page 33 ---
+Tokens are implied to be words
+Example:
+Whitespace tokenizer issues
+Whitespace tokenization
+● conjunctions: isn’t ⇒ is, n’t
+● hyphenated phrases: prize-winning ⇒ prize, -, winning
+● punctuation: great movie! ⇒ great, movie, !
+(Word tokenizers require lots of specialized rules about how to handle specific inputs)
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 34 ---
+What if a new (or infrequent) word appears?
+Out-of-vocabulary (OOV): Words that were seen very rarely during training or not even at all
+Closed-vocabulary models: Unable to produce word forms unseen in training data
+<UNK> tokens:
+Historically rare word types were replaced with a new word type UNK (unknown) at training time
+At test time, any token that was not part of the model’s vocabulary could then be replaced by UNK
+But you should not generate UNK when generating text
+UNKs don’t give features for novel words that maybe useful anchors of meaning
+In languages other than English, in particular those with more productive
+●
+●
+●
+●
+●
+morphology, removing rare words is infeasible
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 35 ---
+Limitations of <UNK>
+We lose lots of information about texts with a lot of rare words / entities
+The chapel is sometimes referred to as "Hen Gapel Lligwy" ("hen" being the Welsh word for
+"old" and "capel" meaning "chapel").
+The chapel is sometimes referred to as " Hen <unk> <unk> " (" hen " being the Welsh word
+for " old " and "<unk> " meaning " chapel ").
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 36 ---
+Maximal Decomposition into Characters
+Challenges due to sandhi phenomena for
+Sanskrit Word Segmentation
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 37 ---
+Preprocessing / Text normalization
+● Lemmatization: determining that two words have the same root, despite their surface
+differences
+○ sang, sung, and sings are forms of sing
+● Stemming: strip suffixes from the end of the word
+● Sentence segmentation: Breaking up a text into individual sentences
+● Stopword removal: Remove commonly used words in a language
+○ a, the, is, are
+● Casing: Lowercase all words or not
+With pretrained language models, besides casing, we do none of the other steps
+After text normalization, most tokenizers are irreversible
+we cannot recover the raw text definitively from the tokenized output
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 38 ---
+A redefinition of the notion of tokenization
+Due to:
+● Scientific results: The impact of sub-word segmentation on machine translation performance in 2016
+● Technical requirements: A fixed-size vocabulary for neural language models
+…in current NLP, the notion of token and tokenization changed
+“Tokenization” is now the task of segmenting a sentence into non-typographically (and nonlinguistically) motivated units, which are often smaller than classical tokens, and therefore often called
+sub-words
+Typographic units (the “old” tokens) are now often called “pre-tokens”, and
+●
+what used to be called “tokenization” is therefore called “pre-tokenization”
+https://github.com/huggingface/tokenizers/tree/main/tokenizers/src/pre_tokenizers
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 39 ---
+Subwords can be arbitrary substrings…
+Subwords are expected to be meaningful units
+…but subwords can be meaning-bearing units like the morphemes -est or -er
+● A morpheme is the smallest meaning-bearing unit of a language
+○ “unlikeliest” has the morphemes {un-, likely, -est}
+● Morphology is the study of the way words are built up from morphemes
+● Word forms are the variations of a word that express different grammatical categories (tense, case,
+number, gender, etc) and thus help convey the specific meaning and function of the word in a sentence
+Unseen word like lower can thus be represented by
+some sequence of known subword units, such as {low, er}
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 40 ---
+Byte-Pair-Encoding (BPE)
+Main idea: Use data to automatically tell what the tokens should be
+Token learner
+Raw train corpus ⇒ Vocabulary (a set of tokens)
+Token segmenter
+Raw sentences ⇒ Tokens in the vocabulary
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+[coined by Gage et al., 1994; adapted to the task of word segmentation by Sennrich et al., 2016; see Gallé
+(2019) for more]
+--- page 41 ---
+Byte-Pair-Encoding (BPE) – Token learner
+Raw train corpus ⇒ Vocabulary (a set of tokens)
+● Pre-tokenize the corpus in words & append a special end-of-word symbol _ to each word
+● Initialize vocabulary with the set of all individual characters
+● Choose 2 tokens that are most frequently adjacent (“A”, “B”)
+○ Respect word boundaries
+● Add a new merged symbol (“AB”) to the vocabulary
+● Change the occurrence of the 2 selected tokens with the new merged token in the corpus
+● Continues doing this until k merges are done
+All k new symbols and initial characters are the final vocabulary
+What’s k? Open research question
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 42 ---
+Byte-Pair-Encoding (BPE) – Example
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 43 ---
+Byte-Pair-Encoding (BPE) – Example
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 44 ---
+Byte-Pair-Encoding (BPE) – Example
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 45 ---
+Byte-Pair-Encoding (BPE) – Example
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 46 ---
+Byte-Pair-Encoding (BPE) – Example
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 47 ---
+Byte-Pair-Encoding (BPE) – Token segmenter
+Just runs on the test data the merges we have learned from the training data, greedily, in
+the order we learned them
+First we segment each test sentence word into characters
+Then we apply the first merge rule
+● E.g., replace every instance of “e”, ”r” in the test corpus with “er”
+And so on
+Then the second merge rule
+● E.g., replace every instance of “er”, “_” in the test corpus with “er_”
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 48 ---
+Byte-Pair-Encoding (BPE) Vocabulary
+Tokenizer
+Vocabulary Size
+BERT base (uncased) [2018]
+WordPiece
+30,522
+BERT base (cased) [2018]
+WordPiece
+28,996
+GPT-2 [2019]
+BPE
+50,257
+Flan-T5 [2022]
+SentencePiece
+32,100
+BPE
+> 100,000
+StarCoder2 [2024]
+BPE
+49,152
+Llama2 [2023]
+BPE
+32,000
+GPT-4 [2023]
+Model
+You can play with different tokenizers here: https://tiktokenizer.vercel.app/
+--- page 49 ---
+Subwords - Example
+Source: Alammar, J., & Grootendorst, M. (2024). Hands-On Large Language Models. O'Reilly.
+--- page 50 ---
+BERT thinks the sentiment of
+"superbizarre" is positive because
+its tokenization contains the token
+"superb"
+[Hofmann e t al., 20 21
+Byte-Pair-Encoding (BPE) Implications
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 51 ---
+Byte-Pair-Encoding (BPE) Implications – Do All
+languages cost the same?
+Proprietary models, as GPT-4, are
+accessible only through paid APIs
+API cost is me asure d by the numbe r of
+toke ns proce sse d or ge ne rate d
+[Ahia e t al., 20 23]
+Subword toke nize rs le ad to
+disproportionate fragme ntation rate s
+for diffe re nt language s and writing
+scripts
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 52 ---
+Other subword encoding schemes
+WordPiece (Schuster et al., ICASSP 2012): merge by likelihood as measured
+by language model, not by frequency
+SentencePiece (Kudo et al., 2018): can do subword tokenization without
+pretokenization (good for languages that don’t always separate words w/
+spaces), although pretokenization usually improves performance
+Source: https://utah -cs6340-nlp.notion.site/Natural -Language-Processing-bd1a2ca290fc44f69556908ad8d25c70
+--- page 53 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. https ://web.s tanford.edu/~jurafs ky/s lp3. [Chapter 2]
+--- page 54 ---
+
+--- page 55 ---
+Lecture 03 : N-gram Language Models: Part 1
+--- page 56 ---
+What is Language Modeling? (LM in LLMs!!)
+•
+N-gram Language Models
+•
+Some Practical Issues
+•
+--- page 57 ---
+Predicting words
+*refrigerator
+*that
+blue
+green
+clear
+• The water of Walden Pond is beautifully ...
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 58 ---
+Language Models
+Systems that can predict upcoming words
+• Can assign a probability to each potential next word
+• Can assign a probability to a whole sentence
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 59 ---
+Why word prediction?
+• Grammar or spell checking
+Their are two midterms
+Everything has improve
+Their There are two midterms
+Everything has improve improved
+• Speech recognition
+It's a helpful part of language tasks
+I will be bassoon dish
+I will be back soonish
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 60 ---
+Why word prediction?
+It's how large language models (LLMs) work!
+LLMs are trained to predict words
+• Left-to-right (autoregressive) LMs learn to predict next word
+LLMs generate text by predicting words
+• By predicting the next word over and over again
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 61 ---
+Pretrain-then-finetune paradigm
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 62 ---
+Pretrain-then-Prompt paradigm
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 63 ---
+Language modeling forms the core of most selfsupervised NLP approaches
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 64 ---
+Language modeling forms the core of most selfsupervised NLP approaches
+Source: https://people.cs.umass.edu/~miyyer/cs685
+--- page 65 ---
+Language Modeling: More Formally
+--- page 66 ---
+How to compute P(W) or P(wn|w1, …wn-1)
+• How to compute the joint probability P(W):
+P(The, water, of, Walden, Pond, is, so, beautifully, blue)
+• Intuition: let’s rely on the Chain Rule of Probability
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 67 ---
+Reminder: The Chain Rule
+• Recall the definition of conditional probabilities
+P(B|A) = P(A,B)/P(A) Rewriting: P(A,B) = P(A) P(B|A)
+• More variables:
+P(A,B,C,D) = P(A) P(B|A) P(C|A,B) P(D|A,B,C)
+• The Chain Rule in General
+P(x1,x2,x3,…,xn) = P(x1)P(x2|x1)P(x3|x1,x2)…P(xn|x1,…,xn-1)
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 68 ---
+The Chain Rule applied to compute joint
+probability of words in sentence
+P(“The water of Walden Pond is so beautifully blue”) =
+P(The) × P(water|The) × P(of|The water)
+× P(Walden|The water of) ×
+P(Pond|The water of Walden) × ….
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 69 ---
+How to estimate these probabilities
+• Could we just count and divide?
+=
+• We’ll never see enough data for estimating these!!
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 70 ---
+≈
+• Simplifying assumption:
+Markov Assumption
+Andrei Markov
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+Wikimedia commons
+--- page 71 ---
+Bigram Markov Assumption
+Instead of:
+More generally, we approximate each component in the
+product
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 72 ---
+Simplest case: Unigram model
+Some automatically generated sentences from two different unigram models
+To him swallowed confess hear both . Which . Of save on trail
+for are ay device and rote life have
+Hill he late speaks ; or ! a more to leg less first you enter
+Months the my and issue of year foreign new exchange’s
+September
+were recession exchange new endorsed a acquire to six
+executives
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 73 ---
+Bigram model
+Some automatically generated sentences from two different unigram models
+Why dost stand forth thy canopy, forsooth; he is this
+palpable hit the King Henry. Live king. Follow.
+What means, sir. I confess she? then all sorts, he is trim,
+captain.
+Last December through the way to preserve the Hudson
+corporation N. B. E. C. Taylor would seem to complete the
+major central planners one gram point five percent of U. S.
+E. has already old M. X. corporation of living
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 74 ---
+Approximating Shakespeare
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 75 ---
+Problems with N-gram models
+• N-grams can't handle long-distance dependencies:
+“The soups that I made from that new cookbook I bought yesterday
+were amazingly delicious."
+• N-grams don't do well at modeling new sequences with similar meanings
+The solution: Large language models
+• can handle much longer contexts
+(because of using embedding spaces)
+• can model synonymy better
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 76 ---
+Why N-gram models?
+A nice clear paradigm that lets us introduce many of the important issues for large
+language models
+training and test sets
+•
+the perplexity metric
+•
+sampling to generate sentences
+•
+ideas like interpolation and backoff
+•
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 77 ---
+Estimating n-gram probabilities
+--- page 78 ---
+Estimating n-gram probabilities: an Example
+Given a corpus C, the bigram probability of “paper | question” is 0.3
+and the count of occurrences of the word “question” is 600. What
+will be the frequency of the pair (question, paper) in the corpus C?
+P (paper | question) = freq(question, paper)/freq(question)
+freq (question, paper) = 180
+--- page 79 ---
+An Example
+--- page 80 ---
+Practical Issues
+Computing Sentence Probabilities
+--- page 81 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 3]
+--- page 82 ---
+
+--- page 83 ---
+Lecture 04 : N-gram Language Models: Part 2
+--- page 84 ---
+Smoothing in n-gram LMs
+•
+Evaluation: Perplexity
+•
+Sampling from the distribution for generation
+•
+Larger n-grams
+•
+--- page 85 ---
+Some Important Points with N-gram LMs
+▪ For unigram counts, P(w) is always non-zero
+▪ if our dictionary is derived from the document collection
+▪ This won’t be true of P(wk|wk−1). Let’s take an example below.
+P(offer | denied the) = 0, the test sentence will be assigned a probability of 0!
+--- page 86 ---
+Smoothing
+--- page 87 ---
+Add-1 Smoothing
+--- page 88 ---
+Add-1 Smoothing: Example
+Given a corpus C, the bigram probability of “paper | question” is 0.3
+and the count of occurrences of the word “question” is 600. What will
+be the frequency of the pair (question, paper) in the corpus C? → We
+got this as 180
+Now, suppose the vocabulary size is 1210. What will be the
+probability of “paper | question” after add-1 smoothing?
+Padd_1(“paper | question”) =
+(freq(question, paper)+1)/(freq(question)+V)
+= (180+1)/(600+1210)
+= 0.1
+--- page 89 ---
+More General Formulations
+Interpolate with unigram probabilities instead
+--- page 90 ---
+Backoff and Interpolation
+• Sometimes it helps to use less context
+• Condition on less context for contexts you know less about
+• Backoff:
+• Interpolation:
+• use trigram if you have good evidence,
+• otherwise bigram, otherwise unigram
+• mix unigram, bigram, trigram
+• Interpolation works better
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 91 ---
+How to evaluate N-gram models
+• "Extrinsic (in-vivo) Evaluation"
+To compare models A and B
+1. Put each model in a real task
+• Machine Translation, speech recognition, etc.
+2. Run the task, get a score for A and for B
+• How many words translated correctly
+• How many words transcribed correctly
+3. Compare accuracy for A and B
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 92 ---
+Intrinsic (in-vitro) evaluation
+• Extrinsic evaluation not always possible
+• Expensive, time-consuming
+• Doesn't always generalize to other applications
+• Intrinsic evaluation: perplexity
+• Directly measures language model performance at predicting words.
+• Doesn't necessarily correspond with real application performance
+• But gives us a single general metric for language models
+• Useful for large language models (LLMs) as well as n-grams
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 93 ---
+Training sets and test sets
+We train parameters of our model on a training set.
+We test the model’s performance on data we haven’t seen.
+• A test set is an unseen dataset; different from training set.
+• Intuition: we want to measure generalization to unseen data
+the test set.
+• An evaluation metric (like perplexity) tells us how well our model does on
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 94 ---
+Choosing training and test sets
+• If we're building an LM for a specific task
+• The test set should reflect the task language we want to use the
+model for
+• If we're building a general-purpose model
+• We'll need lots of different kinds of training data
+• We don't want the training set or the test set to be just from one
+domain or author or language.
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 95 ---
+Training on the test set
+We can’t allow test sentences into the training set
+• Or else the LM will assign that sentence an artificially high probability when we see
+it in the test set
+• And hence assign the whole test set a falsely high probability.
+• Making the LM look better than it really is
+Bad science!
+This is called “Training on the test set”
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 96 ---
+Dev sets
+• If we test on the test set many times we might implicitly tune to its
+characteristics
+• Noticing which changes make the model better.
+• So we run on the test set only once, or a few times
+• That means we need a third dataset:
+• A development test set or, devset.
+• We test our LM on the devset until the very end
+• And then test our LM on the test set once
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 97 ---
+Intuition of perplexity as evaluation metric:
+How good is our language model?
+Intuition: A good LM prefers "real" sentences
+• Assign higher probability to “real” or “frequently observed”
+sentences
+• Assigns lower probability to “word salad” or “rarely observed”
+sentences?
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 98 ---
+Intuition of perplexity 2:
+Predicting upcoming words
+The Shannon Game: How well can we predict
+the next word?
+• Once upon a ____
+Claude Shannon
+• That is a picture of a ____
+• For breakfast I ate my usual ____
+Unigrams are terrible at this game (Why?)
+A good LM is one that assigns a higher probability
+to the next word that actually occurs
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+Picture credit: Historiska bildsamlingen
+https://creativecommons.org/licenses/by/2.0/
+time
+0.9
+dream 0.03
+midnight 0.02
+…
+and
+1e-100
+--- page 99 ---
+Intuition of perplexity 3: The best language model is
+one that best predicts the entire unseen test set
+• We said: a good LM is one that assigns a higher probability to the
+next word that actually occurs.
+• Let's generalize to all the words!
+•
+The best LM assigns high probability to the entire test set.
+•
+•
+We compute PA(test set) and PB(test set)
+The better LM will give a higher probability to
+• When comparing two LMs, A and B
+(=be less surprised by) the test set than the other LM.
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 100 ---
+Intuition of perplexity 4: Use perplexity instead
+of raw probability
+•
+•
+• Probability depends on size of test set
+Probability gets smaller the longer the text
+Better: a metric that is per-word, normalized by length
+• Perplexity is the inverse probability of the test set, normalized by
+the number of words
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 101 ---
+Intuition of perplexity 5: the inverse
+Perplexity is the inverse probability of the test set, normalized by the number of
+words
+(The inverse comes from the original definition of perplexity from cross-entropy
+rate in information theory)
+Probability range is [0,1], perplexity range is [1,∞]
+Minimizing perplexity is the same as
+maximizing probability
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 102 ---
+Intuition of perplexity 6: N-grams
+Chain rule:
+Bigrams:
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 103 ---
+Intuition of perplexity 7:
+Weighted average branching factor
+Perplexity is also the weighted average branching factor of a language.
+Branching factor: number of possible next words that can follow any word
+Example: Deterministic language L = {red,blue, green}
+Branching factor = 3 (any word can be followed by red, blue, green)
+Now assume LM A where each word follows any other word with equal probability ⅓
+Given a test set T = "red red red red blue"
+PerplexityA(T) = PA(red red red red blue)-1/5 = 3
+• But now suppose red was very likely in training set, such that for LM B:
+• P(red) = .8 p(green) = .1 p(blue) = .1
+• We would expect the probability to be higher, and hence the
+perplexity to be smaller:
+PerplexityB(T) = PB(red red red red blue)-1/5
+= (.8 * .8 * .8 * .8 * .1) -1/5 =.04096 -1/5
+= .527-1
+= 1.89
+--- page 104 ---
+Holding test set constant:
+Lower perplexity = better language model
+• Training 38 million words, test 1.5 million words, WSJ
+Bigram
+Trigram
+170
+109
+N-gram
+Unigram
+Order
+Perplexity 962
+--- page 105 ---
+Heavily abbreviated history of LMs
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture15-life-after-dpo-lambert.pdf
+--- page 106 ---
+The Shannon (1948) Visualization Method
+Sample words from an LM
+• Unigram:
+Claude Shannon
+REPRESENTING AND SPEEDILY IS AN GOOD APT OR
+COME CAN DIFFERENT NATURAL HERE HE THE A IN
+CAME THE TO OF TO EXPERT GRAY COME TO FURNISHES
+THE LINE MESSAGE HAD BE THESE.
+• Bigram:
+•
+THE HEAD AND IN FRONTAL ATTACK ON AN ENGLISH
+WRITER THAT THE CHARACTER OF THIS POINT IS
+THEREFORE ANOTHER METHOD FOR THE LETTERS THAT
+THE TIME OF WHO EVER TOLD THE PROBLEM FOR AN
+UNEXPECTED.
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 107 ---
+How Shannon sampled those words in 1948
+"Open a book at random and select a letter at random on the page. This letter is
+recorded. The book is then opened to another page and one reads until this letter is
+encountered. The succeeding letter is then recorded. Turning to another page this
+second letter is searched for and the succeeding letter recorded, etc."
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 108 ---
+Sampling a word from a distribution
+--- page 109 ---
+The Shannon Visualization Method
+--- page 110 ---
+Note: there are other sampling methods
+Used for neural language models
+Many of them avoid generating words from the very unlikely tail of the
+distribution
+We'll discuss when we get to neural LM decoding:
+• Temperature sampling
+• Top-k sampling
+• Top-p sampling
+--- page 111 ---
+Larger ngrams
+• 4-grams, 5-grams
+• Large datasets of large n-grams have been released
+• N-grams from Corpus of Contemporary American English (COCA) 1 billion words
+(Davies 2020)
+• Google Web 5-grams (Franz and Brants 2006) 1 trillion words)
+• Efficiency: quantize probabilities to 4-8 bits instead of 8-byte float
+Newest model: infini-grams (∞-grams) (Liu et al 2024)
+• No precomputing! Instead, store 5 trillion words of web text in suffix arrays.
+• Can compute n-gram probabilities with any n!
+--- page 112 ---
+∞-grams
+Source: https://arxiv.org/pdf/2401.17377
+--- page 113 ---
+∞-grams as a variant of back-off
+Source: https://arxiv.org/pdf/2401.17377
+--- page 114 ---
+N-gram LM Toolkits
+• SRILM
+• http://www.speech.sri.com/projects/srilm/
+• KenLM
+• https://kheafield.com/code/kenlm/
+--- page 115 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 3]
+--- page 116 ---
+
+--- page 117 ---
+Lecture 05 : NLP Tasks and Paradigms
+--- page 118 ---
+Paradigms in NLP
+•
+Text Classification, Sequence Labeling, Text Generation, Structured
+Prediction
+Some NLP Tasks
+•
+•
+--- page 119 ---
+NLP Paradigms
+We generally try to map NLP problems to various (ML) paradigms
+Sentiment Analysis, news article groupings, etc. → Text Classification
+● Named entity recognition, code-mixing, etc. → Sequence Labeling
+● Machine Translation, summarization, chatbots, etc. → Text Generation
+●
+Other popular paradigm: Structured Prediction
+Example of NLP tasks
+Word / Span Level: Word sense disambiguation, Entity Linking
+Sentence Level: Sentence Similarity, Natural Language Inference
+Paragraph / Document Level: Question Answering
+--- page 120 ---
+NLP Paradigms: Classification
+--- page 121 ---
+Classification : Positive or negative review?
++ ...zany characters and richly applied satire, and some great plot twists
+− It was pathetic. The worst part about it was the boxing scenes...
++ ...awesome caramel sauce and sweet toasty almonds. I love this place!
+− ...awful pizza and ridiculously overpriced...
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 122 ---
+Why sentiment analysis?
+Movie: is this review positive or negative?
+Products: what do people think about the new iPhone?
+Politics: what do people think about this candidate or issue?
+Prediction: predict election outcomes or market trends from
+sentiment
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 123 ---
+Text Classification: formal definition
+Input:
+– a document d
+– a fixed set of classes C = {c1, c2,…, cJ}
+Output: a predicted class c ∈ C
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 124 ---
+Classification Methods: Machine Learning
+Input:
+Output:
+– a learned classifier γ:d → c
+Any kind of classifier
+– a document d
+– a fixed set of classes C = {c1, c2,…, cJ}
+– A training set of m hand-labeled documents (d1,c1),....,(dm,cm)
+– Naïve Bayes
+– Support Vector Machines
+– Neural networks
+– k-Nearest Neighbors
+–…
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 125 ---
+Evaluation for Text Classification
+Let's consider just binary text classification tasks
+Imagine you're the CEO of Delicious Pie Company
+You want to know what people are saying about your pies
+So you build a "Delicious Pie" tweet detector
+– Positive class: tweets about Delicious Pie Co
+– Negative class: all other tweets
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 126 ---
+The 2-by-2 confusion matrix
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 127 ---
+Evaluation: Accuracy
+Imagine we saw 1 million tweets
+Why don't we use accuracy as our metric?
+– 100 of them talked about Delicious Pie Co.
+– 999,900 talked about something else
+We could build a dumb classifier that just labels every tweet "not about pie"
+– It would get 99.99% accuracy!!! Wow!!!!
+– But useless! Doesn't return the comments we are looking for!
+– That's why we use precision and recall instead
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 128 ---
+Why Precision and recall
+Our dumb pie-classifier
+Accuracy=99.99%
+but
+Recall = 0
+– Just label nothing as "about pie"
+– (it doesn't get any of the 100 Pie tweets)
+Precision and recall, unlike accuracy, emphasize true positives:
+– finding the things that we are supposed to be looking for.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 129 ---
+A combined measure: F
+F measure: a single number that combines P and R:
+We almost always use balanced F1 (i.e., β = 1)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 130 ---
+Confusion Matrix for 3-class classification
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 131 ---
+Macro-averaging:
+How to combine P/R from 3 classes to
+get one metric
+– compute the performance for each class, and then average over classes
+Micro-averaging:
+– collect decisions for all classes into one confusion matrix
+– compute precision and recall from that table.
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 132 ---
+Macro-averaging and Micro-averaging
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 133 ---
+NLP Paradigms: Sequence
+Labeling
+Parts-of-Speech Tagging
+--- page 134 ---
+Sequence Labeling: Parts of Speech
+•
+From the earliest linguistic traditions (Yaska and Panini 5th C. BCE, Aristotle
+4th C. BCE), the idea that words can be classified into grammatical
+categories
+part of speech, word classes, POS, POS tags
+noun, verb, pronoun, preposition, adverb, conjunction, participle,
+article
+•
+8 parts of speech attributed to Dionysius Thrax of Alexandria (c. 1st C. BCE):
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 135 ---
+Open vs. Closed Class
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 136 ---
+Part-of-Speech Tagging
+Assigning a part-of-speech to each word in a text.
+Words often have more than one POS.
+book:
+• VERB: (Book that flight)
+• NOUN: (Hand me that book).
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 137 ---
+Popular tag-set: Penn Treebank
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 138 ---
+Methods and Evaluation
+Methods:
+Hidden Markov Models
+Maximum Entropy Markov Models
+Conditional Random Fields
+RNNs, Transformers
+Evaluation:
+Accuracy
+Macro-F1 (giving equal importance to each tag)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 139 ---
+NLP Paradigms: Text Generation
+Dialogs
+--- page 140 ---
+Example: Dialogs
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 141 ---
+1. Chatbots
+Two kind of conversational agents
+- mimic informal human chatting
+- for fun, or even for therapy
+2. (Task-based) Dialogue Agents
+- interfaces to personal assistants
+- cars, robots, appliances
+- booking flights or restaurants
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 142 ---
+Chatbot Architectures
+Rule-based
+Pattern-action rules (ELIZA)
++ A mental model (PARRY):
+The first system to pass the Turing Test!
+Corpus-based
+Information Retrieval (XiaoIce)
+Neural encoder-decoder (BlenderBot)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 143 ---
+Response by generation
+Evaluation is tricky
+Think of response production as an encoder-decoder task
+Generate each token rt of the response by conditioning on the
+encoding of the entire query q and the response so far r1...rt−1
+https://web.stanford.edu/~jurafsky/slp3/
+)
+Conditional LM
+--- page 144 ---
+NLP Paradigms: Structured
+Prediction
+Dependency Parsing
+--- page 145 ---
+Dependency Parsing
+--- page 146 ---
+Other NLP Tasks: Some Examples
+--- page 147 ---
+Word Sense Disambiguation (WSD)
+--- page 148 ---
+Entity Linking
+--- page 149 ---
+Sentence Similarity
+https://paperswithcode.com/dataset/quora-question-pairs
+--- page 150 ---
+Question Answering
+--- page 151 ---
+More Example Tasks, Benchmarks
+https://paperswithcode.com/datasets?mod=texts&page=1
+--- page 152 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024.
+--- page 153 ---

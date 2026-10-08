@@ -1,0 +1,542 @@
+### DECK: W4L5_P1_ResNet  (Week 4)  slides=26  canvas=13.3x7.5in
+
+--- slide 1 ---
+CNN with Residual Connections ResNet
+Generative AI for Computer Vision
+Lecture 5
+
+Part 1
+
+--- slide 2 ---
+Content
+Introduction to ResNet
+Residual (SKIP) Connection
+Why SKIP connections are advantageous?
+Resnet Architecture
+Performance of ResNet
+
+--- slide 3 ---
+ImageNet Large Scale Visual Recognition Challenge (ILSVRC)
+[IMAGE: image.png.png 8.4x5.0in]
+First CNN based winner
+Image Source : Hu, Hanqing & Lyu, Jin & Yin, Xiaolin. (2020). Research and Prospect of Image Recognition Based on Convolutional Neural Network. Journal of Physics: Conference Series. 1574. 012161. 10.1088/1742-6596/1574/1/012161.
+
+--- slide 4 ---
+Challenges for Deep Network
+Vanishing gradients
+
+Optimization problem
+Additional layers make the network harder to train.
+The network fails to learn the identity mapping.
+
+Overfitting
+
+Internal Covariate Shift
+
+--- slide 5 ---
+Activation Function are not enough to handle Vanishing Gradient Problem Completely
+Leaky ReLU reduces but does not eliminate the vanishing gradient problem. For negative inputs, its gradient is small but non-zero (typically α < 1). During backpropagation through many layers, these gradients are repeatedly multiplied, causing them to decay exponentially. As a result, very deep networks can still experience vanishing gradients, although the effect is less severe than with standard ReLU, sigmoid, or tanh.
+Why Leaky ReLU Does Not Completely Solve the Vanishing Gradient Problem ?
+Small Negative Gradient: For negative inputs, Leaky ReLU uses a small slope α (e.g., 0.01). Although the gradient is non-zero, it is still less than 1, so repeated multiplication across many layers causes gradients to shrink. 
+Primarily Addresses Dying ReLU: Leaky ReLU is designed to prevent neurons from becoming permanently inactive ("dying ReLU"), not to completely eliminate vanishing gradients in very deep networks. 
+Cumulative Gradient Decay: Even without zero gradients, repeatedly multiplying gradients smaller than 1 during backpropagation causes them to decay exponentially, making training of very deep networks difficult.
+To effectively address the vanishing gradient problem in very deep networks, architectures such as Residual Networks (ResNets) use residual (skip) connections that allow gradients to bypass one or more layers, preserving gradient flow and enabling the successful training of much deeper models.
+
+--- slide 6 ---
+ResNet Basics
+ResNet (Residual Network) is a deep convolutional neural network architecture that addresses the degradation problem encountered when training very deep networks. 
+It introduces residual learning through skip (shortcut) connections, which allow the input of a residual block to bypass one or more convolutional layers and be added directly to the block's output. 
+Instead of learning a direct mapping, the network learns a residual function enabling more effective gradient propagation during backpropagation and mitigating the vanishing gradient problem. 
+This design allows the successful training of networks with hundreds of layers, such as ResNet-50, ResNet-101, and ResNet-152. 
+In computer vision applications, ResNet serves as a powerful feature extractor for tasks including image classification, object detection, semantic segmentation, instance segmentation, and image retrieval. 
+Its robust hierarchical feature representations, scalability, and compatibility with transfer learning have made it a foundational backbone in numerous state-of-the-art computer vision systems.
+
+--- slide 7 ---
+Introducing SKIP Connection
+Instead of learning the complete mapping H(x), a ResNet learns the residual mapping:
+		F(x)=H(x)−x
+
+where F(x) represents the difference (residual) between the input and the desired output. Learning only what needs to change [F(x)] is often easier than learning the entire transformation from scratch [H(x)].
+ReLU
+conv
+conv
+Residual Block Learns F(x)
+Identity
+ReLU
+ReLU
+conv
+conv
+Plain Layer Learns H(x)
+
+--- slide 8 ---
+Advantages of SKIP Connections
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Plain CNN
+CNN with skip connections
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+By providing a direct pathway for information and gradients to flow across layers, SKIP connections effectively mitigate the vanishing gradient problem, allowing stable training of very deep networks. 
+Skip connections enable the network to learn identity mappings when additional layers are unnecessary, simplifying the optimization process and preventing performance degradation as network depth increases. 
+They also accelerate training convergence by facilitating faster gradient propagation during backpropagation.
+Furthermore, skip connections promote feature reuse by preserving useful low-level and intermediate representations throughout the network, leading to richer feature extraction. 
+Their architecture provides implicit regularization, which can reduce overfitting and improve generalization. Collectively, these advantages make skip connections essential for training deeper, more accurate, and more robust neural networks for a wide range of computer vision applications.
+
+--- slide 9 ---
+Normal CNN Nodes
+
+--- slide 10 ---
+Normal CNN Nodes
+Skip Connection
+Concept: Andrew Ng
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+Plain CNN
+CNN with skip connections
+[IMAGE: image.png.png 0.7x0.9in]
+Classifier
+
+--- slide 11 ---
+Vanishing Gradient Concept
+Vanishing Gradient Problem
+When these derivatives are small, the gradient signal progressively diminishes as it is back-propagated through the network.
+What happens if the derivatives are small?
+
+--- slide 12 ---
+How SKIP Connection helps Vanishing Gradient Problem ?
+ReLU
+conv
+conv
+Residual Block
+Identity
+ReLU
+Figure Credit: Fei  Li et. al.
+
+--- slide 13 ---
+Identity Mapping with SKIP Connections
+If additional layers are unnecessary, the network can easily learn an identity mapping.
+Base Network
+Base Network
+X
+X
+Extra Layers with Skip Connections
+a[l+2]=g(z[l+2]+a[l])
+       =g(w[l+2] a[l+1]+b[l+2] +a[l])
+z[l+2] = w[l+2] a[l+1]+b[l+2]
+Concept: Andrew Ng
+
+--- slide 14 ---
+Identity Mapping with SKIP Connections
+If additional layers are unnecessary, the network can easily learn an identity mapping.
+Base Network
+Base Network
+X
+X
+Extra Layers with Skip Connections
+z[l+2] = w[l+2] a[l+1]+b[l+2]
+Concept: Andrew Ng
+a[l+2]=g(z[l+2]+a[l])
+       =g(w[l+2] a[l+1]+b[l+2] +a[l])
+                if w[l+2]=0 and b[l+2] =0
+       =g(w[l+2] a[l+1]+b[l+2] +a[l])=g(a[l])
+
+--- slide 15 ---
+Advantages of SKIP Connections
+Faster convergence 
+Better gradient flow = faster trainig
+Less sensitive to initialization 
+More stable training
+
+Better feature reuse 
+Reuses low-level features (edges, textures) 
+Preserves spatial information 
+Improves performance in vision tasks
+
+--- slide 16 ---
+Regularization effect :
+Skip connections make the network behave like many shallower networks.
+This improves generalization to unseen data.
+As a result, it helps reduce overfitting.
+
+Robustness to Network Depth : 
+Skip connections allow additional layers without causing optimization difficulties. 
+Reduces the risk of vanishing gradients and makes deep networks easier to optimize. 
+Facilitates the design and training of very deep architectures. 
+Adds no trainable parameters or complexity.
+Advantages of SKIP Connections
+
+--- slide 17 ---
+Full ResNet architecture
+ResNet architecture design facilitates efficient gradient propagation, mitigates the vanishing gradient problem, and enables the successful training of networks with depths of 50, 101, 152, or even more layers.
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+ReLU
+conv
+conv
+Residual Block
+Identity
+ReLU
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition,
+ResNet Architecture
+
+--- slide 18 ---
+Full ResNet architecture
+ResNet architecture design facilitates efficient gradient propagation, mitigates the vanishing gradient problem, and enables the successful training of networks with depths of 50, 101, 152, or even more layers.
+
+A typical ResNet architecture begins with a 7 × 7 convolution layer (64 filters, stride 2), followed by batch normalization, ReLU activation, and a 3 × 3 max-pooling layer.
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+ReLU
+conv
+conv
+Residual Block
+Identity
+ReLU
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition,
+3 x 3 conv , 128
+Filters, /2 spatially 
+With Stride 2
+3 x 3 conv , 64
+Filters
+ResNet Architecture
+Beginning CONV layer
+
+--- slide 19 ---
+ResNet Architecture
+Full ResNet architecture
+ResNet architecture design facilitates efficient gradient propagation, mitigates the vanishing gradient problem, and enables the successful training of networks with depths of 50, 101, 152, or even more layers.
+
+A typical ResNet architecture begins with a 7 × 7 convolution layer (64 filters, stride 2), followed by batch normalization, ReLU activation, and a 3 × 3 max-pooling layer.
+
+The network is then organized into four sequential stages of residual blocks, where each stage extracts increasingly complex features while progressively reducing the spatial dimensions through strided convolutions.
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+ReLU
+conv
+conv
+Residual Block
+Identity
+ReLU
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition,
+
+--- slide 20 ---
+Full ResNet architecture
+After the final residual stage, global average pooling aggregates the feature maps into a single feature vector, which is passed to a single fully connected layer followed by a softmax classifier for prediction.
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+ReLU
+conv
+conv
+Residual Block
+Identity
+ReLU
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition,
+Global average pooling layer after last Conv layer
+Only one FC 1000 to output classes
+ResNet Architecture
+
+--- slide 21 ---
+Full ResNet architecture
+
+In shallow variants such as ResNet-18 and ResNet-34, basic residual blocks containing two 3 × 3 convolutional layers are used, whereas deeper variants like ResNet-50, ResNet-101, and ResNet-152 employ bottleneck residual blocks consisting of 1 × 1, 3 × 3, and 1 × 1 convolutions to improve computational efficiency.
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition
+ResNet Architecture
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+Total depths of 34,50,101 or 152
+Layers for ImageNet
+
+--- slide 22 ---
+Full ResNet architecture
+
+In shallow variants such as ResNet-18 and ResNet-34, basic residual blocks containing two 3 × 3 convolutional layers are used, whereas deeper variants like ResNet-50, ResNet-101, and ResNet-152 employ bottleneck residual blocks consisting of 1 × 1, 3 × 3, and 1 × 1 convolutions to improve computational efficiency.
+
+Owing to its residual connections, ResNet achieves high accuracy while maintaining stable optimization, making it one of the most influential architectures in computer vision for tasks such as image classification, object detection, semantic segmentation, and transfer learning.
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition
+ResNet Architecture
+Softmax
+FC 1000
+POOL
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512
+3 x 3 conv, 512, / 2
+3 x 3 conv, 512
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128
+3 x 3 conv, 128, / 2
+3 x 3 conv, 128
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64
+3 x 3 conv, 64, / 2
+3 x 3 conv, 64
+POOL
+7 x 7 conv, 64 / 2
+INPUT
+Total depths of 34,50,101 or 152
+Layers for ImageNet
+
+--- slide 23 ---
+ResNet Architecture
+ResNet-50 and deeper use bottleneck layers for more efficient computation, similar to GoogLeNet.
+1 x 1 conv, 64
+Residual Block
+Identity
+28 x 28 x 256 Output
+3 x 3 conv, 64
+1 x 1 conv, 256
+28 x 28 x 256 Input
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition
+1x1 conv, 256 filters projects back to 256 feature maps (28x28x256)
+3x3 conv operates over only 64 feature maps
+1x1 conv, 64 filters to project to 28x28x64
+
+--- slide 24 ---
+ResNet Architecture
+Image
+7x7 conv,64, /2
+Pool, / 2
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,128, /2
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,256, /2
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,512, /2
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+avg pool
+FC 1000
+Image
+7x7 conv,64, /2
+Pool, / 2
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,64
+3x3 conv,128, /2
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,128
+3x3 conv,256, /2
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,512, /2
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+avg pool
+FC 1000
+Image
+3x3 conv,64
+3x3 conv,64
+Pool, / 2
+3x3 conv,128
+3x3 conv,128
+Pool, / 2
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+3x3 conv,256
+Pool, / 2
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+Pool, / 2
+FC 4096
+FC 4096
+FC 1000
+Output
+Size : 224
+Output
+Size : 112
+Output
+Size : 56
+Output
+Size : 28
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+3x3 conv,512
+Pool, / 2
+Output
+Size : 14
+Output
+Size : 7
+Output
+Size : 1
+VGG-19
+34 layer residual
+34 layer plain
+Source: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun, Deep Residual Learning for Image Recognition
+
+--- slide 25 ---
+Summary
+Introduction to ResNet
+Residual (SKIP) Connection
+Why SKIP connections are advantageous?
+Res-Net Architecture
+Performance of Res-Net
+
+--- slide 26 ---
+CNN Model Architectures -II
+Generative AI for Computer Vision
+Next
+
+Lecture 5: Part II

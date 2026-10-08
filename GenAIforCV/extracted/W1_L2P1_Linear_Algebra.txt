@@ -1,0 +1,158 @@
+### DECK: L2P1_Linear_Algebra  (Week 1)  slides=23  canvas=13.3x7.5in
+
+--- slide 1 ---
+Mathematical Preliminaries – I(Linear Algebra)
+Generative AI for Computer Vision
+Lecture 2
+
+Part 1
+
+--- slide 2 ---
+Content
+Vectors
+Definitions
+Basic Operations on Vectors
+Matrices
+Representations and Basic Operations
+Matrix Transpose and Inverse
+Eigenvalues and Eigenvectors
+Definition
+Geometrical Interpretation
+
+--- slide 3 ---
+Vectors
+[IMAGE: image.png.png 3.0x2.6in]
+2
+4
+3
+V(2,3,4)
+x
+y
+z
+
+--- slide 4 ---
+Use of vectors
+[IMAGE: image.png.png 3.0x2.6in]
+2
+4
+3
+V(2,3,4)
+x
+y
+z
+
+--- slide 5 ---
+Basic Operations on Vectors
+x
+y
+z
+Vector Addition z=x+y using 
+parallelogram method
+x
+y
+x
+y
+z
+Vector Addition z=x+y using 
+triangular (Head-to-Tail) method
+
+--- slide 6 ---
+Basic Operations on Vectors
+
+--- slide 7 ---
+Matrices
+Matrix représentation 
+Matrix Basic Operations (Addition, Substruction and Multiplication)
+Matrix transpose 
+Identity matrix
+Matrix Inversion
+
+--- slide 8 ---
+Matrix
+
+--- slide 9 ---
+MatrixBasic Operations
+Matrix Addition: Just element-wise addition. Dimensions of the two matrices must be same. 
+
+
+
+Matrix Subtraction: Element-wise subtraction. Dimensions of the two matrices must be same.
+
+
+
+Matrix Multiplication: Multiply each row with each column. Column dimension of the first matrix should be same as row dimension of the second matrix. If A is of dimension [3x4] and B is [4x5], Product matrix (A.B) will be [3x5]
+
+--- slide 10 ---
+Transpose of a Matrix
+
+--- slide 11 ---
+Identity Matrix
+
+--- slide 12 ---
+Matrix: A Few Definitions
+
+--- slide 13 ---
+Singular Matrix
+
+--- slide 14 ---
+Matrix Inversion
+
+--- slide 15 ---
+Matrix InversionFor larger matrices
+
+--- slide 16 ---
+Matrix InversionFor larger matrices
+
+--- slide 17 ---
+Eigenvalues and Eigenvectors
+
+--- slide 18 ---
+Eigenvalues and EigenvectorsGeometric Interpretation
+
+--- slide 19 ---
+[IMAGE: image.png.png 5.3x6.9in]
+1,0
+0,1
+1,1
+0,2
+3,0
+3,2
+1,1
+0,1
+1,0
+Geometric Interpretation
+
+--- slide 20 ---
+How to find Eigenvalues and Eigenvectors of a matrix?
+
+--- slide 21 ---
+Summary
+Vectors
+Definitions
+Basic Operations on Vectors
+Matrices
+Representations and Basic Operations
+Matrix Transpose and Inverse
+Eigenvalues and Eigenvectors
+Definition
+Geometrical Interpretation
+
+--- slide 22 ---
+Mathematical Preliminaries – II(Basic Probability)
+Generative AI for Computer Vision
+Next
+
+Lecture 2:Part 2
+
+--- slide 23 ---
+Extra Slide
+Geometric Interpretation of Singular Matrix
+A singular matrix collapses space into a lower dimension. For example, a transformation represented by a singular matrix may compress a two-dimensional plane into a single line. Because information is lost during this transformation, the original data cannot be uniquely recovered, which is why the matrix has no inverse.
+Importance in Machine Learning
+Singular matrices often appear when:
+Features are highly correlated (multicollinearity).
+Duplicate features exist in a dataset.
+The number of features exceeds the number of samples.
+Computing matrix inverses in linear regression.
+When a matrix is singular, algorithms typically use techniques such as regularization, matrix factorization, or the Moore–Penrose pseudoinverse instead of a standard matrix inverse.
+Understanding singular matrices is important because they help explain why some machine learning problems do not have unique solutions and why alternative numerical methods are often required.

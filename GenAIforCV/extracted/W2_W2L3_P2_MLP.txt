@@ -1,0 +1,182 @@
+### DECK: W2L3_P2_MLP  (Week 2)  slides=13  canvas=13.3x7.5in
+
+--- slide 1 ---
+Neural Network FundamentalsMulti-Layer Perceptron
+Generative AI for Computer Vision
+Lecture 3
+
+Part 2
+
+--- slide 2 ---
+Content
+Introduction to Multi-Layer Perceptron
+Activation Function
+Softmax Activation Function
+
+--- slide 3 ---
+[IMAGE: image.png.png 2.2x1.3in]
+Sigmoid Function
+0.5
+1
+0
+Z
+XOR Problem: Solution by Multi-Layer Perceptron
+X | Y | O/P
+0 | 0 | 0
+0 | 1 | 1
+1 | 0 | 1
+1 | 1 | 0
+XOR Logic
+Input Layer
+y
+Hidden Layer
+Output Layer
+XOR
+XOR representation 
+(Linear non-separable task)
+XOR(x,y)=x’y+xy’
+h1 = (x2 AND (NOT x1))
+h2 = (x1 AND (NOT x2))
+ y   = (h1 OR h2) 
+NOT (x) = 1-x
+
+Sigmoidal nonlinearity is used as activation function.
+h1 = σ((1- x1) + x2) = σ((-1) x1 + x2 + 1)
+h2 = σ(x1 + (1- x2)) = σ(x1 + (-1) x2 + 1)
+
+y = σ(h1 + h2) = σ(h1 + h2 + 0)
+
+A multi layered perceptron (MLP) with the proper weights can predict the output of a XOR logical operator.
+
+--- slide 4 ---
+Multi-Layer Perceptron
+MLP (with one or more hidden layers): The strength of a Multi-Layer Perceptron (MLP) lies in its hidden layers.
+Neurons in the first hidden layer create multiple hyperplanes that partition the input space into several half-spaces. 
+Neurons in the following hidden layers combine these half-spaces to form more complex regions. 
+The intersections of these half-spaces produce convex regions, such as polygons in two dimensions or polytopes in higher dimensions. 
+The output layer combines these convex regions through unions, enabling the formation of complex decision boundaries that may be non-convex or even disconnected. 
+This capability to construct intricate piecewise-linear decision boundaries makes MLPs universal approximators, allowing them to approximate any continuous function when provided with enough hidden neurons and suitable activation functions.
+Hidden Layer
+Input Layer
+Output Layer
+MLP with single hidden layer
+
+--- slide 5 ---
+[IMAGE: image.png.png 4.6x3.6in]
+Multi-Layer Perceptron (MLP)
+Hidden Layer
+Input Layer
+Output Layer
+MLP with single hidden layer
+Figure1: Partitioning of the input space by linear threshold-nodes in a MLP with hidden layer, one output node, an examples of separable decision regions.
+[1] Crone, Sven & Soopramanien, Didier. (2005). Predicting Customer Online Shopping Adoption - an Evaluation of Data Mining and Market Modelling Approaches.. Proceedings of the 2005 International Conference on Data Mining, DMIN'05. 215-221.
+
+--- slide 6 ---
+Introduction to Multi Layer Perceptron(MLP)
+Input Layer
+Output Layer
+Hidden Layer with n No. of neurons
+Hidden Layer with r No. of neurons
+k no. of hidden layers
+
+--- slide 7 ---
+Input Layer
+Acts as the entry point of the network. 
+Simply receives the input features and forwards them to the next layer without performing any computation.
+ 
+Hidden Layer(s)
+Process the input data and learn underlying patterns. 
+Allow the network to solve problems that cannot be separated by a single linear boundary. 
+Even a single hidden layer can represent complex relationships, while additional hidden layers increase the network's ability to approximate highly complex functions with greater accuracy. 
+
+Output Layer
+The final processing layer of the network. 
+Combines the learned information from the hidden layers and generates the predicted output.
+Introduction to Multi Layer Perceptron(MLP)
+
+--- slide 8 ---
+Activation Function
+Sigmoid Function
+[IMAGE: image.png.png 2.2x1.3in]
+0.5
+1
+0
+Z
+Sigmoid Activation Function
+Logistic function with output between 0 and 1. 
+Commonly used for binary classification. 
+Differentiable but prone to the vanishing gradient problem.
+Linear Function
+
+--- slide 9 ---
+Activation Function
+Hyperbolic Tangent (tanh)
+Shifted version of the sigmoid function. 
+Differentiable. 
+Suffers from the vanishing gradient problem.
+ReLU (Rectified Linear Unit)
+Faster and computationally efficient. 
+Reduces vanishing gradient for positive inputs. 
+Can suffer from the "dying ReLU" problem for negative inputs.
+Leaky ReLU
+Variant of ReLU. 
+Allows a small gradient for negative inputs. 
+Helps overcome the dying ReLU problem.
+tanh Function
+[IMAGE: image.png.png 2.5x1.6in]
++1
+-1
+0
+Z
+[IMAGE: image.png.png 2.8x1.6in]
+ReLU Function
+Z
+[IMAGE: image.png.png 1.8x1.7in]
+Leaky ReLU Function
+Z
+
+--- slide 10 ---
+Softmax Activation Functions
+The Softmax function is commonly used in the output layer of neural networks for classification tasks. It transforms raw output scores (logits) into probability values by normalizing them, ensuring that all outputs lie between 0 and 1 and their sum equals 1.
+
+Converts logits into probabilities. 
+
+Output values range from 0 to 1 and sum to 1. 
+
+Used in the final layer of classification networks.
+
+Suitable for multi-class classification, where exactly one class is chosen as the prediction.
+(1.3) (5.2) (2.1) (0.7) (1.1) (1.2)
+(0.02) (0.90) (0.04) (0.01) (0.01) (0.02)
+Input layer
+Hidden Layer
+Output Layer
+Softmax Activation Function
+Output Probabilities
+
+--- slide 11 ---
+MLP with Multiple Hidden Layers
+Input Layer
+Output Layer
+Hidden Layer with n No. of neurons
+Hidden Layer with r No. of neurons
+b=1
+k no. of hidden layers
+Let the MLP has k no. of hidden layers p is the layer index. For input layer p=0:
+Layer pre-activation for k>0
+Hidden layer activation p=1 to k
+Output layer activation p= k+1
+b=1
+
+--- slide 12 ---
+Summery
+Introduction to Multi-Layer Perceptron
+Activation Function
+Softmax Activation Function
+
+--- slide 13 ---
+Neural Network Fundamentals
+Generative AI for Computer Vision
+Next
+
+Lecture 3: Part 3

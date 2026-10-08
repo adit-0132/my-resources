@@ -1,0 +1,100 @@
+### DECK: L2P2_Probability-1  (Week 1)  slides=20  canvas=13.3x7.5in
+
+--- slide 1 ---
+Mathematical Preliminaries – II(Basic Probability - I)
+Generative AI for Computer Vision
+Lecture 2
+
+Part 2
+
+--- slide 2 ---
+Outline
+Definitions
+Random Variables
+Conditional Probability and Bayes theorem
+Discrete and Continuous Random Variables
+Probability Density Function
+Cumulative Distribution Function
+Mean and Variance
+
+--- slide 3 ---
+A few definitions of Probability
+
+--- slide 4 ---
+Probability and Random Variable
+
+--- slide 5 ---
+Probability Rules
+
+--- slide 6 ---
+Conditional Probability
+
+--- slide 7 ---
+Independent Events
+
+--- slide 8 ---
+Bayes Theorem
+
+--- slide 9 ---
+Application of Bayes Theorem
+
+--- slide 10 ---
+Bayes Theorem
+P(A): Prior probability: The prior probability of event A, denoted by P(A), is the probability of A occurring before knowing whether event B has occurred or not. Here, A is treated as a proposition or hypothesis, and B represents evidence that may later be used to update the probability of A.
+P(B) = Evidential probability: the probability pf the evidential event B.
+P(A|B) = Posterior probability: The probability of proposition or hypothesis A post the occurrence of the evidential event B. 
+P(B|A) = Likelihood: how likely the evidence B is, given that proposition A has occurred.
+posterior probability
+Likelihood
+Evidential probability
+Prior probability
+
+--- slide 11 ---
+Probability and Random Variable
+There are two types of random variables:
+Discrete Random Variable – Takes a finite or countable number of values (e.g., the number of heads obtained when tossing three coins).
+Continuous Random Variable – Takes any value within a given interval (e.g., the height or weight of a person).
+
+--- slide 12 ---
+Discrete Random Variable
+Source: Probability, Statistics and Random Processes, T Veerarajan, Tata McGraw-Hill Publishing Company Limited
+
+--- slide 13 ---
+Continuous Random Variable and Probability Density Function
+
+--- slide 14 ---
+Probability Density Function
+[IMAGE: image.png.png 3.5x3.1in]
+
+--- slide 15 ---
+Cumulative Distribution Function (cdf)
+
+--- slide 16 ---
+Some useful PDFs in ML
+[IMAGE: image.png.png 2.7x1.9in]
+[IMAGE: image.jpeg.jpg 4.5x2.7in]
+Fig2: Source: https://ned.ipac.caltech.edu/level5/Leo/Stats2_3.html
+[IMAGE: image.gif.gif 0.1x0.1in]
+
+--- slide 17 ---
+Mean and Variance
+
+--- slide 18 ---
+Mean and Variance
+
+--- slide 19 ---
+Summary
+Definitions
+Random Variables
+Conditional Probability and Bayes theorem
+Discrete and Continuous Random Variables
+Probability Density Function
+Cumulative Distribution Function
+Mean and Variance
+
+--- slide 20 ---
+Mathematical Preliminaries – II(Basic Probability)
+Generative AI for Computer Vision
+Next
+
+Lecture 2:Part 3

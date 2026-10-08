@@ -1,0 +1,405 @@
+### DECK: L7P1_GenAICV_1  (Week 5)  slides=37  canvas=13.3x7.5in
+
+--- slide 1 ---
+Generative AI for Vision Tasks - I
+Generative AI for Computer Vision
+Lecture 7
+
+Part 1
+
+--- slide 2 ---
+Content
+Computer Vision: Definition
+
+Applications of Computer Vision
+
+Challenges of Computer Vision
+
+Generative AI for Vision Tasks
+Image classification
+Object Detection
+Semantic and Instance Segmentation
+Image super-resolution
+Image In-painting
+
+--- slide 3 ---
+Interpretation: 
+Colour Image, Human, Lady, 
+Monalisa
+[IMAGE: image.png.png 1.4x1.4in]
+[IMAGE: image.png.png 1.4x2.0in]
+[IMAGE: image.png.png 1.5x1.5in]
+[IMAGE: image.png.png 1.7x1.1in]
+[IMAGE: image.jpeg.jpg 1.8x1.8in]
+What is Computer Vision?
+Image Source: Internet
+
+--- slide 4 ---
+Applications of Computer Vision
+Face Recognition – Used for security, authentication, and unlocking devices.
+Medical Imaging – Helps doctors detect diseases from X-rays, CT scans, and MRI images.
+Autonomous Vehicles – Enables vehicles to detect roads, pedestrians, traffic signs, and other vehicles.
+Surveillance and Security – Used to monitor activities and detect suspicious behavior.
+Object Detection – Identifies and locates objects in images and videos.
+Agriculture – Helps detect crop diseases, weeds, and monitor plant growth.
+Manufacturing – Used for quality inspection and detecting defects in products.
+Optical Character Recognition (OCR) – Converts printed or handwritten text in images into digital text.
+Augmented Reality (AR) – Recognizes objects and environments to place virtual elements accurately.
+Robotics – Helps robots understand and interact with their surroundings.
+
+--- slide 5 ---
+Challenges in Computer Vision
+Viewpoint variation
+Scale variation
+Deformation
+Occlusion
+Illumination conditions
+Background clutter
+Intra-class variation, etc.
+
+--- slide 6 ---
+Viewpoint Variation
+Viewpoint variation is an important challenge in computer vision because an object can look very different when viewed from different angles or positions. 
+Changes in viewpoint can alter the object's shape, size, visible features, and perspective, while some parts may become hidden or occluded. 
+For example, a car viewed from the front looks different from the same car viewed from the side. Therefore, computer vision systems need to recognize objects accurately despite these changes in viewpoint.
+Luna, Elena & Sanmiguel, J.C. & Martínez, José & Escudero-Viñolo, Marcos. (2022). Online clustering-based multi-camera vehicle tracking in scenarios with overlapping FOVs. Multimedia Tools and Applications. 81. 1-21. 10.1007/s11042-022-11923-2.
+[IMAGE: image.png.png 1.8x2.2in]
+[IMAGE: image.png.png 2.3x1.3in]
+[IMAGE: image.png.png 2.0x2.2in]
+[IMAGE: image.png.png 2.4x1.3in]
+
+--- slide 7 ---
+Scale Variation
+Scale change is a common challenge in computer vision because the same object can appear at different sizes in an image depending on its distance from the camera. 
+
+For example, a car may appear large when standing near the camera and very small when far away. 
+
+This change in size can make object detection and recognition difficult.
+
+Computer vision systems must therefore be able to recognize objects accurately at different scales.
+[IMAGE: image.png.png 1.8x2.2in]
+[IMAGE: image.png.png 3.0x3.7in]
+
+--- slide 8 ---
+Object Deformities
+Object deformities are a challenge in computer vision because the shape and appearance of an object can change when it bends, stretches, moves, or changes its posture.
+
+For example, a person can sit, stand, or bend, causing their shape to look very different in an image. 
+
+These changes make object detection and recognition difficult. 
+
+Computer vision systems must therefore learn to recognize objects even when their shape or structure is deformed.
+Dhana Frerichs, Andrew Vidler, Christos Gatzidis, “A survey on object deformation and decomposition in computer graphics, Computers & Graphics”, Volume 52, 2015, Pages 18-32, ISSN 0097-8493
+[IMAGE: image.png.png 2.1x1.6in]
+[IMAGE: image.png.png 2.1x1.5in]
+Actual Object
+Deformed Object
+
+--- slide 9 ---
+Occlusion
+Occlusion is a major challenge in computer vision that occurs when one object partially or completely blocks another object from view. 
+
+For example, a person may be hidden behind another person or an object may be covered by a vehicle. 
+
+This makes it difficult for computer vision systems to identify and recognize the hidden object correctly. 
+
+Therefore, systems need to detect objects even when only a part of them is visible.
+Image Source: Zohra, Fatema Tuz & Rahman, Md Wasiur & Gavrilova, Marina. (2016). Occlusion Detection and Localization from Kinect Depth Images. 189-196. 10.1109/CW.2016.40.
+[IMAGE: image.png.png 7.0x3.4in]
+
+--- slide 10 ---
+Illumination Changes
+Illumination changes are an important challenge in computer vision because the appearance of an object can change under different lighting conditions. 
+
+Bright sunlight, darkness, shadows, or artificial light can affect the color, brightness, and visibility of objects in an image. 
+
+For example, the same person may look different in daylight and low light. 
+
+These changes can make object detection and recognition difficult for computer vision systems.
+Image Source: Belhumeur, Peter & Hespanha, Joao & Kriegman, David. (2005). Eigenfaces vs. Fisherfaces: Recognition using class specific linear projection. 10.1007/BFb0015522.
+[IMAGE: image.png.png 2.8x5.2in]
+
+--- slide 11 ---
+Background Clutter
+Background clutter is a common challenge in computer vision where the background contains many objects, patterns, or textures that make the main object difficult to identify. 
+
+For example, a wolf standing in a forest background with similar texture may be difficult to detect because the background contains many similar shapes and colors.
+
+ Background clutter can confuse vision systems and reduce the accuracy of object detection and recognition.
+[IMAGE: image.png.png 6.5x5.2in]
+Image Source: Internet
+
+--- slide 12 ---
+Intra-class Variation
+Interclass variation is a challenge in computer vision where objects belonging to the same category can have very different appearances. 
+
+For example, cars can differ greatly in color, shape, size, and design, even though they belong to the same class. 
+
+This variation makes it difficult for computer vision systems to identify all objects of the same category accurately. 
+
+Therefore, models need to learn common features that are shared by objects within the same class.
+[IMAGE: image.png.png 3.6x2.4in]
+[IMAGE: image.png.png 3.6x2.5in]
+Image Source: Bastian, Blossom & Jiji, C.. (2020). Detection and pose estimation of auto-rickshaws from traffic images. Machine Vision and Applications. 31. 10.1007/s00138-020-01106-0.
+
+--- slide 13 ---
+Generative AI for Computer Vision
+Generative Artificial Intelligence (Generative AI) has significantly enhanced computer vision by enabling models to generate, modify, and understand visual data. 
+
+Unlike traditional computer vision methods that focus primarily on recognition and classification, Generative AI learns the underlying distribution of images and can create realistic visual content. 
+
+Popular generative models include Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), Diffusion Models, and Vision Transformers (ViTs) integrated with generative frameworks. 
+
+These models improve the performance of downstream computer vision tasks by generating high-quality synthetic data, learning robust feature representations, and supporting data augmentation.
+
+--- slide 14 ---
+Generative AI for Downstream Vision Tasks
+Generative AI is widely used in several downstream computer vision applications. 
+
+In image classification, synthetic images are generated to augment training datasets, improving model accuracy and robustness. 
+
+For object detection, generative models create diverse object variations that help detectors recognize objects under different lighting conditions, viewpoints, and occlusions. 
+
+In semantic and instance segmentation, generated images and masks increase training data diversity, leading to more accurate pixel-level predictions. 
+
+Image super-resolution employs generative models to reconstruct high-resolution images from low-resolution inputs, which is valuable in medical imaging, surveillance, and satellite image analysis.
+
+--- slide 15 ---
+Generative AI for Downstream Vision Tasks
+Image inpainting restores damaged or missing regions of images by generating visually consistent content, while image-to-image translation converts images between different domains, such as day-to-night, sketches to photographs, or MRI to CT images. 
+
+Generative AI is also extensively used for medical image synthesis, producing realistic medical scans to support diagnosis and address data scarcity while preserving patient privacy. 
+
+In anomaly detection, generative models learn the distribution of normal images and identify deviations that indicate defects or abnormalities. 
+
+Additionally, 3D scene generation, face synthesis, style transfer, and video generation have become important applications in entertainment, autonomous driving, robotics, and virtual reality.
+
+--- slide 16 ---
+Generative AI for Downstream Vision Tasks
+Overall, Generative AI has become a powerful tool for enhancing downstream computer vision tasks by improving data quality, increasing model robustness, reducing annotation costs, and enabling the generation of realistic visual content. 
+
+Its ability to learn complex image distributions has made it a key technology in modern computer vision systems across healthcare, manufacturing, security, remote sensing, and creative industries.
+
+--- slide 17 ---
+Image classification
+Image Classification is a fundamental computer vision task that automatically assigns an input image to one of several predefined categories.
+
+Deep learning models, particularly Convolutional Neural Networks (CNNs), learn hierarchical visual features such as edges, textures, shapes, and objects directly from labeled training data. 
+
+During inference, the model extracts discriminative features from the image and predicts the most probable class using a classification layer, typically followed by a Softmax activation function.
+[IMAGE: image.png.png 1.0x1.3in]
+Cow
+Horse
+Dog
+Cat
+12%
+29%
+94%
+4%
+11%
+32%
+97%
+3%
+[IMAGE: image.png.png 1.1x1.2in]
+Cow
+Horse
+Dog
+Cat
+Image Classification
+
+--- slide 18 ---
+Generative AI for Image classification
+Generative AI has emerged as a powerful approach for image classification by learning complex data distributions and generating realistic image representations that improve model performance. 
+
+Unlike traditional discriminative models, generative models such as Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), and diffusion models can synthesize new training samples, helping to overcome challenges such as limited datasets, class imbalance, and noisy data. 
+
+These synthetic images enhance data augmentation, enabling classifiers to achieve higher accuracy and better generalization. 
+
+In image classification tasks, generative AI can also perform feature learning by extracting meaningful latent representations that improve recognition of objects, faces, medical images, and remote sensing data.
+
+--- slide 19 ---
+Generative AI for Image classification
+Furthermore, generative models support semi-supervised and unsupervised learning, reducing the dependency on large labeled datasets. 
+
+Recent advancements integrate generative AI with deep convolutional neural networks (CNNs) and transformer-based architectures, resulting in robust classification systems capable of handling complex real-world scenarios. 
+
+Consequently, generative AI has become an essential component of modern computer vision, significantly enhancing the efficiency, accuracy, and reliability of image classification applications across healthcare, autonomous driving, agriculture, and security.
+
+--- slide 20 ---
+Object Detection
+Object Detection is a computer vision task that identifies both the location and the class of one or more objects within an image. 
+
+Unlike image classification, which assigns a single label to an entire image, object detection predicts bounding boxes around objects along with their corresponding class labels and confidence scores. 
+
+Modern deep learning models such as YOLO, Faster R-CNN, and SSD perform object detection by learning robust spatial and semantic features from annotated datasets, enabling real-time and accurate detection in complex scenes.
+
+--- slide 21 ---
+Object detection
+[IMAGE: image.png.png 2.3x1.8in]
+[IMAGE: image.png.png 0.8x1.1in]
+[IMAGE: image.png.png 0.8x1.1in]
+Person  0.03
+Horse    0.05
+Dog        0.8
+.
+.
+[IMAGE: image.png.png 2.3x1.8in]
+[IMAGE: image.png.png 1.4x1.6in]
+[IMAGE: image.png.png 0.8x1.1in]
+Training Image
+Feature extraction
+HOG
+SIFT
+CNN features
+Looking for possible regions with objects
+Sliding window
+Selective search
+Region proposals
+localization
+classification
+Conventional object detection
+
+--- slide 22 ---
+Generative AI for Object detection
+Generative Artificial Intelligence (Generative AI) is improving object detection by helping computers identify and locate objects in images and videos more accurately. 
+
+Traditional object detection models need a large amount of labeled training data, which is expensive and time-consuming to collect. 
+
+Generative AI models, such as Generative Adversarial Networks (GANs) and diffusion models, can create realistic synthetic images that increase the size and variety of training datasets. 
+
+These additional images help object detection models like YOLO, Faster R-CNN, and SSD learn to recognize objects under different conditions, including poor lighting, different backgrounds, and partial occlusion.
+
+--- slide 23 ---
+Generative AI for Object detection
+Generative AI also supports data augmentation and image enhancement, making detection systems more accurate and reliable. 
+As a result, object detection models become more robust, require less manual data collection, and perform better in real-world applications such as autonomous vehicles, medical imaging, security surveillance, robotics, and smart manufacturing.
+Object Generation Network
+Image Source : Lee, H.; Kang, S.; Chung, K. Robust Data Augmentation Generative Adversarial Network for Object Detection. Sensors 2023, 23, 157. https://doi.org/10.3390/s23010157
+[IMAGE: image.png.png 6.8x3.1in]
+
+--- slide 24 ---
+Semantic and Instance Segmentation
+Semantic segmentation assigns a class label to every pixel in an image, grouping all pixels of the same category together without distinguishing individual objects. 
+
+Instance segmentation goes further by identifying and separating each individual object within the same class, enabling precise object-level differentiation. 
+
+While semantic segmentation provides overall scene understanding, instance segmentation offers more detailed information by distinguishing separate objects. 
+
+Both tasks are widely used in computer vision applications such as autonomous driving and medical imaging, and have been significantly improved by modern deep learning models like FCNs, U-Net, DeepLab, and Mask R-CNN.
+
+--- slide 25 ---
+Semantic and Instance Segmentation
+[IMAGE: image.png.png 1.5x2.0in]
+[IMAGE: image.png.png 1.4x1.9in]
+[IMAGE: image.png.png 1.5x2.0in]
+Semantic Segmentation
+Instance Segmentation
+Original Image
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/1*vsXei_-NBulKfQhfkxTdKw.jpeg
+
+--- slide 26 ---
+Generative AI  for Semantic and Instance Segmentation
+Generative Artificial Intelligence (Generative AI) has emerged as a promising paradigm for enhancing semantic and instance segmentation by leveraging powerful generative models to improve feature representation, data synthesis, and segmentation accuracy. 
+
+Unlike conventional discriminative approaches that directly predict pixel-wise labels, Generative AI models, such as Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), diffusion models, and transformer-based generative architectures, learn the underlying distribution of visual data to generate realistic images, refine segmentation masks, and produce high-quality synthetic training samples. 
+
+In semantic segmentation, generative models facilitate domain adaptation, image-to-image translation, and data augmentation, thereby improving model robustness under limited labeled data and varying environmental conditions.
+
+--- slide 27 ---
+Generative AI  for Semantic and Instance Segmentation
+For instance segmentation, these models enhance object boundary delineation, recover occluded object regions, and generate instance-aware representations that improve the separation of overlapping objects. 
+
+Recent vision-language foundation models and prompt-driven segmentation frameworks, such as the Segment Anything Model (SAM) and diffusion-based segmentation methods, further demonstrate the capability of Generative AI to perform zero-shot and few-shot segmentation with minimal task-specific supervision. 
+
+By combining generative modeling with large-scale pretraining and self-supervised learning, Generative AI significantly improves segmentation performance, generalization, and adaptability across diverse application domains, including medical imaging, autonomous driving, remote sensing, robotics, and industrial inspection.
+
+--- slide 28 ---
+Image Super-resolution
+Image super-resolution (SR) is a computer vision technique that reconstructs high-resolution images from low-resolution inputs by recovering lost spatial details. 
+
+Traditional methods such as interpolation and example-based approaches often produce blurred results with limited detail restoration. 
+
+Recent deep learning approaches, including CNNs, transformers, and generative models (e.g., SRCNN, EDSR, ESRGAN, SwinIR), significantly improve performance by learning complex mappings between low- and high-resolution images, producing more realistic and detailed outputs.
+
+--- slide 29 ---
+Image Super-resolution
+Generative AI further enhances SR by synthesizing missing textures and improving visual fidelity. 
+
+Image super-resolution is widely used in applications such as medical imaging, remote sensing, autonomous driving, surveillance, and digital photography, where high-quality images are essential for accurate analysis.
+[IMAGE: image.png.png 6.4x2.1in]
+Image Super Resolution
+Image Source : https://media.licdn.com/dms/image/v2/D4D12AQGF_t_di8taoA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1695617252545?e=2147483647&v=beta&t=Vn4kvoO30OMG3ZjphZr6Eaf-eLVyHMbLOnDPf7VoE8c
+
+--- slide 30 ---
+Generative AI for Image Super-resolution
+Generative Artificial Intelligence (Generative AI) has significantly advanced image super-resolution by enabling the reconstruction of high-resolution images with enhanced visual quality, realistic textures, and fine structural details from low-resolution inputs. 
+
+Unlike conventional interpolation and discriminative deep learning methods that primarily optimize pixel-wise reconstruction, generative models learn the underlying distribution of natural images to synthesize plausible high-frequency details that are often missing in degraded images.
+
+Techniques based on Generative Adversarial Networks (GANs), diffusion models, and transformer-based generative architectures have demonstrated remarkable performance in producing perceptually realistic images while preserving semantic consistency. 
+
+Models such as ESRGAN, Real-ESRGAN, Stable Diffusion-based super-resolution frameworks, and latent diffusion models effectively reduce blur, suppress artifacts, and recover complex textures under challenging imaging conditions.
+
+--- slide 31 ---
+Furthermore, foundation models trained on large-scale datasets exhibit strong generalization capabilities, enabling robust super-resolution across diverse domains. 
+
+Generative AI-based super-resolution has found widespread applications in medical imaging, satellite and remote sensing, surveillance, autonomous driving, digital photography, video restoration, scientific imaging, and cultural heritage preservation, where enhanced image quality is essential for accurate analysis, interpretation, and decision-making.
+Generative AI for Image Super-resolution
+[IMAGE: image.jpeg.jpg 6.7x2.7in]
+Image Source : https://www.sonyalpharumors.com/wp-content/uploads/2023/02/f0c9cec4cbf11d37ce480ce266d068d7a2fdef9b-2.jpeg
+
+--- slide 32 ---
+Image Inpainting
+Image inpainting is a computer vision technique that reconstructs missing, damaged, or unwanted regions of an image by generating visually realistic content that seamlessly blends with the surrounding pixels. 
+
+Its primary objective is to preserve structural details, texture consistency, and semantic information while restoring the image. 
+
+Traditional inpainting methods rely on diffusion- and patch-based algorithms, which perform well for small missing regions but often fail to reconstruct complex scenes.
+
+--- slide 33 ---
+Image Inpainting
+Modern deep learning approaches, particularly those based on convolutional neural networks (CNNs), transformers, and Generative AI models such as Generative Adversarial Networks (GANs) and diffusion models, have significantly improved inpainting performance by learning contextual and semantic representations from large datasets. 
+
+These models can generate high-quality, photorealistic content even for large missing areas, making image inpainting an essential technology in image restoration, object removal, photo editing, medical imaging, cultural heritage preservation, remote sensing, and augmented reality.
+[IMAGE: image.jpeg.jpg 4.4x3.0in]
+Image Source : https://miro.medium.com/v2/resize:fit:652/1*s2bG37m-8g4sqioUC3T76w.png
+Image Inpainting
+
+--- slide 34 ---
+Generative AI for Image Inpainting
+Generative Artificial Intelligence (Generative AI) has transformed image inpainting by enabling the realistic reconstruction of missing, damaged, or unwanted regions of an image using learned semantic and contextual information. 
+
+Unlike traditional diffusion- and patch-based methods, generative models learn the underlying distribution of visual data to synthesize coherent structures, textures, and object details that seamlessly integrate with the surrounding content. 
+
+Advanced architectures based on Generative Adversarial Networks (GANs), diffusion models, transformer-based networks, and foundation models can effectively restore large missing areas, remove undesired objects, and preserve both local texture and global scene consistency.
+
+--- slide 35 ---
+Generative AI for Image Inpainting
+Recent approaches, including Stable Diffusion-based inpainting and transformer-guided models, achieve high-quality, photorealistic image completion with minimal user input. 
+
+As a result, Generative AI-based image inpainting has become a key technology in image restoration, photo editing, film and video post-production, medical imaging, cultural heritage preservation, remote sensing, and augmented reality, where accurate and visually plausible image reconstruction is essential.
+[IMAGE: image.png.png 5.3x2.9in]
+Using AI inpainting tools to modify a real image (top left), remove the object of interest (bottom left), and then place a new object in the scene realistically at varying positions and directions (top and bottom right).
+Image Source : https://support.rendered.ai/application-user-guides/tutorials/creating-and-using-volumes/inpaint-service
+
+--- slide 36 ---
+Summary
+Computer Vision: Definition
+
+Applications of Computer Vision
+
+Challenges of Computer Vision
+
+Generative AI for Vision Tasks
+Image classification
+Object Detection
+Semantic and Instance Segmentation
+Image super-resolution
+Image In-painting
+
+--- slide 37 ---
+Generative AI for Vision Tasks - II
+Generative AI for Computer Vision
+Next
+
+Lecture 7: Part 2

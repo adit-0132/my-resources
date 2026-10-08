@@ -1,0 +1,91 @@
+--- page 1 ---
+Lecture 49 : Efficient fine-tuning for quantized LMs - II
+--- page 2 ---
+QLoRA ingredients-2: Double Quantization
+•
+QLoRA ingredients-3: Paged Optimizer
+•
+QLoRA: Putting it all together
+•
+--- page 3 ---
+QLoRA: Major innovations (Recap)
+https://llmsystem.github.io
+--- page 4 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 5 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 6 ---
+QLoRA Ingredients 2: Double Quantization
+So, how to avoid this
+problem?
+https://harvard-iacs.github.io/2024-AC215/
+--- page 7 ---
+QLoRA Ingredients 2: Double Quantization
+The answer to that is: Block-wise Quantization, which is the first step in
+Double Quantization!
+Let’s look at an example to understand this concept
+https://harvard-iacs.github.io/2024-AC215/
+--- page 8 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 9 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 10 ---
+QLoRA Ingredients 2: Double Quantization
+Let’s see the difference in memory usage before and after Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 11 ---
+QLoRA Ingredients 2: Double Quantization
+Let’s see the difference in memory usage before and after Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 12 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 13 ---
+QLoRA Ingredients 2: Double Quantization
+https://harvard-iacs.github.io/2024-AC215/
+--- page 14 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 15 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 16 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 17 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 18 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 19 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 20 ---
+QLoRA Ingredients 3
+https://harvard-iacs.github.io/2024-AC215/
+--- page 21 ---
+QLoRA Ingredients 3: Paged Optimizer
+https://harvard-iacs.github.io/2024-AC215/
+--- page 22 ---
+QLoRA: Putting it all together
+https://harvard-iacs.github.io/2024-AC215/
+--- page 23 ---
+QLoRA: Putting it all together
+https://harvard-iacs.github.io/2024-AC215/
+--- page 24 ---
+QLoRA: Putting it all together
+https://harvard-iacs.github.io/2024-AC215/
+--- page 25 ---
+QLoRA: Putting it all together
+https://harvard-iacs.github.io/2024-AC215/
+--- page 26 ---
+QLoRA: Putting it all together
+https://harvard-iacs.github.io/2024-AC215/
+--- page 27 ---
+Kamath, Uday, et al. "Large Language Models: A Deep Dive." (2024).
+--- page 28 ---

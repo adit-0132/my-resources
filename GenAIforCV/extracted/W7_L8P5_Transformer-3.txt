@@ -1,0 +1,438 @@
+### DECK: L8P5_Transformer-3  (Week 7)  slides=26  canvas=13.3x7.5in
+
+--- slide 1 ---
+Transformers - III
+Generative AI for Computer Vision
+Lecture 8
+
+Part 3
+
+--- slide 2 ---
+Content
+Transformer – Basics 
+Transformer for Vision Tasks
+How Transformer differs from CNN?
+Transformer Architecture
+Transformer Encoder
+Input Embedding
+Positional Encoding
+
+--- slide 3 ---
+Transformers
+Transformer is a powerful architecture for generative modelling that uses attention mechanisms to learn relationships between different elements of a sequence. 
+
+Attention allows the model to assign different levels of importance to input tokens when generating an output, enabling it to focus on the most relevant information. 
+
+A key component is self-attention, in which each token in a sequence interacts with every other token to determine their contextual relationships. 
+
+This enables the Transformer to understand dependencies between words or tokens, even when they are far apart in the sequence.
+[IMAGE: image.png.png 4.2x6.0in]
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+
+--- slide 4 ---
+Transformers further improve this process through multi-head attention, which runs several self-attention mechanisms in parallel, with each head learning to capture different types of relationships or patterns within the data.
+
+ By combining these attention mechanisms with positional information and feed-forward layers, Transformers can effectively model complex dependencies and generate coherent text, images, code, and other forms of data. 
+
+In generative models such as GPT, this architecture is used autoregressively, where the model predicts the next token based on the previously generated tokens, allowing it to produce new sequences that resemble the patterns learned during training.
+Transformers
+[IMAGE: image.png.png 4.2x6.0in]
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+
+--- slide 5 ---
+Attention Mechanism
+
+--- slide 6 ---
+Transformer for Vision Tasks
+Transformers can be used for computer vision by treating an image as a sequence of smaller regions, or patches, rather than processing the entire image at once. 
+
+For example, in the Vision Transformer (ViT), an image is divided into fixed-size patches, such as 16×16 pixels, and each patch is converted into a numerical vector called an embedding. 
+
+These patch embeddings are then given positional information so that the model can understand where each patch is located in the image. 
+
+The embeddings are passed through Transformer encoder layers, which use self-attention to learn relationships between different parts of the image. 
+
+This allows the model to identify both local features and long-range dependencies, such as relationships between objects that are far apart. The resulting representations can then be used for tasks such as image classification, object detection, image segmentation, and image generation. 
+
+Thus, Transformers provide a powerful alternative to traditional convolutional neural networks (CNNs) for many computer vision applications.
+
+--- slide 7 ---
+How Transformer works differently than CNN?
+Suppose an image contains a person holding a flag.
+
+A CNN uses convolutional filters to first identify local features such as edges, shapes, and textures. As the information moves through deeper layers, the CNN gradually combines these local features to understand that the person is holding the flag.
+Predictions
+[IMAGE: image.png.png 0.9x0.9in]
+Low Level Features
+Mid-Level Features
+High-Level Features
+Softmax
+Convolution
+Non-linear Activation
+Normalization
+Pooling
+Fully Connected layers
+
+--- slide 8 ---
+A Transformer, on the other hand, conceptually divides the image into patches and uses self-attention to determine how important each patch is to every other patch. 
+
+It can directly learn that the patch containing the person's hand is related to the patch containing the flag, even if they are relatively far apart.
+
+CNNs are naturally good at learning local patterns and spatial features, while Transformers are particularly powerful at learning relationships between different regions of an image. 
+
+Modern vision systems often combine ideas from both approaches to get the advantages of each.
+How Transformer works differently than CNN?
+
+--- slide 9 ---
+Transformer Architecture
+[IMAGE: image.png.png 0.7x0.8in]
+CNN
+z0,0
+z0,1
+z0,2
+z1,0
+z1,1
+z1,2
+z2,0
+z2,1
+z2,2
+z0,0
+z0,1
+z0,2
+z2,2
+…
+c0,0
+c0,1
+c0,2
+c2,2
+…
+Transformer Encoder
+y0
+y1
+y2
+y3
+Transformer Decoder
+y1
+y2
+y3
+y4
+[START]
+boy
+waving
+flag
+boy
+waving
+flag
+[END]
+Encoder: c = Tw(z)
+Where z is spatial CNN features
+Tw(.) is the transformer encoder
+Extract spatial
+features from a 
+pretrained CNN
+Features : 
+H x W x D
+
+--- slide 10 ---
+Transformer Architecture
+It consists of two main components:
+
+Encoder: converts the input sequence into contextualized representations.
+
+Decoder: generates the output sequence autoregressively using the encoder representations.
+[IMAGE: image.png.png 4.6x6.6in]
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+
+--- slide 11 ---
+[IMAGE: image.png.png 4.6x6.6in]
+Transformer Architecture
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+z00
+z01
+z22
+TRANSFORMER
+ ENCODER
+TRANSFORMER 
+DECODER
+.
+.
+.
+Boy
+Waving
+Flag
+[END]
+[IMAGE: image.png.png 0.7x0.8in]
+CNN
+z0,0
+z0,1
+z0,2
+z2,2
+…
+z0,0
+z0,1
+z0,2
+z1,0
+z1,1
+z1,2
+z2,0
+z2,1
+z2,2
+
+--- slide 12 ---
+[IMAGE: image.png.png 4.2x6.0in]
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Is
+mac
+léinn
+mé
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+DECODER
+DECODER
+DECODER
+DECODER
+DECODER
+DECODER
+[IMAGE: image.png.png 2.8x0.2in]
+student
+I
+am
+a
+Transformer Architecture
+
+--- slide 13 ---
+Full Encoder at a glance
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+FEED FORWARD NEURAL NETWORK
+To next encoder layer
+Add & Normalization
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 14 ---
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Is
+mac
+mé
+léinn
+MULTI-HEAD ATTENTION
+LAYER NORMALIZATION
+FEED FORWARD NEURAL NETWORK
+To next encoder layer
+Add & Normalization
+Add & Normalization
+Input to encoder
+Positional Encoding
+Word Embedding
+Is
+mac
+mé
+léinn
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+ENCODER
+DECODER
+DECODER
+DECODER
+DECODER
+DECODER
+DECODER
+I
+am
+student
+a
+Full Encoder at a glance
+
+--- slide 15 ---
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Is
+mac
+mé
+léinn
+Full Encoder at a glance
+
+--- slide 16 ---
+Is
+mac
+mé
+léinn
+Input Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Full Encoder at a glance
+
+--- slide 17 ---
+Input Embedding
+Input embedding in a Transformer is the process of converting text tokens into numerical vector representations that the model can process mathematically. 
+
+The input text is first tokenized into smaller units, such as words, subwords, or individual tokens. 
+
+Each token is then mapped to a dense, fixed-dimensional vector using a learnable embedding matrix. 
+
+These embeddings provide a continuous representation of the tokens and allow the model to capture meaningful semantic and syntactic relationships between them. 
+
+During training, the embedding vectors are learned such that tokens with similar meanings or usage patterns tend to have similar representations in the vector space. 
+
+The resulting embeddings are then combined with positional information and supplied to the Transformer layers for further processing.
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+[IMAGE: image.png.png 4.2x6.0in]
+
+--- slide 18 ---
+Encoder Architecture
+Encoder
+Raj
+is
+a
+good
+boy
+Input Embedding
+…
+…
+…
+…
+…
+Raj
+is
+0.1
+0.39
+-0.25
+.
+.
+.
+0.15
+1
+2
+3
+512
+0.23
+0.06
+0.5
+.
+.
+.
+-0.51
+. . .
+Input Embedding
+[IMAGE: image.png.png 9.0x2.5in]
+
+--- slide 19 ---
+Full Encoder at a glance
+Is
+mac
+mé
+léinn
+Positional Encoding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Input Embedding
+
+--- slide 20 ---
+Positional encoding is a technique used to provide information about the order and position of tokens within a sequence. 
+
+Since Transformers process all tokens in parallel and self-attention does not inherently encode their sequential order, the model requires additional positional information to distinguish between different token arrangements. 
+
+To address this, a unique positional vector is generated for each position in the sequence and added to the corresponding token embedding before the representation is passed into the Transformer layers. 
+
+This allows the model to incorporate information about the relative and absolute positions of tokens, enabling it to understand the order of words and capture relationships that depend on their positions within the sequence.
+[IMAGE: image.png.png 3.8x5.5in]
+Transformer Architecture
+Positional Encoding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+
+--- slide 21 ---
+Positional vectors are typically generated using sine and cosine functions with different frequencies, creating unique patterns for different positions in the sequence and enabling the model to capture relationships between positions. 
+
+These positional encodings are added to the corresponding token embeddings, allowing the Transformer to distinguish between sequences in which the same words appear in different orders. 
+
+For example, the sentences “dog bites man” and “man bites dog” contain the same words but have different meanings because their word order is different. 
+
+By incorporating positional information into the token representations, mechanisms such as self-attention can effectively capture both the contextual relationships and positional dependencies between tokens, enabling the model to better understand the structure and meaning of the sequence.
+Transformer Architecture
+Positional Encoding
+
+--- slide 22 ---
+• Positional information of each word in the i/p sentence.
+• Relative distance (close / far) between words in the sentence.
+Transformer Architecture
+Positional Encoding
+Raj
+is
+good
+boy
+…
+…
+…
+…
+…
+…
+…
+…
+…
+…
+…
+…
+Raj
+is
+good
+boy
+close
+distant
+vector size 512Word Embedding
+Positional embeddingvector size: 512computed onceNot learned
+Encoder I/P(512)
+
+--- slide 23 ---
+Options for pos(.)
+
+1. Learn a lookup table:
+Learn parameters to use for pos(t) for t ε [0, T)
+Lookup table contains T x d parameters.
+
+2. Design a fixed function with the desiderata
+Transformer Architecture
+Positional Encoding
+Concept: Fei-Fei Li Attention and Transformers CS231n Stanford Lecture
+
+--- slide 24 ---
+Full Encoder at a glance
+Input to Encoder
+Is
+mac
+mé
+léinn
+Input to encoder
+Positional Encoding
+Word Embedding
+Figure Source: Ashish Vaswani et. al. Attention is All You Need, NIPS 2017
+Encoder
+
+--- slide 25 ---
+Summary
+Transformer – Basics 
+Transformer for Vision Tasks
+How Transformer differs from CNN?
+Transformer Architecture
+Transformer Encoder
+Input Embedding
+Positional Encoding
+
+--- slide 26 ---
+Transformers - IV
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 5

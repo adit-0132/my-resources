@@ -1,0 +1,313 @@
+### DECK: W2L3_P4_Overfitting  (Week 2)  slides=23  canvas=13.3x7.5in
+
+--- slide 1 ---
+Neural Network FundamentalsOverfitting
+Generative AI for Computer Vision
+Lecture 3
+
+Part 4
+
+--- slide 2 ---
+Content
+Concept of Overfitting
+Bias & Variance 
+Bias Variance Trade off
+Solutions of overfitting
+K-fold Cross Validation
+Regularization
+Early Stopping
+
+--- slide 3 ---
+Overfitting
+Overfitting: A hypothesis function h is said to overfit if there exists another hypothesis h′ with higher training error but lower testing error, indicating that h generalizes poorly to unseen data.
+
+A classifier that perfectly classifies the training data may not generalize well because:
+Training data may contain noise, causing the model to learn irrelevant patterns. 
+The training dataset may be too small, making it unrepresentative of the true data distribution.
+
+Simply put, a model that is too complex tends to overfit, whereas a model that is too simple tends to underfit.
+
+Note: Training error is not a good predictor for the testing error.
+
+--- slide 4 ---
+Overfitting
+
+--- slide 5 ---
+The Problem of Overfitting
+Overfitting occurs when a machine learning model learns the training data too closely, capturing not only the underlying patterns but also the noise and irrelevant details. As a result, it performs well on the training data but fails to generalize to unseen data.
+A model with too many features or excessive complexity may fit the training data extremely well, yet perform poorly on new examples because it has memorized the training set instead of learning generalizable patterns.
+x
+y
+x
+y
+x
+y
+
+--- slide 6 ---
+The Problem of Overfitting
+Underfit
+Overfit
+Balanced
+
+--- slide 7 ---
+The Problem of Overfitting
+The model performed well on test set ?
+Model
+The model performed well on training  set ?
+Underfitting
+NO
+YES
+Good Model
+YES
+Overfitting
+NO
+
+--- slide 8 ---
+Why is data overfitting considered the most common pitfall in machine learning?
+
+In a train–test split, most of the data is used for training, leaving a relatively small test set
+
+We often choose complex hypothesis functions, assuming that larger models always perform better because they fit the training data more closely.
+
+It is often difficult to realize that a model performing well on the training data may still fail on unseen test data. Since achieving high training accuracy is already challenging, we often focus only on fitting the training data and overlook the model's ability to generalize.
+Overfitting
+
+--- slide 9 ---
+Bias : 
+Bias is the error caused by incorrect or overly simplistic assumptions made by a machine learning model. 
+It represents the difference between the model's predicted output and the actual target output. 
+Models with high bias are generally too simple to capture the underlying patterns in the training data, resulting in underfitting. 
+High bias typically leads to high error on both the training and test datasets.
+
+Variance : 
+Variance is the error caused by a model being too sensitive to the training data. 
+Models with high variance are generally very complex and learn the training data too closely, including its noise, which reduces their ability to generalize to unseen data. 
+This results in overfitting, where the model performs exceptionally well on the training data but poorly on new, unseen data. 
+High variance typically leads to very low training error but high testing error.
+Bias and Variance
+
+--- slide 10 ---
+Low Bias, Low Variance (Ideal): Predictions are closely clustered around the true target (bullseye), indicating both high accuracy (low bias) and high consistency (low variance). This represents an ideal model that generalizes well to unseen data.
+Bias and Variance
+High Bias, Low Variance (Underfitting): Predictions are tightly clustered but far from the true target (bullseye). The model is too simple to capture the underlying patterns in the data, resulting in high training error and high testing error.
+High Bias, High Variance: Predictions are widely scattered and far from the true target (bullseye). The model is both inaccurate (high bias) and inconsistent (high variance), resulting in poor performance on both the training and testing data.
+Low Bias, High Variance (Overfitting): Predictions are centered around the true target (bullseye) but are widely scattered. The model is overly complex and fits the training data too closely, resulting in very low training error but high testing error, leading to poor generalization on unseen data.
+Bull’s Eye
+Bull’s Eye
+Bull’s Eye
+Bull’s Eye
+Low Bias & Low Variance
+High Bias & High Variance
+Low Bias & High Variance
+High Bias & Low Variance
+Underfitting
+Overfitting
+
+--- slide 11 ---
+Bias Variance Trade-off
+Why is there a Bias–Variance Trade-off?
+A model with high bias and low variance is too simple and has fewer parameters (low complexity). Such models fail to capture the underlying patterns in the data, leading to underfitting. 
+A model with low bias and high variance is highly complex and has a large number of parameters. Such models fit the training data too closely, including its noise, leading to overfitting and poor generalization to unseen data. 
+As model complexity increases, bias decreases but variance increases. Conversely, reducing model complexity increases bias but decreases variance. 
+Therefore, a trade-off exists between bias and variance. The goal is to choose a model that achieves a good balance, with low bias and low variance, so that it generalizes well while avoiding both underfitting and overfitting.
+Model Complexity
+Error
+Solution Zone
+Best Solution Zone
+Variance
+Total Error
+An optimal balance of bias and variance would never overfit or underfit the model
+To build a good model, we need to find a good balance between bias and variance such that it minimizes the total error.
+
+--- slide 12 ---
+Solution for Overfitting
+K- fold Cross Validation
+Regularization
+Early stopping
+
+--- slide 13 ---
+K-fold Cross Validation
+K-Fold Cross-Validation is a technique used to evaluate a model's ability to generalize to unseen data and reduce the risk of overfitting. 
+
+Instead of training and testing the model only once, the dataset is divided into K equal folds, and the model is trained and tested K times, using a different fold as the test set in each iteration.
+Training Set |  | Test Set
+Training Set(S) | Validation Set | Test Set
+S1 | S2 | S3 | S….. | Sk
+Step by Step Procedure:
+
+Choose a value for K (common choices: 5 or 10)
+Split the dataset into K folds
+For each fold:
+      Train on K−1 folds
+      Test on the remaining fold
+      Record the score (accuracy, MSE, etc.)
+End of Loop
+Compute the average score
+Round | Training Set | Validation Set
+1 | S – S1 | S1
+2 | S – S2 | S2
+… | … | …
+k | S-Sk | Sk
+
+--- slide 14 ---
+How K-fold Cross Validation helps Generalization?
+K-fold cross-validation improves a model's ability to generalize by providing a more reliable estimate of its performance on unseen data and reducing the risk of overfitting during model selection. 
+
+Unlike a single train–test split, K-fold cross-validation evaluates the model across K different validation sets, ensuring that each data point is used once for validation and K − 1 times for training. 
+
+This approach reduces dependence on a single data split, allows the model to learn from a broader representation of the dataset, and produces a more accurate assessment of its true predictive performance.
+
+Additionally, averaging the results across multiple folds reduces the variance associated with a single train–test split, minimizing the influence of unrepresentative samples and yielding a more stable and trustworthy evaluation. 
+
+Overall, K-fold cross-validation enhances generalization by requiring the model to perform consistently well across multiple unseen subsets rather than excelling on just one particular split.
+
+--- slide 15 ---
+Regularization
+Regularization helps the model generalize better to unseen data.
+Penalizes Model Complexity: 
+During training, regularization adds a penalty term to the loss function, discouraging the model from becoming overly complex. It helps prevent:
+Large weight values 
+Using too many features 
+Learning highly complex (overly flexible) models 
+Loss function with regularization
+                       Loss=Original Loss+𝜆×Penalty
+λ (lambda) is the regularization parameter which controls strength of regularization
+Larger λ → simpler model
+Smaller λ → more complex (flexible) model
+
+--- slide 16 ---
+Regularization reduces overfitting by adding a penalty term to the cost function. This penalty encourages the model to learn smaller weight values, resulting in a simpler model with lower complexity and better generalization.
+Regularization
+L1 Regularization (Lasso) adds the absolute values of the coefficients to the loss function as a penalty. It forces some unimportant weights to exactly zero (feature selection), reducing model complexity and improving generalization.
+Original Loss
+Penalty
+L2 Regularization (Ridge) adds the squared values of the coefficients as a penalty term to the loss function. This causes large weights to decay but does not force them to become zero, allowing all features to contribute while spreading the influence across them
+λ= Regularization parameter
+Original Loss
+Penalty
+
+--- slide 17 ---
+Early Stopping
+Early stopping is a regularization technique used during the training of models with iterative optimization methods, such as gradient descent.
+
+This method updates the model parameters in each iteration to improve its fit to the training data.
+
+Initially, each iteration improves the model's performance on the test (validation) data. 
+
+Beyond a certain point, further fitting the training data increases the generalization error due to overfitting. 
+
+Early stopping halts training at the optimal iteration, before overfitting begins, improving generalization.
+Epochs
+Accuracy
+Early Stopping Point
+Epochs
+Loss
+Early Stopping Point
+Training set    
+Test set
+
+--- slide 18 ---
+Concept of Overfitting
+Bias & Variance 
+Bias Variance Trade off
+Solutions of overfitting
+K-fold Cross Validation
+Regularization
+Early Stopping
+Summary
+
+--- slide 19 ---
+Convolutional Neural Network - I
+Neural Networks for Computer Vision and Natural Language Processing
+Next
+Lecture 4: Part 1
+
+--- slide 20 ---
+L1 Regularization
+L1 Regularization (also called Lasso Regularization) reduces overfitting and performs feature selection by adding a penalty based on the absolute values of the model weights.
+
+
+
+
+
+
+L1 Regularization performs automatic feature selection by penalizing less important weights, causing some of them to become exactly zero.
+It reduces overfitting by limiting model complexity and preventing weights from becoming too large, resulting in better generalization on unseen data.
+L1 Regularization is suitable when:
+The data are high-dimensional. 
+The dataset contains many irrelevant features and requires feature selection. 
+A simpler, more interpretable model is desired.
+L1 Regularization is NOT suitable when:
+Features are highly correlated (it may arbitrarily select one and ignore the others).
+Original Loss
+Penalty
+
+--- slide 21 ---
+L2 Regularization (also called Ridge regularization or weight decay) reduces overfitting by penalizing large weights, encouraging smaller, smoother, and more stable parameters for better generalization.
+
+
+
+
+L2 Regularization penalizes large weights because squaring the weights makes large values much more costly. It encourages the model to distribute importance across all features instead of relying on a few extreme coefficients.
+
+L2 Regularization reduces overfitting by limiting model complexity. It makes the model less sensitive to noise in the training data, resulting in better generalization to unseen data.
+
+L2 Regularization improves numerical stability, making it especially useful when features are highly correlated (multicollinearity). As a result, it produces smoother and more stable solutions.
+
+L2 Regularization retains all features by shrinking their coefficients toward zero without forcing them to become exactly zero. Therefore, unlike L1 Regularization, it does not perform feature selection.
+L2 Regularization
+Original Loss
+Penalty
+
+--- slide 22 ---
+L1 & L2 Regularization
+When to Use L1& L2 Regularization?
+L1 Regularization (Lasso) : 
+
+Suitable for high-dimensional datasets with many features. 
+
+Use when automatic feature selection is required. 
+
+Sets some weights exactly to zero, eliminating irrelevant features and creating a sparse model.
+Suppose you have a dataset to predict house prices with many features, such as Size of the house, Number of rooms, Location, Distance to city center, Age of the house, Noise level, Postal code indicators (many dummy variables), and Random or weakly related features.
+
+L1 regularization is suitable because it performs automatic feature selection by setting the weights of irrelevant or less important features (e.g., Distance to city center, Age of the house, Noise level, Postal code indicators, and Random or weakly related features) to zero.
+Final model: {Size of the house, Number of rooms, Location}
+Benefits:
+More interpretable model. 
+Reduced overfitting. 
+Better generalization to unseen data.
+L2 Regularization (Ridge):
+
+All features are useful. 
+
+Handles multicollinearity. 
+
+No feature selection needed. 
+
+Shrinks weights, not to zero.
+Suppose you have a dataset to predict rainfall, containing many correlated features such as atmospheric pressure, humidity, dew point, temperature, wind speed, cloud cover, and radar data.
+
+L2 regularization is suitable because it shrinks the weights of all features proportionally without eliminating any, allowing each weather variable to contribute to the prediction.
+
+Result: A robust and stable model that doesn't overreact to any single weather metric while utilizing information from all relevant features.
+
+--- slide 23 ---
+Regularization Parameter (λ)
+When the 𝜆 is huge (like 𝜆 = 1000):
+
+All coefficients shrink toward 0
+The model cannot learn important relationships
+It predicts almost a flat line → underfitting
+If 𝜆 is tiny (like 𝜆 = 0.0001), almost no penalty is applied:
+
+Weights become large to try to model every pattern
+Outliers or noise may be got fitted.
+Training error: Low; Test error: High  overfitting
+When 𝜆 = moderate:
+
+The model achieves better generalization ability.
+Model the intrinsic property of the underlying distribution well.
+Model complexity not too high not very simple, not overfitted as well as underfitted. Ideal model.
+L1 Regularization (Lasso)
+L2 Regularization (Ridge)

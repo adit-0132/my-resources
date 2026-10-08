@@ -1,0 +1,198 @@
+### DECK: L8P7_VIT  (Week 8)  slides=22  canvas=13.3x7.5in
+
+--- slide 1 ---
+Vision Transformers
+Generative AI for Computer Vision
+Lecture 8
+
+Part 7
+
+--- slide 2 ---
+Content
+Vision Transformer
+DEtection TRansformer (DETR)
+SWIN Transformer
+
+--- slide 3 ---
+Vision Transformers
+Vision Transformers (ViTs) are a type of Transformer architecture designed specifically for computer vision tasks. 
+
+Unlike traditional CNNs, which process images using convolutional filters, a Vision Transformer divides an image into small, fixed-size patches and treats these patches as a sequence of tokens, similar to words in a sentence. 
+
+Each image patch is converted into an embedding, and positional embeddings are added to preserve information about the location of each patch. 
+
+These embeddings are then passed through Transformer encoder layers, where self-attention allows the model to learn relationships between different parts of the image.
+
+--- slide 4 ---
+Vision Transformers
+For example, when recognizing a dog, the model can relate patches containing the dog's face, body, and legs even when they are far apart in the image. 
+
+The final representation can be used for tasks such as image classification, object detection, and image segmentation. 
+
+Vision Transformers have become an important alternative to CNNs because their self-attention mechanism enables them to capture global relationships within an image effectively.
+
+--- slide 5 ---
+Patch Embedding
+Vision Transformer (ViT) is a Transformer-based architecture mainly used for image classification tasks. 
+
+ViT uses the encoder part of the Transformer architecture. 
+
+Instead of processing the entire image directly, ViT divides the image into several small, fixed-size patches. 
+
+Each patch is converted into a numerical representation called an embedding, and positional information is added to indicate the location of each patch.
+[IMAGE: image.emf.wmf 5.9x4.8in]
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 6 ---
+These patch embeddings are then provided as a sequence of inputs to the Transformer encoder. 
+
+The self-attention mechanism allows the model to learn relationships between different patches and understand the overall context of the image. 
+
+Finally, the learned representation is used to classify the image into the appropriate category.
+[IMAGE: image.emf.wmf 5.9x4.8in]
+Patch Embedding
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 7 ---
+Patch Embedding
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 8 ---
+[IMAGE: image.emf.wmf 7.0x1.9in]
+Concatenate the class embedding, which is used to learn the representative characteristics of the entire image.
+
+And then add the position embedding that provides positional information.
+
+Note that the class embedding and position embedding are also learnable.
+Patch Embedding
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 9 ---
+Vision TransformerEncoder Architecture
+The Vision Transformer (ViT) is an encoder-only architecture that applies the Transformer encoder mechanism to image representation learning. 
+
+Unlike encoder–decoder Transformer models, ViT consists exclusively of a stack of Transformer encoder layers and does not employ a separate decoder network.
+
+The encoder in a Vision Transformer (ViT) is responsible for learning contextual representations from image patches through a sequence of Transformer encoder layers. 
+
+Initially, an input image is divided into fixed-size, non-overlapping patches, which are flattened and projected into a latent embedding space. 
+
+Positional embeddings are added to these patch embeddings to preserve spatial information that is otherwise absent from the self-attention mechanism.
+[IMAGE: image.emf.wmf 2.6x5.8in]
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 10 ---
+Each encoder layer consists primarily of a Multi-Head Self-Attention (MHSA) module followed by a position-wise Multi-Layer Perceptron (MLP), with residual connections and Layer Normalization applied around these sublayers. 
+
+The self-attention mechanism computes query, key, and value representations to model relationships between all image patches, enabling the network to capture both local and long-range dependencies. 
+
+The MLP further transforms the attended features using nonlinear projections, increasing the representational capacity of the model. 
+
+By stacking multiple encoder layers, the Vision Transformer progressively learns hierarchical and globally contextualized visual representations, which can subsequently be used for image classification or other downstream computer vision tasks.
+Vision TransformerEncoder Architecture
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+[IMAGE: image.emf.wmf 2.6x5.8in]
+
+--- slide 11 ---
+[IMAGE: image.emf.wmf 2.5x5.5in]
+Thus, as an encoder-only model, ViT transforms an input image into a contextualized feature representation without generating an output sequence, making it particularly suitable for image classification, feature extraction, and other vision tasks.
+Vision TransformerEncoder Architecture
+Alexey Dosovitskiy et. al. AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE, ICLR 2021
+
+--- slide 12 ---
+DEtection TRansformer (DETR)
+The main ingredients of the new framework, called DEtection TRansformer or DETR, are a set-based global loss that forces unique predictions via bipartite matching, and a transformer encoder-decoder architecture.
+
+Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel. 
+
+The new model is conceptually simple and does not require a specialized library, unlike many other modern detectors. 
+
+DETR demonstrates accuracy and run-time performance on par with the well-established and highly-optimized Faster RCNN baseline on the challenging COCO object detection dataset. 
+
+Moreover, DETR can be easily generalized to produce panoptic segmentation in a unified manner.
+Nicolas Carion , Francisco Massa , Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko, “End-to-End Object Detection with Transformer”, arXiv:2005.12872
+
+--- slide 13 ---
+Nicolas Carion , Francisco Massa , Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko, “End-to-End Object Detection with Transformer”, arXiv:2005.12872
+DEtection TRansformer (DETR)
+
+--- slide 14 ---
+DETR Architecture
+[IMAGE: image.emf.wmf 11.5x2.7in]
+Nicolas Carion , Francisco Massa , Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko, “End-to-End Object Detection with Transformer”, arXiv:2005.12872
+
+--- slide 15 ---
+DETR (Detection Transformer) is a transformer-based object detection framework designed to perform end-to-end detection while eliminating the need for traditional components such as anchor boxes and region proposal networks. 
+
+Unlike conventional object detection methods that rely on multiple handcrafted stages for generating and refining candidate regions, DETR formulates object detection as a direct set-prediction problem. 
+
+It predicts a fixed set of object representations, including class labels and bounding-box coordinates, directly from the input image in a single, unified pipeline. 
+
+This end-to-end formulation simplifies the overall detection architecture and enables the model to capture relationships between objects and global image context more effectively.
+DEtection TRansformer (DETR)
+
+--- slide 16 ---
+The core architecture of DETR consists of a convolutional backbone followed by a transformer encoder-decoder.
+ 
+The backbone extracts visual features from the input image, which are subsequently processed by the transformer encoder to model long-range dependencies and global contextual relationships.
+
+The decoder then uses a fixed set of learned object queries to generate individual object representations and predict their corresponding class labels and bounding-box coordinates.
+ 
+By combining visual features with self-attention and cross-attention mechanisms, DETR can reason about the image globally and produce a set of object predictions without requiring manually designed detection components.
+DEtection TRansformer (DETR)
+
+--- slide 17 ---
+A key contribution of DETR is its use of bipartite matching to address the permutation-invariant nature of object detection. 
+
+Since the predicted objects are not associated with predefined anchors or specific ground-truth positions, DETR employs a Hungarian matching algorithm to establish an optimal one-to-one correspondence between predicted objects and ground-truth objects. 
+
+The resulting matching forms the basis of the set-based loss used to jointly optimize classification and bounding-box regression. 
+
+Consequently, DETR provides a conceptually simpler and more unified approach to object detection, demonstrating how transformer architectures can replace several conventional detection mechanisms while maintaining competitive detection performance.
+DEtection TRansformer (DETR)
+
+--- slide 18 ---
+Swin Transformer
+The Swin Transformer introduces a hierarchical vision Transformer architecture that addresses the computational limitations of conventional Vision Transformers by restricting self-attention to local, non-overlapping windows. 
+
+Instead of computing global self-attention across all image patches, Swin Transformer partitions the feature map into fixed-size windows and performs self-attention independently within each window, substantially reducing computational complexity. 
+
+To establish communication between neighboring windows, the architecture alternates between regular window-based multi-head self-attention (W-MSA) and shifted window-based multi-head self-attention (SW-MSA) in successive Transformer blocks. 
+
+This shifted-window mechanism enables efficient cross-window information exchange while preserving the computational benefits of localized attention.
+Z. Liu et al., "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows," in 2021 IEEE/CVF International Conference on Computer Vision (ICCV)
+
+--- slide 19 ---
+Furthermore, Swin Transformer adopts a hierarchical representation-learning strategy through progressive patch merging, which reduces spatial resolution while increasing feature dimensionality and consequently produces multi-scale feature representations. 
+
+As a result, its computational complexity grows linearly with the number of image pixels, making the architecture considerably more scalable than global-attention-based Transformers for high-resolution inputs. 
+
+These properties enable Swin Transformer to serve as a versatile backbone for a wide range of computer vision applications, including image classification, object detection, semantic segmentation, and other dense prediction tasks.
+Swin Transformer
+
+--- slide 20 ---
+The Swin Transformer builds hierarchical feature maps by merging image patches (shown in gray) in deeper layers.
+
+It has linear computation complexity to input image size due to computation of self-attention only within each local window (shown in red). 
+
+It can thus serve as a general-purpose backbone for both image classification and dense recognition tasks. 
+
+In contrast, previous vision Transformers produce feature maps of a single low resolution and having quadratic computation complexity to input image size due to computation of self attention globally.
+[IMAGE: image.png.png 4.6x2.6in]
+Z. Liu et al., "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows," in 2021 IEEE/CVF International Conference on Computer Vision (ICCV)
+Swin Transformer
+
+--- slide 21 ---
+Furthermore, Swin Transformer adopts a hierarchical representation-learning strategy through progressive patch merging, which reduces spatial resolution while increasing feature dimensionality and consequently produces multi-scale feature representations. 
+
+As a result, its computational complexity grows linearly with the number of image pixels, making the architecture considerably more scalable than global-attention-based Transformers for high-resolution inputs. 
+
+These properties enable Swin Transformer to serve as a versatile backbone for a wide range of computer vision applications, including image classification, object detection, semantic segmentation, and other dense prediction tasks.
+Swin Transformer
+
+--- slide 22 ---
+Variational Auto-Encoder
+Generative AI for Computer Vision
+Next
+
+Lecture 9: Part 1

@@ -1,0 +1,764 @@
+--- page 1 ---
+Lecture 36 : Instruction Fine-tuning-I
+--- page 2 ---
+How to make LMs aligned with human intents?
+•
+Instruction Fine-tuning
+•
+--- page 3 ---
+The Pretraining / Fine-tuning paradigm
+Slide source: CS224n
+--- page 4 ---
+Language Modeling ≠ Following Human
+Instructions
+Language models are not aligned with user intents [Ouyang et al.,
+2022].
+[Training language models to follow instructions with human feedback, Ouyang et al. 2022]
+--- page 5 ---
+Language Modeling ≠ Following Human Instructions
+Human
+A giant rocket ship blasted off from Earth carrying astronauts to the moon. The
+astronauts landed their spaceship on the moon and walked around exploring the
+lunar surface. Then they returned safely back to Earth, bringing home moon rocks to
+show everyone.
+Language models are not aligned with user intents [Ouyang et al.,
+2022].
+[Training language models to follow instructions with human feedback, Ouyang et al. 2022]
+--- page 6 ---
+PROMPT
+COMPLETION
+Language Modeling ≠ Incorporating Human Values
+It is unethical for hiring decisions to depend on genders. Therefore, if we
+were to pick a CEO among Amy and Adam, our pick will be _______
+GPT-3
+Adam
+Language models are not aligned with human values [Zhao et al., 2021].
+[Ethical-Advice Taker: Do Language Models Understand Natural Language Interventions?, Zhao et al. 2021]
+--- page 7 ---
+PROMPT
+COMPLETION
+Language Modeling ≠ Incorporating Human Values
+It is unethical for hiring decisions to depend on genders. Therefore, if we
+were to pick a CEO among Amy and Adam, our pick will be _______
+Human
+neither as we don’t know much about their background or experience.
+Language models are not aligned with human values [Zhao et al., 2021].
+[Ethical-Advice Taker: Do Language Models Understand Natural Language Interventions?, Zhao et al. 2021]
+--- page 8 ---
+“Alignment” with Human Intents
+Askell et al. 2020’s definition of “alignment”:
+Note, the definition is not specific to tied to language —
+applicable to other modalities or forms of communication.
+[A General Language Assistant as a Laboratory for Alignment, 2021]
+•
+AI as “aligned” if it is,
+helpful, honest, and harmless
+--- page 9 ---
+How do we make LMs aligned
+with our intents that are
+articulated in language?
+--- page 10 ---
+Instruction
+Fine-Tuning
+RLHF
+Source: State of GPT, Karpathy
+--- page 11 ---
+What is Instruction Fine-Tuning?
+--- page 12 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 13 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 14 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 15 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 16 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 17 ---
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 18 ---
+Basic Premise
+NLP tasks can be described via natural language instructions, such as
+“Is the sentiment of this movie review positive or negative?”
+or
+“Translate ‘how are you’ into Chinese.”
+--- page 19 ---
+Why define tasks in natural language?
+While the current dominant paradigm (supervised learning
+with task-specific labeled examples) has been successful in
+building task-specific models, such models can't generalize
+to unseen tasks; for example, a model that is supervised to
+solve questions cannot solve a classification task.
+We hypothesize that a model equipped with understanding
+and reasoning with natural language instructions should
+be able to generalize to any task that can be defined in terms
+of natural language.
+Source: https://github.com/allenai/natural-instructions
+--- page 20 ---
+How is instruction tuning a different paradigm?
+Finetuned Language Models Are Zero-Shot Learners, ICLR’22.
+--- page 21 ---
+Representing Instructions: Instruction Schema
+Instructions:
+Title
+Things to
+Avoid
+Emphasize
+/Caution
+Examples:
+Cross-Task Generalization via
+Natural Language Crowdsourcing
+Instructions. ACL 22
+Swaroop Mishra, Daniel Khashabi,
+Chitta Baral, Hannaneh Hajishirzi
+Definition
+Positive example
+Negative example
+Input
+Input
+Output
+Explanation
+Suggestion
+Output
+Explanation
+# of examples for task
+Input/outputs:
+Prompt
+message
+Input
+Output
+# of task instances
+# of tasks
+--- page 22 ---
+Natural Instructions: Examples
+Instructions remain common
+across instances
+Cross-Task Generalization via Natural Language Crowdsourcing Instructions. ACL 22
+--- page 23 ---
+•
+•
+Tasks: ~61
+Instances: ~193k
+•
+Categories: ~7
+•
+Diverse Reasoning Skills:
+Diverse Domains:
+E.g. Sports, History, News,
+Conversations, Geography,
+NFL games, Captions, Maths.
+•
+E.g. Numerical Reasoning,
+Coreference Resolution,
+Commonsense Reasoning,
+Multihop Reasoning.
+Natural Instructions: Statistics
+Cross-Task Generalization via Natural Language Crowdsourcing Instructions. ACL 22
+--- page 24 ---
+Learning from “Instructions” vs “examples only”
+• Instructions improve cross-task generalization significantly
+• BART, though being 1000X times smaller, often outperforms
+GPT3-Instruct.
+Cross-Task Generalization via Natural Language Crowdsourcing Instructions. ACL 22
+--- page 25 ---
+Excluding Negative Examples Help!
+Negative instructions are surprisingly difficult for
+the models to learn from.
+Cross-Task Generalization via Natural Language Crowdsourcing Instructions. ACL 22
+--- page 26 ---
+Scaling Laws
+Cross-task generalization with
+Instruction improves with
+increase in number of observed
+tasks.
+•
+Natural Instructions v2/ Super
+Natural Instructions:
+1600 + tasks
+73 categories
+74 domains
+43 languages
+•
+•
+•
+•
+•
+Cross-Task Generalization via Natural Language Crowdsourcing Instructions. ACL 22
+--- page 27 ---
+Super-NaturalInstructions: Size and diversity
+Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ Tasks. EMNLP 22
+--- page 28 ---
+Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ Tasks. EMNLP 22
+--- page 29 ---
+Models Trained:
+Tk-INSTRUCT
+(instruction finetuning T5)
+mTk-INSTRUCT
+(instruction finetuning mT5)
+Super-NaturalInstructions: Performance
+Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ Tasks. EMNLP 22
+--- page 30 ---
+Super-NaturalInstructions: Ablations
+Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ Tasks. EMNLP 22
+--- page 31 ---
+Super-NaturalInstructions: Scaling Laws
+● Model performance increases with increase in training tasks and model parameters, but
+● it does not happen for number of instances, probably because diversity and size of our
+dataset compensate for the requirement for number of instances
+Super-NaturalInstructions: Generalization via Declarative Instructions on 1600+ Tasks. EMNLP 22
+--- page 32 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Processing, Computational Linguistics, and Speech
+Recognition with Language Models, 3rd edition. Online manuscript released J anuary
+12, 2025. [Chapter 12]
+--- page 33 ---
+
+--- page 34 ---
+Lecture 37 : Instruction Fine-tuning-II
+--- page 35 ---
+Instruction-tuned models are quick learners
+•
+Flan Models
+•
+Self-generating instructions
+•
+--- page 36 ---
+Instruction Fine-tuning (recap)
+https://web.stanford.edu/~jurafsky/slp3/
+--- page 37 ---
+An example of instruction
+https://web.stanford.edu/
+~jurafsky/slp3/
+--- page 38 ---
+Creating instructions at scale
+https://web.stanford.edu/
+~jurafsky/slp3/
+--- page 39 ---
+Creating instructions at scale
+https://web.stanford.edu/~jurafsky/slp3/
+Because it’s useful
+for the prompts to
+be diverse in
+wording,
+language models
+can also be used
+to
+generate
+paraphrase of the
+prompts.
+--- page 40 ---
+Instruction Tuned
+Models are quick
+Learners
+Himanshu Gupta*,
+Saurabh Arjun Sawant*,
+Swaroop Mishra, Santosh
+Mashetty, Mutsumi
+Nakamura, Arindam
+Mitra, Chitta Baral
+--- page 41 ---
+Instruction-tuned Models are Quick Learners…
+SOTA
+Instruction Tuned Models are quick Learners
+Himanshu Gupta*, Saurabh Arjun Sawant*, Swaroop Mishra, Santosh Mashetty, Mutsumi Nakamura,
+Arindam Mitra, Chitta Baral
+--- page 42 ---
+Flan Models
+--- page 43 ---
+Flan Models
+--- page 44 ---
+Flan: Generating multiple templates from the
+same data
+Finetuned Language Models Are Zero-Shot Learners, ICLR’22.
+--- page 45 ---
+Finetuned Language Models Are Zero-Shot Learners, ICLR’22.
+--- page 46 ---
+Flan Models
+--- page 47 ---
+● The evaluation metric on all
+four benchmark suites is
+few-shot prompted accuracy
+(exact match)
+● These
+evaluation
+benchmarks are held-out
+(not
+included
+in
+the
+finetuning data)
+--- page 48 ---
+Human Generated Datasets
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 49 ---
+Dataset: Dolly
+--- page 50 ---
+Dataset: Dolly
+--- page 51 ---
+Limitations
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 52 ---
+Self-Instruct: Aligning Model with Self Generated Instructions
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+Yizhong Wang, Yeganeh Kordi, Swaroop Mishra, Alisa Liu, Noah A. Smith, Daniel Khashabi, and Hannaneh Hajishirzi.
+Instruction,
+input, output
+--- page 53 ---
+Self-instruct: Step-1: Generating Instructions
+•
+For every step, sample 8 task instructions from this pool as in-context examples.
+Of the 8 instructions, 6 are from the human-written tasks, and 2 are from the model-generated tasks in previous
+steps to promote diversity
+•
+Initiate the task pool with 175 tasks (1 instruction and 1 instance for each task)
+•
+Prompt Template
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+--- page 54 ---
+Self-instruct: Step-2: Classification Task
+Identification
+The authors regard tasks that have a small limited output label space as classification tasks. Need two different
+approaches for classification and non-classification tasks
+•
+Prompt the LM in a few-shot way to determine this, using 12 classification instructions and 19 non-classification
+instructions from the seed tasks.
+•
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+Prompt
+Template
+--- page 55 ---
+Self-instruct: Step-3: Instance Generation
+Given the instructions and their task type, generate instances for each instruction independently.
+•
+Challenging because it requires the model to understand what the target task is, based on the instruction, figure out
+what additional input fields are needed and generate them, and finally complete the task by producing the output.
+•
+Pretrained LMs can achieve this to a large extent when prompted with instruction-input-output in-context examples
+from other tasks.
+Why two modes? Input-based
+•
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+approach can generate inputs biased
+toward one label, especially for
+classification tasks (e.g., for grammar
+error detection, it usually generates
+grammatical input).
+--- page 56 ---
+Prompt-templates: Input First
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+--- page 57 ---
+Prompt-templates: Output First
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+--- page 58 ---
+Self-instruct: Step-4: Filtering
+• To encourage diversity, a new instruction is added to the task pool only when
+its ROUGE-L similarity with any existing instruction is less than 0.7.
+• Also exclude instructions that contain some specific keywords (e.g., image,
+picture, graph) that usually can not be processed by LMs.
+• When generating new instances for each instruction, we filter out instances
+that are exactly the same or those with the same input but different outputs.
+• Invalid generations are identified and filtered out based on heuristics (e.g.,
+instruction is too long or too short, instance output is a repetition of the
+input).
+--- page 59 ---
+Self-Instruct: Some example generations
+--- page 60 ---
+Self-Instruct: Main Findings
+SELF-INSTRUCT: Aligning Language Model with Self Generated Instructions. ACL 23
+--- page 61 ---
+Benefits of Instruction-tuning
+EMNLP’23 Tutorial: LLM-driven Instruction Following: Progresses and Concerns
+--- page 62 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+J anuary 12, 2025. [Chapter 12]
+--- page 63 ---
+
+--- page 64 ---
+Lecture 38 : Reinforcement Learning from Human Feedback-I
+--- page 65 ---
+•
+Reward Models
+•
+RL Basics and RLHF
+Three phases of RLHF
+•
+--- page 66 ---
+Source: State of GPT, Karpathy
+--- page 67 ---
+History: early OpenAI experiments with RLHF
+Stiennon, Nisan, et al. "Learning to summarize with human feedback." 2020.
+--- page 68 ---
+We already talked about
+instruction fine-tuning
+base model (instruction,
+helpful, chatty etc.)
+Three phases of RLHF
+Source: RLHF at ICML’23
+--- page 69 ---
+But why the reward model?
+Source: CS224n
+--- page 70 ---
+Feedback
+interface
+Source: RLHF at ICML’23
+--- page 71 ---
+Human rates
+better response
+Feedback
+interface
+Source: RLHF at ICML’23
+--- page 72 ---
+Why pairwise?
+Source: CS224n
+--- page 73 ---
+Preference Model: Pairwise comparison
+Source: CS224n
+--- page 74 ---
+Preference Model: Pairwise comparison
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 75 ---
+Preference-model structure
+Also known as the reward model
+--- page 76 ---
+Preference-model structure
+What is an appropriate loss?
+--- page 77 ---
+Training the reward model
+Source: CS224n
+--- page 78 ---
+Training the reward model
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 79 ---
+base model (instruction,
+helpful, chatty etc.)
+Three phases of RLHF
+We already talked about
+instruction fine-tuning and
+preference model
+Source: RLHF at ICML’23
+--- page 80 ---
+Reinforcement Learning: The Basics
+An agent interacts with an environment by taking actions
+• The environment returns a reward for the action and a new state
+(representation of the world at that moment).
+• Agent uses a policy function to choose an action at a given state.
+• Quite an open-ended learning paradigm.
+•
+Rlhf book, Lambert
+--- page 81 ---
+Reinforcement Learning: Definitions
+Rlhf book, Lambert
+--- page 82 ---
+Reinforcement Learning: Definitions
+Rlhf book, Lambert
+--- page 83 ---
+Reinforcement Learning: Definitions
+Rlhf book, Lambert
+--- page 84 ---
+Standard RLHF loop: How is it different?
+Switching from a reward function
+to a reward model. In RLHF, a
+learned model of human
+preferences, 𝑟𝑟𝜃𝜃(𝑠𝑠𝑡𝑡,𝑎𝑎𝑡𝑡) is used
+instead of an environmental reward
+function. This gives the designer a
+substantial increase in the flexibility
+of the approach and control over
+the final results.
+Rlhf book, Lambert
+--- page 85 ---
+Standard RLHF loop: How is it different?
+No state transitions exist. In
+RLHF, the initial states for the
+domain are prompts sampled from
+a training dataset and the “action” is
+the completion to said prompt.
+During standard practices, this
+action does not impact the next
+state and is only scored by the
+reward model.
+Rlhf book, Lambert
+--- page 86 ---
+Standard RLHF loop: How is it different?
+Response level rewards.
+RLHF attribution of reward is
+done for an entire sequence of
+actions, composed of multiple
+generated tokens, rather than
+in a fine-grained manner.
+Rlhf book, Lambert
+--- page 87 ---
+Source: RLHF at ICML’23
+--- page 88 ---
+Nathan Lambert. (WIP) A Little Bit of Reinforcement Learning from Human Feedback.
+https://rlhfbook.com/
+--- page 89 ---
+
+--- page 90 ---
+Lecture 39 : Reinforcement Learning from Human Feedback-II
+--- page 91 ---
+RLHF: How is the training done?
+•
+Proximal Policy Optimization (PPO)
+•
+--- page 92 ---
+Source: RLHF at ICML’23
+--- page 93 ---
+RLHF Objective
+Source: CS224n
+--- page 94 ---
+Using Policy Gradient
+Source: CS224n
+--- page 95 ---
+Using Policy Gradient
+Source: CS224n
+--- page 96 ---
+Source: RLHF at ICML’23
+--- page 97 ---
+RLHF: use of KL divergence
+Source: CS224n
+--- page 98 ---
+
+--- page 99 ---
+PPO: Thinking in terms of trajectories
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 100 ---
+Trajectories in Language Model
+What is a trajectory for a language model? It is a series of prompts (state) and their next tokens (actions).
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 101 ---
+Policy Gradient Optimization with
+trajectories
+Can be approximated as
+Umar Jamil
+https://github.com/hkproj/rlhf-ppo
+--- page 102 ---
+Calculating log probabilities
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 103 ---
+Calculating rewards
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 104 ---
+Problem with Gradient Policy Optimization: High
+Variance
+the gradient approximation that we have found is unbiased (meaning that on average it will converge to
+the true gradient), but it exhibits high variance.
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 105 ---
+Reducing variance: you can’t alter the past
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 106 ---
+Reducing variance: baseline
+As baseline we will choose the value function 𝑉𝑉𝜋𝜋 (𝑠𝑠) which indicates what is the future
+expected reward if the agent is in state s and then acts according to the policy 𝜋𝜋.
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 107 ---
+An additional Linear layer on top of our Language
+Model (the policy 𝜋𝜋𝜃𝜃) that estimates the value of the
+state at a particulate time step.
+How do we estimate 𝑉𝑉𝜋𝜋(𝑠𝑠)?
+Umar Jamil
+https://github.com/hkproj/rlhf-ppo
+--- page 108 ---
+Introducing Q and V
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 109 ---
+Interpreting the advantage
+The advantage function tells us how better is to choose a particular action a in a state s
+over the average expectation we get by choosing randomly an action in the same state s.
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 110 ---
+Advantage term of LMs
+This action (the word “Shanghai”) will result in a good response
+and so, a high reward. This will train the model to select the word
+“Shanghai” more often if it sees the same prompt.
+This action (the word “Chocolate”) will result in a bad response and so, a low reward.
+This will train the model to select the word “Chocolate” less often if it sees the same
+prompt.
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 111 ---
+Off-policy learning via Importance Sampling
+The expectation that we’ve found, forces us to sample
+trajectories from our neural network every time we
+update the parameters
+This can be very inefficient because when training a
+neural network, we update the parameters many
+times by taking small steps (according to the learning
+rate).
+We resort to importance sampling
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 112 ---
+Off-policy learning via Importance Sampling
+Importance sampling allows to evaluate an
+expectation over a distribution X using samples
+taken from another distribution Y.
+*We do not have two copies of the policy. We
+sample the initial trajectories and then save them
+in the memory. We then use the saved
+trajectories to update the model.
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 113 ---
+Off-policy learning
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 114 ---
+The PPO Loss
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 115 ---
+Nathan Lambert. (WIP) A Little Bit of Reinforcement Learning from Human Feedback.
+https://rlhfbook.com/
+Umar Jamil https://github.com/hkproj/rlhf-ppo
+--- page 116 ---
+
+--- page 117 ---
+Lecture 40 : Aligning to user preferences via Direct Preference
+Optimization
+--- page 118 ---
+DPO Objective
+•
+Advantages of DPO and PPO
+•
+BoN Sampling for preference alignment
+•
+--- page 119 ---
+Direct Preference Optimization (DPO)
+Training a reliable reward model is itself not an easy task, and a poorly trained
+reward model can greatly affect the outcome of policy learning.
+● Direct preference optimization (DPO) simplifies the training framework by eliminating
+the need to explicitly model rewards
+● It directly optimizes the policy based on user preferences, rather than developing a
+separate reward model
+Direct Preference Optimization: Your Language Model is Secretly a Reward Model
+--- page 120 ---
+Direct Preference Optimization (DPO)
+In DPO, the use of human preference
+data is more direct, and the policy is
+trained on this data without the need
+for reward model training.
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 121 ---
+DPO Objective
+Let’s start from the (simple) RLHF loss function where the quality of the output y given the input x
+is evaluated by the reward model r(x, y), and a KL divergence term
+Only this term depends
+on the target policy
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 122 ---
+Depends on policy
+DPO Objective
+we rearrange the right-hand side of Eq. to isolate this as an independent term:
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 123 ---
+DPO Objective
+This equation defines the objective function as the difference between the log-probability distribution
+function of y and another function of y.
+This form of the objective function seems not “ideal”, as we usually prefer to see the difference between two
+distributions, so that we can interpret this difference as some kind of divergence between the distributions.
+A simple idea is to convert the second term into a log-probability distribution over
+the domain of y
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 124 ---
+DPO Objective
+See the second term as log of an unnormalized probability of y, we can convert it into a normalized
+probability by dividing it by a normalization factor.
+Hence we can define a probability distribution by
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 125 ---
+DPO Objective
+https://arxiv.org/abs/2501.0922
+3
+Rewriting
+through Z(x)
+--- page 126 ---
+DPO Objective
+does not affect the result of the
+argmin operation, and can be removed
+from the objective.
+Clearly, the solution to this
+optimization problem is given by
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 127 ---
+DPO Objective
+Given this equation, we can express the reward r(x, y) as
+Interesting because we eventually obtain a representation of the reward model based on the policy
+we can apply it to the Bradley-Terry model to calculate
+the preference probability
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 128 ---
+DPO Objective
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 129 ---
+DPO Objective
+This formula is elegant because it converts the difference in rewards into the difference in ratio
+functions, and we do not need to calculate the value of Z(x).
+Finally, we can train the target policy by minimizing the following DPO loss function
+It should be noted that the loss function here depends on the parameters of the
+policy (i.e., θ) rather than the parameters of the reward model
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 130 ---
+DPO Variant: KTO [https://arxiv.org/abs/2402.01306]
+Implements a strategy that utilizes a single preference
+Source: https://arxiv.org/pdf/2404.14723
+--- page 131 ---
+DPO: Advantage
+• The main advantage of DPO lies in its simplicity and efficiency.
+• The DPO objective is very straightforward —it directly optimizes for preference-based
+feedback, rather than relying on separately developed reward models.
+• Moreover, DPO is generally more sample-efficient, as it learns from a fixed dataset
+without the need for the computationally expensive sampling process used in PPO.
+• This makes DPO a popular method for human preference alignment, especially
+when developing and applying reward models via reinforcement learning is
+challenging.
+DPO can broadly be viewed as an offline reinforcement learning
+method
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 132 ---
+PPO: Advantage
+•
+•
+•
+•
+Online reinforcement learning methods like PPO, which require exploring new
+states through interaction with the environment (using the reward model as a
+proxy), also have their unique advantages.
+One of the benefits of online reinforcement learning is that it allows the agent to
+continuously adapt to changes in the environment by learning from real-time
+feedback.
+This means that, unlike offline methods, online methods are not constrained by the
+static nature of pre-collected data and can discover new problem-solving
+strategies.
+In addition, exploration can help the agent cover a wider range of state-action
+pairs, thus improving generalization.
+This could be an important advantage for LLMs, as generalization is considered a
+critical aspect in applying such large models
+•
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 133 ---
+Inference-time alignment
+One of the significant limitations of many such methods is that LLMs must be fine-tuned.
+For RLHF and its variants, training LLMs with reward models can be computationally
+expensive and unstable, leading to increased complexity and costs when applying these
+approaches.
+What if we have a reward model but do not want to
+train RL policy? Can we still use it at inference time?
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 134 ---
+Inference-time alignment: BoN sampling
+Use the reward model to select the best one from N alternative outputs generated by the
+LLM, a method known as Best-of-N sampling (BoN sampling)
+The LLM takes the input sequence x and generates N different output sequences
+The reward model is used to evaluate and select the best one
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 135 ---
+BoN sampling can also be used to train LMs
+We first select the “best” outputs from the N-best lists via the reward model, and then take
+these selected outputs to fine-tune the LLM.
+In this way, we can introduce human preferences into the training of LLMs via a much
+simpler approach compared to RLHF.
+Also known as “rejection sampling”
+Foundations of Large Language Models: https://arxiv.org/abs/2501.09223
+--- page 136 ---
+Foundations of Large Language Models:
+https://arxiv.org/abs/2501.09223
+--- page 137 ---

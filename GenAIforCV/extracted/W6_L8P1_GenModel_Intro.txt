@@ -1,0 +1,171 @@
+### DECK: L8P1_GenModel_Intro  (Week 6)  slides=27  canvas=13.3x7.5in
+
+--- slide 1 ---
+Generative Modelling
+Generative AI for Computer Vision
+Lecture 8
+
+Part 1
+
+--- slide 2 ---
+Content
+Generative Learning Models
+Statistical Understanding 
+Maximum Likelihood
+Density Estimation
+Different Generative Models
+
+--- slide 3 ---
+Generative Modelling
+[IMAGE: image.png.png 1.5x1.1in]
+Loss (Statistical Distance between D and D’ distributions)
+p(z) ~ Z
+Random noise
+Generative Model
+(Neural Net) G
+Generated data 
+distribution 
+D’=G(Z)=I’(x)
+Real data distribution 
+D=I(x)
+
+--- slide 4 ---
+[IMAGE: image.png.png 1.5x1.1in]
+Loss (Statistical Distance between D and D’ distributions)
+p(z) ~ Z
+Random noise
+Generative Model
+(Neural Net) G
+Generated data 
+distribution 
+D’=G(Z)=I’(x)
+Real data distribution 
+D=I(x)
+Generative Modelling
+
+--- slide 5 ---
+Once adequately trained, the model can transform previously unseen random noise vectors into novel synthetic samples that closely approximate the characteristics of the original dataset while remaining distinct from the observed training samples. 
+
+Thus, generative modeling provides a powerful framework for learning complex data distributions and generating realistic, diverse, and statistically representative synthetic data.
+[IMAGE: image.png.png 1.5x1.1in]
+Loss (Statistical Distance between D and D’ distributions)
+p(z) ~ Z
+Random noise
+Generative Model
+(Neural Net) G
+Generated data 
+distribution 
+D’=G(Z)=I’(x)
+Real data distribution 
+D=I(x)
+Generative Modelling
+
+--- slide 6 ---
+How Generative Model Works?A statistical Understanding
+
+--- slide 7 ---
+How Generative Model Works?A statistical Understanding
+
+--- slide 8 ---
+How Generative Model Works?A statistical Understanding
+
+--- slide 9 ---
+How Generative Model Works?A statistical Understanding
+
+--- slide 10 ---
+MLE in Generative Modeling
+
+--- slide 11 ---
+MLE in Generative Modeling
+
+--- slide 12 ---
+MLE in Generative Modeling
+
+--- slide 13 ---
+MLE in Generative Modeling
+
+--- slide 14 ---
+Why it is called Generative?
+
+--- slide 15 ---
+Three Main Types of Generative Models
+Explicit Density Models: These are true density estimators.
+Autoregressive models
+Normalizing Flows
+Variational Autoencoders (VAEs)
+
+Implicit Density Models: These do NOT compute p(x) explicitly.
+Generative Adversarial Network (GAN)
+
+Score-Based / Diffusion Models: This is an implicit density estimation via score estimation.
+Denoising Diffusion Probabilistic Models (DDPM)
+Score Matching models
+
+--- slide 16 ---
+Different Generative Models
+Generative Models
+Explicit Density
+Implicit Density
+Tractable Density
+Approximate Density
+Markov Chain
+Direct
+Variational
+Markov Chain
+GSN
+Variational Autoencoder
+GAN
+Boltzmann Machine
+Fully Visible Belief Nets
+NADE
+MADE
+Pixel RNN
+Change of variable models (nonlinear ICA)
+Figure copyright and adapted from Ian Goodfellow, Tutorial on Generative Adversarial Networks, 2017.
+
+--- slide 17 ---
+Density Estimation in Generative Modelling
+
+--- slide 18 ---
+Once the probability density has been learned, the model can be used not only to estimate the likelihood of new observations but also, depending on the generative architecture, to generate new samples that follow the learned distribution. 
+
+Density estimation is particularly useful when the underlying data exhibit complex, multimodal, or nonlinear characteristics that cannot be adequately represented by simple parametric distributions. 
+
+Generative models such as Gaussian Mixture Models (GMMs), Variational Autoencoders (VAEs), Normalizing Flows, and autoregressive models employ different strategies for estimating or representing the data distribution.
+Density Estimation in Generative Modelling
+
+--- slide 19 ---
+Explicit Density Estimation
+
+--- slide 20 ---
+Explicit Density Models
+
+--- slide 21 ---
+Explicit Density ModelsTwo main Categories
+
+--- slide 22 ---
+Explicit Density Estimation
+
+--- slide 23 ---
+Implicit Density Estimation
+
+--- slide 24 ---
+Implicit Density Models
+
+--- slide 25 ---
+Score-Based / Diffusion Models
+
+--- slide 26 ---
+Summary
+Generative Learning Models
+Statistical Understanding 
+Maximum Likelihood
+Density Estimation
+Different Generative Models
+
+--- slide 27 ---
+Auto-regressive Generative Models
+Generative AI for Computer Vision
+Next
+
+Lecture 8: Part 2

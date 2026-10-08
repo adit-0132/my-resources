@@ -1,0 +1,639 @@
+--- page 1 ---
+Lecture 11 : Word Representation
+--- page 2 ---
+How to represent a word? Distributional Hypothesis
+•
+Sparse vs Dense Vectors
+•
+Reasoning with word vectors
+•
+--- page 3 ---
+How to represent a word?
+In traditional NLP / IR, words are treated as discrete symbols.
+Vector dimension = number of words in vocabulary (e.g., 500,000)
+--- page 4 ---
+Problems with words as discrete symbols
+Example: In web search, if user searches for “Baltimore motel”, we would like
+to match documents containing “Baltimore hotel”. But
+The vectors are orthogonal, and there is no natural notion of similarity between
+one-hot vectors!
+● How can we define the word meaning that encodes
+this notion of similarity?
+● Can we use shorter vectors?
+--- page 5 ---
+Ludwig Wittgenstein
+"The meaning of a word is its use in the language"
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 6 ---
+Distributional Hypothesis: Let's define words
+by their usages
+One way to define "usage":
+words are defined by their environments (the words around them)
+Zellig Harris (1954):
+If A and B have almost identical environments we say that they
+are synonyms.
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 7 ---
+What does recent English borrowing ongchoi mean?
+Suppose you see these sentences:
+And you've also seen these:
+• Ongchoi is delicious sautéed with garlic.
+• Ongchoi is superb over rice
+• Ongchoi leaves with salty sauces
+Conclusion:
+• …spinach sautéed with garlic over rice
+• Chard stems and leaves are delicious
+• Collard greens and other salty leafy greens
+• Ongchoi is a leafy green like spinach, chard, or collard greens
+• We could conclude this based on words like "leaves" and "delicious" and
+"sauteed"
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 8 ---
+Ongchoi: Ipomoea aquatica "Water Spinach"
+kangkong
+rau muống
+…
+空心菜
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+Yamaguchi, Wikimedia Commons, public domain
+--- page 9 ---
+Each word = a vector
+Defining meaning as a point in space based on
+distribution
+Similar words are "nearby in semantic space"
+We build this space automatically by seeing which words are nearby in text
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 10 ---
+We define meaning of a word as a vector
+Called an "embedding" because it's embedded into a space
+The standard way to represent meaning in NLP
+Modern NLP algorithms use embeddings as the
+representation of word meaning
+Fine-grained model of meaning for similarity
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 11 ---
+Intuition: why vectors?
+Consider classical algorithms:
+• With words, a feature is a word identity
+• Feature 5: 'The previous word was "terrible"'
+• requires exact same word to be in training and test (dreadful?)
+• With embeddings:
+• Feature is a word vector
+• 'The previous word was vector [35,22,17…]
+• Now in the test set we might see a similar vector [34,21,14]
+• We can generalize to similar but unseen words!!!
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 12 ---
+Encoding similarity: Distributional Vectors
+--- page 13 ---
+Let’s take an example
+--- page 14 ---
+Distributional Vectors: Computing Similarity
+--- page 15 ---
+Context Weighting via association measures
+--- page 16 ---
+Pointwise Mutual Information (PMI)
+Statistically measure whether two words co-occur frequently (relative to
+their global frequencies)
+--- page 17 ---
+Even simpler: Can use documents as context
+--- page 18 ---
+Context weighting: documents as context
+--- page 19 ---
+Sparse versus dense vectors
+One-hot (or distributional) vectors (includes tf-idf, PMI, etc.)
+• long (length |V|= 20,000 to 50,000)
+• sparse (most elements are zero)
+Alternative: learn vectors which are
+• short (length 50-1000)
+• dense (most elements are non-zero)
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 20 ---
+Why dense vectors?
+Sparse versus dense vectors
+• Short vectors may be easier to use as features in machine learning (fewer
+weights to tune)
+• Dense vectors may generalize better than explicit counts
+• Dense vectors may do better at capturing synonymy:
+• car and automobile are synonyms; but are distinct dimensions
+• a word with car as a neighbor and a word with automobile as
+neighbor should be similar, but aren't
+• In practice, they work better
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 21 ---
+Common methods for getting short dense vectors
+Singular Value Decomposition (SVD)
+• A special case of this is called LSA – Latent Semantic Analysis
+“Neural Language Model”-inspired models
+• Word2vec (skipgram, CBOW), GloVe
+Alternative to these "static embeddings":
+Contextual Embeddings (ELMo, BERT)
+Compute distinct embeddings for a word in its context
+Separate embeddings for each token of a word
+•
+•
+•
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 22 ---
+Word2vec
+Instead of counting how often each word w occurs near "apricot"
+• Train a classifier on a binary prediction task:
+• Is w likely to show up near "apricot"?
+We don’t actually care about this task
+• But we'll take the learned classifier weights as the word embeddings
+Big idea: self-supervision:
+• A word c that occurs near apricot in the corpus acts as
+the gold "correct answer" for supervised learning
+• No need for human labels
+• Bengio et al. (2003); Collobert et al. (2011)
+Source: https://web.stanford.edu/~jurafsky/slp3 .
+--- page 23 ---
+Distributional Representation
+● Take a vector with several hundred dimensions (say 1000).
+● Each word is represented by a distribution of weights across
+those elements.
+● So instead of a one-to-one mapping between an element in
+the vector and a word, the representation of a word is spread
+across all of the elements in the vector, and
+● Each element in the vector contributes to the definition of
+many words.
+--- page 24 ---
+Reasoning with Word Vectors
+● It has been found that the learned word representations in fact capture
+meaningful syntactic and semantic regularities in a very simple way.
+● Specifically, the regularities are observed as constant vector offsets
+between pairs of words sharing a particular relationship.
+--- page 25 ---
+Reasoning with Word Vectors
+Perhaps more surprisingly, we find that this is also the case for a variety of semantic relations.
+A simple vector offset method based on cosine distance shows the relation.
+--- page 26 ---
+Vector Offset for Relations
+Singular - Plural
+Gender
+--- page 27 ---
+Analogy Testing
+--- page 28 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 6]
+--- page 29 ---
+
+--- page 30 ---
+Lecture 12 : Learning Word Representation - Part 1
+--- page 31 ---
+Learning Word Vectors - Overview
+•
+Objective Function
+•
+Example Problem, deriving the gradients
+•
+--- page 32 ---
+Learning Word Vectors: Overview
+--- page 33 ---
+Two Variations: CBOW and Skip-grams
+--- page 34 ---
+Word2Vec (Skip-gram) Overview
+Example windows and process for computing P(wt+j |wt )
+--- page 35 ---
+Word2Vec (Skip-gram) Overview
+Example windows and process for computing P(wt+j |wt )
+--- page 36 ---
+Word2Vec: objective function
+--- page 37 ---
+Understanding P(o|c) further
+--- page 38 ---
+More Explanation
+--- page 39 ---
+More Explanation
+--- page 40 ---
+Learning Word Vectors
+--- page 41 ---
+Learning Word Vectors: Overview
+--- page 42 ---
+Two Variations: CBOW and Skip-grams
+--- page 43 ---
+Word2Vec (Skip-gram) Overview
+Example windows and process for computing P(wt+j |wt )
+--- page 44 ---
+Word2Vec (Skip-gram) Overview
+Example windows and process for computing P(wt+j |wt )
+--- page 45 ---
+Word2Vec: objective function
+--- page 46 ---
+Understanding P(o|c) further
+--- page 47 ---
+More Explanation
+--- page 48 ---
+More Explanation
+--- page 49 ---
+Try this problem
+--- page 50 ---
+Try this problem
+--- page 51 ---
+Solution
+--- page 52 ---
+Gradient Descent for Parameter Updates
+--- page 53 ---
+Training the model
+--- page 54 ---
+Training the model
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture01-wordvecs1.pdf
+--- page 55 ---
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture01-wordvecs1.pdf
+--- page 56 ---
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture01-wordvecs1.pdf
+--- page 57 ---
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture01-wordvecs1.pdf
+--- page 58 ---
+Source: https://web.stanford.edu/class/cs224n/slides/cs224n-spr2024-lecture01-wordvecs1.pdf
+--- page 59 ---
+Visualization
+--- page 60 ---
+Issues with word2Vec
+--- page 61 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 6]
+--- page 62 ---
+
+--- page 63 ---
+Lecture 13 : Learning Word Representation - II
+--- page 64 ---
+Skip-gram: Negative Sampling, Hierarchical Softmax
+•
+Glove Word Vectors
+•
+--- page 65 ---
+Issues with word2Vec
+--- page 66 ---
+Negative Sampling: Formulation
+--- page 67 ---
+Negative Sampling: Objective function
+--- page 68 ---
+Negative Sampling: Objective function
+--- page 69 ---
+Skip-Gram Training data
+c2 [target]
+c3
+c4
+c1
+…lemon, a [tablespoon of apricot jam, a] pinch…
+7
+--- page 70 ---
+Skip-gram classifier – Intuition
+embedding
+similarity high
+⇒ probability
+high too
+--- page 71 ---
+Skip-gram model
+Given a target word w & its context window
+of L words c_{1:L} , assigns a probability
+based on how similar this context window is
+to the target word
+The probability is based on applying the
+sigmoid function to the dot product of the
+embeddings of the target word with each
+context word
+--- page 72 ---
+Skip-gram learning algorithm
+Given a large corpus, positive and negative examples , & randomly initialized embeddings
+k is a hyperparameter
+∈ {2,...,5} for large r corpora
+Maximize the e mb. similarity of the re al
+targe t-conte xt word pairs (w,c_pos)
+drawn from the corpus
+Maximize the emb. distance between
+target noncontext word pairs
+(w,c_neg) drawn from the negative
+examples
+10
+--- page 73 ---
+Skip-gram learning algorithm
+– Stochastic gradient descent
+--- page 74 ---
+Hierarchical Softmax: Formulation
+--- page 75 ---
+Hierarchical Softmax: Formulation
+--- page 76 ---
+Hierarchical Softmax: Formulation
+--- page 77 ---
+Hierarchical Softmax: Try this Problem
+Suppose you are using hierarchical softmax to compute the probability of the context word given the center word.
+Suppose, at a given time during training, the center word embeddings be [0.5 0.3 -0.4 0.2], and the path to the
+context word goes via three nodes starting from root (left, right, right) having embeddings as [0.3 0.1 -0.1 0.05], [-0.4
+0.5 0.3 -0.6] and [0.5 0.3 -0.8 -0.9], respectively. What will be the probability of the context word given the center
+word?
+--- page 78 ---
+Two sets of embeddings
+Skip-Gram with negative sampling (SGNS) learns two
+sets of embeddings
+Target embeddings matrix W
+Context embedding matrix C
+It's common to just add them together, representing
+word i as the vector wi + ci
+--- page 79 ---
+Summary: How to learn word2vec (skip-gram)
+embeddings
+Start with V random d-dimensional vectors as initial embeddings
+Train a classifier based on embedding similarity
+• Take a corpus and take pairs of words that co-occur as positive examples
+• Take pairs of words that don't co-occur as negative examples
+• Train the classifier to distinguish these by slowly adjusting all the embeddings to
+improve the classifier performance
+• Throw away the classifier code and keep the embeddings.
+--- page 80 ---
+Why not capture co-occurrence directly?
+--- page 81 ---
+Co-occurrence vectors
+--- page 82 ---
+Glove Formulation
+--- page 83 ---
+GloVe Formulation
+log( Xi ) can be
+absorbed in bias
+Symmetric
+formulation
+but it weights all cooccurrences equally
+f(x) should be relatively small
+for large values of x, so that
+frequent co-occurrences are
+not over-weighted.
+--- page 84 ---
+Connection with Skip-gram
+Let Qij be the probability that word j appears in the context of word i.
+The global objective function can be written as
+weighted crossentropy resembles
+the least square
+formulation
+--- page 85 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 6]
+--- page 86 ---
+
+--- page 87 ---
+Lecture 14 : Word Vectors: Other Extensions
+--- page 88 ---
+Phrase embeddings
+•
+Subword-based Representation: FastText
+•
+Sentence and Document Representation: Doc2Vec
+•
+Hierarchical, network and knowledge graph representation
+•
+--- page 89 ---
+GloVe vectors
+https://github.com/stanfordnlp/GloVe
+--- page 90 ---
+How to Learn Phrase Embeddings?
+--- page 91 ---
+fastText [Bojanowski et al, 2017]
+Other kinds of static embeddings
+⚘
+Limitation of word2vec: a distinct vector representation for each word, but we learned about
+⚘
+Cannot handle out-of-vocabulary (OOV) tokens
+⚘
+An extension which takes into account subword information
+https://fasttext.cc/ is also a library for learning of word embeddings and text classification created by
+Facebook's AI Research lab ⇒ Word representations · fastText
+⚘
+subwords and their benefits
+--- page 92 ---
+So, how does fastText work?
+For a word at position t and a chosen context position c, using the binary logistic loss,
+we obtain the following negative log-likelihood:
+Negative samples
+However, this formulation ignores the internal structure of the word
+fastText denotes each word as a bag of character n-grams
+Image source: https://amitness.com/posts/fasttext-embeddings
+--- page 93 ---
+So, how does fastText work?
+For the word, all character n-grams between 3 to 6 characters are used
+We also include the word w itself in the set of its n-grams: <eating>
+Image source: https://amitness.com/posts/fasttext-embeddings
+--- page 94 ---
+So, how does fastText work?
+How to calculate s(w,c)?
+https://aclanthology.org/Q17-1010.pdf
+--- page 95 ---
+So, how does fastText work?
+But the unique n-grams can be huge!
+Apply hashing to bound the memory requirements.
+Instead of learning an embedding for each unique n-gram, we learn total B embeddings where B
+denotes the bucket size. The paper used a bucket of a size of 2 million.
+Image source: https://amitness.com/posts/fasttext-embeddings
+--- page 96 ---
+How does fastText handle OOV words?
+Simply average the vector
+representation of its n-grams
+Illustration of the similarity between character n-grams
+in out-of-vocabulary words. The OOV word is shown on
+the x axis. Red indicates positive cosine, while blue
+negative.
+Image source: https://aclanthology.org/Q17-1010.pdf
+--- page 97 ---
+Beyond words: Sentence and documents
+After word2Vec, the default way for representing larger units such as sentences was to use mean
+•
+embeddings
+Some works also attempted use of weighted average (tf-idf weights)
+•
+But can we also learn the representations of larger units directly?
+•
+word2Vec
+doc2Vec
+Le and Mikolov, “Distributed Representations of Sentences and Documents”, 2014
+--- page 98 ---
+Hierarchical Representations
+https://github.com/facebookresearch/poincare-embeddings
+--- page 99 ---
+Node embeddings
+https://web.stanford.edu/class/cs224w/
+--- page 100 ---
+Graph Representation Learning
+https://web.stanford.edu/class/cs224w/
+--- page 101 ---
+Graph Representation Learning
+https://web.stanford.edu/class/cs224w/
+--- page 102 ---
+Graph Representation Learning: DeepWalk
+https://web.stanford.edu/class/cs224w/
+--- page 103 ---
+Knowledge Graph Embeddings
+https://web.stanford.edu/class/cs224w/
+--- page 104 ---
+Knowledge Graph Embeddings
+https://web.stanford.edu/class/cs224w/
+--- page 105 ---
+Knowledge Graph Embeddings: TransE
+https://web.stanford.edu/class/cs224w/
+--- page 106 ---
+TransE: How to Learn?
+https://web.stanford.edu/class/cs224w/
+--- page 107 ---
+Daniel Jurafsky and James H. Martin. 2024. Speech and Language Processing: An
+Introduction to Natural Language Proces s ing, Computational Linguis tics , and
+Speech Recognition with Language Models , 3rd edition. Online manus cript releas ed
+Augus t 20, 2024. [Chapter 6]
+--- page 108 ---
+
+--- page 109 ---
+Lecture 15 : Cross-Lingual Representations
+--- page 110 ---
+Cross-lingual word representations
+•
+Various approaches: Monolingual, Cross-lingual
+•
+--- page 111 ---
+Need for cross-lingual representations
+Many tasks are inherently multi-lingual / crosslingual (e.g., translation)
+Data availability across languages is very rarely
+the same
+Can learning be transferred from High-resource
+to low-resource?
+Can we save training efforts if we already have
+good representations for some languages but yet
+to learn for others?
+https://nlp.stanford.edu/~lmthang/data/papers/naacl15_bivec.pdf
+--- page 112 ---
+Types of cross-lingual embedding models
+Then learn a linear mapping
+1. Monolingual mapping: Train monolingual word embeddings on large monolingual corpora.
+2. Pseudo-cross-lingual: Create a pseudo-cross-lingual corpus by mixing contexts of different
+languages. Train an off-the-shelf word embedding model on the created corpus.
+3. Cross-lingual training: Train their embeddings on a parallel corpus and optimize a cross-lingual
+constraint between embeddings of different languages
+4. Joint optimization: Train their models on parallel (and optionally monolingual data). They jointly
+optimise a combination of monolingual and cross-lingual losses.
+https://nlp.stanford.edu/~lmthang/data/papers/naacl15_bivec.pdf
+--- page 113 ---
+From most expensive to least expensive
+Dataset Requirements
+1. Word-aligned data: A parallel corpus with word alignments
+2. Sentence-aligned data: A parallel corpus without word alignments.
+3. Document-aligned data: A corpus containing documents in different languages. The documents can
+be topic-aligned (e.g. Wikipedia) or label/class-aligned (e.g. sentiment analysis and multi-class
+classification datasets).
+4. Lexicon: A bilingual or cross-lingual dictionary with pairs of translations between words in different
+languages.
+5. No parallel data: No parallel data whatsoever.
+https://nlp.stanford.edu/~lmthang/data/papers/naacl15_bivec.pdf
+--- page 114 ---
+Monolingual Mapping
+--- page 115 ---
+Word representations across languages
+Mikolov et al. have popularised the notion
+that vector spaces can encode meaningful
+relations between words.
+In addition, they notice that the geometric
+relations that hold between words are
+similar across languages
+https://www.ruder.io/cross-lingual-embeddings/
+So, how can we transform one language's
+vector space into the space of another?
+--- page 116 ---
+Word representations across languages
+So, how can we transform one language's
+vector space into the space of another?
+Translate the (5,000) most frequent words
+from the source language and use these
+(5,000) translations pairs as bilingual
+dictionary
+https://www.ruder.io/cross-lingual-embeddings/
+W can be learned using stochastic gradient
+descent
+--- page 117 ---
+Projection via CCA
+Faruqui and Dyer proposed to use canonical correlation
+analysis (CCA) to project words from two languages into
+a shared embedding space.
+CCA learns a transformation matrix for every language
+Note that Σ∗ and Ω∗ can be seen as the same shared
+embedding space
+https://www.ruder.io/cross-lingual-embeddings/
+--- page 118 ---
+Pseudo Cross-Lingual
+--- page 119 ---
+Merge and Shuffle
+Vulić and Moens concatenate the (aligned) documents and then shuffle them by
+randomly permuting the words.
+Shuffling the documents would lead to bilingual contexts for each word that will
+enable the creation of a robust embedding space.
+--- page 120 ---
+Cross-Lingual Training
+--- page 121 ---
+Bilingual compositional sentence model
+Hermann and Blunsom train two models to produce
+sentence representations of aligned sentences in two
+languages and use the distance between the two
+sentence representations as objective.
+They compose the sentence representations simply
+as the sum of the embeddings of the words in the
+corresponding sentence.
+https://www.ruder.io/cross-lingual-embeddings/
+--- page 122 ---
+Bilingual bag-of-words autoencoder
+● Lauly et al. aim to reconstruct the target sentence from
+the original source sentence.
+● They start with a monolingual autoencoder that encodes
+an input sentence as a sum of its word embeddings and
+tries to reconstruct the original source sentence.
+● For efficient reconstruction, they opt for a tree-based
+decoder that is similar to a hierarchical softmax.
+● They then augment this autoencoder with a second
+decoder that reconstructs the aligned target sentence
+from the representation of the source sentence
+For an aligned sentence pair, they then train
+the model with four reconstruction losses:
+they reconstruct from the sentence to itself
+and to its equivalent in the other language.
+https://www.ruder.io/cross-lingual-embeddings/
+--- page 123 ---
+Joint Optimization
+--- page 124 ---
+Luong et al. extend skip-gram to
+the cross-lingual setting and use
+the skip-gram objectives as
+monolingual and cross-lingual
+objectives.
+Rather than just predicting the
+surrounding words in the source
+language, they use the words in
+the source language to
+additionally predict their aligned
+words in the target language
+Bilingual skip-gram
+https://www.ruder.io/cross-lingual-embeddings/
+--- page 125 ---
+Bilingual bag-of-words without alignment
+Gouws et al. propose a Bilingual Bagof-Words without Word Alignments
+(BilBOWA) that leverages additional
+monolingual data.
+https://www.ruder.io/cross-lingual-embeddings/
+Instead of minimising the distance
+between words that were aligned to
+each other, they minimise the distance
+between the means of the word
+representations
+in
+the
+aligned
+sentences
+--- page 126 ---
+Indic FastText (IndicFT)
+--- page 127 ---
+
+--- page 128 ---
+Evaluation
+--- page 129 ---
+Evaluation
+--- page 130 ---
+https://www.ruder.io/cross -lingual-embeddings /
+--- page 131 ---

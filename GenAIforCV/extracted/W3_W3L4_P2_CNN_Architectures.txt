@@ -1,0 +1,755 @@
+### DECK: W3L4_P2_CNN_Architectures  (Week 3)  slides=38  canvas=13.3x7.5in
+
+--- slide 1 ---
+Convolutional Neural Network – IIModel Architectures
+Generative AI for Computer Vision
+Lecture 4
+
+Part 2
+
+--- slide 2 ---
+Content
+CNN Architectures
+
+LeNet
+AlexNet
+VGG Net
+Google Net
+Inception Module
+
+--- slide 3 ---
+LeNet – 5[LeCun et al., 1998]
+LeNet, introduced by Yann LeCun and colleagues in 1998, is one of the earliest successful convolutional neural network (CNN) architectures for handwritten digit recognition. 
+
+The most well-known version, LeNet-5, consists of seven trainable layers: an input layer that accepts a 32 × 32 grayscale image, followed by two convolutional layers (C1 and C3) that extract local image features using learnable filters, with each convolutional layer followed by an average pooling (subsampling) layer (S2 and S4) to reduce spatial dimensions and improve robustness.
+[IMAGE: image.jpeg.jpg 8.0x2.4in]
+Image Source : https://medium.datadriveninvestor.com/lenet-5-a-classic-cnn-architecture-c87d0b03560d
+
+--- slide 4 ---
+After feature extraction, the network includes a fully connected layer (C5), another fully connected layer (F6), and an output layer with 10 neurons representing the digit classes (0–9). 
+
+LeNet employs the sigmoid or hyperbolic tangent (tanh) activation functions and uses backpropagation for training. 
+
+Its architecture demonstrated that hierarchical feature learning through convolution and pooling could achieve high accuracy while reducing the number of trainable parameters, making LeNet a foundational model that inspired modern deep convolutional neural networks.
+[IMAGE: image.jpeg.jpg 8.0x2.4in]
+Image Source : https://medium.datadriveninvestor.com/lenet-5-a-classic-cnn-architecture-c87d0b03560d
+LeNet – 5[LeCun et al., 1998]
+
+--- slide 5 ---
+Padding
+Padding in a Convolutional Neural Network (CNN) is the process of adding extra pixels (typically zeros) around the border of an input image or feature map before applying convolution.
+
+Prevents rapid reduction in spatial dimensions and preserves important information at the image boundaries.
+©
+||
+3x3
+3x3
+5x5
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+--- slide 6 ---
+Source: A. Krizhevsky, I. Sulskever, and G. E. Hinton, “ImageNet classification with deep convolutional neural networks,” Adv. Neural Inf. Process. Syst., vol. 60, no. 6, pp. 84-90, 2012.
+From Source Paper: An illustration of the architecture of our CNN, explicitly showing the delineation of responsibilities between the two GPUs. One GPU runs the layer-parts at the top of the figure while the other runs the layer-parts at the bottom. The GPUs communicate only at certain layers.
+[IMAGE: image.png.png 8.9x3.1in]
+AlexNet, proposed by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton in 2012, is a landmark deep convolutional neural network (CNN) architecture that significantly advanced large-scale image classification.
+Designed for the ImageNet Large Scale Visual Recognition Challenge (ILSVRC), AlexNet consists of eight learnable layers, including five convolutional layers followed by three fully connected layers, with a final 1,000-node softmax output layer for classification.
+AlexNetKrizhevsky et. al. 2012
+
+--- slide 7 ---
+The network takes 227 × 227 × 3 RGB images as input and introduces several key innovations, including the use of Rectified Linear Unit (ReLU) activation functions for faster training, overlapping max-pooling layers for spatial down-sampling, dropout in the fully connected layers to reduce overfitting, and data augmentation techniques such as image translations and horizontal flipping to improve generalization. 
+AlexNet was trained using stochastic gradient descent (SGD) on GPUs, enabling efficient optimization of its approximately 60 million parameters. By achieving a substantial reduction in ImageNet classification error, AlexNet demonstrated the effectiveness of deep learning for computer vision and laid the foundation for subsequent CNN architectures such as VGGNet, GoogLeNet, and ResNet.
+A. Krizhevsky, I. Sulskever, and G. E. Hinton, “ImageNet classification with deep convolutional neural networks,” Adv. Neural Inf. Process. Syst., vol. 60, no. 6, pp. 84-90, 2012.
+AlexNetKrizhevsky et. al. 2012
+[IMAGE: image.png.png 9.0x3.2in]
+
+--- slide 8 ---
+[IMAGE: image.png.png 7.3x3.3in]
+AlexNetKrizhevsky et. al. 2012
+Slide idea: Fei Fei Li, Stanford Lectures, Image Source : https://medium.com/@siddheshb008/alexnet-architecture-explained-b6240c528bd5
+Layer | Type | Standard Kernel/Filter Details
+CONV1 | Convolution | 96 filters, 11x11 kernel, Stride 4, Pad 0
+MAX POOL1 | Pooling | 3x3 kernel, Stride 2
+NORM1 | Normalization | Local Response Normalization (LRN)
+CONV2 | Convolution | 256 filters, 5x5 kernel, Stride 1, Padding 2
+MAX POOL2 | Pooling | 3x3 kernel, Stride 2
+NORM2 | Normalization | Local Response Normalization (LRN)
+CONV3 | Convolution | 384 filters, 3x3 kernel, Stride 1, Padding 1
+CONV4 | Convolution | 384 filters, 3x3 kernel, Stride 1, Padding 1
+CONV5 | Convolution | 256 filters, 3x3 kernel, Stride 1, Padding 1
+MAX POOL3 | Pooling | 3x3 kernel, Stride 2
+FC6 | Fully Connected | 4096 neurons (typically with Dropout)
+FC7 | Fully Connected | 4096 neurons (typically with Dropout)
+FC8 | Fully Connected | 1000 neurons (Class scores/ Softmax)
+
+--- slide 9 ---
+[IMAGE: image.png.png 10.2x6.0in]
+Image Source : Hu, Hanqing & Lyu, Jin & Yin, Xiaolin. (2020). Research and Prospect of Image Recognition Based on Convolutional Neural Network. Journal of Physics: Conference Series. 1574. 012161. 10.1088/1742-6596/1574/1/012161.
+First CNN based winner
+ImageNet Large Scale Visual Recognition Challenge (ILSVRC) winners
+
+--- slide 10 ---
+[IMAGE: image.png.png 10.2x6.0in]
+Image Source : Hu, Hanqing & Lyu, Jin & Yin, Xiaolin. (2020). Research and Prospect of Image Recognition Based on Convolutional Neural Network. Journal of Physics: Conference Series. 1574. 012161. 10.1088/1742-6596/1574/1/012161.
+ImageNet Large Scale Visual Recognition Challenge (ILSVRC) winners
+Deeper Network
+
+--- slide 11 ---
+VGGNet, proposed by Karen Simonyan and Andrew Zisserman in 2014, is a deep convolutional neural network (CNN) architecture designed to improve image classification performance by increasing network depth while using a simple and uniform design. 
+
+The most widely used variants, VGG-16 and VGG-19, contain 16 and 19 learnable layers, respectively, composed of multiple 3 × 3 convolutional layers with a stride of 1 and padding to preserve spatial dimensions, interleaved with 2 × 2 max-pooling layers that reduce the feature map size.
+VGG Net Simonyan and Zisserman 2014
+3x3 Conv + ReLU 64
+3x3 Conv + ReLU 64
+2x2 Max-Pool 64
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+224 X 224
+112 X 112
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGGNet
+INPUT
+OUTPUT
+Figure source: Fei Fei Li et. al. Stanford
+
+--- slide 12 ---
+The network accepts 224 × 224 × 3 RGB images as input and concludes with three fully connected layers, where the final layer uses a softmax classifier for output prediction.
+
+VGGNet employs Rectified Linear Unit (ReLU) activation functions throughout the network, enabling efficient training and improved convergence. 
+
+By demonstrating that deeper networks with small convolutional filters can achieve superior recognition accuracy, VGGNet achieved outstanding performance on the ImageNet dataset and became a widely adopted feature extractor and benchmark architecture for numerous computer vision applications, despite its relatively high computational cost and large number of parameters.
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+224 X 224
+112 X 112
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG16Net
+INPUT
+OUTPUT
+224 X 224
+112 X 112
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG19Net
+INPUT
+OUTPUT
+VGG Net Simonyan and Zisserman 2014
+Figure source: Fei Fei Li et. al. Stanford
+
+--- slide 13 ---
+A key design principle of VGGNet is the use of stacked 3 × 3 convolutional layers instead of larger convolutional filters. 
+
+Specifically, three consecutive 3 × 3 convolutional layers with a stride of 1 provide the same effective receptive field as a single 7 × 7 convolutional layer, allowing the network to capture equivalent spatial context while using a more efficient architecture. 
+
+This design offers two major advantages. 
+First, increased non-linearity: each 3 × 3 convolution is followed by a ReLU activation function, so stacking three such layers introduces three non-linear transformations instead of one, enabling the network to learn more complex, hierarchical, and discriminative feature representations. 
+Second, parameter efficiency: replacing a single 7 × 7 convolution with three 3 × 3 convolutions significantly reduces the number of trainable parameters.
+VGG Net Simonyan and Zisserman 2014
+
+--- slide 14 ---
+Stack of 3 X 3 conv (stride 1) layers has same effective receptive field as one 7 X 7 conv layer
+©
+||
+3 x 3
+5 x 5
+5 x 5
+©
+||
+7 X 7
+3 x 3
+3 x 3
+3 x 3
+3 x 3
+3 x 3
+
+--- slide 15 ---
+For example, a 7 × 7 convolution requires 49 parameters per input–output channel pair, whereas three 3 × 3 convolutions require only 27 parameters (3 × 9), reducing both computational cost and the risk of overfitting while maintaining the same effective receptive field. 
+
+This combination of deeper feature extraction, enhanced representational power, and improved parameter efficiency is a fundamental reason for VGGNet's strong performance in image classification tasks.
+VGG Net Simonyan and Zisserman 2014
+
+--- slide 16 ---
+VGG NetSimonyan and Zisserman 2014
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+224 X 224
+112 X 112
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG16Net
+INPUT
+OUTPUT
+224 X 224
+112 X 112
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG19Net
+INPUT
+OUTPUT
+Figure source: Fei Fei Li et. al. Stanford
+
+--- slide 17 ---
+VGG NetSimonyan and Zisserman 2014
+Input : (224 X 224 X3)
+Memory : 224 X 224 X3 = 150K, PAM : 0
+CONV - (3 X3) - 64 : (224 X 224 X 64)
+Memory :224 X 224X 64 = 3.2M, PAM : 3 X 3 X 3 X 64 = 1728
+CONV - (3 X3) - 64 : (224 X 224 X 64)
+Memory :224 X 224X 64 = 3.2M, PAM : 3 X 3 X 64 X 64 = 36864
+Pool – (2 X 2) : (112 X 112 X 64)
+Memory : 112 X 112 X 64 = 800K PAM : 0
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+224 X 224
+112 X 112
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG16Net
+INPUT
+OUTPUT
+224 X 224
+112 X 112
+3 X 3 conv + Relu 64
+3 X 3 conv + Relu 64
+2 X 2 Max – Pool 64
+3 X 3 conv + Relu 128
+3 X 3 conv + Relu 128
+2 X 2 Max – Pool 128
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+3 X 3 conv + Relu 256
+2 X 2 Max – Pool 256
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+3 X 3 conv + Relu 512
+2 X 2 Max – Pool 512
+FC 4096
+FC 4096
+FC Output 1000
+56 X 56
+28 X 28
+14 X 14
+7 X 7
+VGG19Net
+INPUT
+OUTPUT
+Figure source: Fei Fei Li et. al. Stanford
+
+--- slide 18 ---
+[IMAGE: image.png.png 10.2x6.0in]
+Image Source : Hu, Hanqing & Lyu, Jin & Yin, Xiaolin. (2020). Research and Prospect of Image Recognition Based on Convolutional Neural Network. Journal of Physics: Conference Series. 1574. 012161. 10.1088/1742-6596/1574/1/012161.
+ImageNet Large Scale Visual Recognition Challenge (ILSVRC) winners
+Deeper Network
+
+--- slide 19 ---
+GoogLeNet, introduced by Christian Szegedy and colleagues in 2014, is a deep convolutional neural network (CNN) that won the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2014 by combining high classification accuracy with computational efficiency. It tops the ILSVRC 2014 classification challenge with a 6.7% Top-5 error rate.
+
+The architecture consists of 22 learnable layers and is built around the novel Inception module, which processes input features through multiple parallel branches using 1 × 1, 3 × 3, and 5 × 5 convolutional filters, along with a 3 × 3 max-pooling branch. 
+
+The outputs of these parallel operations are concatenated to capture visual information at multiple spatial scales simultaneously.
+Google NetSzegedy et. al. 2014
+
+--- slide 20 ---
+To reduce computational complexity, GoogLe Net employs 1 × 1 convolutions as bottleneck layers for dimensionality reduction before the computationally expensive 3 × 3 and 5 × 5 convolutions, significantly decreasing the number of parameters. Uses only 5 million parameters—about 12× fewer than AlexNet. 
+
+The network accepts 224 × 224 × 3 RGB images as input and replaces large fully connected layers with global average pooling, greatly reducing model size and mitigating overfitting. So, there are no FC layers in this architecture.
+
+Additionally, auxiliary classifiers are attached to intermediate layers during training to improve gradient propagation and regularization. 
+
+Owing to its efficient multi-scale feature extraction, reduced parameter count, and improved training strategy, GoogLe Net achieved state-of-the-art performance while using substantially fewer parameters than earlier architectures such as AlexNet and VGGNet, making it a milestone in the evolution of deep convolutional neural networks.
+Google NetSzegedy et. al. 2014
+
+--- slide 21 ---
+[IMAGE: image.png.png 11.5x4.7in]
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/0*q5eMDjUHKqEyo7qY.png
+Architecture of Google NetSzegedy et. al. 2014
+
+--- slide 22 ---
+The Inception module is the core architectural building block of GoogLeNet (Inception-v1), designed to improve representational power while maintaining computational efficiency.
+Google NetInception Module
+[IMAGE: image.png.png 7.3x3.0in]
+[IMAGE: image.jpeg.jpg 3.7x1.9in]
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/0*q5eMDjUHKqEyo7qY.png
+
+--- slide 23 ---
+Instead of applying a single convolutional filter size, an Inception module performs parallel feature extraction using 1×1, 3×3, and 5×5 convolutions, along with a 3×3 max-pooling branch. 
+The outputs from all branches are concatenated along the channel dimension, enabling the network to capture multi-scale spatial features within the same layer.
+[IMAGE: image.png.png 6.4x3.4in]
+Naive Inception Module Operation
+Image Source : https://nicolovaligi.com/articles/history-inception-deep-learning-architecture/inception_module.png
+Question: What is the problem with this?
+Google NetInception Module
+
+--- slide 24 ---
+[IMAGE: image.png.png 7.6x4.6in]
+Google Net Szegedy et. al. 2014
+[IMAGE: image.png.png 7.6x4.6in]
+No. of filters = 128
+No. of filters = 192
+No. of filters = 96
+Module Input : 28 X 28 X 256
+Naive Inception Module  Operation :
+Image Source : https://nicolovaligi.com/articles/history-inception-deep-learning-architecture/inception_module.png
+
+--- slide 25 ---
+Computational Cost Analysis
+Conv Ops Calculation:
+
+[1x1 conv, 128]: 28x28x128x1x1x256
+[3x3 conv, 192]: 28x28x192x3x3x256
+[5x5 conv, 96]: 28x28x96x5x5x256
+Total: 854M ops
+
+Very expensive compute.
+Pooling layer also preserves feature depth, which means total depth after concatenation can only grow at every layer!
+[IMAGE: image.png.png 6.4x3.9in]
+28X28X128
+28X28X192
+28X28X96
+28X28X256
+No. of filters = 128
+No. of filters = 192
+No. of filters = 96
+Naive Inception Module Operation
+Google Net Szegedy et. al. 2014
+Question: What is the output size of all different filter operations?
+
+--- slide 26 ---
+[IMAGE: image.png.png 6.4x3.9in]
+28X28X128
+28X28X192
+28X28X96
+28X28X256
+No. of filters = 128
+No. of filters = 192
+No. of filters = 96
+Naive Inception Module Operation
+Google Net Szegedy et. al. 2014
+Question: What is output size after filter concatenation? 
+Answer: 28x28x(128 + 192 + 96 + 256) = 28x28x672
+Computational Cost Analysis
+Conv Ops Calculation:
+
+[1x1 conv, 128]: 28x28x128x1x1x256
+[3x3 conv, 192]: 28x28x192x3x3x256
+[5x5 conv, 96]: 28x28x96x5x5x256
+Total: 854M ops
+
+Very expensive compute.
+Pooling layer also preserves feature depth, which means total depth after concatenation can only grow at every layer!
+
+--- slide 27 ---
+To reduce computational cost, 1×1 convolutions are strategically used as bottleneck layers before the computationally expensive 3×3 and 5×5 convolutions, significantly decreasing the number of input channels and reducing parameters and floating-point operations.
+Google NetInception Module
+*
+=
+1
+1
+32
+6
+6
+32
+6
+6
+
+--- slide 28 ---
+Bottleneck Layer
+A bottleneck layer in a Convolutional Neural Network (CNN) is a low-dimensional intermediate layer that reduces computational cost and the number of parameters by compressing the input feature maps. It is typically implemented using a 1×1 convolution to reduce the channel depth before more computationally expensive operations.
+2
+1
+4
+6
+1
+9
+6
+2
+8
+5
+7
+4
+8
+4
+6
+8
+7
+6
+3
+2
+5
+4
+6
+8
+4
+5
+7
+8
+3
+6
+1
+9
+8
+3
+7
+6
+2
+*
+=
+4
+2
+8
+…
+…
+..
+*
+6
+6
+32
+1
+1
+32
+=
+1 X 1 Convolutions
+1 X 1 Convolution reducing channel depth
+
+--- slide 29 ---
+1 X 1 Convolutions
+*
+=
+1
+1
+32
+6
+6
+32
+6
+6
+
+--- slide 30 ---
+1 X 1 Convolutions
+*
+=
+1
+1
+32
+6
+6
+32
+6
+32
+32
+Pixel values from each of the 32 channels are multiplied with corresponding convolution kernel coefficients and are series summed to get one pixel of response matrix.
+6
+
+--- slide 31 ---
+1 X 1 Convolutions
+*
+=
+1
+32
+6
+6
+32
+6
+6
+1
+
+--- slide 32 ---
+What does 1 X 1 Convolution do?
+A 1×1 convolution is used to reduce the channel dimensionality of feature maps without altering their spatial dimensions (height and width).
+CONV 1 X 1 X 192
+32 Filters
+28
+28
+192
+28
+28
+32
+
+--- slide 33 ---
+GoogLeNet stacks multiple Inception modules hierarchically, allowing the network to learn increasingly abstract and scale-invariant features. 
+To reduce computational cost, 1×1 convolutions are strategically used as bottleneck layers before the computationally expensive 3×3 and 5×5 convolutions, significantly decreasing the number of input channels and reducing parameters and floating-point operations. 
+This design addresses the trade-off between network width and computational complexity while preserving expressive capacity.
+Google NetInception Module
+[IMAGE: image.png.png 7.3x3.0in]
+[IMAGE: image.jpeg.jpg 3.7x1.9in]
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/0*q5eMDjUHKqEyo7qY.png
+
+--- slide 34 ---
+Additionally, the architecture incorporates auxiliary classifiers during training to improve gradient propagation and mitigate the vanishing gradient problem. 
+
+As a result, GoogLeNet achieved state-of-the-art performance on the ImageNet benchmark with substantially fewer parameters than earlier deep convolutional networks, demonstrating that sparse approximations can be efficiently implemented using dense convolutional operations.
+Google Net Szegedy et. al. 2014
+[IMAGE: image.png.png 7.3x3.0in]
+[IMAGE: image.jpeg.jpg 3.7x1.9in]
+Image Source : https://miro.medium.com/v2/resize:fit:720/format:webp/0*q5eMDjUHKqEyo7qY.png
+
+--- slide 35 ---
+Google Net Szegedy et. al. 2014
+The same parallel branches as in the naïve Inception module are used, but with 1×1 convolutions (64 filters) added as bottleneck layers before the computationally expensive convolutions.
+Computational Cost Analysis
+Conv Ops Calculation:
+[1x1 conv, 64] 28x28x64x1x1x256
+[1x1 conv, 64] 28x28x64x1x1x256
+[1x1 conv, 128] 28x28x128x1x1x256
+[3x3 conv, 192] 28x28x192x3x3x64
+[5x5 conv, 96] 28x28x96x5x5x64
+[1x1 conv, 64] 28x28x64x1x1x256
+Total: 358M ops
+Filter 
+Concatenation
+1 X 1
+Conv. (128)
+3 X 3
+Conv. (192)
+5 X 5
+Conv. (96)
+1 X 1
+Conv. (64)
+1 X 1
+Conv. (64)
+1 X 1
+Conv. (64)
+3 X 3
+Max Pooling
+Previous Layer
+28 X 28 X 128
+28 X 28 X 192
+28 X 28 X 64
+28 X 28 X 96
+28 X 28 X 256
+28 X 28 X 64
+28 X 28 X 64
+28 X 28 X 480
+Input : 28 X 28 X 256
+
+--- slide 36 ---
+How 1 X 1 Conv, 64 filter Bottlenecks reduce complexity
+Filter 
+Concatenation
+1 X 1
+Conv. (128)
+3 X 3
+Conv. (192)
+5 X 5
+Conv. (96)
+1 X 1
+Conv. (64)
+1 X 1
+Conv. (64)
+1 X 1
+Conv. (64)
+3 X 3
+Max Pooling
+Previous Layer
+28 X 28 X 128
+28 X 28 X 192
+28 X 28 X 64
+28 X 28 X 96
+28 X 28 X 256
+28 X 28 X 64
+28 X 28 X 64
+28 X 28 X 480
+Input : 28 X 28 X 256
+The same parallel branches as in the naïve Inception module are used, but with 1×1 convolutions (64 filters) added as bottleneck layers before the computationally expensive convolutions.
+Computational Cost Analysis 
+Conv Ops Calculation:
+[1x1 conv, 64] 28x28x64x1x1x256 ; [1x1 conv, 64] 28x28x64x1x1x256 ; [1x1 conv, 128] 28x28x128x1x1x256 ; [3x3 conv, 192] 28x28x192x3x3x64 ; [5x5 conv, 96] 8x28x96x5x5x64 ; [1x1 conv, 64] 28x28x64x1x1x256
+Total: 358M ops
+[IMAGE: image.png.png 5.0x3.0in]
+28X28X128
+28X28X192
+28X28X96
+28X28X256
+No. of filters = 128
+No. of filters = 192
+No. of filters = 96
+Input: 28X28X256
+28X28X672
+Computational Cost Analysis 
+Conv Ops Calculation:	
+[1x1 conv, 128]: 28x28x128x1x1x256
+[3x3 conv, 192]: 28x28x192x3x3x256
+[5x5 conv, 96]: 28x28x96x5x5x256
+Total: 854M ops
+Compared to 854M ops for naive version Bottleneck can also reduce depth to 358M ops after pooling layer
+
+--- slide 37 ---
+Summary
+CNN Architectures
+
+LeNet
+AlexNet
+VGG Net
+Google Net
+Inception Net
+
+--- slide 38 ---
+CNN Optimization
+Generative AI for Computer Vision
+Next
+
+Lecture 4: Part 3

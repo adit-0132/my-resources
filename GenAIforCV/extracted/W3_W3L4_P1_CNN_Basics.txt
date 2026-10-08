@@ -1,0 +1,1721 @@
+### DECK: W3L4_P1_CNN_Basics  (Week 3)  slides=39  canvas=13.3x7.5in
+
+--- slide 1 ---
+Convolutional Neural Network - I
+Generative AI for Computer Vision
+Lecture 4
+
+Part 1
+
+--- slide 2 ---
+Content
+Introduction to Convolutional Neural Network (CNN)
+
+Typical CNN Architecture
+Convolution
+Pooling
+Local Contrast Normalization
+
+CNN – For Image Recognition
+
+--- slide 3 ---
+Convolutional Neural Network
+A Convolutional Neural Network (CNN) is a specialized type of neural network designed to automatically learn and extract meaningful features from input data, particularly images. 
+
+It consists of convolutional layers that apply multiple learnable filters (or kernels) across the input to identify fundamental patterns such as edges, textures, shapes, and other simple visual structures. 
+
+Unlike traditional neural networks, each neuron in a convolutional layer is connected only to a small local region (or patch) of the input, enabling the network to capture spatial relationships efficiently. 
+
+A key characteristic of CNNs is weight sharing, where the same filter (set of weights) is applied to different regions of the input. This significantly reduces the number of trainable parameters, lowers computational complexity, and improves the model's ability to generalize to unseen data.
+
+--- slide 4 ---
+Convolutional Neural Network (CNN)
+A CNN is composed of several fundamental building blocks that work together to learn hierarchical representations of input data. 
+Convolutional layers extract local spatial features by applying learnable filters to the input, enabling the network to detect patterns such as edges, textures, and shapes. 
+Pooling layers reduce the spatial dimensions of feature maps while preserving the most important information, thereby improving computational efficiency and reducing overfitting. 
+Normalization and activation layers stabilize the training process and introduce nonlinearity, allowing the network to learn complex feature representations. 
+Fully connected layers integrate the extracted features to perform classification or other decision-making tasks.
+Softmax layer converts the final outputs into class probabilities, enabling the prediction of the most likely class. 
+By combining these building blocks in different configurations, CNNs can be designed as either shallow or deep architectures to address a wide range of computer vision and pattern recognition tasks.
+[IMAGE: image.png.png 0.7x0.9in]
+Low Level Features
+Mid-Level Features
+High-Level Features
+Predictions
+Softmax
+Convolution
+Non-linear Activation
+Normalization
+Pooling
+Fully Connected layers
+
+--- slide 5 ---
+Convolutional Neural Network (CNN)
+Conventional Machine Learning
+[IMAGE: image.png.png 0.5x0.3in]
+Feature Extraction
+Subject to Network
+Predictions
+[IMAGE: image.png.png 0.7x0.9in]
+[IMAGE: image.png.png 0.5x0.5in]
+[IMAGE: image.png.png 0.4x0.4in]
+Hidden Layers
+Predictions
+Input Layer
+Output Layer
+Deep Learning Model
+[IMAGE: image.png.png 0.7x0.9in]
+[IMAGE: image.png.png 0.7x0.9in]
+Low Level Features
+Mid-Level Features
+High-Level Features
+Predictions
+Softmax
+Convolution
+Non-linear Activation
+Normalization
+Pooling
+Fully Connected layers
+Convolutional Neural 
+Network
+
+--- slide 6 ---
+Convolutional Neural Network
+Applications of Convolution Matrices : 
+Convolution kernels (or filters) are the fundamental components of Convolutional Neural Networks (CNNs) that enable automatic feature extraction from input data. 
+By sliding across the input image, each kernel learns to detect specific visual patterns and generates feature maps that represent the presence of these patterns. 
+Different kernels specialize in identifying different types of features, allowing CNNs to build increasingly complex representations through successive convolutional layers. 
+The major applications of convolution kernels include: Edge detection, Texture Analysis, Shape and Object feature extraction, Image classification, Object detection etc.
+Convolution kernels serve as automatic feature extractors that progressively learn from simple low-level features to complex high-level semantic representations.
+[IMAGE: image.png.png 2.9x5.3in]
+
+--- slide 7 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 8 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 9 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 10 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 11 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 12 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 13 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+
+--- slide 14 ---
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+1
+1
+1
+0
+0
+0
+-1
+-1
+-1
+Convolution Kernel
+Image Path
+12
+12
+12
+12
+12
+12
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+Resultant Pattern
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+0
+0
+0
+4
+4
+4
+4
+4
+4
+4
+4
+4
+4
+0
+0
+0
+0
+0
+0
+0
+0
+12
+12
+12
+12
+12
+12
+Convolution
+Searching for a Similar pattern
+Pattern : Horizontal Line
+
+--- slide 15 ---
+Convolution
+[IMAGE: image.png.png 3.1x1.6in]
+[IMAGE: image.png.png 3.4x1.5in]
+[IMAGE: image.png.png 3.3x1.5in]
+Vertical Edges
+Horizontal Edges
+Vertical Filtering
+Horizontal Filtering
+Searching for Similar Pattern
+Image Sources : Internet- Google
+
+--- slide 16 ---
+Convolution Layer
+Key Observations:
+Image statistics exhibit strong local consistency, meaning that pixels within small neighborhoods are highly correlated and often share similar visual characteristics. 
+Convolutional neural networks (CNNs) leverage this property by applying the same set of learnable filters across different spatial locations through a mechanism known as weight sharing. 
+This enables the network to detect the same features, such as edges, textures, and patterns, regardless of their position in the image. 
+In addition to improving feature extraction, weight sharing substantially reduces the number of trainable parameters, making the model more computationally efficient, less prone to overfitting, and better suited for processing high-dimensional image data.
+
+Convolutional Neural Network (CNN):
+In a Convolutional Neural Network (CNN), each hidden neuron is connected only to a small local region of the input, known as its receptive field, enabling the network to capture localized spatial features effectively. 
+The same set of learnable weights, referred to as filters or kernels, is applied across different spatial locations through a process called weight sharing.
+Convolutional Neural Network (CNN):
+This approach allows the network to detect similar patterns regardless of their position in the input while significantly reducing the number of trainable parameters. 
+
+Any neural network architecture that incorporates one or more convolutional layers is classified as a Convolutional Neural Network (CNN), making it particularly well suited for image analysis and other tasks involving spatially structured data.
+[IMAGE: image.png.png 3.1x1.8in]
+
+--- slide 17 ---
+Fully Connected Layers
+32
+32
+3
+1x3072
+Fully Connected layer
+1x3072
+3072x10
+Dot product of input (1x3072) and one row of WT(3072x1) one scalar
+(1x3072)x(3072x1)=(1)
+Convolutional Neural Network by Justin Johnson: Michigan Online
+1x10
+
+--- slide 18 ---
+How Convolution Work
+32 X 32 X 32 image
+32
+32
+3
+5 X 5 X3  Filter
+Convolve(slide) over all spatial locations
+28
+28
+1
+Convolutional Neural Network by Justin Johnson: Michigan Online
+Activation Map
+
+--- slide 19 ---
+How Convolution Works
+Convolve (slide) over all spatial location
+5 X 5 X 3 
+Convolution kernel
+Image Patch Size: NxNx3
+Conv. Kernel Size: FxFx3
+Stride: 1
+Output size (K): [(N-F)/Stride] +1
+Here, N=32, F=5, Stride=1
+So, K=[(32-5)/1]+1=27+1=28
+
+So, Activation Map: 28x28x1
+32
+32
+3
+28
+28
+1
+32 X 32 X 3 image patch
+28 X 28 X 1 Activation Map
+Convolutional Neural Network by Justin Johnson: Michigan Online
+
+--- slide 20 ---
+Stacks of Convolution Layers
+An input image patch is convolved with k different kernels (here, k=6), generating
+
+Each activation map detects a specific pattern defined by its corresponding kernel. k corresponding activation (feature) maps.
+1
+28
+28
+6 Different 
+Convolution Kernels
+5 X 5 X 3 
+Convolution Kernel
+32 X 32 X 3 image patch
+28 X 28 X 1 Activation Map
+3
+32
+32
+Convolutional Neural Network by Justin Johnson: Michigan Online
+
+--- slide 21 ---
+Convolution Layer
+Six Conv
+Twelve Conv
+Ten Conv
+3 X 5 X 5 
+Conv. Kernels
+6 X 3 X 3 
+Conv. Kernels
+10 X 3 X 3 
+Conv. Kernels
+32
+32
+3
+28
+28
+6
+26
+26
+10
+24
+24
+12
+Conv
+Input : 32 X 32 X 3 Image patch
+Image Patch Size: NxNx3;  Conv. Kernel Size: FxFx3; Stride: 1
+Output size (K): [(N-F)/Stride] +1
+Convolutional Neural Network by Justin Johnson: Michigan Online
+
+--- slide 22 ---
+Activation Maps
+Convolve (slide) over all spatial location
+5 X 5 X 3 
+Convolution kernel
+32
+32
+3
+28
+28
+1
+32 X 32 X 3 image patch
+28 X 28 X 1 Activation Map
+[IMAGE: image.png.png 3.0x3.0in]
+Activation Maps for AlexNet:
+1st Hidden Layer 64 filters of 3 X11 X 11
+Convolutional Neural Network by Justin Johnson: Michigan Online
+
+--- slide 23 ---
+Pooling
+While convolution determines whether specific patterns or features are present in the input, effective feature representation also requires a mechanism to emphasize the most important patterns at each spatial location.
+Pooling fulfills this role by selecting the most prominent feature response, such as the maximum activation in a local neighborhood through max pooling. 
+By retaining only the most significant activations, pooling reduces the spatial resolution of the feature maps while preserving the most informative features. 
+This process not only decreases computational complexity but also enhances the network's robustness to small translations and distortions in the input data.
+
+--- slide 24 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 25 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 26 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 27 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 28 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 29 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 30 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 31 ---
+Different Types of Pooling
+Max Pooling
+Selects the maximum value from each pooling region. 
+Retains the strongest feature response.
+
+Average Pooling
+Computes the average value in each pooling region. 
+Preserves the overall feature information.
+
+Why Pooling?
+Reduces spatial dimensions 
+Speeds up computation 
+Preserves important features 
+Improves robustness to translation and noise
+3
+8
+3
+9
+1
+5
+2
+5
+6
+3
+1
+4
+7
+5
+2
+6
+8
+9
+7
+6
+Max-Pooling
+2
+4
+5
+7
+5
+9
+1
+3
+6
+9
+1
+3
+8
+5
+2
+6
+5
+4
+7
+3
+Average Pooling
+
+--- slide 32 ---
+Contrast Normalization
+Contrast Normalization (CN) is a technique in CNNs that enhances feature detection by normalizing pixel intensities or feature activations based on local contrast. It highlights important features, suppresses uniform high-intensity regions, and improves robustness to illumination variations.
+
+A common approach is Local Contrast Normalization (LCN), which uses neighboring pixels for local subtraction and normalization.
+
+--- slide 33 ---
+Local Contrast Normalization
+Contrast variations change pixel intensities and convolution responses. Contrast normalization reduces their impact, enabling more robust and consistent feature detection.
+
+If the contrast of an image changes, the CNN output may vary because filter responses change. Contrast normalization addresses this by:
+Adjusting pixel intensities to balance local brightness and contrast. 
+Reducing the effect of illumination variations. 
+Enhancing structural details in the image. 
+Improving feature consistency across different regions.
+[IMAGE: image.png.png 5.5x1.8in]
+Image Source : Images of faces in different head poses with the nine reference points (facial landmarks) superimposed. The instances are probe images (2D data) from dataset UHDB11
+
+--- slide 34 ---
+Local Contrast Normalization
+[IMAGE: image.png.png 4.2x3.0in]
+Image source : Examples of result of the face and the background extraction. The center rectangle and the rectangles on both sides of each image are the face and the background region: (a) Non-flash image; (b) Flash image.
+Local Contrast Normalization (LCN) reduces the effects of illumination variations by normalizing feature activations with respect to their local neighborhood. 
+
+This process scales feature values based on the statistics of surrounding activations, making the network less sensitive to local changes in lighting and contrast. 
+
+As a result, LCN enhances edge and texture information while suppressing irrelevant intensity variations, allowing more discriminative features to be learned. 
+
+By improving the consistency and robustness of feature representations, Local Contrast Normalization contributes to better generalization and overall performance in image recognition and other computer vision tasks.
+
+--- slide 35 ---
+CNN Processing Stages
+A Convolutional Neural Network (CNN) processes input data through a sequence of specialized stages that progressively extract and refine meaningful features. 
+
+The process begins with the convolution stage, where learnable filters are applied to the input to detect local patterns such as edges, textures, and shapes. 
+
+The resulting feature maps are then passed through an activation function, such as Rectified Linear Unit (ReLU) or Sigmoid, which introduces non-linearity and enables the network to learn complex relationships within the data. 
+
+Next, normalization is performed to standardize feature activations, improving training stability, accelerating convergence, and enhancing the model's ability to generalize to unseen data. 
+
+Finally, the pooling stage downsamples the feature maps by retaining the most significant activations, thereby reducing spatial dimensions, lowering computational complexity, and improving the network's robustness to small translations and distortions in the input.
+[IMAGE: image.png.png 2.7x4.8in]
+
+--- slide 36 ---
+CNN – The Whole Picture
+A standard CNN architecture consists of convolutional layers that extract features, activation functions (e.g., ReLU) that introduce non-linearity, optional normalization layers that stabilize training and improve feature consistency, and pooling layers that reduce spatial dimensions while preserving important information. These components work together to progressively learn hierarchical feature representations. The extracted features are then passed to one or more fully connected layers, and a final output layer (e.g., Softmax for classification) produces the predicted class probabilities.
+96%
+ImageNet Top-5
+Modern CNN accuracy on classification benchmarks
+152
+ResNet Layers
+Depth of breakthrough architectures like ResNet-152
+60M
+Parameters
+Typical parameter count in large-scale CNNs
+[IMAGE: image.png.png 2.7x4.8in]
+
+--- slide 37 ---
+CNNs for Image Recognition
+Object Detection : Generate region proposals to localize objects, then classify each proposed region using dedicated classification heads.
+
+Semantic Segmentation : Assign class labels to every pixel for dense prediction tasks such as scene understanding.
+
+Image Classification : Assign a single class label to an entire image—the foundation of many computer vision applications
+[IMAGE: image.png.png 3.8x3.2in]
+Image Source : Tong, Yan & Lu, Wei & Yu, Yue & Shen, Yin. (2020). Application of machine learning in ophthalmic imaging modalities. Eye and Vision. 7. 10.1186/s40662-020-00183-6.
+
+--- slide 38 ---
+Summary
+Introduction to Convolutional Neuron Network (CNN)
+
+Typical CNN Architecture
+Convolution
+Pooling
+Local Contrast Normalization
+
+CNN – for Image Recognition
+
+--- slide 39 ---
+CNN Model Architectures
+Generative AI for Computer Vision
+Next
+
+Lecture 4: Part II
